@@ -1,0 +1,23 @@
+<?php
+class Punto {
+    //Constructor
+    public function __construct(
+        int $x=0,
+        int $y=0        
+        ){
+            $this->x=$x;
+            $this->y=$y;
+            
+    }
+    //Metodo mover
+    public function mover(int$dx=0, int $dy=0):void{
+        
+    }
+    
+    //Metodo a origen
+    public function aOrigen():void{
+        
+    }
+    
+  
+}

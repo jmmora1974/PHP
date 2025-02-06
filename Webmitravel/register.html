@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="description"
+    content="Web de busqueda de aventuras, eventos, actividades, que hacer, what to do, planificador de actividades, agenda.">
+  <meta name="author" content="Jose Miguel Mora Perez">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- frameworks predefinidos..-->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- estilo propio.-->
+  <link rel="stylesheet" href="./css/estilo.css">
+  <title>Mitravel</title>
+  <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+  <base href="./" target="_blank">
+</head>
+
+<body>
+
+  <header class="flex-container header">
+    <figure id="logo" class="text-start  logo">
+      <a href="index.html" class="flex1" target="_self"><img src="./images/logomitravel.png" alt="Logo Mitravel"
+          style="width:100px;height:100px"></a>
+    </figure>
+    <hgroup class="flex1">
+      <h1 class="text-center">&#9807;Mitravel</h1>
+      <p>Planifica tus aventuras</p>
+    </hgroup>
+    <div class="search-container">
+      <form action="/action_page.php">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+    <form id="formlogin" class="flex1 text-end" action="/action_page.php">
+      <fieldset>
+        <input type="text" id="usuariologin" placeholder="Escribe tu usuario" name="usuario">
+        <input type="password" id="pwdlogin" placeholder="Entra la contraseña" name="pswd">
+      </fieldset>
+      <fieldset>
+        <label>
+          <input type="checkbox" name="remember"> Remember me
+        </label>
+        <button type="submit" class="btn-login">Login</button>
+        <p>Registrate <a href="register.html" target="_self">aquí</a></p>
+      </fieldset>
+    </form>
+  </header>
+  <nav class=" topnav ">
+    <menu>
+      <li><a href="./index.html" target="_self">Inicio</a></li>
+      <li><a href="recomendaciones.html" target="_self">Recomendaciones</a></li>
+      <li><a href="contacto.html" target="_self">Contacto</a></li>
+      <li><a href="about.html" target="_self">Sobre nosotros</a></li>
+    </menu>
+  </nav>
+
+  <main>
+    <div class="containerRegristo">
+      <form id="formRegister" target="_self">
+        <fieldset>
+          <div id="divavatar" class="text-start flex-container">
+            <div class="flex1">
+              <img id="avatar" src="./images/perro.png" alt="foto perfil" style="width:100px;height:100px">
+              Subir foto...
+              <input type="file" class="flex1 text-start">
+              <input type="button" id="btnAvatar" class="btn btn-reset warning" value="Cambiar avatar">
+            </div>
+            <div class="flex4">
+              <label for="fuser">Usuario</label>
+              <input type="text" id="fuser" name="usuario valid" minlength="4" maxlength="8" class="textRegistro"
+                pattern="^[a-zA-Z]\w{2,7}$" placeholder="Escriba su usuario.." required autofocus>
+
+              <label for="fcontrasena">Contraseña:</label>
+              <input type="password" id="fcontrasena" name="contrasena" minlength="6" maxlength="12"
+                class="textRegistro" placeholder="Escriba su contraseña.." onkeyup="comprobarContrasenyas()" required>
+
+              <label for="fcontrasena2">Contraseña:</label>
+              <input type="password" id="fcontrasena2" inlength="6" maxlength="12" name="contrasena2 valid"
+                onkeyup="comprobarContrasenyas()" class="textRegistro" placeholder="Repita su contraseña.." required>
+              <span id="infoContra"></span>
+            </div>
+          </div>
+
+
+        </fieldset>
+        <fieldset>
+          <label for="fnombre">Nombre</label>
+          <input type="text" id="fnombre" name="nombre" class="textRegistro" 
+            placeholder="Escriba su nombre.." required>
+
+          <label for="fapellidos">Apellido</label>
+          <input type="text" id="fapellidos" name="apellidos" class="textRegistro"
+            placeholder="Escriba sus apellidos..">
+        </fieldset>
+        <fieldset>
+          <label for="fnif">NIF</label>
+          <input type="text" id="fnif" name="nif" class="textRegistro" placeholder="Escriba su NIF/NIE.." required>
+
+          <label for="fsexo">Sexo</label>
+          <select id="fsexo" name="sexo">
+            <option value="Hombre">Hombre</option>
+            <option value="Mujer">Mujer</option>
+            <option value="Aveces">Aveces</option>
+            <option value="Cuando se puede">Cuando se puede</option>
+          </select>
+
+          <label for="fmail">Mail</label>
+          <input type="email" id="fmail" name="mail" class="textRegistro" placeholder="Escriba su mail.." required>
+
+          <label for="fnacimiento">Fecha de nacimiento</label>
+          <input type="date" id="fnacimiento" name="nacimiento" class="textRegistro" required>
+
+          <label for="fpoblacion">Población</label>
+          <input type="text" id="fpoblacion" name="poblacion" class="textRegistro"
+            placeholder="Escriba sus poblacion..">
+
+          <label for="country">Pais</label>
+          <select id="country" name="country">
+            <option value="España">España</option>
+            <option value="Catalunya">Catalunya</option>
+            <option value="Andorra">Andorra</option>
+            <option value="Portugal">Portugal</option>
+          </select>
+          <label for="finfo">Deseas recibir promociones de nuestra web?
+            <input type="checkbox" id="finfo" name="finfo" class="textRegistro"></label>
+
+        </fieldset>
+        <input id="btnEnviarReg" type="submit" class="valid" name="enviar" value="Enviar" disabled>
+        <input id="btnResetReg" type="submit" class="btn btn-reset" onclick="formRegister.reset()" value="Reset">
+      </form>
+    </div>
+    <div>
+			<h5 id="titulomapa"> Mapa web </h5>
+		</div>
+    <div id="mapaweb">
+
+			<ul class="responsive">
+
+				<li><a href="./index.html" target="_self"><strong><u>Portada</u></strong></a></li>
+
+				<li><a href="./index.html#divciudad" target="_self">Localizacion</a></li>
+				<li><a href="./index.html#formularios" target="_self">Actividades</a></li>
+				<li><a href="./index.html#contenedormapa" target="_self">Mapa</a></li>
+				<li><a href="./index.html#listado" target="_self">Listado lugares</a></li>
+				<li><a href="./index.html#listado" target="_self">Detalles lugar</a></li>
+				<li><a href="./index.html#agenda" target="_self">Agenda</a></li>
+			</ul>
+			<ul class="responsive">
+				<li><a href="./recomendaciones.html" target="_self"><strong><u>Recomendaciones</u></strong></a></li>
+				<li><a href="./recomendaciones.html#carrusel" target="_self">Excursiones 4x4</a></li>
+				<li><a href="./recomendaciones.html#video1" target="_self">Circuito nocturno</a></li>
+			</ul>
+			<ul class="responsive">
+				<li><a href="./contacto.html" target="_self"><strong><u>Contacto</u></strong></a></li>
+				<li>Preguntas frecuentes</li>
+				<li>Consejos</li>
+			</ul>
+			<ul class="responsive">
+				<li><a href="./about.html" target="_self"><strong><u>Sobre nosotros</u></strong></a></li>
+				<li>Aviso legal</li>
+				<li><a href="https://www.w3.org/TR/WCAG10/" target="_blank">Accesibilidad</a></li>
+			</ul>
+
+
+		</div>
+  </main>
+  <div class="w3-container w3-teal">
+
+    <details>
+
+      <summary>
+        <b>Mitravel®</b>. Tienda online de alimentos para animales
+        @author:Jose Miguel Mora Perez® CIFO 2024
+      </summary>
+
+    </details>
+  </div>
+  <script>
+    const contra1 = document.getElementById("fcontrasena");
+    const contra2 = document.getElementById("fcontrasena2");
+    const nombrereg = document.getElementById("fnombre");
+    const apellidosreg = document.getElementById("fapellidos");
+
+    function comprobarContrasenyas() {
+      if (contra1.value == contra2.value) {
+        document.getElementById("btnEnviarReg").disabled = false;
+        document.getElementById("infoContra").innerHTML = "Las contraseñas coinciden";
+        infoContra.innerHTML = "Las contraseñas coinciden";
+        infoContra.innerHTMLText = "Las contraseñas coinciden txt";
+        infoContra.style.color = "green";
+
+      } else {
+        btnEnviarReg.disabled = true;
+        contra1.title = "Las contraseñas han de tener la misma longitud";
+        contra2.title = "Las contraseñas han de tener la misma longitud";
+        infoContra.innerHTML = "Las contraseñas han de tener la misma longitud";
+        infoContra.style.color = "red";
+        document.getElementById("infoContra").innerHTMLText = "Las contraseñas han de tener la misma longitud";
+      };
+      contra1.addEventListener("keyup", comprobarContrasenyas());
+      contra2.addEventListener("keyup", comprobarContrasenyas());
+    }
+
+    nombrereg.addEventListener("keyup", () => {
+     nombrereg.value=nombrereg.value.toUpperCase();
+    });
+
+    apellidosreg.addEventListener("keyup", () => {
+      apellidosreg.value=apellidosreg.value.toUpperCase();
+    });
+
+    
+
+    fcontrasena2.addEventListener("keyup", () => {
+      logElement.innerText = `Name: ${inputElement.value}`;
+    });
+
+ 
+
+  </script>
+
+</body>
+
+</html>

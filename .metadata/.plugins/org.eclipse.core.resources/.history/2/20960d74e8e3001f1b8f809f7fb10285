@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="HTML, CSS, JavaScript">
+<meta name="description"
+    content="PHP 16 Ejemplos - 1 Subida ficheros">
+    <meta name="author" content="Jose Miguel Mora Perez">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- frameworks predefinidos..-->
+    <!-- estilo propio.-->
+    <title>PHP 16 Ejemplos - 1 Subida ficheros</title>
+    <base href="./" target="_blank">
+    <script src="js/Preview.js"></script>
+    </head>
+    
+    <body>
+    <h1>PHP 16 Ejemplos - 1 Subida ficheros</h1>
+    <p></p>
+    <?php
+    function saludar(){
+        echo "Hola";
+    }
+    function despedir(){
+        echo "Adios";
+    }
+    
+    //http://localhost/......./PHP9_ejemplos.php?operacion=saludar
+     $funcionAInvocar = $_GET['operacion'];
+     
+     $funcionAInvocar();
+   
+   	?> 
+
+
+</body>
+
+
+</html>

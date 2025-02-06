@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+	<meta name="description"
+		content="Web deejemplo PHP">
+	<meta name="author" content="Jose Miguel Mora Perez">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- frameworks predefinidos..-->
+		<!-- estilo propio.-->
+	<title>Ejemplo PHP</title>
+	<base href="./" target="_blank">
+	
+</head>
+
+<body>
+
+
+		<h1>Ejemplo </h1>
+		
+ <?php if (isset($_REQUEST['nombre'])): ?>
+            <p>¿De verdad te llamas <?php echo $_REQUEST['nombre']; ?>? Qué nombre más bonito.</p>
+        <?php endif; ?>
+        <form>
+            <input type="text" name="nombre">
+            <input type="submit">
+        </form>
+</body>
+
+</html>

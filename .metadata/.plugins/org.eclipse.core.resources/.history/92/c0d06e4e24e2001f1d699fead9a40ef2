@@ -1,0 +1,22 @@
+<?php
+class Punto {
+    //Constructor
+    public function __construct(
+        int $x=0,
+        int $y=0        
+        ){
+            $this->x=$x;
+            $this->y=$y;
+            
+    }
+    //Metodo mover
+    public function mover(int$dx=0, int $dy=0):void{
+        $this->kms += $kms;
+    }
+    
+    //metodo toString
+    public function __toString () {
+        return "PUNTO: $this->x $this->y";
+    }
+    
+}

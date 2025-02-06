@@ -1,0 +1,21 @@
+<?php
+
+class Perro (){
+    //Constructor
+    public function __construct(
+        string $nombre,
+        string $raza,
+        float $peso=0
+        ){ }
+    
+        //metodo ladrar
+        public function ladrar(){
+            echo "GUAU GUAU";
+        }
+        
+        //metodo toString
+        public function __toString () {
+            return "PERRO: $this->nombre $this->raza $this->peso";
+        }
+        
+}

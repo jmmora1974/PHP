@@ -1,0 +1,16 @@
+<?php
+class Punto {
+    //Constructor
+    public function __construct(
+        int $x,
+        int $y        
+        ){
+            $this->x=$x;
+            $this->y=$y;
+            
+    }
+    //Metodo avanzar
+    public function avanzar(int $kms=0){
+        $this->kms += $kms;
+    }
+}

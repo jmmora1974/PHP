@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;PHP16_Ejemplos_ficheros/upload_16_3php&apos; to &apos;upload_16_3.php&apos;" description="Rename resource &apos;upload_16_3php&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="upload_16_3php" name="upload_16_3.php" stamp="1738791146901" updateReferences="true"/>
+</session>

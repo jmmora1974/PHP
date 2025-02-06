@@ -1,0 +1,34 @@
+<?php
+class Punto {
+    //Propiedades estsaticas
+    public static int $creados =0;
+    //Constructor
+    public function __construct(
+        int $x=0,
+        int $y=0        
+        ){
+            $this->x=$x;
+            $this->y=$y;
+            
+            self::$creados++;
+            
+    }
+    //Metodo mover
+    public function mover(int$dx=0, int $dy=0):Punto{
+        $this->x=$dx;
+        $this->y=$dy;
+        return $this;
+    }
+    
+    //Metodo a origen
+    public function aOrigen():Punto{
+        $this->x=0;
+        $this->y=0; 
+        return $this;
+    }
+    //metodo toString
+    public function __toString () {
+        return "($this->x, $this->y)";
+    }
+    
+}

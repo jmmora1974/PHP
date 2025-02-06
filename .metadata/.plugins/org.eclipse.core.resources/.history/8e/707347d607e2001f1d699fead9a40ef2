@@ -1,0 +1,31 @@
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="HTML, CSS, JavaScript">
+<meta name="description"
+    content="Web de Ejemplo 1 PHP 7 Guardar Tema">
+    <meta name="author" content="Jose Miguel Mora Perez">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- frameworks predefinidos..-->
+    <!-- estilo propio.-->
+    <title>Web de Ejemplo 1 PHP 9</title>
+    <base href="./" target="_blank">
+    <link rel="stylesheet" type="text/css" href="https://robertsallent.com/css/generic.css">
+    </head>
+    
+    <body>
+    <h1>Web de Ejemplo 1 PHP 9</h1>
+    <p></p>
+    <?php
+   ?> 
+
+
+</body>
+
+
+</html>

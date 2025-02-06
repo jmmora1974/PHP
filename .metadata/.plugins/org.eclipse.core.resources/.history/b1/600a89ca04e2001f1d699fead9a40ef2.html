@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="HTML, CSS, JavaScript">
+<meta name="description"
+    content="Web de Ejemplo PHP 9">
+    <meta name="author" content="Jose Miguel Mora Perez">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- frameworks predefinidos..-->
+    <!-- estilo propio.-->
+    <title>Web de Ejemplo 1 PHP 9</title>
+    <base href="./" target="_blank">
+    
+    </head>
+    
+    <body>
+    <h1>Web de Ejemplo 1 PHP 9</h1>
+    <p></p>
+    <?php
+    function saludar  (){
+        echo "Hola";
+    }
+    function despedir  (){
+        echo "Adios";
+    }
+     $funcionAInvocar = $_GET['operacion'];
+     
+     $funcionAInvocar();
+   
+   	?> 
+
+
+</body>
+
+
+</html>

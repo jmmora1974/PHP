@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8">
+		 <meta name="description" content="PHP 8 Ejercicios by jmmora">
+ 		 <meta name="viewport" content="width=device-width, initial-scale=1" >
+ 		 <title> PHP 8 Ejercicios</title>
+		<link rel="stylesheet" type="text/css" href="https://robertsallent.com/css/generic.css">
+	</head>
+	<body>
+	<h1> PHP 8 Ejercicios</h1>
+	<p><b>
+	1.Haz una función que calcule la resistencia eléctrica 
+	de dos resistencias colocadas en paralelo. </b></p>
+
+
+<?php 
+//Funcion que calcula la resistencia en paralelo de dos resistencias en ohms
+//PARAMETROS: 2 floats 
+//RETORNO: float  | null
+function calcularResistenciaParalelo1 (float $num1, float $num2):?float{
+    return  $resTotal=1/(1/$num1+1/$num2)??null;
+}
+
+//PRUEBAS EJERCICIO 1
+echo "Con resistencias de 1 y 2 Ohm, la resistencia total es ".calcularResistenciaParalelo1(1,2)." &#8486;<br>";
+echo "Con resistencias de 0.1 y 0.2 Ohm, la resistencia total es ".calcularResistenciaParalelo1(0.1,0.2)." &#8486;<br>";
+echo "Con resistencias de 11 y 22 Ohm, la resistencia total es ".calcularResistenciaParalelo1(11,22)." &#8486; <br>";
+echo "Con resistencias de 0.4 y 0.6 Ohm, la resistencia total es ".calcularResistenciaParalelo1(0.4,0.6)." &#8486; <br>";
+//echo "Con resistencias de a y 2 Ohm, la resistencia total es ".calcularResistenciaParalelo1(a,2)." &#8486;<br>";  //ERROR
+//echo "Con resistencias 1 , la resistencia total es ".calcularResistenciaParalelo1(2)." &#8486;<br>";  //ERROR
+?>
+<br>
+<p><b>
+2.Crea una segunda función que te permita calcular la resistencia en paralelo de N resistencias. Utiliza un número de parámetros variable.	
+</b></p>
+<?php
+//Funcion que calcula la resistencia en paralelo de dos resistencias en ohms
+//PARAMETROS: lista floats
+//RETORNO: float  | null
+
+function calcularResistenciaParaleloLista(array $resistencias):?float{
+    $restotal =0;
+    foreach ($resistencias as &$resitencia)
+        $restotal +=(1/$resitencia);
+     
+    return 1/$restotal??null;  
+    
+}
+//PRUEBAS EJERCICIO 2
+$lista1=[1,2,3,4,5];
+echo("EL resultado para la lista ".implode(',  ', $lista1)." es: ");
+print_r(calcularResistenciaParaleloLista($lista1)." &#8486;<br>");
+
+
+$lista2=[0.2,0.4,0.3,4.1,7.2];
+echo("EL resultado para la lista ".implode(',  ', $lista2)." es: ");
+print_r(calcularResistenciaParaleloLista($lista2)." &#8486;<br>");
+
+
+$lista3=[0.5,1.5, 4,5,0.2,0.3];
+echo("EL resultado para la lista ".implode(',  ', $lista3)." es: ");
+print_r(calcularResistenciaParaleloLista($lista3)." &#8486;<br>");
+
+
+$lista4=[0.5,1.5, "A" ,5,0.2,0.3];
+echo("EL resultado para la lista ".implode(',  ', $lista4)." es: ");
+//print_r(calcularResistenciaParaleloLista($lista4)." &#8486;<br>");  //ERROR
+echo " Error <br>";
+
+
+?>
+<br>
+<p><b>
+3.Crea una función que calcule la posición final de un móvil x(t) en función de la posición inicial (x0), la velocidad inicial (v0), la aceleración (a) y el tiempo (t):
+</p></b>
+<?php
+//Funcion que calcula la posición final de un móvil x(t) en función de 
+//PARAMETROS: la posición inicial (x0), la velocidad inicial (v0), la aceleración (a) y el tiempo (t):
+//RETORNO: float  | null
+
+function calcularPosicionFinalMovil(float $x0, float $v0, float $a, float $t):?float{
+    return $xt=(0.5 * $a * $t *$t)+($v0*$t)+$x0;
+}
+echo "La posición final del movil en x0=1 v0=1 a=1 t=1 es : ";
+echo calcularPosicionFinalMovil (1,1,1,1);
+echo "<br>";
+
+echo "La posición final del movil en x0=1 v0=2 a=3 t=4 es : ";
+echo calcularPosicionFinalMovil (1,2,3,4);
+echo "<br>";
+
+echo "La posición final del movil en x0=5 v0=6 a=7 t=8 es : ";
+echo calcularPosicionFinalMovil (5,6,7,8);
+echo "<br>";
+
+echo "La posición final del movil en x0=A v0=6 a=7 t=8 es : ";
+echo  "ERROR";  //calcularPosicionFinalMovil (5,"A",7,8);  //ERROR
+echo "<br>";
+
+echo "La posición final del movil sin parametros: ";
+echo  "Uncaught ArgumentCountError:";  //calcularPosicionFinalMovil ();  //ERROR
+echo "<br>";
+echo "<br>";
+?>
+
+<p><b>
+4.Haz una función que reciba un array y un valor y devuelva el número de veces que aparece ese valor en el array.
+</b></p>
+<?php 
+//Funcion que busca el numero de veces que aparece un valor en un array
+//PARAMETROS: Array y valor a buscar  
+//RETORNO: int  | null
+function buscarValor (array $datos,  $valor):?int{
+    $contador=0;
+    if ($datos){
+        
+        foreach ($datos as &$dato ){
+            if ($dato==$valor) $contador++;
+        }
+    }else {
+        echo "Lista vacía. No se puede realizar la búsqueda!.  ";
+    }
+   
+    return $contador;
+}
+$datos1=[1,2,3,4,5,6,7,8,9,0];
+print_r ("El valor 1 aparece ".buscarValor ($datos1, 1)." veces en el array ".implode(', ',$datos1)."<br>");
+
+$datos2=[1,2,3,4,5,6,7,8,9,0,1,1,1,1];
+print_r ("El valor 1 aparece ".buscarValor ($datos2, 1)." veces en el array ".implode(', ',$datos2)."<br>");
+
+$datos3=[1,2,3,4,5,6,7,8,9,0];
+print_r ("El valor A aparece ".buscarValor ($datos3, 'A')." veces en el array ".implode(', ',$datos3)."<br>");
+
+$datos4=[1,2,3,4,5,6,'A',7,8,9,0];
+print_r ("El valor A aparece ".buscarValor ($datos4, 'A')." veces en el array ".implode(', ',$datos4)."<br>");
+
+$datos5=[];
+print_r ("El valor A aparece ".buscarValor ($datos5, 'A')." veces en el array ".implode(', ',$datos5)."<br>");
+
+$datos6=[1,2,3,'' ,4,5,6,'A',7,NULL,8,9,0];
+print_r ("El valor NULL o sin datos aparece ".buscarValor ($datos6,NULL)." veces en el array ".implode(', ',$datos6)."<br>"); ////Comprobamos pasar NULL  
+
+$datos7=[1,2,3,'' ,4,5,6,'A',7,NULL,8,9,0];
+print_r ("El valor  sin datos aparece ".buscarValor ($datos7,'')." veces en el array ".implode(', ',$datos7)."<br>"); //Comprobamos pasar paremetro sin datos 
+
+$datos8=[1,2,3,'' ,4,5,6,'A',7,NULL,8,9,0];
+//print_r ("Sin pasar valor aparece ".buscarValor ($datos8)." veces en el array ".implode(', ',$datos8)."<br>"); //ERROR
+
+
+?>
+
+<br>
+<p><b>5.Haz una función que reciba un array y un entero y multiplique todos los valores del array por el entero. Se debe modificar el array original.
+</b></p>
+
+<?php 
+//Funcion que multiplica todos los valores del array
+//PARAMETROS: Array por referencia y valor entero a multiplicar  
+//RETORNO: array  | null (no obligatorio)
+function multiplicaArray(array &$arrayX,int $valorM):?array{
+    if ($arrayX) {
+        foreach($arrayX as  $i=>$casilla){
+            $arrayX[$i]*=$valorM;
+        }
+        return $arrayX; // No es necesario, se modifica el valor del array por referencia.
+    } else {
+        return NULL;
+    }
+}
+
+$arrayX1=[1,2,3,4,5,6,7,8,9,0];
+$valorM1=2;
+print_r("El array ".implode(', ',$arrayX1)." multiplicado por el valor ".$valorM1." es ");
+$arrayM1=multiplicaArray($arrayX1, $valorM1);
+print_r(implode(', ',$arrayM1)."<br>");
+
+$arrayX2=[1,2,3,4,5,6,7,8,9,0];
+$valorM2=3;
+print_r("El array ".implode(', ',$arrayX2)." multiplicado por el valor ".$valorM2." es ");
+$arrayM2=multiplicaArray($arrayX2, $valorM2);
+print_r(implode(', ',$arrayM2)."<br>");
+
+//Comprobamos si es necesario el retorno de la función y que ha modificado el array original.
+$arrayX3=[1,2,3,4,5,6,7,8,9,0];
+$valorM3=3;
+print_r("El array ".implode(', ',$arrayX3)." multiplicado por el valor ".$valorM3." es ");
+$resultado=multiplicaArray($arrayX3, $valorM3);  //cambiamos la variable de resultado para comprobar que no es necesario el retorno de la función.
+print_r(implode(', ',$arrayX3)."<br>");
+
+
+$arrayX4=[40,50,80,924,25*54,35,74];  //realilza la operación de 25*54 :)
+$valorM4=20;
+print_r("El array ".implode(', ',$arrayX4)." multiplicado por el valor ".$valorM4." es ");
+$arrayM4=multiplicaArray($arrayX4, $valorM4);
+print_r(implode(', ',$arrayM4)."<br>");
+
+$arrayX5=[1,2,3,4,5,6,7,8,9,0];
+//$valorM5;
+//print_r("El array ".implode(', ',$arrayX5)." multiplicado por el valor ".$valorM5." es "); //ERROR variable no definida
+//multiplicaArray($arrayX5, $valorM5);  //ERROR Fatal error: Uncaught TypeError: multiplicaArray(): Argument #2 ($valorM) must be of type int
+
+//print_r(implode(', ',$arrayX5)."<br>");
+//multiplicaArray($arrayX5); //Fatal error: Uncaught ArgumentCountError: Too few arguments to function multiplicaArray(),
+//print_r(implode(', ',$arrayX5)."<br>");
+
+?>
+
+<br>
+<p><b>
+6.Haz una función que reciba un vector e invierta el orden de los elementos que contiene (no vale usar array_reverse()).
+Versión A: el vector original debe ser modificado.
+Versión B: se debe retornar un nuevo vector y el original no debe quedar modificado.
+</b></p>
+
+<?php 
+//Funcion que invierte el orden de los elementos de un vector. 
+//PARAMETROS: vector
+class Punto {
+    public  $x;
+    public  $y;
+    public function __construct(float $x, float $y)
+    {
+        $this->x = $x;
+        $this->y = $y;
+    }
+
+}
+class Vector  {
+    public $xi, $xf ;
+    public $yi,$yf ;
+    public function __construct(float $xi, float $yi, float $xf, float $yf)
+    {
+        $this->xi = $xi;
+        $this->yi = $yi;
+        $this->xf = $xf;
+        $this->yf = $yf;
+    }
+    
+}
+
+function invertirVector(Vector &$vectorX):void{
+   
+    if($vectorX){
+        $xt = $vectorX->xi;
+        $yt = $vectorX->yi;
+        $vectorX->xi =$vectorX->xf;
+        $vectorX->yi =$vectorX->yf;
+        $vectorX->xf = $xt;
+        $vectorX->yf = $yt;
+    }
+   
+}
+
+$vA=new Vector (0,0,1,1);
+print_r("El vector>");
+var_dump($vA);
+echo "<br>
+
+invertirVector($vA);
+print_r("El vector invertido ");
+var_dump($vA);
+echo "<br>
+?>
+</body>
+
+
+</html>

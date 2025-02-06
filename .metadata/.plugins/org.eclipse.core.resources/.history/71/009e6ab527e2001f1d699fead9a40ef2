@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="HTML, CSS, JavaScript">
+<meta name="description"
+    content="PHP 12 Ejemplo  ">
+    <meta name="author" content="Jose Miguel Mora Perez">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://robertsallent.com/css/generic.css">
+    <!-- frameworks predefinidos..-->
+    <!-- estilo propio.-->
+    <title>PHP 12 Ejemplo</title>
+    <base href="./" target="_blank">
+    
+    </head>
+    
+    <body>
+    <h1>PHP 12 Ejemplo</h1>
+    <p></p>
+    
+    <?php
+    require_once 'Punto.php';
+    
+    $punto=new Punto();
+    echo $punto;
+    echo "<br>";
+    
+    $punto->x=100;
+    $punto->y+=50;
+    
+    echo "La coordenada x es:  $punto->x ,";
+    echo "La coordenada y es:  $punto->y .<br>";
+    echo "El punto se encuentra en $punto.<br>";
+
+    $punto1=new Punto(100,200);
+    echo "El punto 1 es : $punto1.<br>";
+    $punto2=$punto1;
+    $punto2->x+=50;
+    $punto2->y+=50;
+    
+    echo "El punto 2 es : $punto2.<br>";
+    //eliminamos punto 2,,
+    unset ($punto2);
+    //echo "El punto 2 despues de borrar  es : $punto2|0.<br>";
+    echo "El punto 1  ahora es : $punto1.<br>";
+    
+    
+    $punto3= new Punto(100,200);
+    $punto4= new Punto(100,200);
+    $punto5= new Punto(10,20);
+    $punto6=$punto5;
+    
+     echo  "<h3>punto 3 $punto3 y punto4 $punto4 son:</h3>";
+     echo  $punto3==$punto4 ? 'Iguales' : 'Diferentes'.". en el contenido. <br>" ;
+     echo $punto3===$punto4 ? 'El mismo' : 'Otro'." objeto <br>" ;
+   ?> 
+
+
+</body>
+
+
+</html>

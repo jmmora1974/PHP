@@ -1,0 +1,8 @@
+Bind\ namespace\ and\ location=1
+Inherited\ abstract\ methods=1
+eclipse.preferences.version=1
+org.eclipse.php.core.workspaceDefaultLocale=es_ES
+org.eclipse.php.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.php.ui.wizards.JSsupport=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

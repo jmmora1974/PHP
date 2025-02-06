@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+	<meta charset="UTF8-8">
+	<title>Subida de varios ficheros </title>
+	</head>
+	<body>
+	<h2>Datos del fichero reibido en el servidor:</h2>
+	<pre>
+	<?php 
+	foreach ($_FILES as $fichero){    // para cada entrada e $_FILES
+		
+		if(!$error = $fichero['error']){
+			$nombreFichero = $fichero['name'];  //Nombre del fichero
+			$rutaTemporal = $fichero['tmp_name']; //ruta temporal
+			$rutaFinal = "files/$nombreFichero"; //ruta final
+		}
+	}
+	?>
+	</pre>
+	</body>
+</html>

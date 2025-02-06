@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+	<meta charset="UTF8-8">
+	<title>File upload </title>
+	</head>
+	<body>
+	<h2>Datos del fichero reibido en el servidor:</h2>
+	<pre>
+	<?php 
+	var_dump($_FILES);
+	?>
+	</pre>
+	</body>
+</html>
