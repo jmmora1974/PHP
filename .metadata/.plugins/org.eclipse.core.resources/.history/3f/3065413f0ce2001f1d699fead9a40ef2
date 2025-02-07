@@ -1,0 +1,25 @@
+<?php
+public class Perro (){
+    //Constructor
+    public function __construct(
+        string $nombre,
+        string $raza,
+        float $peso=0
+        ){ }
+    
+        //metodo ladrar
+        public function ladrar(){
+            echo "GUAU GUAU";
+        }
+        
+        //Metodo engordar
+        public function engordar(float $peso=0){
+            $this->peso += $peso;
+        }
+                
+        //metodo toString
+        public function __toString () {
+            return "PERRO: $this->nombre $this->raza $this->peso";
+        }
+        
+}

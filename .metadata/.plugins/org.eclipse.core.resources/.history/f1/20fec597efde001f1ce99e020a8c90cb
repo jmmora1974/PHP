@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+	<meta name="description"
+		content="Web de Ejemplo 1 PHP 7 Guardar Tema">
+	<meta name="author" content="Jose Miguel Mora Perez">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- frameworks predefinidos..-->
+		<!-- estilo propio.-->
+	<title>Web de Ejemplo 1 PHP 7 Guardar Tema</title>
+	<base href="./" target="_blank">
+	
+</head>
+
+<body>
+	<h1>Web de Ejemplo 1 PHP 7 Guardar Tema</h1>
+	<p>Formulario que permite guardar tema en la tabla tams de la base de datos biblioteca.</p>
+	<?php
+if (!empty($_POST['calcular'])){
+    $diametro = floatval ($_POST['diametro']);
+    $perimetro = floatval ($_POST['perimetro']);
+    $area = floatval ($_POST['area']);
+    $radio = floatval ($_POST['radio']);
+    
+    
+    $resultado = floatval(( $base * $altura) /2) ;
+
+}
+?>
+	
+	<form method="POST" target="_self" autocomplete="off">
+		<label> Tema: </label>
+		<input type="text" name="tema"> 
+		<br>
+		<label> Descripcion: </label>
+		<input type="text" name="descripcion"> 
+		<br>
+		<input type="submit" name="calcular" value="Calcular">
+	</form>		
+	<?php
+if (!empty($_POST['calcular'])){
+    $diametro = floatval ($_POST['diametro']);
+    $perimetro = floatval ($_POST['perimetro']);
+    $area = floatval ($_POST['area']);
+    $radio = floatval ($_POST['radio']);
+    
+    
+    $resultado = floatval(( $base * $altura) /2) ;
+
+}
+?> 
+	<?= empty($resultado) ? '' : "<p>El area del triangulo rectangulo  es de $resultado.</p>"?>
+
+</body>
+
+
+</html>

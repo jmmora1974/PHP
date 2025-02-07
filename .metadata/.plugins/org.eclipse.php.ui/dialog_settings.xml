@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="completion_proposal_size">
+	</section>
+	<section name="quick_outline_size">
+	</section>
+	<section name="PHPSourceActionDialog.methods">
+		<item key="PHPSourceActionDialog.VisibilityModifier" value="64"/>
+		<item key="PHPSourceActionDialog.FinalModifier" value="false"/>
+		<item key="PHPSourceActionDialog.Comments" value="true"/>
+		<item key="GettersSettersDialog.sortorder" value="true"/>
+	</section>
+</section>
