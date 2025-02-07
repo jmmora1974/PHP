@@ -1,5 +1,10 @@
+<<<<<<< Upstream, based on choose_remote_name/main
 TASKS_FILTERS_MIGRATE=true
 eclipse.preferences.version=1
 platformState=965065589861197
+=======
+eclipse.preferences.version=1
+platformState=969644518783039
+>>>>>>> 541977c pc aula
 quickStart=false
 tipsAndTricks=true

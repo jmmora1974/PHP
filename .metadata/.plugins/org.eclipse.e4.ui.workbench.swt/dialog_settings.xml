@@ -3,6 +3,7 @@
 	<section name="ShowViewDialog">
 		<item key="DIALOG_X_ORIGIN" value="735"/>
 		<item key="DIALOG_Y_ORIGIN" value="177"/>
+<<<<<<< Upstream, based on choose_remote_name/main
 		<item key="DIALOG_WIDTH" value="311"/>
 		<item key="DIALOG_HEIGHT" value="439"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
@@ -11,5 +12,10 @@
 			<item value="Git"/>
 			<item value="Terminal"/>
 		</list>
+=======
+		<item key="DIALOG_WIDTH" value="472"/>
+		<item key="DIALOG_HEIGHT" value="517"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+>>>>>>> 541977c pc aula
 	</section>
 </section>

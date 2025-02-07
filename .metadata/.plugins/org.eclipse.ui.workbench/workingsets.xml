@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workingSetManager>
+<<<<<<< Upstream, based on choose_remote_name/main
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1737714442651_0" label="Window Working Set" name="Aggregate for window 1737714442651"/>
+=======
+<workingSet editPageId="org.eclipse.php.ui.workingset.PHPWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1738831528737_1" label="htdocs" name="htdocs">
+<item elementID="=PHP10_ejemplos" factoryID="org.eclipse.dltk.ui.PersistableModelElementFactory"/>
+<item elementID="=PHP12_13_Ejemplo" factoryID="org.eclipse.dltk.ui.PersistableModelElementFactory"/>
+<item elementID="=PHP5Ejemplos" factoryID="org.eclipse.dltk.ui.PersistableModelElementFactory"/>
+<item elementID="=PHP7Ejemplos" factoryID="org.eclipse.dltk.ui.PersistableModelElementFactory"/>
+<item elementID="=PHP9_ejemplos1" factoryID="org.eclipse.dltk.ui.PersistableModelElementFactory"/>
+<item elementID="=ejempl1" factoryID="org.eclipse.dltk.ui.PersistableModelElementFactory"/>
+<item elementID="=holamundo" factoryID="org.eclipse.dltk.ui.PersistableModelElementFactory"/>
+<item elementID="=PHP17_Ejemplos" factoryID="org.eclipse.dltk.ui.PersistableModelElementFactory"/>
+<item elementID="=PHP16_Ejemplos_ficheros" factoryID="org.eclipse.dltk.ui.PersistableModelElementFactory"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1737714442651_0" label="Window Working Set" name="Aggregate for window 1737714442651"/>
+<mruList name="htdocs"/>
+>>>>>>> 541977c pc aula
 </workingSetManager>

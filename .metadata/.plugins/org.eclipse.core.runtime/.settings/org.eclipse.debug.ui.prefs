@@ -1,5 +1,6 @@
 Console.highWaterMark=88000
 eclipse.preferences.version=1
+<<<<<<< Upstream, based on choose_remote_name/main
 org.eclipse.debug.ui.MemoryHistoryKnownColor=235,235,235
 org.eclipse.debug.ui.MemoryHistoryUnknownColor=170,175,185
 org.eclipse.debug.ui.PREF_CHANGED_VALUE_BACKGROUND=150,80,115
@@ -13,3 +14,9 @@ org.eclipse.debug.ui.relaunch_in_debug_mode=prompt
 org.eclipse.debug.ui.wait_for_build=prompt
 overriddenByCSS=,org.eclipse.debug.ui.MemoryHistoryKnownColor,org.eclipse.debug.ui.MemoryHistoryUnknownColor,org.eclipse.debug.ui.PREF_CHANGED_VALUE_BACKGROUND,org.eclipse.debug.ui.changedDebugElement,org.eclipse.debug.ui.consoleBackground,org.eclipse.debug.ui.errorColor,org.eclipse.debug.ui.inColor,org.eclipse.debug.ui.outColor,
 preferredTargets=default,org.eclipse.lsp4e.debug.toggleBreakpointTarget\:default|default,org.eclipse.lsp4e.debug.toggleBreakpointTarget,org.eclipse.php.debug.ui.PHPtoggleTargetFactory\:default|org.eclipse.lsp4e.debug.toggleBreakpointTarget\:org.eclipse.lsp4e.debug.toggleBreakpointTarget|default,org.eclipse.php.debug.ui.PHPtoggleTargetFactory\:default|
+=======
+org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<launchPerspectives/>\r\n
+org.eclipse.debug.ui.relaunch_in_debug_mode=prompt
+org.eclipse.debug.ui.wait_for_build=prompt
+preferredTargets=default,org.eclipse.lsp4e.debug.toggleBreakpointTarget\:default|default,org.eclipse.lsp4e.debug.toggleBreakpointTarget,org.eclipse.php.debug.ui.PHPtoggleTargetFactory\:default|org.eclipse.lsp4e.debug.toggleBreakpointTarget\:org.eclipse.lsp4e.debug.toggleBreakpointTarget|
+>>>>>>> 541977c pc aula

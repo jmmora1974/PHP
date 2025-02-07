@@ -1,5 +1,6 @@
 Bind\ namespace\ and\ location=1
 Inherited\ abstract\ methods=1
+<<<<<<< Upstream, based on choose_remote_name/main
 codeStyleNormal=\#D9E8F7 | null | null | null | null | null
 eclipse.preferences.version=1
 editorColorBoundarymaker=\#e79c92 | null | true | true | false | false
@@ -51,5 +52,9 @@ semanticHighlighting.org.eclipse.php.internal.ui.editor.highlighters.TaskTagHigh
 semanticHighlighting.org.eclipse.php.internal.ui.editor.highlighters.VarDocCommentHighlighting.color=\#626262
 semanticHighlighting.org.eclipse.php.internal.ui.editor.highlighters.VarDocHighlighting.bold=true
 semanticHighlighting.org.eclipse.php.internal.ui.editor.highlighters.VarDocHighlighting.color=\#9a8c7c
+=======
+eclipse.preferences.version=1
+org.eclipse.php.core.workspaceDefaultLocale=es_ES
+>>>>>>> 541977c pc aula
 useAnnotationsPrefPage=true
 useQuickDiffPrefPage=true

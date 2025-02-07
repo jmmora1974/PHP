@@ -1,4 +1,10 @@
+<<<<<<< Upstream, based on choose_remote_name/main
 #Mon Feb 03 08:33:05 CET 2025
 host=PC08A35
 process-id=11604
+=======
+#Thu Feb 06 09:15:04 CET 2025
+host=PC08A35
+process-id=20464
+>>>>>>> 541977c pc aula
 user=A35mati

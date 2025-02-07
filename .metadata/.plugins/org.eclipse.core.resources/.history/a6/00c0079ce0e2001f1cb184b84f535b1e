@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="keywords" content="HTML, CSS, JavaScript">
+<meta name="description"
+    content="PHP 12 Ejemplo  ">
+    <meta name="author" content="Jose Miguel Mora Perez">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://robertsallent.com/css/generic.css">
+    <!-- frameworks predefinidos..-->
+    <!-- estilo propio.-->
+    <title>PHP 12 Ejemplo</title>
+    <base href="./" target="_blank">
+    
+    </head>
+    
+    <body>
+    <h1>PHP 12 Ejemplo</h1>
+    <p></p>
+    
+    <?php
+    require_once 'Punto.php';
+    
+    $punto=new Punto();
+    echo $punto;
+    echo "<br>";
+    
+    $punto->x=100;
+    $punto->y+=50;
+    
+    echo "La coordenada x es:  $punto->x ,";
+    echo "La coordenada y es:  $punto->y .<br>";
+    echo "El punto se encuentra en $punto.<br>";
+
+    $punto1=new Punto(100,200);
+    echo "El punto 1 es : $punto1.<br>";
+    $punto2=$punto1;
+    $punto2->x+=50;
+    $punto2->y+=50;
+    
+    echo "El punto 2 es : $punto2.<br>";
+    //eliminamos punto 2,,
+    unset ($punto2);
+    //echo "El punto 2 despues de borrar  es : $punto2|0.<br>";
+    echo "El punto 1  ahora es : $punto1.<br>";
+    
+    
+    $punto3= new Punto(100,200);
+    $punto4= new Punto(100,200);
+    $punto5= new Punto(10,20);
+    $punto6=$punto5;
+    $punto7=clone($punto5);
+    
+     echo  "<h3>punto 3 $punto3 y punto4 $punto4 son:</h3>";
+     echo  $punto3==$punto4 ? 'Iguales'." en el contenido. <br>" : 'Diferentes'." en el contenido. <br>" ;
+     echo $punto3===$punto4 ? 'El mismo objeto <br>' : 'Otro objeto <br>' ;
+   
+     echo  "<h3>punto 3 $punto3 y punto5 $punto5 son:</h3>";
+     echo  $punto3==$punto5 ? 'Iguales <br>' : 'Diferentes. <br>' ;
+     
+     echo  "<h3>punto 5 $punto5 y punto6 $punto6 son:</h3>";
+     echo  $punto5==$punto6 ? 'Iguales <br>' : 'Diferentes <br>' ;
+     echo $punto5===$punto6 ? 'El mismo objeto <br>' : 'Otro objeto <br>' ;
+     
+     echo  "<h3>punto 5 $punto5 y punto7 $punto7 son:</h3>";
+     echo  $punto5==$punto7 ? 'Iguales <br>' : 'Diferentes <br>' ;
+     echo $punto5===$punto7 ? 'El mismo objeto <br>' : 'Otro objeto <br>' ;
+     
+     echo "Moviento punto 7 a (30,40) <br>";
+     $punto7->mover(30,40);
+     echo "Punto7 ahora esta en $punto7.<br>";
+     echo "Moviendo a origen ".$punto7->aOrigen()."<br>";
+     
+          
+     echo "Se han creado ".Punto::$creados." puntos"; 
+     
+     //calcula la distancia entre dos puntos
+     $dist = Punto::distanciaEntre($punto3,$punto5);
+     echo "La  distancia entre puntos punto 3 $punto3 y punto5 $punto5 es de : $dist <br>"; 
+     
+     echo "La distancia(this es punto7) hasta punto5 $punto3 es ".$punto7->distanciaHasta($punto3);
+     
+     
+     ?> 
+
+
+</body>
+
+
+</html>

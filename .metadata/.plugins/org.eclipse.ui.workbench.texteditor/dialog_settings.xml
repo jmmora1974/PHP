@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+<<<<<<< Upstream, based on choose_remote_name/main
 	<item value="true" key="hasShownOverlayPopupBefore"/>
 	<section name="java.lang.Class">
 		<list key="findhistory">
@@ -10,6 +11,12 @@
 		<item value="" key="selection"/>
 		<list key="findhistory">
 			<item value=""/>
+=======
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<section name="java.lang.Class">
+		<list key="findhistory">
+			<item value="class"/>
+>>>>>>> 541977c pc aula
 		</list>
 	</section>
 </section>
