@@ -5423,3 +5423,37 @@ java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
 	at org.eclipse.php.internal.core.codeassist.PHPCompletionEngine.complete(PHPCompletionEngine.java:120)
 	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:518)
 	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:499)
+
+!ENTRY org.eclipse.egit.core 4 0 2025-02-09 01:58:04.156
+!MESSAGE An exception occurred during push on URI https://github.com/jmmora1974/PHP.git: https://github.com/jmmora1974/PHP.git: not authorized
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/jmmora1974/PHP.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:694)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:636)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:540)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:140)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1533)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.egit.ui 4 0 2025-02-09 01:58:04.159
+!MESSAGE Can't connect to any repository: https://github.com/jmmora1974/PHP.git (https://github.com/jmmora1974/PHP.git: not authorized)
+!SESSION 2025-02-09 13:40:55.695 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.php.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.php.product
+
+!ENTRY org.eclipse.wst.sse.ui 2 2 2025-02-09 13:41:30.215
+!MESSAGE Configuration element ConfigurationElementHandle [name: proposalComputerExtendedActivation, id: org.eclipse.wst.jsdt.web.ui.ContentAssistProposals, handle id: 3575, namespace: org.eclipse.php.ui] intented to extend an existing completion proposal computer specified an invalid completion proposal computer ID org.eclipse.wst.jsdt.web.ui.ContentAssistProposals
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-02-09 13:41:36.986
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\jmora'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="true" key="hasShownOverlayPopupBefore"/>
+	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
 		<list key="findhistory">
+			<item value="form"/>
+			<item value="formm"/>
 			<item value="class"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item value="" key="selection"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
 			<item value=""/>
 		</list>
