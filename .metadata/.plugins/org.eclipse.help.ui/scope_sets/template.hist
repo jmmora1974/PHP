@@ -1,8 +1,4 @@
-<<<<<<< Upstream, based on choose_remote_name/main
 #Wed Feb 05 19:24:43 CET 2025
-=======
-#Mon Feb 03 08:32:50 CET 2025
->>>>>>> 541977c pc aula
 __DEFAULT__=false
 expression=template
 org.eclipse.help.ui.localSearch.master=true

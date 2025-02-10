@@ -30,7 +30,7 @@ if (!empty($_POST['calcular'])){
 	
 	<form method="POST">
 		<label> Grados centigrados: </label>
-		<input type="number" name="grados" value="<?= grados ?? ''?>"?>> 
+		<input type="number" name="grados" value="<?= grados ?? ''?>">> 
 		<br>
 		<input type="submit" name="calcular" value="Calcular">
 	</form>		

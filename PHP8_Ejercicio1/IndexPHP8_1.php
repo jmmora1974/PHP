@@ -73,8 +73,7 @@ echo " Error <br>";
 <br>
 <p><b>
 3.Crea una función que calcule la posición final de un móvil x(t) en función de la posición inicial (x0), la velocidad inicial (v0), la aceleración (a) y el tiempo (t):
-</p></b>
-<?php
+</b></p>
 //Funcion que calcula la posición final de un móvil x(t) en función de 
 //PARAMETROS: la posición inicial (x0), la velocidad inicial (v0), la aceleración (a) y el tiempo (t):
 //RETORNO: float  | null

@@ -1,4 +1,4 @@
-/*
+  /*
 	Fichero: Preview.js
 	
 	Se usa para mostrar previsualizaciones de imágenes en formularios con inputs de tipo file

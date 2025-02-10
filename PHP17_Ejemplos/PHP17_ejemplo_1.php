@@ -29,11 +29,6 @@
     <input type="submit" value="Enviar">
     </form>
 
-    <?php
-    
-   
-   	?> 
-
 
 </body>
 

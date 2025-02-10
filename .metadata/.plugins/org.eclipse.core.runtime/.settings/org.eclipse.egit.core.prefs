@@ -1,5 +1,7 @@
 GitRepositoriesView.GitDirectories=C\:\\xampp\\htdocs\\.git;
 GitRepositoriesView.GitDirectories.relative=.git;
+core_defaultRepositoryDir=C\:\\xampp\\htdocs
+core_git_servers=
 core_preferredMergeStrategy=jgit-default-mergeStrategy
 core_ssh_default_agent=\\\\.\\pageant
 eclipse.preferences.version=1
