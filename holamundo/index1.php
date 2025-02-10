@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="./css/estilo.css">
 	<title>Hola Mundo</title>
 
-</head>º
+</head>
 
 <body>
 
