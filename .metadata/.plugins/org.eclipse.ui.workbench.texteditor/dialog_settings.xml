@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
+		<item key="selection" value=""/>
 		<list key="findhistory">
 			<item value="form"/>
 			<item value="formm"/>
