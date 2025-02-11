@@ -2237,3 +2237,37 @@ java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
 
 !ENTRY org.eclipse.wst.sse.ui 2 2 2025-02-11 17:37:10.202
 !MESSAGE Configuration element ConfigurationElementHandle [name: proposalComputerExtendedActivation, id: org.eclipse.wst.jsdt.web.ui.ContentAssistProposals, handle id: 3575, namespace: org.eclipse.php.ui] intented to extend an existing completion proposal computer specified an invalid completion proposal computer ID org.eclipse.wst.jsdt.web.ui.ContentAssistProposals
+
+!ENTRY org.eclipse.egit.core 4 0 2025-02-11 20:04:41.065
+!MESSAGE An exception occurred during push on URI https://github.com/jmmora1974/PHP.git: https://github.com/jmmora1974/PHP.git: not authorized
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/jmmora1974/PHP.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:694)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:636)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:540)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:140)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1533)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.egit.ui 4 0 2025-02-11 20:04:41.067
+!MESSAGE Can't connect to any repository: https://github.com/jmmora1974/PHP.git (https://github.com/jmmora1974/PHP.git: not authorized)
+
+!ENTRY org.eclipse.egit.core 4 0 2025-02-11 20:05:31.817
+!MESSAGE An exception occurred during push on URI https://github.com/jmmora1974/PHP.git: https://github.com/jmmora1974/PHP.git: not authorized
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/jmmora1974/PHP.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:694)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:636)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:540)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:140)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1533)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:269)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.egit.ui 4 0 2025-02-11 20:05:31.818
+!MESSAGE Can't connect to any repository: https://github.com/jmmora1974/PHP.git (https://github.com/jmmora1974/PHP.git: not authorized)
