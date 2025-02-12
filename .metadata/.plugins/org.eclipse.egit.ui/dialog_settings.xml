@@ -24,12 +24,36 @@
 		<item key="sortItemState" value="false"/>
 	</section>
 	<section name="GitCommitMessageComponent">
+		<list key="C:\xampp\htdocs\.git">
+			<item value="false"/>
+			<item value="jmmora1974 &lt;jmmora1974@gmail.com&gt;"/>
+			<item value="aa"/>
+			<item value="jmmora1974 &lt;jmmora1974@gmail.com&gt;"/>
+			<item value="3d7c46e2b1e52342ac2f3b1ac48a2b99417b4421"/>
+			<item value="0"/>
+			<item value="true"/>
+			<item value=""/>
+		</list>
 	</section>
 	<section name="org.eclipse.egit.ui.COMMIT_DIALOG_SECTION">
 		<item key="DIALOG_X_ORIGIN" value="-55"/>
 		<item key="DIALOG_Y_ORIGIN" value="51"/>
 		<item key="DIALOG_WIDTH" value="642"/>
 		<item key="DIALOG_HEIGHT" value="641"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.fetch.FetchResultDialog.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="660"/>
+		<item key="DIALOG_Y_ORIGIN" value="223"/>
+		<item key="DIALOG_WIDTH" value="616"/>
+		<item key="DIALOG_HEIGHT" value="458"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.dialogs.CheckoutDialog.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="310"/>
+		<item key="DIALOG_Y_ORIGIN" value="201"/>
+		<item key="DIALOG_WIDTH" value="538"/>
+		<item key="DIALOG_HEIGHT" value="484"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 </section>
