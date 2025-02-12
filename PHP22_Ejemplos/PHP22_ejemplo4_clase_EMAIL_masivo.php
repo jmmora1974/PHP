@@ -5,7 +5,7 @@ include 'libraries/autoload.php';
 //lista de direcciones dpara el mailing
 //podrian haber sido sacadas de una base de datos
 $direcciones =[
-		'robert@juegayestudia.com',
+		'robert@prueba.com',
 		'jmmora1974@gmail.com',
 		'pepito@hotmail.com'
 ];
@@ -22,8 +22,12 @@ $email = new Email(
 //para cada entrada de la lista de direcciones
 foreach ($direcciones as $direccion){
 	//envia el mail a cada una de ellas
-	echo $email->send($direccion) ? 
-			"<p>Enviado correctamente.</p> " : 
-			"<p>No se pudo enviar a $direccion.</p>";
+	try{
+		 $email->send($direccion);  
+		echo "<p>Enviado correctamente.</p> " ;
+	//En caso de error...(luego seguira con la siguiente)
+	} catch(EmailException $e){
+		echo "<p>No se pudo enviar a $direccion.</p>";
+	 }
 }
 		

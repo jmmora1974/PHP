@@ -7,11 +7,11 @@ if(!empty($_COOKIE['carro'])){
 	
 	//Imprime la lista con la info recupèrada
 	echo "<ol>";
-	foreach(%productos as $producto)
+	foreach($productos as $producto)
 		echo "<li>$producto</li>";
 	
-		echo "</o>";W
+		echo "</o>";
 } else 
 	echo '<p> Carro vacio </p>';
-W
+
 ?>
