@@ -22,7 +22,7 @@
 	<link rel="icon" type="image/x-icon" href="./images/favicon.ico">
 	<base href="./" target="_blank">
 	<script
-		src="https://maps.googleapis.com/maps/api/js?key="PUT-key-here-"&callback=initMap&libraries=geometry,places&v=weekly&callback=initMap"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6UK4XPWfiFX7c_W-_9d-Qh3H3yaDG5DM&callback=initMap&libraries=geometry,places&v=weekly&callback=initMap"
 		async defer></script>
 	<script src="./js/mitravel.js"></script>
 </head>
@@ -30,33 +30,12 @@
 <body>
 	<?php
 		cabecera('&#9807;Mitravel','Planifica tus aventuras');
+		menu('ini');
 	?>
-	
-	<nav class=" topnav ">
-		<menu>
-			<li class=" active"><a href="./index.html" target="_self">Inicio</a></li>
-			<li><a href="recomendaciones.html" target="_self">Recomendaciones</a></li>
-			<li><a href="contacto.html" target="_self">Contacto</a></li>
-			<li><a href="about.html" target="_self">Sobre nosotros</a></li>
-		</menu>
-	</nav>
-
-	<main>
 		
-		
-		<div class="principal" id="principal">
-			<diV id="descripcionweb">
-				<p> Planifica tu dia de actividades y crea la agenda diaria. 
-					Puedes buscar varias actividades y agregar el lugar en la agenga y planificar la hora de visita.
-					Puedes seleccionar alguna actividad  o escribir lo que deseas hacer y buscar los lugares en una ciudad, región o incluso en el país que desees. 
-					En el listado del resultado, podras ver los detalles del lugar y si te apetece visitarlo, pulsa el botón agregar y te aparecerá en la agenda, modifica la hora prevista si lo deseas.
-				</p>
-			</diV>
-			<div id="dialogogalleta">
+<div id="dialogogalleta">
 				<dialog open>
-					<p>Obtener más información y configuración
-
-						El acceso a este sitio está sujeto al consentimiento para el uso de cookies, la disposición de
+					<p>	El acceso a este sitio está sujeto al consentimiento para el uso de cookies, la disposición de
 						esta web es para uso educatico con el fin de aprender y compartir los conocimientos adquiridos
 						sin ánimos de lúcro.
 						La información recogida a través de determinadas categorías de cookies y tecnologías similares
@@ -78,6 +57,17 @@
 					</form>
 				</dialog>
 			</div>
+	<main>
+		
+		<div class="principal" id="principal">
+			<diV id="descripcionweb">
+				<p> Planifica tu dia de actividades y crea la agenda diaria. 
+					Puedes buscar varias actividades y agregar el lugar en la agenga y planificar la hora de visita.
+					Puedes seleccionar alguna actividad  o escribir lo que deseas hacer y buscar los lugares en una ciudad, región o incluso en el país que desees. 
+					En el listado del resultado, podras ver los detalles del lugar y si te apetece visitarlo, pulsa el botón agregar y te aparecerá en la agenda, modifica la hora prevista si lo deseas.
+				</p>
+			</diV>
+			
 			
 			<div class="superior">
 				<div id="divciudad">
@@ -183,6 +173,7 @@
 					<div><button class="btntrash"><i class="fa fa-trash"></i> Borra agenda</button></div>
 				</div>
 			</div>
+			
 			<section>
 				<fieldset id="planificador">
 					<legend>Planificador</legend>
@@ -197,74 +188,20 @@
 
 
 			</section>
-			<div id="chat-container">
-				<div id="title_bar">
-					<button id="buttonchat">-</button>
-					<label>Soporte en linea</label>
-
-				</div>
-				<div id="chat-messages">Tienes alguna consulta?</div>
-				<form id="chat-form">
-
-					<div id="box">
-					</div>
-					<input type="text" id="chat-input" placeholder="Escribe tu mensaje aquí...">
-					<button type="submit">Enviar</button>
-				</form>
-			</div>
+			<?php chatservice() ?>
 		</div>
 		<div class="clearfix"></div>
-		<div>
-			<h5 id="titulomapa"> Mapa web </h5>
-		</div>
-		<div id="mapaweb">
+		
+		
 
-			<ul class="responsive">
-
-				<li><a href="./index.html" target="_self"><strong><u>Portada</u></strong></a></li>
-
-				<li><a href="./index.html#divciudad" target="_self">Localizacion</a></li>
-				<li><a href="./index.html#formularios" target="_self">Actividades</a></li>
-				<li><a href="./index.html#contenedormapa" target="_self">Mapa</a></li>
-				<li><a href="./index.html#listado" target="_self">Listado lugares</a></li>
-				<li><a href="./index.html#listado" target="_self">Detalles lugar</a></li>
-				<li><a href="./index.html#agenda" target="_self">Agenda</a></li>
-			</ul>
-			<ul class="responsive">
-				<li><a href="./recomendaciones.html" target="_self"><strong><u>Recomendaciones</u></strong></a></li>
-				<li><a href="./recomendaciones.html#carrusel" target="_self">Excursiones 4x4</a></li>
-				<li><a href="./recomendaciones.html#video1" target="_self">Circuito nocturno</a></li>
-			</ul>
-			<ul class="responsive">
-				<li><a href="./contacto.html" target="_self"><strong><u>Contacto</u></strong></a></li>
-				<li>Preguntas frecuentes</li>
-				<li>Consejos</li>
-			</ul>
-			<ul class="responsive">
-				<li><a href="./about.html" target="_self"><strong><u>Sobre nosotros</u></strong></a></li>
-				<li>Aviso legal</li>
-				<li><a href="https://www.w3.org/TR/WCAG10/" target="_blank">Accesibilidad</a></li>
-			</ul>
-
-
-		</div>
-
-
+	<?php mapaweb()?>
 
 	</main>
-	<div class="w3-container w3-teal">
-
-		<details>
-
-			<summary>
-				<b>Mitravel®</b>. Web para planificar tus aventuras.
-				@author:Jose Miguel Mora Perez® CIFO 2024
-				<i class="fa fa-copyright" aria-hidden="true"></i><i class="fa fa-envelope-o" aria-hidden="true"></i>
-
-			</summary>
-
-		</details>
-	</div>
+	
+	
+		<?php piedepagina ('Jose Miguel Mora Perez')?>
+		
+	
 	
 
 </body>
