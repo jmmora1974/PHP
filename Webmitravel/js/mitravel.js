@@ -267,28 +267,7 @@ const widgetsPepemi = () => {
 
 	//final widgetsPepemi.
 };
-enviarPreguntaChat = (pregunta) => {
-	const optionschat = {
-		method: 'POST',
-		headers: {
-			accept: 'application/json',
-			'content-type': 'application/json',
-			'X-API-KEY': '54f8de3b-3214-4837-90d2-2af9e1ae3d3d'
-		},
-		body: JSON.stringify({
-			enable_google_results: true,
-			enable_memory: true,
-			input_text: pregunta,
-			history_data: []
-		})
-	};
-	console.log("En la pregunta al chat IA");
-	return fetch('https://api.writesonic.com/v2/business/content/chatsonic?engine=premium', optionschat)
-		.then(response => response.json())
-		.catch(err => console.error);
 
-
-}
 /* Funcion que borra el listado de recomendaciones */
 const borrarParrafo = ((divtexto) => {
 	//Borramos las recomendaciones anteriores.
