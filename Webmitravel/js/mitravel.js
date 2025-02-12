@@ -102,7 +102,7 @@ const initMap = () => {
 
 	widgetsPepemi();
 	//Forzamos el click para minimizar el chat
-	document.getElementById("buttonchat").click();
+	//document.getElementById("buttonchat").click();
 }
 
 //Localiza el lugar donde se encuentra el dispositivo. Requiere permisos.
@@ -179,90 +179,6 @@ const widgetsPepemi = () => {
 		alert("En construcción !! Solo para usuarios registrados..en breve estará el servicio activo.");
 	});
 
-
-
-	/* Implementación chat servicio online */
-	const form = document.getElementById("chat-form");
-	const inputchatsonic = document.getElementById("chat-input");
-	const messages = document.getElementById("chat-messages");
-
-	//Creamos el listener del chatboot
-	form.addEventListener("submit", async (event) => {
-		event.preventDefault();
-		let message = inputchatsonic.value;
-		inputchatsonic.value = "";
-		messages.innerHTML += `<div class="message">${message}</div>`;
-		const respuestachat = await enviarPreguntaChat(message);
-
-		message = respuestachat['message'];
-		console.log("Respuesta chat IA : " + respuestachat['message']);
-		messages.innerHTML += `<div class="message">${message}</div>`;
-		inputchatsonic.value = "";
-		// Llama a la API de Google Maps para mostrar l os resultados en el mapa
-		/* const location = message;
-		   const geocoder = new google.maps.Geocoder();
-		   geocoder.geocode({ address: location }, (results, status) => {
-			 if (status === "OK") {
-			   mapapepemi.setCenter(results[0].geometry.location);
-			   const marker = new google.maps.Marker({
-				 map: mapapepemi,
-				 position: results[0].geometry.location,
-			   });
-			 } else {
-			   alert("Geocode was not successful for the following reason: " + status);
-			 }
-		   });
-		   */
-
-	});
-
-
-	let botonchat = document.getElementById("buttonchat");
-	botonchat.addEventListener("click", () => {
-		const caja = document.getElementById("containerchat");
-		if (caja) { caja.resizeTo(20, 20); };
-		// console.log("botonchat :"+botonchat.textContent);
-		if (botonchat.textContent == "-") {
-			slideDown(caja);
-			botonchat.textContent = "+";
-		}
-		else {
-			slideUp(caja);
-			botonchat.textContent = "-";
-		};
-
-
-	});
-
-	//Despliega el chat de servicio online
-	let slideUp = (target, duration = 500) => {
-		let containerchat = document.getElementById("chat-container");
-		console.log("chatbot maximizado");
-		containerchat.style.height = 70 + '%';
-		containerchat.style.width = 70 + '%';
-		// containerchat.show();
-	}
-
-	//esconde el chat de servicio
-	let slideDown = (target, duration = 500) => {
-		let containerchat = document.getElementById("chat-container");
-		console.log("chatbot minimizado");
-
-		containerchat.style.height = 30 + 'px';
-		containerchat.style.width = 180 + 'px';
-		//containerchat.hide();
-	}
-
-	let slideToggle = (target, duration = 500) => {
-
-		if (target) {
-			if (getComputedStyle(target).display === 'none') {
-				return slideDown(target, duration);
-			} else {
-				return slideUp(target, duration);
-			}
-		};
-	}
 
 
 	//final widgetsPepemi.
