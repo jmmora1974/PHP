@@ -179,7 +179,7 @@ h1 {
 /* Add an active class to highlight the current page */
 .topnav li.active {
   background-color: #52a385;
-  color: white;
+  color: black;
 
 }
 
@@ -975,7 +975,7 @@ p {
   top: 40px;
    border-radius: 5px;
   width: 80%;
-  height: 1vh;
+  height: 10vh;
   font-size: 0.7rem;
    text-align: center;
    align-items: center;

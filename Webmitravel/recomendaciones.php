@@ -139,7 +139,7 @@
 		</div>
 			<?php mapaweb();?>
 	</main>
-		<?php piedepagina();?>
+	<?php piedepagina ('Jose Miguel Mora Perez')?>
 
 	<script src="./js/mitravelreco.js"></script>
 	<script src="./js/chatservice.js"></script>

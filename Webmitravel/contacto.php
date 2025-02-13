@@ -100,18 +100,7 @@
 
 	</div>
   </main>
-  <div class="w3-container w3-teal">
-
-    <details>
-
-      <summary>
-        <b>Mitravel®</b>. Tienda online de alimentos para animales
-        @author:Jose Miguel Mora Perez® CIFO 2024
-      </summary>
-
-    </details>
-  </div>
-
+  <?php piedepagina ('Jose Miguel Mora Perez')?>
 </body>
 
 </html>

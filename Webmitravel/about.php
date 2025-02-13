@@ -26,7 +26,7 @@
 
 	<?php
 		cabecera('&#9807;Mitravel','Planifica tus aventuras');
-		menu('ini');
+		menu('about');
 	?>
 
 	<main class="">

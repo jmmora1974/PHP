@@ -115,7 +115,7 @@
 			
 			<?php mapaweb();?>
 	</main>
-		<?php piedepagina();?>
+		<?php piedepagina ('Jose Miguel Mora Perez')?>
   
 
   <script>
