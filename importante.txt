@@ -1,1 +1,1 @@
-#[\AllowDynamicProperties]  - hay que ponerlo para versiones`posterior a 8.2 para usar las propiedades dinamicas.
+#[AllowDynamicProperties]  - hay que ponerlo para versiones`posterior a 8.2 para usar las propiedades dinamicas.
