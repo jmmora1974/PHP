@@ -57,6 +57,8 @@
 								<legend>Actividades</legend>
 								¿Qué actividades deseas realizar?<br>
 
+								<label for="airelibre"> Que hacer en <input type="checkbox"
+										class="actividad" id="quehaceren" name="quehaceren"> </label>
 								<label for="airelibre"> Actividades al aire libre <input type="checkbox"
 										class="actividad" id="airelibre" name="airelibre"> </label>
 								<label for="entretenimiento"> Entrenenimiento <input type="checkbox" class="actividad"
