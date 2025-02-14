@@ -31,7 +31,8 @@ CREATE TABLE usuarios(
     poblacion VARCHAR(128) NOT NULL,
     direccion VARCHAR(256) NOT NULL,
     pais VARCHAR(128) NOT NULL,
-    promociones BOOLEAN NOT NULL default FALSE
+    promociones BOOLEAN NOT NULL default FALSE,
+    token VARCHAR(32) NOT NULL
 );
 
 
@@ -93,7 +94,7 @@ CREATE TABLE actividades(
 
 -- inserción de datos de los clientes
 INSERT INTO usuarios (id, usuario , contrasena , nombre , apellido1, apellido2 , nif, sexo , email, 
-						fechanacimiento , poblacion , direccion , pais) VALUES 
-(1, 'jose','1234','Jose Miguel','Mora','Perez','39393939J','Hombre', 'jose@mitravel.com','2000-01-01','Terrassa','c/micasa n1','España' ),
-(2, 'invitado','1234','Invitado','invitado','invitado','11111111J','Hombre', 'invitado@mitravel.com','2000-01-01','Terrassa','c/micasa 1','España');
+						fechanacimiento , poblacion , direccion , pais,token) VALUES 
+(1, 'jose','1234','Jose Miguel','Mora','Perez','39393939J','Hombre', 'jose@mitravel.com','2000-01-01','Terrassa','c/micasa n1','España','asdfasdfasdni' ),
+(2, 'invitado','1234','Invitado','invitado','invitado','11111111J','Hombre', 'invitado@mitravel.com','2000-01-01','Terrassa','c/micasa 1','España','ashfbaskjfbas');
 
