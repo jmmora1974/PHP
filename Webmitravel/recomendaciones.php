@@ -22,6 +22,7 @@
 <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
 <base href="./" target="_blank">
 <script src="js/Preview.js"></script>
+<script src="js/galeria.js"></script>
 </head>
 
 <body>
@@ -29,6 +30,8 @@
 <?php
 cabecera ( '&#9807;Mitravel', 'Planifica tus aventuras' );
 menu ( 'recomendaciones' );
+if(empty($_COOKIE['consentimiento']))
+	aceptarCookies();
 ?>
 		
 	<main>
@@ -86,7 +89,7 @@ menu ( 'recomendaciones' );
 					// Imprimos el titulo de la actividad.
 					echo "<h1 class='centered'>$capActividad</h1>";
 					?>
-				<section class="gallery w75 centered-block my2">
+				<section id="galeria" class="gallery w75 centered-block my2">
 					
 				<?php
 

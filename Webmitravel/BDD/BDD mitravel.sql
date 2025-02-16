@@ -91,6 +91,20 @@ CREATE TABLE actividades(
         ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+-- creación de la tabla agendas
+CREATE TABLE recomendaciones(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    idusuario INT NOT NULL,
+    idactividad INT NULL,
+    ciudad VARCHAR(128) NOT NULL,
+    descripcion VARCHAR(254) NULL DEFAULT NULL,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (idusuario) REFERENCES usuarios(id) 
+        ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY (idactividad) REFERENCES actividades(id) 
+        ON UPDATE CASCADE ON DELETE RESTRICT
+    
+);
 
 -- inserción de datos de los clientes
 INSERT INTO usuarios (id, usuario , contrasena , nombre , apellido1, apellido2 , nif, sexo , email, 

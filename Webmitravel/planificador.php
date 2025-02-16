@@ -32,7 +32,8 @@
 		
 		cabecera('&#9807;Mitravel','Planifica tus aventuras');
 		menu('planificador');
-		//aceptarCookies();
+		if(empty($_COOKIE['consentimiento']))
+			aceptarCookies();
 	?>
 		
 

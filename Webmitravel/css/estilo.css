@@ -1011,3 +1011,20 @@ p {
 #descfoto {
 	min-height: 80px !Important;
 }
+
+.grande {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(60,60,60,0.6);
+	margin: 0px;
+	padding: 5%;
+	text-align: center;
+	width: 100vw;
+	height: 100vh;
+}
+
+.grande img{
+	height: 100%;
+	width: 100%;
+}
