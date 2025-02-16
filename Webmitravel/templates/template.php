@@ -38,7 +38,8 @@ function aceptarCookies() {
 	if (isset ( $_REQUEST ['btngalleta'] )) {
 		$var = $_REQUEST ['chkgalleta'];
 		if (isset ( $var )) {
-			setcookie ( 'consentimiento', 'true', 0 );
+			//session_start();
+			//setcookie ( 'consentimiento', 'true', 0 );
 		}
 	}
 }
