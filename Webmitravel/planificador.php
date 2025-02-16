@@ -78,7 +78,7 @@
 										name="bares"></label>
 								<label for="espectaculos"> Espectaculos <input type="checkbox" class="actividad"
 										id="espectaculos" name="espectaculos"></label>
-								<label for="ruta4x4"> Ruta4x4 <input type="checkbox" class="actividad" id="ruta4x4"
+								<label for="ruta4x4"> Rutas 4x4 <input type="checkbox" class="actividad" id="ruta4x4"
 										name="ruta4x4"></label><br>
 
 								<input type="text" id="textoconsulta" hidden>

@@ -19,21 +19,13 @@ main {
 }
 
 .header {
-	flex-wrap:no-wrap;
+
   background-color: none;
-	font-size: 1vw;
-}
 
-.header *{
-	flex-wrap:no-wrap;
-}
-
-.header hgroup{
-	width: 10%;
 }
 
 .header p {
-  text-align: rigth;
+  text-align: rigt;
   color: rgb(128, 128, 255);
   margin: auto;
 }
@@ -130,7 +122,7 @@ h1 {
 
 .logo {
   vertical-align: middle;
-	min-width: 50px!important;
+
   margin: auto;
 }
 
@@ -140,24 +132,16 @@ h1 {
 
 }
 
-.search-container {
-	min-width: 20% !Important; 
-	max-width: 33%;
-	width: 10px;
-}
-
 #formlogin {
-  font-size: 0.5em;
-  flex: 4;
-  max-width: 150px;
-  height: 150px;
+  font-size: 0.8em;
+  flex: 2;
 }
 
 
 #usuariologin,
 #pwdlogin {
-  font-size: 0.4rem;
-  
+  font-size: 0.8em;
+  flex: 2;
 }
 
 #formlogin fieldset {
@@ -862,7 +846,6 @@ input[type=submit]:hover {
 /* Oculta los slides por defecto */
 .mySlides {
   display: none;
-  
 }
 
 /* cambia el puntero sobre la imagen */
@@ -874,7 +857,8 @@ input[type=submit]:hover {
 .prev,
 .next {
   cursor: pointer;
-  position: relative;
+  position: absolute;
+  top: 40%;
   width: auto;
   padding: 16px;
   margin-top: -50px;
@@ -884,16 +868,15 @@ input[type=submit]:hover {
   border-radius: 0 3px 3px 0;
   user-select: none;
   -webkit-user-select: none;
-   background-color: rgba(10, 10, 10, 0.8);
 }
 
 .next {
-  text-align: left;
+  right: 0;
   border-radius: 3px 0 0 3px;
 }
 
 .prev {
-  align-items: left;
+  left: 0;
   border-radius: 3px 0 0 3px;
 }
 
@@ -904,14 +887,11 @@ input[type=submit]:hover {
 
 /* para los numeros de fotos por ej (1/3 etc) */
 .numbertext {
-  color: #f3f2f2;
+  color: #f2f2f2;
   font-size: 12px;
   padding: 8px 12px;
   position: absolute;
   top: 0;
-  background-color: black;
-  border: 3px solid black;
-  z-index: 999;
 }
 
 /* texto de las imagenes*/

@@ -1,5 +1,5 @@
 <?php
-class Punto {
+class Punto{
     //Contantes de clase
     public const MIN_X=0;
     public const MIN_Y=0;

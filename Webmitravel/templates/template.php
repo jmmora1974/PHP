@@ -42,7 +42,7 @@ function cabecera(string $titulo = '', string $subtitulo = '') {
 			src="./images/logomitravel.png" alt="Logo Mitravel"
 			style="width: 50px; height: 50px"></a>
 	</figure>
-	<hgroup class="flex1">
+	<hgroup class="flex4">
 		<h1><?=$titulo ?></h1>
 		<h2><?= $subtitulo ?></h2>
 	</hgroup>
@@ -54,21 +54,18 @@ function cabecera(string $titulo = '', string $subtitulo = '') {
 			</button>
 		</form>
 	</div>
-	<form id="formlogin" class="flex1 text-end" action="/action_page.php">
-		<fieldset>
+
+		<form id="formlogin" class="form-container text-end" action="/action_page.php">
 			<input type="text" id="usuariologin" placeholder="Escribe tu usuario"
-				name="usuario"> <input type="password" id="pwdlogin"
-				placeholder="Entra la contraseña" name="pswd">
-		</fieldset>
-		<fieldset>
-			<label> <input type="checkbox" name="remember"> Remember me
-			</label>
-			<button type="submit" class="btn-login">Login</button>
+					name="usuario"> <input type="password" id="pwdlogin"
+					placeholder="Entra la contraseña" name="pswd">
+				<button type="submit" class="btn-login">Login</button>	
 			<p>
+				<label for="remember">Recuerdame me </label> <input type="checkbox" name="remember">
 				Registrate <a href="register.php" target="_self">aquí</a>
-			</p>
-		</fieldset>
-	</form>
+				</p>
+			
+		</form>
 </header>
 <?php
 
