@@ -875,6 +875,7 @@ input[type=submit]:hover {
 .next {
   cursor: pointer;
   position: relative;
+  top: 40%;
   width: auto;
   padding: 16px;
   margin-top: -50px;
@@ -882,24 +883,26 @@ input[type=submit]:hover {
   font-weight: bold;
   font-size: 20px;
   border-radius: 0 3px 3px 0;
-  user-select: none;
+  user-select: none;  
   -webkit-user-select: none;
    background-color: rgba(10, 10, 10, 0.8);
 }
 
 .next {
-  text-align: left;
-  border-radius: 3px 0 0 3px;
+ 	right: 0;
+    border-radius: 3px 0 0 3px;
+    top: 40%;
 }
 
 .prev {
-  align-items: left;
+  left: 0;
+  top: 40%;
   border-radius: 3px 0 0 3px;
 }
 
 .prev:hover,
 .next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(5,60,70, 0.8);
 }
 
 /* para los numeros de fotos por ej (1/3 etc) */
@@ -909,9 +912,7 @@ input[type=submit]:hover {
   padding: 8px 12px;
   position: absolute;
   top: 0;
-  background-color: black;
-  border: 3px solid black;
-  z-index: 999;
+  z-index: 99;
 }
 
 /* texto de las imagenes*/
@@ -1007,3 +1008,6 @@ p {
       height: 1 vh;
   }
 
+#descfoto {
+	min-height: 80px !Important;
+}

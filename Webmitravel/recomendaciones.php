@@ -53,24 +53,27 @@ menu ( 'recomendaciones' );
 			conocer. Gracias por tu aportación.</p>
 		<form method="POST" enctype="multipart/form-data"
 			action="libraries/upload_reco.php">
-			<label>Actividad:</label> <input type="text" list="listaActividades">
+			<label>Actividad:</label> <input type="text"  name="actividad" list="listaActividades">
 			<datalist id="listaActividades">
 						<?php
 						foreach ( $carpActividades as $capActividad ) {
 							?> 
 							<option value="<?=$capActividad?>">
 							<?php } ?>
-					   
-  					
+					   			
+			</datalist>	<br> 
+			<label>Ciudad:</label>
+				 <input type="text" name="ciudad"><br> 
+			 <label>Descripcion:</label>
+				 <textarea id="descfoto" name="descfoto" rows="2" cols="30"></textarea> <br>
+			<label> Sube tus imagenes a la galeria: </label> <br> 
+				<input type="hidden" name="MAX_FILE_SIZE" value="500000"> <input type="file"
+				accept="image/*" accept=".jpg, .jpeg, .gif, .png" 
+				name="fichero"> <br>
 			
 			
+			 <input type="submit" value="Enviar"> 
 			
-			</datalist>
-			<br> <label>Ciudad:</label> <input type="text"><br> <label> Sube tus
-				imagenes a la galeria: </label> <br> <input type="hidden"
-				name="MAX_FILE_SIZE" value="500000"> <input type="file"
-				accept="image/*" accept=".jpg, .jpeg, .gif, .png" multiple
-				name="fichero[]"> <br> <input type="submit" value="Enviar">
 		</form>
 
 
@@ -107,7 +110,7 @@ menu ( 'recomendaciones' );
 		 	    		</section>
     				<?php } ?>
     				
-    				<div class="principal" id="principal">
+    	<div class="principal" id="principal">
 
 			<div class="superior">
 
@@ -119,18 +122,18 @@ menu ( 'recomendaciones' );
 					las necesidades. </label>
 				<div class="carrusel">
 
-			<?php
-			$archivos4x4 = FileList::get ( 'images/galeria/Rutas 4x4', '/\.(gif|jpe?g|png|webp)$/i' );
-			$f=1; //contador de foto principal
-			foreach($archivos4x4 as $arch4x4) {
-			?>
-					<div class="mySlides">
-						<div class="numbertext"> <?= $f ?> / <?= count($archivos4x4) ?></div>
-						<img src="<?= $arch4x4 ?>" style="width: 100%" alt="<?= $arch4x4 ?>">
-					</div>
+						<?php
+						$archivos4x4 = FileList::get ( 'images/galeria/Rutas 4x4', '/\.(gif|jpe?g|png|webp)$/i' );
+						$f = 1; // contador de foto principal
+						foreach ( $archivos4x4 as $arch4x4 ) {
+							?>
+								<div class="mySlides">
+									<div class="numbertext"> <?= $f ?> / <?= count($archivos4x4) ?></div>
+									<img src="<?= $arch4x4 ?>" style="width: 100%"
+										alt="<?= $arch4x4 ?>">
+								</div>
+						<?php $f++; }?>
 				</div>
-				<?php $f++; }?>
-			
 			
 			<!-- Botones anterior y siguientes -->
 				<a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a
@@ -143,9 +146,9 @@ menu ( 'recomendaciones' );
 
 				<!-- Thumbnail images -->
 				<div class="row">
-			<?php 
-			$fm=1; //contador de foto principal
-			foreach($archivos4x4 as $arch4x4) {
+			<?php
+			$fm = 1; // contador de foto principal
+			foreach ( $archivos4x4 as $arch4x4 ) {
 				?>
 					<div class="column">
 						<img class="demo cursor" src="<?= $arch4x4 ?>" style="width: 100%"
@@ -187,7 +190,7 @@ menu ( 'recomendaciones' );
 				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 				referrerpolicy="strict-origin-when-cross-origin" allowfullscreen> </iframe>
 		</div>
-			
+
 
 
 		<div class="clearfix"></div>
