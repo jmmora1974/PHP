@@ -274,7 +274,10 @@ h1 {
 
 }
 
-
+ul,li {
+	list-style-type: none !Important;
+	list-style: none !Important;
+}
 
 .responsive {
   padding: 0 6px;
@@ -1079,13 +1082,16 @@ p {
 .grande {
 	position: fixed;
 	top: 0;
-	left: 0;
+	left:0;
+	justify-content: center;
+	align-items: center;
+	margin : auto ; 
 	background-color: rgba(60,60,60,0.6);
-	margin: 0px;
-	padding: 5%;
+	
+	padding: 1%;
 	text-align: center;
+	
 	width: 100vw;
-	height: 100vh;
 }
 
 .grande img{

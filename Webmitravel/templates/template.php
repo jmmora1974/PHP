@@ -1,6 +1,11 @@
-
 <?php
-
+if (isset ( $_REQUEST ['btngalleta'] )) {
+	$var = $_REQUEST ['chkgalleta'];
+	if (isset ( $var )) {
+		session_start();
+		setcookie ('consentimiento', 'true', 0 );
+	}
+}
 // Muestra el dialogo de aceptación de cookies
 function aceptarCookies() {
 	if (empty ( $_COOKIE ['consentimiento'] )) {
@@ -25,7 +30,7 @@ function aceptarCookies() {
 			onchange="validarCookies()"> <label for="chkgalleta">Acepto los
 			términos y condiciones</label>
 
-		<button type="submit" id="btngalleta" name="btngalleta" disabled>Aceptar</button>
+		<button type="submit" id="btngalleta" onclick="aceptarCookies()" name="btngalleta" disabled>Aceptar</button>
 
 	</form>
 	</dialog>
@@ -34,15 +39,9 @@ function aceptarCookies() {
 <script src="./js/cookies.js"></script>
 <?php
 	}
-
-	if (isset ( $_REQUEST ['btngalleta'] )) {
-		$var = $_REQUEST ['chkgalleta'];
-		if (isset ( $var )) {
-			//session_start();
-			//setcookie ( 'consentimiento', 'true', 0 );
-		}
-	}
+	
 }
+
 ?> 
 
 <?php

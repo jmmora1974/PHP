@@ -71,7 +71,7 @@ if(empty($_COOKIE['consentimiento']))
 				 <textarea id="descfoto" name="descfoto" rows="2" cols="30"></textarea> <br>
 			<label> Sube tus imagenes a la galeria: </label> <br> 
 				<input type="hidden" name="MAX_FILE_SIZE" value="500000"> <input type="file"
-				accept="image/*" accept=".jpg, .jpeg, .gif, .png" 
+				accept="image/*" accept=".jpg, .jpeg, .gif, .png, .jfif" 
 				name="fichero"> <br>
 			
 			
@@ -96,7 +96,7 @@ if(empty($_COOKIE['consentimiento']))
 					// Usaremos el metodo estatico FileList::get()
 					// primer parametros: directorio (opcional, por defecto la carpeta actual)
 					// segundo parametro : expresion regular o lista de extensiones (opcional)
-					$archivos = FileList::get ( 'images/galeria/' . $capActividad, '/\.(gif|jpe?g|png|webp)$/i' );
+					$archivos = FileList::get ( 'images/galeria/' . $capActividad, '/\.(gif|jpe?g|png|webp|jfif)$/i' );
 
 					// con una lista de extensiones queda más sencillo:
 					// $archivos = FileList::get('imagenes', ['gif','jpg', 'jprg', 'png'];
