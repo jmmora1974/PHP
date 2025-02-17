@@ -2,27 +2,20 @@
 <section name="Workbench">
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
-		<item key="selection" value=""/>
 		<list key="findhistory">
-<<<<<<< HEAD
-			<item value="nav"/>
-			<item value="gall"/>
-			<item value="backg"/>
-			<item value="heade"/>
-=======
-			<item value="html"/>
-			<item value="buttonchat"/>
-			<item value="chkgalleta"/>
->>>>>>> 0aa2153c8a22fc3a9a2b61c23e19eff2aa38933f
+			<item value="figure"/>
+			<item value="flex-containe"/>
+			<item value="sect"/>
+			<item value="galer"/>
+			<item value="pre"/>
+			<item value="princ"/>
 			<item value="form"/>
-			<item value="formm"/>
-			<item value="class"/>
-		</list>
-	</section>
-	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
-		<list key="findhistory">
-			<item value=""/>
+			<item value="nex"/>
+			<item value="numbertext"/>
+			<item value="mySlides"/>
+			<item value="prev"/>
+			<item value="logo"/>
+			<item value="search-containe"/>
 		</list>
 	</section>
 </section>
