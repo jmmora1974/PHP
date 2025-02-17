@@ -20,7 +20,7 @@
     
     <body>
     <h1>PHP 18 Ejemplo 2</h1>
-    <p>Ejemplo 2 Galerioa de fotos con scandirs</p> 
+    <p>Ejemplo 2 Galeria de fotos con scandirs</p> 
     
 	<ul>
 	    <?php

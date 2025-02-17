@@ -1,8 +1,10 @@
+
 <?php
 
 // Muestra el dialogo de aceptación de cookies
 function aceptarCookies() {
-	?>
+	if (empty ( $_COOKIE ['consentimiento'] )) {
+		?>
 <div id="dialogogalleta">
 	<dialog open>
 	<p>El acceso a este sitio está sujeto al consentimiento para el uso de
@@ -18,19 +20,32 @@ function aceptarCookies() {
 		botón “configuración de cookies” en la parte inferior de nuestra
 		página.</p>
 
-	<form method="dialog">
+	<form method="post" target="_self">
 		<input id="chkgalleta" name="chkgalleta" type="checkbox"
 			onchange="validarCookies()"> <label for="chkgalleta">Acepto los
 			términos y condiciones</label>
 
-		<button id="btngalleta" disabled>Aceptar</button>
+		<button type="submit" id="btngalleta" name="btngalleta" disabled>Aceptar</button>
 
 	</form>
 	</dialog>
+	
 </div>
+<script src="./js/cookies.js"></script>
 <?php
+	}
 
+	if (isset ( $_REQUEST ['btngalleta'] )) {
+		$var = $_REQUEST ['chkgalleta'];
+		if (isset ( $var )) {
+			//session_start();
+			//setcookie ( 'consentimiento', 'true', 0 );
+		}
+	}
 }
+?> 
+
+<?php
 // pone el header de la pagina
 // como hay mucho HTML seguido, sale a cuenta cortar el php
 function cabecera(string $titulo = '', string $subtitulo = '') {
@@ -42,7 +57,7 @@ function cabecera(string $titulo = '', string $subtitulo = '') {
 			src="./images/logomitravel.png" alt="Logo Mitravel"
 			style="width: 50px; height: 50px"></a>
 	</figure>
-	<hgroup class="flex1">
+	<hgroup class="flex4">
 		<h1><?=$titulo ?></h1>
 		<h2><?= $subtitulo ?></h2>
 	</hgroup>
@@ -54,24 +69,21 @@ function cabecera(string $titulo = '', string $subtitulo = '') {
 			</button>
 		</form>
 	</div>
-	<form id="formlogin" class="flex1 text-end" action="/action_page.php">
-		<fieldset>
-			<input type="text" id="usuariologin" placeholder="Escribe tu usuario"
-				name="usuario"> <input type="password" id="pwdlogin"
-				placeholder="Entra la contraseña" name="pswd">
-		</fieldset>
-		<fieldset>
-			<label> <input type="checkbox" name="remember"> Remember me
-			</label>
-			<button type="submit" class="btn-login">Login</button>
-			<p>
-				Registrate <a href="register.php" target="_self">aquí</a>
-			</p>
-		</fieldset>
+
+	<form id="formlogin" class="form-container text-end"
+		action="/action_page.php">
+		<input type="text" id="usuariologin" placeholder="Escribe tu usuario"
+			name="usuario"> <input type="password" id="pwdlogin"
+			placeholder="Entra la contraseña" name="pswd">
+		<button type="submit" class="btn-login">Login</button>
+		<p>
+			<label for="remember">Recuerdame me </label> <input type="checkbox"
+				name="remember"> Registrate <a href="register.php" target="_self">aquí</a>
+		</p>
+
 	</form>
 </header>
 <?php
-
 }
 
 // pone el menu de la pagina
@@ -81,20 +93,20 @@ function menu(string $actual = 'ini') {
 
 <nav class=" topnav ">
 	<menu>
-		<li <?= $actual =='ini' ? 'class="active"':''?>><a href="#" target="_self">Inicio</a></li>
-		<li <?= $actual =='planificador' ? 'class="active"':''?>><a href="planificador.php" 
-			target="_self">Planificador</a></li>
-		<li <?= $actual =='recomendaciones' ? 'class="active"':''?>><a href="recomendaciones.php" 
-			target="_self">Recomendaciones</a></li>
-		<li <?= $actual =='contacto' ? 'class="active"':''?>><a href="contacto.php"
-			 target="_self">Contacto</a></li>
+		<li <?= $actual =='ini' ? 'class="active"':''?>><a href="#"
+			target="_self">Inicio</a></li>
+		<li <?= $actual =='planificador' ? 'class="active"':''?>><a
+			href="planificador.php" target="_self">Planificador</a></li>
+		<li <?= $actual =='recomendaciones' ? 'class="active"':''?>><a
+			href="recomendaciones.php" target="_self">Recomendaciones</a></li>
+		<li <?= $actual =='contacto' ? 'class="active"':''?>><a
+			href="contacto.php" target="_self">Contacto</a></li>
 		<li <?=$actual =='about' ? 'class="active"':''?>><a href="about.php"
 			target="_self">Sobre mi</a></li>
 	</menu>
 </nav>
 
 <?php
-
 }
 
 // pone el migas de la pagina
@@ -111,7 +123,6 @@ function migas(array $entradas = NULL) {
 }
 
 <?php
-
 }
 
 // pone el mapa web
@@ -125,14 +136,15 @@ function mapaweb() {
 	<ul class="responsive">
 		<li><a href="./index.php" target="_self"><strong><u>Portada</u></strong></a></li>
 		<li><a href="./index.php#descripcionweb" target="_self">Descripción</a></li>
-		
+
 	</ul>
 	<ul class="responsive">
 		<li><a href="./planificador.php" target="_self"><strong><u>Planificador</u></strong></a></li>
 		<li><a href="./planificador.php#divciudad" target="_self">Localizacion</a></li>
 		<li><a href="./planificador.php#formularios" target="_self">Actividades</a></li>
 		<li><a href="./planificador.php#contenedormapa" target="_self">Mapa</a></li>
-		<li><a href="./planificador.php#listado" target="_self">Listado lugares</a></li>
+		<li><a href="./planificador.php#listado" target="_self">Listado
+				lugares</a></li>
 		<li><a href="./planificador.php#listado" target="_self">Detalles lugar</a></li>
 		<li><a href="./planificador.php#agenda" target="_self">Agenda</a></li>
 	</ul>
@@ -157,7 +169,6 @@ function mapaweb() {
 
 </div>
 <?php
-
 }
 
 // Pone el chat de setrvicio al atencion usurio
@@ -179,7 +190,6 @@ function chatservice() {
 	</form>
 </div>
 <?php
-
 }
 
 // pone el pie de la pagina
@@ -201,4 +211,5 @@ function piedepagina(string $autor = '') {
 
 	</div>
 </footer>
-<?php  }
+<?php
+}

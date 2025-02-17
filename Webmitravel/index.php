@@ -1,4 +1,8 @@
-<?php require 'templates/template.php' ?>
+<?php
+	require 'templates/template.php';
+	//session_start();  // inicia o reaunda la sesión
+		
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -30,7 +34,8 @@
 		
 		cabecera('&#9807;Mitravel','Planifica tus aventuras');
 		menu('ini');
-		aceptarCookies();
+		if(empty($_COOKIE['consentimiento']))
+					aceptarCookies();
 	?>
 		
 
