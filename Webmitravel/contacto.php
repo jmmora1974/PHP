@@ -67,40 +67,7 @@
       <input id="btnResetReg" type="submit" class="btn btn-reset" onclick="formContacto.reset()" value="Reset">
       </form>
     </div>
-    <div>
-		<h5 id="titulomapa"> Mapa web </h5>
-	</div>
-	<div id="mapaweb">
-
-		<ul class="responsive">
-
-			<li><a href="./index.html" target="_self"><strong><u>Portada</u></strong></a></li>
-
-			<li><a href="./index.html#divciudad" target="_self">Localizacion</a></li>
-			<li><a href="./index.html#formularios" target="_self">Actividades</a></li>
-			<li><a href="./index.html#contenedormapa" target="_self">Mapa</a></li>
-			<li><a href="./index.html#listado" target="_self">Listado lugares</a></li>
-			<li><a href="./index.html#listado" target="_self">Detalles lugar</a></li>
-			<li><a href="./index.html#agenda" target="_self">Agenda</a></li>
-		</ul>
-		<ul class="responsive">
-			<li><a href="./recomendaciones.html" target="_self"><strong><u>Recomendaciones</u></strong></a></li>
-			<li><a href="./recomendaciones.html#carrusel" target="_self">Excursiones 4x4</a></li>
-			<li><a href="./recomendaciones.html#video1" target="_self">Circuito nocturno</a></li>
-		</ul>
-		<ul class="responsive">
-			<li><a href="./contacto.html" target="_self"><strong><u>Contacto</u></strong></a></li>
-			<li>Preguntas frecuentes</li>
-			<li>Consejos</li>
-		</ul>
-		<ul class="responsive">
-			<li><a href="./about.html" target="_self"><strong><u>Sobre nosotros</u></strong></a></li>
-			<li>Aviso legal</li>
-			<li><a href="https://www.w3.org/TR/WCAG10/" target="_blank">Accesibilidad</a></li>
-		</ul>
-
-
-	</div>
+    <?php mapaweb();?>
   </main>
   <?php piedepagina ('Jose Miguel Mora Perez')?>
 </body>
