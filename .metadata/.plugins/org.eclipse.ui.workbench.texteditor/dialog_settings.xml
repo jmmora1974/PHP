@@ -3,6 +3,10 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
 		<list key="findhistory">
+			<item value="$pretamo"/>
+			<item value="$libro"/>
+			<item value="Libro"/>
+			<item value="libro"/>
 			<item value="figure"/>
 			<item value="flex-containe"/>
 			<item value="sect"/>
@@ -14,8 +18,11 @@
 			<item value="numbertext"/>
 			<item value="mySlides"/>
 			<item value="prev"/>
-			<item value="logo"/>
-			<item value="search-containe"/>
+		</list>
+		<list key="replacehistory">
+			<item value="$pretamo"/>
+			<item value="Prestamo"/>
+			<item value="prestamo"/>
 		</list>
 	</section>
 </section>

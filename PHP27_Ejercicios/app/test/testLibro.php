@@ -103,7 +103,7 @@ try{
 ?>
 </ul>
 
-h2> Recupera entidades aplicando lista de condiciones.</h2>
+<h2> Recupera entidades aplicando lista de condiciones.</h2>
 <p> Usamos el método estático <code>where()</code>.</p>
 
 <p> Recibe un array asociativo con los pares de campo/valor.</p>
@@ -125,5 +125,49 @@ try{
 }catch(NotFoundException $e){
 	echo "<p>Se produjo una NotFoundException</p>";
 	}
+?>
+</ul>
+
+<h2>isNull().</h2>
+<p> Usamos el método estático <code>isNull()</code>.</p>
+
+<p>Ejemplo libros sin portada</p>
+
+<ul>
+<?php 
+
+	$libros = Libro::isNull('portada');
+	
+	foreach ($libros as $libro)
+		echo "<li>$libro->titulo <b>".($libro->portada ?? 'SIN PORTADA')."</b>.</li>"
+	
+?>
+</ul>
+
+
+<h2>save().</h2>
+<p> Usamos el método de objeto <code>save()</code>.</p>
+
+
+<ul>
+<?php 
+	$libro = new Libro();  //crea un objeto Libro
+	
+	//Pone los valores  a las propiedades, (vendrian del un formulario)
+	$libro->isbn = uniqid(); //para evitar duplicidad
+	$libro->titulo ='A sangre fría';
+	$libro->editorial = 'Anagrama';
+	$libro->idioma  = 'Castellano';
+	$libro->autor  =  'Truman Capote';
+	$libro->edicion  =  5;
+	$libro->edadrecomendada  = 18;
+	
+	//https://fastlight-demo.robertsallent.com/test/model_create_update_delete#save
+	$libro->save();
+	echo "<p> Guardado correctamente con ID: $libro->id .</p>";
+		
+	//recupera el libro desde la bdd para comprobar que realmente lo guardó
+	echo "<p><b>".Libro::find($libro->id)."</b></p>";
+	
 ?>
 </ul>
