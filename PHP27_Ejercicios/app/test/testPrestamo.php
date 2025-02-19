@@ -4,33 +4,33 @@ require_once '../config/config.php';
 require_once '../autoload.php';
 ?>
 
-<h2> Recuperando todos los libros...</h2>
+<h2> Recuperando todos los prestamos...</h2>
 <p> Usamos el método estático <code>all()</code>.</p>
 <p>Este método puede recibir opcionalmente LIMIT y OFFSET por parámetro.</p>
 
 <ul>
 <?php 
-	$libros = Libro::all();
+	$prestamos = Prestamo::all();  //limitado a 10 registros y ignomos los 3 primeros
 	
-	foreach ($libros as $libro)	
-		echo "<li>$libro</li>";
+	foreach ($prestamos as $prestamo)	
+		echo "<li>$prestamo</li>";
 ?>
 </ul>
 
 
-<h2> Recuperalibros con orden...</h2>
+<h2> Recupera prestamos con orden...</h2>
 <p> Usamos el método estático <code>orderBy()</code>.</p>
 
-<p> Los parámetros de este método son:; campo, sentido, limit, offset.
+<p> Los parámetros de este método son: campo, sentido, limit, offset.
 Todos son opcionales (por defecto id, ASC, 0, 0)</p>
-<p>Ruperaremos los dos primeros libros oedenados por titulo ASC.</p>
+<p>Ruperaremos los tres ultimos prestamos oedenados por prestamo DESC.</p>
 
 <ul>
-<?php 
-	$libros = Libro::orderBy('titulo','ASC', 2);
+<?php  
+	$prestamos1 = Prestamo::orderBy('prestamo','DESC', 3);
 	
-	foreach ($libros as $libro)	
-		echo "<li>$libro</li>";
+	foreach ($prestamos1 as $prestamo1)	
+		echo "<li>$prestamo1</li>";
 ?>
 </ul>
 
@@ -44,11 +44,11 @@ Todos son opcionales (por defecto id, ASC, 0, 0)</p>
 <ul>
 <?php 
 
-	$libro = Libro::find(3);
-	echo "<p>".($libro ?? 'NO EXISTE')."</p>";
+	$pretamo = Prestamo::find(3);
+	echo "<p>".($pretamo ?? 'NO EXISTE')."</p>";
 	
-	$libro = Libro::find(103);
-	echo "<p>".($libro ?? 'NO EXISTE')."</p>";
+	$pretamo = Prestamo::find(3303);
+	echo "<p>".($pretamo ?? 'NO EXISTE')."</p>";
 	
 ?>
 </ul>
@@ -64,15 +64,15 @@ Todos son opcionales (por defecto id, ASC, 0, 0)</p>
 <ul>
 <?php 
 try{
-	$libro = Libro::findOrFail(3);
-	echo "<p>$libro</p>";
+	$pretamo = Prestamo::findOrFail(3);
+	echo "<p>$pretamo</p>";
 	
-	$libro = Libro::find(100);
-	echo "<p>$libro</p>";
+	$pretamo = Prestamo::find(1000);
+	echo "<p>$pretamo</p>";
 	
 	
-	$libro = Libro::find(2);
-	echo "<p>$libro</p>";
+	$pretamo = Prestamo::find(2);
+	echo "<p>$pretamo</p>";
 	
 	
 }catch(NotFoundException $e){
@@ -86,15 +86,15 @@ try{
 
 <p> Los parametros que se reecibe son: campo, valor, orden, sentido. Son todos opcionales pero lo normal es indicar al menos el campo y valor</p>
 
-<p>Ruperaremos los libros de la editorial planeta, ordenados por titulo ascendente</p>
+<p>Ruperaremos los ejemplares con id 4 y orden por prestado  ascendente</p>
 
 <ul>
 <?php 
 try{
-	$libros = Libro::getFiltered('editorial','Planeta','titulo','ASC');
-	
-	foreach ($libros as $libro)
-		echo "<li>$libro</li>";
+	$pretamos = Prestamo::getFiltered('idejemplar',4,'prestamo','ASC');
+	$pretamos = Prestamo::getFiltered('idsocio','4','prestamo','DESC');
+	foreach ($pretamos as $pretamo)
+		echo "<li>$pretamo</li>";
 	
 	
 }catch(NotFoundException $e){
@@ -108,18 +108,18 @@ try{
 
 <p> Recibe un array asociativo con los pares de campo/valor.</p>
 
-<p>Libros de Date que tienen en el titulo la palabra SQL</p>
+<p>Prestamos de Date que tienen en el titulo la palabra SQL</p>
 
 <ul>
 <?php 
 try{
-	$libros = Libro::where([
-		'autor'=> 'Date',
-			'titulo'=>'SQL'
+	$pretamos = Prestamo::where([
+		'idejemplar'=> '2',
+			'limite'=>'2022-01-06'
 	]);
 	
-	foreach ($libros as $libro)
-		echo "<li>$libro</li>";
+	foreach ($pretamos as $pretamo)
+		echo "<li>$pretamo</li>";
 	
 	
 }catch(NotFoundException $e){
@@ -136,10 +136,10 @@ try{
 <ul>
 <?php 
 
-	$libros = Libro::isNull('portada');
+	$pretamos = Prestamo::isNull('incidencia');
 	
-	foreach ($libros as $libro)
-		echo "<li>$libro->titulo <b>".($libro->portada ?? 'SIN PORTADA')."</b>.</li>"
+	foreach ($pretamos as $pretamo)
+		echo "<li>$pretamo->id <b>".($pretamo->incidencia ?? 'SIN INCIDENCIA')."</b>.</li>"
 	
 ?>
 </ul>
@@ -151,23 +151,21 @@ try{
 
 <ul>
 <?php 
-	$libro = new Libro();  //crea un objeto Libro
+	$pretamo = new Prestamo();  //crea un objeto Prestamo
 	
 	//Pone los valores  a las propiedades, (vendrian del un formulario)
-	$libro->isbn = uniqid(); //para evitar duplicidad
-	$libro->titulo ='A sangre fría';
-	$libro->editorial = 'Anagrama';
-	$libro->idioma  = 'Castellano';
-	$libro->autor  =  'Truman Capote';
-	$libro->edicion  =  5;
-	$libro->edadrecomendada  = 18;
+	$pretamo->idsocio = 5;
+	$pretamo->idejemplar = 20;
+	$pretamo->prestamo = '2025-02-01 13:45:00';
+	$pretamo->limite  = '2025-03-01';
+	
 	
 	//https://fastlight-demo.robertsallent.com/test/model_create_update_delete#save
-	$libro->save();
-	echo "<p> Guardado correctamente con ID: $libro->id .</p>";
+	$pretamo->save();
+	echo "<p> Guardado correctamente con ID: $pretamo->id .</p>";
 		
 	//recupera el libro desde la bdd para comprobar que realmente lo guardó
-	echo "<p><b>".Libro::find($libro->id)."</b></p>";
+	echo "<p><b>".Prestamo::find($pretamo->id)."</b></p>";
 	
 ?>
 </ul>
