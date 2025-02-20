@@ -2,6 +2,18 @@
 <section name="Workbench">
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
+<<<<<<< HEAD
+		<item key="replaceBarOpen" value="false"/>
+		<list key="findhistory">
+			<item value="grande"/>
+			<item value="ul "/>
+			<item value=".htm"/>
+			<item value=".html"/>
+			<item value="validarCookies"/>
+			<item value="ul"/>
+			<item value="li "/>
+			<item value="li"/>
+=======
 		<list key="findhistory">
 			<item value="$pretamo"/>
 			<item value="$libro"/>
@@ -23,6 +35,7 @@
 			<item value="$pretamo"/>
 			<item value="Prestamo"/>
 			<item value="prestamo"/>
+>>>>>>> cf7a873ec313d67b72d427debfebec08fa1d733d
 		</list>
 	</section>
 </section>
