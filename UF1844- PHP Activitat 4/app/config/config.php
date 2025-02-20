@@ -1,14 +1,14 @@
 <?php 
 //PARAMETROS DE CONFIGURACION DE AUTOLOAD
 define('AUTOLOAD_DIRECTORIES', [
-		'../models',
-		'../exceptions',
-		'../libraries',
-		'../controllers'
+			'../models',
+			'../exceptions',
+			'../libraries',
+			'../exceptions'
 ]);
 
 //CONTROLADOR POR DEFECTO
-define ('DEFAULT_CONTROLLER','welcome');
+define ('DEFAULT_controller','welcome');
 
 //PARAMETROS DE CONFIGURACION DE LA BDD
 define('DB_HOST','localhost');  //host
