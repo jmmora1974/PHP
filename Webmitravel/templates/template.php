@@ -110,19 +110,16 @@ function menu(string $actual = 'ini') {
 
 // pone el migas de la pagina
 function migas(array $entradas = NULL) {
-	?>
+	
 	if($entradas){
-		echo "\t\t
-<ul class='migas'>
-	\n"; foreach ($entradas as $pagina=>$enlace) echo "\t\t\t
+	echo "\t\t 	<ul class='migas'> \n"; 
+	 foreach ($entradas as $pagina=>$enlace) echo "\t\t\t
 	<li><a href='$enlace>$pagina</a></li>\n"; echo "\t\t
 </ul>
 \n";
 	}
 }
 
-<?php
-}
 
 // pone el mapa web
 function mapaweb() {
@@ -211,4 +208,4 @@ function piedepagina(string $autor = '') {
 	</div>
 </footer>
 <?php
-}
+} ?>

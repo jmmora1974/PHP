@@ -28,51 +28,6 @@
 		<li><a href="index.php?controlador=libro/list">Lista de libros</a></li>
 		<li><a href="index.php?controlador=libro/create">Nuevo Libro</a></li>
 		</menu>
-		<form method="POST" class="search" action="index.php?controlador=libro/search">
-			
-			<label for="campo">Campo</label>
-			<select name="campo">
-				<option value="titulo"
-				<?= !empty($campo)&&$campo=='titulo'?'selected' : '' ?>
-				>Titulo</option>
-				<option value="editorial"
-				<?= !empty($campo)&&$campo=='editorial'?'selected' : '' ?>
-				>Editorial</option>
-				<option value="autor"
-				<?= !empty($campo)&&$campo=='autor'?'selected' : '' ?>
-				>Autor</option>
-				
-			</select>
-			<label for="valor">Valor:</label>
-			<input type="text" name="valor" value="<?= $valor ?? '' ?>">
-			
-			<label for="orden">Orden</label>
-			<select name="orden">
-				<option value="titulo"
-				<?= !empty($campo)&&$campo=='titulo'?'selected' : '' ?>
-				>Titulo</option>
-				<option value="editorial"
-				<?= !empty($campo)&&$campo=='editorial'?'selected' : '' ?>
-				>Editorial</option>
-				<option value="autor"
-				<?= !empty($campo)&&$campo=='autor'?'selected' : '' ?>
-				>Autor</option>
-				
-			</select>
-			
-			<input type="radio" name="sentido" value="ASC"
-				<?= !empty($sentido) || $sentido=='ASC'?'checked':'' ?>>
-			<label>ASC</label>
-			
-			<input type="radio" name="sentido" value="DESC"
-				<?= !empty($sentido) && $sentido=='DESC'?'checked':'' ?>>
-			<label>DESC</label>
-			
-			<input type="submit" class="button" name="filtro" value="Filtrar">
-			
-			<a class="button" href="index.php?controlador=libro/list">Quitar filtros</a>
-		</form>
-		
 		<h2>Lista de libros</h2>
 		<table class="bloqueCentrado w100">
 			<tr>
