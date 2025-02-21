@@ -61,7 +61,7 @@
 			</select>
 			
 			<input type="radio" name="sentido" value="ASC"
-				<?= !empty($sentido) || $sentido=='ASC'?'checked':'' ?>>
+				<?= empty($sentido) || $sentido=='ASC'?'checked':'' ?>>
 			<label>ASC</label>
 			
 			<input type="radio" name="sentido" value="DESC"

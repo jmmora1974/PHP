@@ -5,24 +5,11 @@ require '../templates/template.php';
 <html lang="es">
 <?php head() ?>
 		<body>
-		<?php menu("Listado")?>
+		<?php menu("Listado Socios")?>
 		<form method="POST" class="search" action="index.php?controlador=libro/search">
-			
-			<label for="campo">Campo</label>
-			<select name="campo">
-				<option value="titulo"
-				<?= !empty($campo)&&$campo=='titulo'?'selected' : '' ?>
-				>Titulo</option>
-				<option value="editorial"
-				<?= !empty($campo)&&$campo=='editorial'?'selected' : '' ?>
-				>Editorial</option>
-				<option value="autor"
-				<?= !empty($campo)&&$campo=='autor'?'selected' : '' ?>
-				>Autor</option>
-				
-			</select>
-			<label for="valor">Valor:</label>
-			<input type="text" name="valor" value="<?= $valor ?? '' ?>">
+		
+			<label for="nombre">Nombre:</label>
+			<input type="text" name="nombre" value="<?= $nombre ?? '' ?>">
 			
 			<label for="orden">Orden</label>
 			<select name="orden">
@@ -54,17 +41,17 @@ require '../templates/template.php';
 		<h2>Lista de libros</h2>
 		<table class="bloqueCentrado w100">
 			<tr>
-				<th> Título</th><th>Autor</th><th>Editorial</th><th>Operaciones</th>
+				<th> Nombre</th><th>Apellidos</th><th>email</th><th>telefono</th>
 			</tr>
-			<?php foreach($libros as $libro){   ?>
+			<?php foreach($socios as $socio){   ?>
 				<tr>
-				<td><?=$libro->titulo?></td>
-				<td><?=$libro->autor?></td>
-				<td><?=$libro->editorial?></td>
+				<td><?=$socio->nombre?></td>
+				<td><?=$socio->apellidos?></td>
+				<td><?=$socio->email?></td>
 				<td>
-					<a class="button" href='index.php?controlador=libro/show&id=<?=$libro->id?>'>Ver</a>
-					<a class="button" href='index.php?controlador=libro/edit&id=<?=$libro->id?>'>Editar</a>
-					<a class="button" href='index.php?controlador=libro/delete&id=<?=$libro->id?>'>Borrar</a>
+					<a class="button" href='index.php?controlador=libro/show&id=<?=$socio->id?>'>Ver</a>
+					<a class="button" href='index.php?controlador=libro/edit&id=<?=$socio->id?>'>Editar</a>
+					<a class="button" href='index.php?controlador=libro/delete&id=<?=$socio->id?>'>Borrar</a>
 					
 				</td>
 			</tr>
