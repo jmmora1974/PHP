@@ -2,40 +2,13 @@
 <section name="Workbench">
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
-<<<<<<< HEAD
-		<item key="replaceBarOpen" value="false"/>
-		<list key="findhistory">
-			<item value="grande"/>
-			<item value="ul "/>
-			<item value=".htm"/>
-			<item value=".html"/>
-			<item value="validarCookies"/>
-			<item value="ul"/>
-			<item value="li "/>
-			<item value="li"/>
-=======
-		<list key="findhistory">
-			<item value="$pretamo"/>
-			<item value="$libro"/>
-			<item value="Libro"/>
-			<item value="libro"/>
-			<item value="figure"/>
-			<item value="flex-containe"/>
-			<item value="sect"/>
-			<item value="galer"/>
-			<item value="pre"/>
-			<item value="princ"/>
-			<item value="form"/>
-			<item value="nex"/>
-			<item value="numbertext"/>
-			<item value="mySlides"/>
-			<item value="prev"/>
-		</list>
+		<item key="replaceBarOpen" value="true"/>
 		<list key="replacehistory">
-			<item value="$pretamo"/>
-			<item value="Prestamo"/>
-			<item value="prestamo"/>
->>>>>>> cf7a873ec313d67b72d427debfebec08fa1d733d
+			<item value="socio"/>
+		</list>
+		<list key="findhistory">
+			<item value="libro"/>
+			<item value="libe"/>
 		</list>
 	</section>
 </section>

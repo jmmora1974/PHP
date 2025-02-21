@@ -16,7 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="https://robertsallent.com/css/generic.css"> 
 	<!-- estilo propio.-->
 	<link rel="stylesheet" href="./css/estilo.css">
-	<title>PHP 31 MVC</title>
+	<title>Libros de la biblioteca</title>
 	<link rel="icon" type="image/x-icon" href="./images/favicon.ico">
 	
 	

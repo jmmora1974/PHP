@@ -14,8 +14,8 @@
 		-->
 		
 		<link rel="stylesheet" type="text/css" href="https://robertsallent.com/css/generic.css">
-		<!-- estilo propio.-->
-		<link rel="stylesheet" href="./css/estilo.css">
+		<!-- estilo propio.-->		
+		
 		<title>Listado libros de la biblioteca</title>
 		<link rel="icon" type="image/x-icon" href="./images/favicon.ico">
 		
@@ -38,6 +38,4 @@
 				<a class="button" href="index.php?controlador=libro/list">Lista de libros</a>
 			</div>
 		</body>
-	</html>
-	
-	
+</html>
