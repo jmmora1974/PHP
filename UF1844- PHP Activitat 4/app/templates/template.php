@@ -116,3 +116,11 @@ function botonListado(){ ?>
 	</div>
 <?php } ?>
 
+<?php 
+//Pone el boton de ir a la pagina de listado de socios
+function botonListadoSocios(){ ?>
+	<div class="centrado">
+	<a class="button" href="index.php?controlador=socio/list">Lista de libros</a>
+	</div>
+<?php } ?>
+

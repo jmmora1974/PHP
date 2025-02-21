@@ -38,5 +38,20 @@ require '../templates/template.php';
 			<?php botonListado()?>
 		</body>
 	</html>
-	
-	
+
+<!--   CAMPS DE TABLA SOCIOS
+	id
+dni
+nombre
+apellidos
+nacimiento
+email
+direccion
+cp
+poblacion
+provincia
+telefono
+foto
+conformidad
+alta
+ -->	

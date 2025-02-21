@@ -49,9 +49,9 @@ require '../templates/template.php';
 				<td><?=$socio->apellidos?></td>
 				<td><?=$socio->email?></td>
 				<td>
-					<a class="button" href='index.php?controlador=libro/show&id=<?=$socio->id?>'>Ver</a>
-					<a class="button" href='index.php?controlador=libro/edit&id=<?=$socio->id?>'>Editar</a>
-					<a class="button" href='index.php?controlador=libro/delete&id=<?=$socio->id?>'>Borrar</a>
+					<a class="button" href='index.php?controlador=socio/show&id=<?=$socio->id?>'>Ver</a>
+					<a class="button" href='index.php?controlador=socio/edit&id=<?=$socio->id?>'>Editar</a>
+					<a class="button" href='index.php?controlador=socio/delete&id=<?=$socio->id?>'>Borrar</a>
 					
 				</td>
 			</tr>
@@ -59,5 +59,20 @@ require '../templates/template.php';
 			<?php } ?>
 			</table>	
 </body>
-
 </html>
+<!--   CAMPS DE TABLA SOCIOS
+	id
+dni
+nombre
+apellidos
+nacimiento
+email
+direccion
+cp
+poblacion
+provincia
+telefono
+foto
+conformidad
+alta
+ -->	

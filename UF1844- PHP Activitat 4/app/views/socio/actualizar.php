@@ -44,4 +44,19 @@ require '../templates/template.php';
 		</body>
 	</html>
 	
-	
+	<!--   CAMPS DE TABLA SOCIOS
+	id
+dni
+nombre
+apellidos
+nacimiento
+email
+direccion
+cp
+poblacion
+provincia
+telefono
+foto
+conformidad
+alta
+ -->	
