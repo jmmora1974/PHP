@@ -60,9 +60,9 @@ function menu(string $actual = 'ini') {
 	?>
 
 
-<h1>Libros de la biblioteca - $actual</h1>
+<h1>Libros de la biblioteca - <?=$actual?></h1>
 <nav class=" topnav ">
-	<menu>
+	<menu class="menu">
 		<li><a href="index.php">Inicio</a></li>
 		<li><a href="index.php?controlador=libro/list">Lista de libros</a></li>
 		<li><a href="index.php?controlador=libro/create">Nuevo Libro</a></li>
@@ -113,6 +113,7 @@ function piedepagina(string $autor = '') {
 function botonListado(){ ?>
 	<div class="centrado">
 	<a class="button" href="index.php?controlador=libro/list">Lista de libros</a>
+	<a class="button" href="index.php?controlador=socio/list">Lista de socios</a>
 	</div>
 <?php } ?>
 
@@ -120,7 +121,7 @@ function botonListado(){ ?>
 //Pone el boton de ir a la pagina de listado de socios
 function botonListadoSocios(){ ?>
 	<div class="centrado">
-	<a class="button" href="index.php?controlador=socio/list">Lista de libros</a>
+	<a class="button" href="index.php?controlador=socio/list">Lista de socios</a>
 	</div>
 <?php } ?>
 

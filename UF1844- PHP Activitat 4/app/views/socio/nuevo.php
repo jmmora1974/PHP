@@ -5,33 +5,58 @@ require '../templates/template.php';
 <html lang="es">
 <?php head() ?>
 		<body>
-			<h3>Creación de un nuevo libro</h3>
-			<form method="POST" action="index.php?controlador=libro/store">
-				<label for="isbn">ISBN</label>
-				<input type="text" name="isbn">
+			<h3>Creación de un nuevo socio</h3>
+			<form method="POST" action="index.php?controlador=socio/store">
+				<label for="nombre">Nombre</label>
+				<input type="text" name="nombre">
 				<br>
-				<label for="titulo">Título</label>
-				<input type="text" name="titulo">
+				<label for="apellidos">Apellidos</label>
+				<input type="text" name="apellidos">
 				<br>
-				<label for="editorial">Editorial</label>
-				<input type="text" name="editorial">
+				<label for="dni">dni</label>
+				<input type="text" name="dni">
 				<br>
-				<label for="autor">Autor</label>
-				<input type="text" name="autor">
+				<label for="nacimiento">nacimiento</label>
+				<input type="date" name="nacimiento">
 				<br>
-				<label for="idioma">Idioma</label>
-				<select name="idioma">
-					<option value="Castellano">Castellano</option>
-					<option value="catalan">Catalan</option>
-					<option value="otros">Otros</option>
+				<label for="email">email</label>
+				<input type="email" name="email">
+				<br>
+				<label for="direccion">direccion</label>
+				<input type="text" name="direccion">
+				<br>
+				<label for="cp">cp</label>
+				<input type="text" name="cp">
+				<br>
+				<label for="poblacion">poblacion</label>
+				<input type="text" name="poblacion">
+				<br>
+				<label for="provincia">provincia</label>
+				<input type="text" name="provincia">
+				<br>
+				<label for="telefono">telefono</label>
+				<input type="number"  name="telefono">
+				<br>
+				<label> Sube tu imagen de perfil: </label>
+			    <br>
+			     <figure>
+			    	<img src="./imagenes/prf/default.jpg" id="preview-image" width="200" name="foto">
+			    </figure>
+			    <input type="hidden" name="MAX_FILE_SIZE" value="1240000">
+			    <input type="file" accept=".jpg, .jpeg, .gif, .png"
+			           name="fichero" id="file-with-preview"> 
+			    <br>       
+	   
+			   
+				
+				<label for="conformidad">Conformidad</label>
+				<select name="conformidad">
+					<option value="Si">Si</option>
+					<option value="No">No</option>
 				</select>
 				<br>
-				<label for="edicion">Edicion</label>
-				<input type="number" min="0" name="edicion">
-				<br>
-				<label for="edadrecomendada">Edad</label>
-				<input type="number" min="0" max="99" name="edadrecomendada">
-				<br>
+				
+			
 				<input type="submit" class="button" name="guardar" value="Guardar">		
 			</form>
 			
@@ -41,16 +66,16 @@ require '../templates/template.php';
 
 <!--   CAMPS DE TABLA SOCIOS
 	id
-dni
-nombre
-apellidos
-nacimiento
-email
-direccion
-cp
-poblacion
-provincia
-telefono
+
+
+
+
+
+
+
+
+
+
 foto
 conformidad
 alta

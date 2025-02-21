@@ -6,22 +6,34 @@ require '../templates/template.php';
 <?php head() ?>
 		<body>
 		<?php menu("Listado Socios")?>
-		<form method="POST" class="search" action="index.php?controlador=libro/search">
+		<form method="POST" class="search" action="index.php?controlador=socio/search">
 		
-			<label for="nombre">Nombre:</label>
-			<input type="text" name="nombre" value="<?= $nombre ?? '' ?>">
+			<label for="campo">Campo:</label>
+			<select name="campo">
+				<option value="nombre"
+				<?= !empty($campo)&&$campo=='nombre'?'selected' : '' ?>
+				>Nombre</option>
+				<option value="apellidos"
+				<?= !empty($campo)&&$campo=='apellidos'?'selected' : '' ?>
+				>Apellidos</option>
+				<option value="alta"
+				<?= !empty($campo)&&$campo=='alta'?'selected' : '' ?>
+				>Alta</option>
+				
+			</select>
+			<input type="text" name="valor" value="<?= $nombre ?? '' ?>">
 			
 			<label for="orden">Orden</label>
 			<select name="orden">
-				<option value="titulo"
-				<?= !empty($campo)&&$campo=='titulo'?'selected' : '' ?>
-				>Titulo</option>
-				<option value="editorial"
-				<?= !empty($campo)&&$campo=='editorial'?'selected' : '' ?>
-				>Editorial</option>
-				<option value="autor"
-				<?= !empty($campo)&&$campo=='autor'?'selected' : '' ?>
-				>Autor</option>
+				<option value="nombre"
+				<?= !empty($campo)&&$campo=='nombre'?'selected' : '' ?>
+				>Nombre</option>
+				<option value="apellidos"
+				<?= !empty($campo)&&$campo=='apellidos'?'selected' : '' ?>
+				>Apellidos</option>
+				<option value="alta"
+				<?= !empty($campo)&&$campo=='alta'?'selected' : '' ?>
+				>Alta</option>
 				
 			</select>
 			
@@ -35,19 +47,21 @@ require '../templates/template.php';
 			
 			<input type="submit" class="button" name="filtro" value="Filtrar">
 			
-			<a class="button" href="index.php?controlador=libro/list">Quitar filtros</a>
+			<a class="button" href="index.php?controlador=socio/list">Quitar filtros</a>
 		</form>
 		
-		<h2>Lista de libros</h2>
+		<h2>Lista de socios</h2>
 		<table class="bloqueCentrado w100">
 			<tr>
-				<th> Nombre</th><th>Apellidos</th><th>email</th><th>telefono</th>
+				<th> Nombre</th><th>Apellidos</th><th>telefono</th><th>email</th><th>alta</th><th>operaciones</th>
 			</tr>
 			<?php foreach($socios as $socio){   ?>
 				<tr>
 				<td><?=$socio->nombre?></td>
 				<td><?=$socio->apellidos?></td>
+				<td><?=$socio->telefono?></td>
 				<td><?=$socio->email?></td>
+				<td><?=$socio->alta?></td>
 				<td>
 					<a class="button" href='index.php?controlador=socio/show&id=<?=$socio->id?>'>Ver</a>
 					<a class="button" href='index.php?controlador=socio/edit&id=<?=$socio->id?>'>Editar</a>

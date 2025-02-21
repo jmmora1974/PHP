@@ -3,21 +3,28 @@
 if(empty($_POST['guardar']))
 	throw new FormException('No se recibió el formulario');
 
-	//crea un nuevo libro y toma sus valores del POST
-	$libro = new Libro();
+	//crea un nuevo socio y toma sus valores del POST
+	$socio = new Socio();
 	
-	$libro->isbn 		= $_POST['isbn'];
-	$libro->titulo 		= $_POST['titulo'];
-	$libro->editorial 		= $_POST['editorial'];
-	$libro->autor 		= $_POST['autor'];
-	$libro->idioma 		= $_POST['idioma'];
-	$libro->edicion 		= intval($_POST['edicion']);
-	$libro->edadrecomendada 		=intval($_POST['edadrecomendada']);
+	$socio->nombre 		= $_POST['nombre'];
+	$socio->apellidos 		= $_POST['apellidos'];
+	$socio->dni 		= $_POST['dni'];
+	$socio->nacimiento 		= $_POST['nacimiento'];
+	$socio->email 		= $_POST['email'];
+	$socio->direccion 		= $_POST['direccion'];
+	$socio->cp 		= $_POST['cp'];
+	$socio->poblacion 		= $_POST['poblacion'];
+	$socio->provincia 		= $_POST['provincia'];
+	$socio->telefono 		=intval($_POST['telefono']);
+	$socio->foto 		=  $_POST['foto'];
+	$socio->conformidad 		= $_POST['conformidad'];
+
 	
 	
-	$libro->save(); //guarda el libro
+	
+	$socio->save(); //guarda el socio
 	
 	//prepara un mensaje y carga la vista de exito
-	$mensaje = "Guardado del libro $libro->titulo correcto.";
-	require '../views/libro/exito.php';
+	$mensaje = "Guardado del socio $socio->nombre  $socio->apellidos  correcto.";
+	require '../views/socio/exito.php';
 	

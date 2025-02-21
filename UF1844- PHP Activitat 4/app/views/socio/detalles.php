@@ -21,7 +21,7 @@ require '../templates/template.php';
 			<p><b>conformidad:</b>  	<?= $socio->conformidad ?></p>
 			<p><b>alta:</b>  	<?= $socio->alta ?></p>
 			
-			<?php botonListadoSocio()?>
+			<?php botonListado()?><?php botonListadoSocios()?>
 		</body>
 </html>
 
