@@ -14,7 +14,9 @@ require '../templates/template.php';
 		   que actuará de dispatcher y gestionara todos los errores.</p>
 		<p>by Jose Miguel Mora Perez ®</p>
 		<p>CIFO Valles 2025 ®</p>
+		
+		<?php botonListado()?>
 </body>
-
+	
 
 </html>

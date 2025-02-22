@@ -4,10 +4,20 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="true"/>
 		<list key="replacehistory">
+			<item value="tema"/>
+			<item value="getEjemplares"/>
+			<item value="libro"/>
+			<item value="$libro"/>
 			<item value="socio"/>
 		</list>
 		<list key="findhistory">
 			<item value="libro"/>
+			<item value="getPrestamos"/>
+			<item value="socio"/>
+			<item value="$socio"/>
+			<item value="where"/>
+			<item value="hasAny"/>
+			<item value="hasan"/>
 			<item value="libe"/>
 		</list>
 	</section>

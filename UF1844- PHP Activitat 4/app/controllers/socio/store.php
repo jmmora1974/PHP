@@ -17,7 +17,6 @@ if(empty($_POST['guardar']))
 	$socio->poblacion 		= filtrado($_POST['poblacion']);
 	$socio->provincia 		= filtrado($_POST['provincia']);
 	$socio->telefono 		=intval($_POST['telefono']);
-	
 	$socio->conformidad 		= filtrado($_POST['conformidad']);
 
 	
