@@ -8,9 +8,15 @@ require '../templates/template.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<?php head()?>
+<?php head();
+?>
 		<body>
-		<?php menu("Borrado de libro")?>
+		<?php menu("Borrado de libro");
+		migas([
+				"Inicio"=>"index.php",
+				"Listado libros"=>"index.php?controlador=libro/list",
+				"Borrado libro"=>"'index.php?controlador=libro/delete&id='.$libro->id"]);
+		?>
 		
 		<h2>Borrado de libro de la biblioteca</h2>
 		<p>Confirmar el borrado del libro de la biblioteca</p>

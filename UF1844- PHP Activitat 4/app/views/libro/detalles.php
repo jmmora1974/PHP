@@ -8,7 +8,13 @@ require '../templates/template.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<?php head(); menu("Detalles libro"); ?>
+<?php head(); menu("Detalles libro"); 
+migas([
+		"Inicio"=>"index.php",
+		"Listado libros"=>"index.php?controlador=libro/list",
+		"Detalles libro"=>"'index.php?controlador=libro/show&id='.$libro->id"]); 
+
+?>
 
 		<body>
 			<h2>Detalles del libro</h2>

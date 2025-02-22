@@ -18,7 +18,10 @@ require '../templates/template.php';
 		<body>
 			<h2>Detalles del socio</h2>
 			<h3><?=$socio->nombre?> <?= $socio->apellidos?></h3>
-			
+			<figure>
+			    	<img src="<?= $socio->foto ?>" id="preview-image" width="100" name="foto">
+			</figure>
+			  	
 			<p><b>Nombre:</b>  	<?= $socio->nombre ?></p>
 			<p><b>Apellidos:</b>  	<?= $socio->apellidos ?></p>
 			<p><b>Nacimiento:</b>  	<?= $socio->nacimiento ?></p>
@@ -28,7 +31,7 @@ require '../templates/template.php';
 			<p><b>poblacion:</b>  	<?= $socio->poblacion ?></p>
 			<p><b>provincia:</b>  	<?= $socio->provincia ?></p>
 			<p><b>telefono:</b>  	<?= $socio->telefono ?></p>
-			<p><b>foto:</b>  	<?= $socio->foto ?></p>
+			
 			<p><b>conformidad:</b>  	<?= $socio->conformidad ?></p>
 			<p><b>alta:</b>  	<?= $socio->alta ?></p>
 			

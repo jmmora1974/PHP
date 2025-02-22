@@ -17,10 +17,32 @@ if(empty($_POST['guardar']))
 	$socio->poblacion 		= filtrado($_POST['poblacion']);
 	$socio->provincia 		= filtrado($_POST['provincia']);
 	$socio->telefono 		=intval($_POST['telefono']);
-	$socio->foto 		=  filtrado($_POST['foto']);
+	
 	$socio->conformidad 		= filtrado($_POST['conformidad']);
 
 	
+	require_once '../libraries/Upload.php';
+	$rutadestino="../imagenes/prf/".$_COOKIE.$socio;
+	//Comprobamos si existe la carpeta actividad, si no la crea nueva.
+	//OJO ... es inseguro por el momento para la practica es válido,
+	// pero se ha de sanear y securizar
+	if(!file_exists($rutadestino)){
+		mkdir($rutadestino, 0764);
+	}
+	
+	//Sube el fichero, hace las omprobaciones y retorna la ruta
+	$ruta = Upload::save(
+				'fichero',   // clave de $_FILES(nombre del input)
+				$rutadestino, //carpeta destino
+				true,       //generar nombre único
+				500000,     //tamaño maximo
+				'image/*',   //tipo MIME(* es el comodin)
+				'img_',    //prefijo para el nombre generado
+				true        //retornar la ruta completa
+	);
+				
+	
+	$socio->foto 	=  filtrado($ruta);
 	
 	
 	$socio->save(); //guarda el socio
