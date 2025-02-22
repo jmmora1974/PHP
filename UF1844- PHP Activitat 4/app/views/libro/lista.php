@@ -5,7 +5,8 @@ require '../templates/template.php';
 <html lang="es">
 <?php head() ?>
 		<body>
-		<?php menu("Listado libros")?>
+		<?php menu("Listado libros");
+		migas(["Inicio"=>"index.php","listadolibros"=>"index.php?controlador=libro/list"]);?>
 		<form method="POST" class="search" action="index.php?controlador=libro/search">
 			
 			<label for="campo">Campo</label>

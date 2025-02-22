@@ -1,4 +1,9 @@
 <?php
+// esto no es necesario, pero por si nos intentan abrir la vista directamente...
+if(empty($libro))
+	throw new Exception("NO PUEDES ABRIR DIRECTAMENTE UNA VISTA!");
+?>
+<?php
 require '../templates/template.php';
 ?>
 <!DOCTYPE html>

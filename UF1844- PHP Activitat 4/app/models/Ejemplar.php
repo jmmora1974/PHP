@@ -4,6 +4,6 @@
 
 #[AllowDynamicProperties] 
 class Ejemplar extends Model{
-	public static $table = "Ejemplares";
+	protected  static $table = "ejemplares";
 	
 }

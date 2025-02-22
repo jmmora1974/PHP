@@ -3,7 +3,13 @@ require '../templates/template.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<?php head() ?>
+<?php head();
+	menu("Edicion Socio");
+	migas([
+		"Inicio"=>"index.php",
+		"Listado Socios"=>"index.php?controlador=socio/list",
+		"Edicion Socio"=>"'index.php?controlador=socio/edit&id='.$socio->id"]);
+?>
 
 		<body>
 			<h3>Edición de un socio: <?=$socio->nombre?> <?=$socio->apellidos?></h3>

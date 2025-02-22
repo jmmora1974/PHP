@@ -1,9 +1,20 @@
 <?php
+// esto no es necesario, pero por si nos intentan abrir la vista directamente...
+if(empty($socio))
+	throw new Exception("NO PUEDES ABRIR DIRECTAMENTE UNA VISTA!");
+?>
+<?php
 require '../templates/template.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<?php head() ?>
+<?php head();
+	menu("Detalles Socio"); 
+	migas([
+			"Inicio"=>"index.php",
+			"Listado Socios"=>"index.php?controlador=socio/list",
+			"Detalles Socio"=>"'index.php?controlador=socio/show&id='.$socio->id"]);
+	?>
 		<body>
 			<h2>Detalles del socio</h2>
 			<h3><?=$socio->nombre?> <?= $socio->apellidos?></h3>

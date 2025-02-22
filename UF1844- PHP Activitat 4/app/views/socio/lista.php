@@ -5,7 +5,11 @@ require '../templates/template.php';
 <html lang="es">
 <?php head() ?>
 		<body>
-		<?php menu("Listado Socios")?>
+		<?php menu("Listado Socios");
+		migas([
+				"Inicio"=>"index.php",
+				"Listado Socios"=>"index.php?controlador=socio/list"]);
+				?>
 		<form method="POST" class="search" action="index.php?controlador=socio/search">
 		
 			<label for="campo">Campo:</label>

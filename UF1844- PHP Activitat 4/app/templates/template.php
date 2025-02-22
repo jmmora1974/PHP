@@ -54,6 +54,7 @@ function cabecera(string $titulo = '', string $subtitulo = '') {
 <?php
 }
 
+
 // pone el menu de la pagina
 // como hay mucho HTML seguido, sale a cuenta cortar el php
 function menu(string $actual = 'ini') {
@@ -63,27 +64,29 @@ function menu(string $actual = 'ini') {
 <h1>Biblioteca JM - <?=$actual?></h1>
 
 	<menu class="menu">
-		<li><a href="index.php">Inicio</a></li>
-		<li><a href="index.php?controlador=libro/list">Lista de libros</a></li>
-		<li><a href="index.php?controlador=libro/create">Nuevo Libro</a></li>
-		<li><a href="index.php?controlador=socio/list">Lista de socios</a></li>
-		<li><a href="index.php?controlador=socio/create">Nuevo socio</a></li>
+		<li <?=$actual=='Portada'?'class="button active"':''; ?>><a href="index.php">Inicio</a></li>
+		<li <?=$actual=='Listado libros'?'class="button active"':''; ?>><a href="index.php?controlador=libro/list">Lista de libros</a></li>
+		<li <?=$actual=='Nuevo libro'?'class="button active"':''; ?>><a href="index.php?controlador=libro/create">Nuevo Libro</a></li>
+		<li <?=$actual=='Listado Socios'?'class="button active"':''; ?>><a href="index.php?controlador=socio/list">Lista de socios</a></li>
+		<li <?=$actual=='Nuevo socio'?'class="button active"':''; ?>><a href="index.php?controlador=socio/create">Nuevo socio</a></li>
 	</menu>
 
-
+	
 <?php
+
 }
 
 // pone el migas de la pagina
-function migas(array $entradas = NULL) {
-	
-	if($entradas){
-		echo "\t\t <ul class='migas'> \n"; 
-		foreach ($entradas as $pagina=>$enlace) 
-			echo "\t\t\t <li><a href='$enlace>$pagina</a></li>\n"; 
-		echo "\t\t </ul> \n";
+function migas(array $migas = []) {
+	//$migas = ["Inicio"=>"/index.php"] + $migas; // coloca el enlace a "inicio"
+	if($migas){
+		echo "\t\t <ul class='migas'> ";
+		foreach ($migas as $pagina=>$enlace)
+			echo "\t\t\t <li><a href='$enlace'>$pagina</a></li>\n";
+			echo "\t\t </ul> \n";
 	}
 }
+
 
 
 // pone el pie de la pagina
