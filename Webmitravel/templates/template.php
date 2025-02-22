@@ -43,6 +43,35 @@ function aceptarCookies() {
 }
 
 ?> 
+<?php
+// pone el head de la pagina
+function head() {
+	?>
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+	<meta name="description"
+		content="Web de busqueda de aventuras, eventos, actividades, que hacer, what to do, planificador de actividades, agenda.">
+	<meta name="author" content="Jose Miguel Mora Perez">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- frameworks predefinidos..-->
+	 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	
+	<link rel="stylesheet" type="text/css" href="https://robertsallent.com/css/generic.css"> 
+	<!-- estilo propio.-->
+	<link rel="stylesheet" href="./css/estilo.css">
+	<title>Mitravel</title>
+	<link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	<base href="./" target="https://mitravel.atwebpages.com/">
+	
+	<script src="./js/mitravel.js"></script>
+</head>
+<?php
+}
+?>
 
 <?php
 // pone el header de la pagina
@@ -69,18 +98,7 @@ function cabecera(string $titulo = '', string $subtitulo = '') {
 		</form>
 	</div>
 
-	<form id="formlogin" class="form-container text-end"
-		action="/action_page.php">
-		<input type="text" id="usuariologin" placeholder="Escribe tu usuario"
-			name="usuario"> <input type="password" id="pwdlogin"
-			placeholder="Entra la contraseña" name="pswd">
-		<button type="submit" class="btn-login">Login</button>
-		<p>
-			<label for="remember">Recuerdame me </label> <input type="checkbox"
-				name="remember"> Registrate <a href="register.php" target="_self">aquí</a>
-		</p>
-
-	</form>
+	<a class="button" href="login.php">Login</a>
 </header>
 <?php
 }

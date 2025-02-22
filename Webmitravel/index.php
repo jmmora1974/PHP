@@ -5,30 +5,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="keywords" content="HTML, CSS, JavaScript">
-	<meta name="description"
-		content="Web de busqueda de aventuras, eventos, actividades, que hacer, what to do, planificador de actividades, agenda.">
-	<meta name="author" content="Jose Miguel Mora Perez">
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- frameworks predefinidos..-->
-	 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	
-	<!-- <link rel="stylesheet" type="text/css" href="https://robertsallent.com/css/generic.css"> -->
-	<!-- estilo propio.-->
-	<link rel="stylesheet" href="./css/estilo.css">
-	<title>Mitravel</title>
-	<link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-	<base href="./" target="https://mitravel.atwebpages.com/">
-	
-	<script src="./js/mitravel.js"></script>
-</head>
-
+<?php head();?>
 <body>
 	<?php
 		
@@ -52,7 +29,8 @@
 			
 			
 			<div class="superior">
-				<ul> Pasos: 
+				<ul><h3> Pasos:</h3>
+					<li>Pulsa en la pestaña "Planificador". 
 					<li> Selecciona la ciudad o región donde quieres planificar el dia.</li>
 					<li> Selecciona las actividad/es deseadas. </li>
 					<figure>
