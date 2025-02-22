@@ -30,7 +30,7 @@ migas([
 				<input type="text" name="apellidos" required>
 				<br>
 				<label for="dni">dni</label>
-				<input type="text" name="dni" minlength="9" maxlength="9" pattern="[a-z]{1}[0-9]{7}[a-z]{1}" required>   
+				<input type="text" name="dni" minlength="9" maxlength="9" pattern="[0-z]{1}[0-9]{7}[a-z]{1}" required>   
 				<br>
 				<label for="nacimiento" required>nacimiento</label>
 				<input type="date" name="nacimiento">

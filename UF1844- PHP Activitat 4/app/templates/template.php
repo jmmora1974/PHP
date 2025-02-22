@@ -80,9 +80,9 @@ function menu(string $actual = 'ini') {
 function migas(array $migas = []) {
 	//$migas = ["Inicio"=>"/index.php"] + $migas; // coloca el enlace a "inicio"
 	if($migas){
-		echo "\t\t <ul class='migas'> ";
+		echo "\t\t <ul class='migas breadcrumbs '> ";
 		foreach ($migas as $pagina=>$enlace)
-			echo "\t\t\t <li><a href='$enlace'>$pagina</a></li>\n";
+			echo "\t\t\t <li><a href='$enlace'>$pagina</a></li>";
 			echo "\t\t </ul> \n";
 	}
 }

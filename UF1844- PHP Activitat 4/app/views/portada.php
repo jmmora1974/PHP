@@ -7,7 +7,7 @@ require '../templates/template.php';
 		<body>
 		<?php 
 		menu ("Portada");
-		migas(['Portada'=>'index.php']); ?>
+		migas(['Inicio'=>'index.php']); ?>
 		<h2>Bienvenido...</h2>
 		<p>Esta es la portada del primer ejemplo de gestión de la biblioteca. </p>
 		<p>Este ejemplo es un <b>MVC sencillo</b>, todas las peticiones pasaran por el <b>index.php</b>,
