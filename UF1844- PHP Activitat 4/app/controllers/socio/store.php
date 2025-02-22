@@ -22,8 +22,14 @@ if(empty($_POST['guardar']))
 
 	
 	require_once '../libraries/Upload.php';
-	$rutadestino="../imagenes/prf/".$_COOKIE.$socio;
+	
+	// Establecemos la ruta donde guardar la foto de perdil.
+	//Quedan almacenadas en una carpeta privada fuera de la public. 
+	//Preferiblemente se podrían clasificar por carpetas para cada socio.
 	//Comprobamos si existe la carpeta actividad, si no la crea nueva.
+	$rutadestino="../imagenes/prf/";  
+	
+	
 	//OJO ... es inseguro por el momento para la practica es válido,
 	// pero se ha de sanear y securizar
 	if(!file_exists($rutadestino)){

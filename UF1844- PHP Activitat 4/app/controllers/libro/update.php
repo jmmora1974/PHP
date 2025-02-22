@@ -21,5 +21,5 @@ if(empty($_POST['actualizar']))
 	
 	//prepara un mensaje y carga la vista de exito
 	$mensaje = "Actualización del libro $libro->titulo correcto.";
-	require '../views/libro/exito.php';
+	require '../views/exito.php';
 	

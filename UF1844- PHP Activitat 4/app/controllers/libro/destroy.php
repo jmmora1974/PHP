@@ -15,4 +15,4 @@ if(empty($_POST['confirmarborrado']))
 	
 	//prepara el mensaje y muestra la vista de exito
 	$mensaje = "Borrado del libro $libro->titulo, de $libro->autor correcto.";
-	require '../views/libro/exito.php'; //Mostrar éxito
+	require '../views/exito.php'; //Mostrar éxito

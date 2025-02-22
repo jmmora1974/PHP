@@ -69,6 +69,8 @@ function menu(string $actual = 'ini') {
 		<li <?=$actual=='Nuevo libro'?'class="button active"':''; ?>><a href="index.php?controlador=libro/create">Nuevo Libro</a></li>
 		<li <?=$actual=='Listado Socios'?'class="button active"':''; ?>><a href="index.php?controlador=socio/list">Lista de socios</a></li>
 		<li <?=$actual=='Nuevo socio'?'class="button active"':''; ?>><a href="index.php?controlador=socio/create">Nuevo socio</a></li>
+		<li <?=$actual=='Listado temas'?'class="button active"':''; ?>><a href="index.php?controlador=tema/list">Lista de temas</a></li>
+		<li <?=$actual=='Nuevo tema'?'class="button active"':''; ?>><a href="index.php?controlador=tema/create">Nuevo tema</a></li>
 	</menu>
 
 	
@@ -117,6 +119,7 @@ function botonListado(){ ?>
 	<div class="centrado">
 	<a class="button" href="index.php?controlador=libro/list">Lista de libros</a>
 	<a class="button" href="index.php?controlador=socio/list">Lista de socios</a>
+	<a class="button" href="index.php?controlador=tema/list">Lista de temas</a>
 	</div>
 <?php } ?>
 
