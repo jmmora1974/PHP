@@ -6,7 +6,7 @@ require '../templates/template.php';
 <?php head() ?>
 		<body>
 			<h3>Creación de un nuevo socio</h3>
-			<form method="POST" action="index.php?controlador=socio/store">
+			<form method="POST" action="index.php?controlador=socio/store" enctype="multipart/form-data">
 				<label for="nombre">Nombre</label>
 				<input type="text" name="nombre">
 				<br>

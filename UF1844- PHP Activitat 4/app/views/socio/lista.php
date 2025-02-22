@@ -21,18 +21,20 @@ require '../templates/template.php';
 				>Alta</option>
 				
 			</select>
+			
+		
 			<input type="text" name="valor" value="<?= $nombre ?? '' ?>">
 			
 			<label for="orden">Orden</label>
 			<select name="orden">
 				<option value="nombre"
-				<?= !empty($campo)&&$campo=='nombre'?'selected' : '' ?>
+				<?= !empty($orden)&&$orden=='nombre'?'selected' : '' ?>
 				>Nombre</option>
 				<option value="apellidos"
-				<?= !empty($campo)&&$campo=='apellidos'?'selected' : '' ?>
+				<?= !empty($orden)&&$orden=='apellidos'?'selected' : '' ?>
 				>Apellidos</option>
 				<option value="alta"
-				<?= !empty($campo)&&$campo=='alta'?'selected' : '' ?>
+				<?= !empty($orden)&&$orden=='alta'?'selected' : '' ?>
 				>Alta</option>
 				
 			</select>

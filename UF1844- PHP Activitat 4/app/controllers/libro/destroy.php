@@ -6,6 +6,10 @@ if(empty($_POST['confirmarborrado']))
 	//recupera el libro a partir del ID (OJO va po POST)
 	$libro = Libro::findOrFail(intval($_POST['id']),"No se encontró el libro");
 	
+	//comprueba si el libro tiene ejemplares o no
+	if($libro->hasAny('Ejemplar'))
+		throw new Exception('No se puede borrar un libro si tiene ejemplares');
+	
 	//borra el libro
 	$libro->deleteObject();
 	

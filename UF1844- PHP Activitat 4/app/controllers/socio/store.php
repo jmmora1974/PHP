@@ -6,18 +6,19 @@ if(empty($_POST['guardar']))
 	//crea un nuevo socio y toma sus valores del POST
 	$socio = new Socio();
 	
-	$socio->nombre 		= $_POST['nombre'];
-	$socio->apellidos 		= $_POST['apellidos'];
-	$socio->dni 		= $_POST['dni'];
-	$socio->nacimiento 		= $_POST['nacimiento'];
-	$socio->email 		= $_POST['email'];
-	$socio->direccion 		= $_POST['direccion'];
-	$socio->cp 		= $_POST['cp'];
-	$socio->poblacion 		= $_POST['poblacion'];
-	$socio->provincia 		= $_POST['provincia'];
+	require '../libraries/filtrado.php'; //función de saneamiento básico
+	$socio->nombre 		= filtrado($_POST['nombre']);
+	$socio->apellidos 		= filtrado($_POST['apellidos']);
+	$socio->dni 		= filtrado($_POST['dni']);
+	$socio->nacimiento 		= filtrado($_POST['nacimiento']);
+	$socio->email 		= filtrado($_POST['email']);
+	$socio->direccion 		= filtrado($_POST['direccion']);
+	$socio->cp 		= filtrado($_POST['cp']);
+	$socio->poblacion 		= filtrado($_POST['poblacion']);
+	$socio->provincia 		= filtrado($_POST['provincia']);
 	$socio->telefono 		=intval($_POST['telefono']);
-	$socio->foto 		=  $_POST['foto'];
-	$socio->conformidad 		= $_POST['conformidad'];
+	$socio->foto 		=  filtrado($_POST['foto']);
+	$socio->conformidad 		= filtrado($_POST['conformidad']);
 
 	
 	
@@ -26,5 +27,5 @@ if(empty($_POST['guardar']))
 	
 	//prepara un mensaje y carga la vista de exito
 	$mensaje = "Guardado del socio $socio->nombre  $socio->apellidos  correcto.";
-	require '../views/socio/exito.php';
+	require '../views/exito.php';
 	

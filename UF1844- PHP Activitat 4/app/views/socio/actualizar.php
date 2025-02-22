@@ -49,19 +49,15 @@ require '../templates/template.php';
 			    <input type="hidden" name="MAX_FILE_SIZE" value="1240000">
 			    <input type="file" accept=".jpg, .jpeg, .gif, .png"
 			           name="fichero" id="file-with-preview"> 
-			    <br>       
-	   
-			   
-				
+			    <br>
+			    				
 				<label for="conformidad">Conformidad</label>
 				<select name="conformidad" >
 					<option value="Si" <?=$socio->conformidad=='Si'?'selected':''?>>Si</option>
 					<option value="No" <?=$socio->conformidad=='No'?'selected':''?>>No</option>
 				</select>
 				<br>
-				
-				
-				
+								
 				<input type="submit" class="button" name="actualizar" value="Actualizar">	
 				<input type="reset" class="button" value="Reset">		
 			</form>

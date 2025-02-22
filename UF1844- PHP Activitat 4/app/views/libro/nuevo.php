@@ -22,8 +22,9 @@ require '../templates/template.php';
 				<label for="idioma">Idioma</label>
 				<select name="idioma">
 					<option value="Castellano">Castellano</option>
-					<option value="catalan">Catalan</option>
-					<option value="otros">Otros</option>
+					<option value="Catalán">Catalán</option>
+					<option value="Ingles">Inglés</option>
+					<option value="Otros">Otros</option>
 				</select>
 				<br>
 				<label for="edicion">Edicion</label>
