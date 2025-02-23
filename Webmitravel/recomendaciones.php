@@ -1,30 +1,7 @@
 <?php require 'templates/template.php' ?>
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-<meta charset="UTF-8">
-<meta name="keywords" content="HTML, CSS, JavaScript">
-<meta name="description"
-	content="Web de busqueda de aventuras, eventos, actividades, que hacer, what to do, planificador de actividades, agenda.">
-<meta name="author" content="Jose Miguel Mora Perez">
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- frameworks predefinidos..-->
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- ><link rel="stylesheet" type="text/css"
-	href="https://robertsallent.com/css/generic.css">  -->
-<!-- estilo propio.-->
-<link rel="stylesheet" href="./css/estilo.css">
-<title>Mitravel</title>
-<link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-<base href="./" target="_blank">
-<script src="js/Preview.js"></script>
-<script src="js/galeria.js"></script>
-</head>
-
+<?php head();?>
 <body>
 	
 <?php
@@ -57,7 +34,7 @@ if(empty($_COOKIE['consentimiento']))
 		<form method="POST" enctype="multipart/form-data"
 			action="libraries/upload_reco.php">
 			<label>Actividad:</label> <input type="text"  name="actividad" list="listaActividades">
-			<datalist id="listaActividades">
+			<datalist id="listaActividades" required>
 						<?php
 						foreach ( $carpActividades as $capActividad ) {
 							?> 
@@ -66,16 +43,20 @@ if(empty($_COOKIE['consentimiento']))
 					   			
 			</datalist>	<br> 
 			<label>Ciudad:</label>
-				 <input type="text" name="ciudad"><br> 
+				 <input type="text" name="ciudad" required><br> 
 			 <label>Descripcion:</label>
 				 <textarea id="descfoto" name="descfoto" rows="2" cols="30"></textarea> <br>
 			<label> Sube tus imagenes a la galeria: </label> <br> 
 				<input type="hidden" name="MAX_FILE_SIZE" value="500000"> <input type="file"
 				accept="image/*" accept=".jpg, .jpeg, .gif, .png, .jfif" 
-				name="fichero"> <br>
+				name="fichero" required> <br>
 			
 			
-			 <input type="submit" value="Enviar"> 
+			<?= isset($_COOKIE['isLogged']) ?
+				 '<input type="submit" value="Enviar">	<br>':'<p>Solo para usuarios registrados!</p>'; 		
+			
+			?>
+			 		
 			
 		</form>
 

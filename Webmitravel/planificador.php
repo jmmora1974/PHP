@@ -2,31 +2,12 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="keywords" content="HTML, CSS, JavaScript">
-	<meta name="description"
-		content="Web de busqueda de aventuras, eventos, actividades, que hacer, what to do, planificador de actividades, agenda.">
-	<meta name="author" content="Jose Miguel Mora Perez">
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- frameworks predefinidos..-->
-	 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-	
-	<!-- <link rel="stylesheet" type="text/css" href="https://robertsallent.com/css/generic.css"> -->
-	<!-- estilo propio.-->
-	<link rel="stylesheet" href="./css/estilo.css">
-	<title>Mitravel</title>
-	<link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-	<base href="./" target="_blank">
-	<script
+<?php head();?>
+ <script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6UK4XPWfiFX7c_W-_9d-Qh3H3yaDG5DM&callback=initMap&libraries=geometry,places&v=weekly&callback=initMap"
 		async defer></script>
 	<script src="./js/mitravel.js"></script>
-</head>
-
+ 
 <body>
 	<?php
 		
@@ -47,7 +28,7 @@
 						<h2> En que ciudad/zona/region quieres planificar tu dia: </h2>
 						<div>
 							<input type="search" id="ciudad" name="ciudad" value="Catalunya">
-							<button onclick="enviarconsulta.click()"><i class="fa fa-search"></i></button>
+							<input type="button" onclick="enviarconsulta.click()" class="button" value="Buscar">
 						</div>
 					</section>
 				</div>
