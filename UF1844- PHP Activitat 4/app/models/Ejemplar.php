@@ -1,0 +1,9 @@
+<?php
+//carga la configuracion y el autoload
+
+
+#[AllowDynamicProperties] 
+class Ejemplar extends Model{
+	protected  static $table = "ejemplares";
+	
+}

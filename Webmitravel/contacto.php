@@ -1,72 +1,126 @@
-<?php require 'templates/template.php' ?>
+<?php
+require 'templates/template.php';
+require 'libraries/Email.php';
+require 'exceptions/EmailException.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="keywords" content="HTML, CSS, JavaScript">
-	<meta name="description"
-		content="Web de busqueda de aventuras, eventos, actividades, que hacer, what to do, planificador de actividades, agenda.">
-	<meta name="author" content="Jose Miguel Mora Perez">
-
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- frameworks predefinidos..-->
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<!-- estilo propio.-->
-	<link rel="stylesheet" href="./css/estilo.css">
-	<title>Mitravel</title>
-	<link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-	<base href="./" target="_blank">
-</head>
-
+<?php head();?>
 <body>
+	<?php
+	try{
+	cabecera ( '&#9807;Mitravel', 'Planifica tus aventuras' );
+	menu ( 'contacto' );
+	migas ( [ 
+			"Inicio" => "index.php",
+			"Contacto" => "contacto.php"
+	] );
 
-  <?php
-		cabecera('&#9807;Mitravel','Planifica tus aventuras');
-		menu('contacto');
-		if(empty($_COOKIE['consentimiento']))
-			aceptarCookies();
+	if (empty ( $_COOKIE ['consentimiento'] ))
+		aceptarCookies ();
+
+	// Si nos llega el formulario por POST
+	if (! empty ( $_POST ['enviocomentario'] )) {
+			
+			// cargamos la funcion para sanear datos.
+			require 'libraries/filtrado.php';
+			// Preparacion de los parametros a pasarle a la funcion mail()
+			$to = "support@mitravel.com"; // receptor
+			$from = filtrado ( $_POST ['mail'] );
+			$name = filtrado ( $_POST ['nombre'] ) . filtrado ( $_POST ['apellidos'] );
+			$subject = filtrado ( $_POST ['asunto'] );
+			$pais = filtrado ( $_POST ['country'] );
+			$comentario = filtrado ( $_POST ['comentario'] );
+			$asunto= filtrado ( $_POST ['asunto'] );
+			//mensaje 	en HTML (uso sintaxis HEREDOC 	que es mas sencilla para  esto)
+			$message='<HTML lang="es">
+				<head>
+					<title>'.$asunto.'</title>
+				</head>
+				<body>
+				 	<h3>'.$asunto.'</h3>
+				 	<p>El usuario: '.$name.' mail: '.$from.' de '.$pais.', comenta: <br>'.$comentario.' </p>
+				 	
+				 </body>
+								
+			</html>';
+						
+			try {
+			// crea el nuevo mail y lo envia
+			$email = new Email ( $to, $from, $name, $subject, $message );
+			
+			$email->send ();
+			echo "Mensaje enviado correctamente !";
+			
+			// En caso de error de envío de email..
+		} catch ( EmailException $e ) {
+			error_log("Mensaje no enviado: ".$e->getMessage() . PHP_EOL, 3, "errores.log");
+			echo "Mensaje no enviado: " . $e->getMessage ();
+		}
+	}
+	} catch (Exception $e) {
+		error_log($e->getMessage(). PHP_EOL, 3, "errores.log");
+	}
+
 	?>
   
 
 
-	<main >
-    <div class="containerContacto">
-      <form id="formContacto" action="action_page.php">
-    
-        <label for="fnombre">Nombre</label>
-        <input type="text" id="fnombre" name="nombre" class="textContact" placeholder="Escriba su nombre.." required>
-    
-        <label for="fapellidos">Apellido</label>
-        <input type="text" id="fapellidos" name="apellidos" class="textContact" placeholder="Escriba sus apellidos..">
-    
-        <label for="fmail">Mail</label>
-        <input type="email" id="fmail" name="mail" class="textContact" placeholder="Escriba su mail.." required>
-    
-        <label for="country">Pais</label>
-        <select id="country" name="country">
-          <option value="España">España</option>
-          <option value="Catalunya">Catalunya</option>
-          <option value="Andorra">Andorra</option>
-          <option value="Portugal">Portugal</option>
-        </select>
-        <label for="subject">Comentario</label>
-        <div class="flex-container">
-        
-        <textarea id="subject" name="subject" class="flex3"  placeholder="Escriba un comentario.." style="height:200px"></textarea>
-     
-        <div class="mapswrapper">
-          <iframe width="250" height="200" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=terrassa&zoom=10&maptype=roadmap">
+	<main>
+		<div class="containerContacto">
+			<form id="formContacto" method="POST" target="_self">
 
-          </iframe>
-          </div>
-      </div>
-      <input type="submit" value="Submit">
-      <input id="btnResetReg" type="submit" class="btn btn-reset" onclick="formContacto.reset()" value="Reset">
-      </form>
-    </div>
+				<label for="fnombre">Nombre</label> <input type="text" id="fnombre"
+					name="nombre" class="textContact" placeholder="Escriba su nombre.."
+					required> <label for="fapellidos">Apellidos</label> <input
+					type="text" id="fapellidos" name="apellidos" class="textContact"
+					placeholder="Escriba sus apellidos.." required> <label for="fmail">Mail</label>
+				<input type="email" id="fmail" name="mail" class="textContact"
+					placeholder="Escriba su mail.." required> <label for="country">Pais</label>
+				<select id="country" name="country">
+					<option value="España">España</option>
+					<option value="Catalunya">Catalunya</option>
+					<option value="Andorra">Andorra</option>
+					<option value="Portugal">Portugal</option>
+				</select> <label>Asunto:</label> <input type="text" name="asunto"
+					list="listaAsuntos" class="textContact">
+				<datalist id="listaAsuntos" required>
+					<option value="Problema de login.">
+					
+					
+					<option value="Problema con el perfil.">
+					
+					
+					<option value="Problema general de la aplicación.">
+					
+					
+					<option value="Dudas de funcionamiento.">
+					
+					
+					<option value="Incidencia con las fotos">
+					
+					
+					<option value="Recomendación de mejora.">
+				
+				</datalist>
+				<br> <label for="subject">Comentario</label>
+				<div class="flex-container">
+
+					<textarea id="subject" name="comentario" class="flex3"
+						placeholder="Escriba un comentario.." style="height: 200px"></textarea>
+
+					<div class="mapswrapper">
+						<iframe width="250" height="200" loading="lazy" allowfullscreen
+							src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=terrassa&zoom=10&maptype=roadmap">
+
+						</iframe>
+					</div>
+				</div>
+				<input type="submit" value="Submit" name="enviocomentario"> <input
+					id="btnResetReg" type="submit" class="btn btn-reset"
+					onclick="formContacto.reset()" value="Reset">
+			</form>
+		</div>
     <?php mapaweb();?>
   </main>
   <?php piedepagina ('Jose Miguel Mora Perez')?>

@@ -1,9 +1,19 @@
 <?php
+// esto no es necesario, pero por si nos intentan abrir la vista directamente...
+if(empty($libro))
+	throw new Exception("NO PUEDES ABRIR DIRECTAMENTE UNA VISTA!");
+?>
+<?php
 require '../templates/template.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
-<?php head() ?>
+<?php head();
+menu("Edicion libro");
+migas([
+		"Inicio"=>"index.php",
+		"Listado libros"=>"index.php?controlador=libro/list",
+		"Edicion libro"=>"'index.php?controlador=libro/edit&id='.$libro->id"]); ?>
 
 		<body>
 			<h3>Edición de un libro: <?=$libro->titulo?></h3>

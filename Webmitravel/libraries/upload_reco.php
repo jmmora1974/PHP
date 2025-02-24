@@ -29,7 +29,7 @@ foreach ($_FILES as $fichero){
 	        	'fichero', // clave de $_FILES(nombre del input)
 	        	$carpetaact, //carpeta destino
 	            true,       //generar nombre único
-	            500000,     //tamaño maximo
+	            2000000,     //tamaño maximo
         		'image/*',   //tipo MIME(* es el comodin)
         		'img_',    //prefijo para el nombre generado
         		true        //retornar la ruta completa

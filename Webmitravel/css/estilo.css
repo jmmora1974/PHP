@@ -76,98 +76,11 @@ main {
   background-color: none;
 }
 
-.header {
-	flex-wrap:no-wrap;
-  background-color: none;
-	font-size: 1vw;
-}
 
-.header *{
-	flex-wrap:no-wrap;
-}
+.titulo h1{
 
-.header hgroup{
-	width: 10%;
-}
+  color: #04A16D;
 
-.header p {
-  text-align: rigth;
-  color: rgb(128, 128, 255);
-  margin: auto;
-}
-
-h1 {
-  margin: auto;
-  color: #04AA6D;
-  font-family: fantasy;
-}
-
-
-
-.flex-container {
-  display: flex;
-  flex-wrap: wrap;
-
-  justify-content: space-around;
-  min-width: 250px;
-}
-
-.flex-container>section, 
-.flex-container>div, 
-.flex-container>figure{
-	min-width: var(--min-width);
-}
-
-.flex1 {
-  flex: 1;
-}
-
-.flex2 {
-  flex: 2;
-}
-
-.flex3 {
-  flex: 3;
-}
-
-.flex4 {
-  flex: 4;
-}
-
-.flex5 {
-  flex: 5;
-}
-
-.flex6 {
-  flex: 6;
-}
-
-.flex7 {
-  flex: 7;
-}
-
-.flex8 {
-  flex: 9;
-}
-
-.flex9 {
-  flex: 10;
-}
-
-.flex50 {
-  flex: 50%;
-}
-
-.text-start {
-  text-align: left;
-}
-
-.text-end {
-  text-align: end;
-}
-
-.text-center {
-  text-align: center;
 }
 
 .warning {
@@ -229,37 +142,21 @@ h1 {
   display: block;
 }
 
-.topnav {
+.topnav{
   position: sticky;
   top: 0;
   overflow: hidden;
-  background-color: #918f8f;
+  
   z-index: 994;
-  font-size: 0.8em;
+  
 }
 
-/* Style the links inside the navigation bar */
-.topnav li {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 10px 16px;
-  text-decoration: none;
-  font-size: 0.8em;
 
-}
-
-/* Change the color of links on hover */
-.topnav li:hover {
-  background-color: #ddd;
-  color: rgb(87, 58, 58);
-}
 
 /* Add an active class to highlight the current page */
 .topnav li.active {
-  background-color: #52a385;
-  color: black;
+  background-color: #112112;
+  
 
 }
 
@@ -345,17 +242,6 @@ input[type=submit]:hover {
 }
 
 
-.cabecera {
-  top: 0px;
-  border: none;
-  width: 100%;
-  height: 60px;
-  position: fixed;
-  background-color: white;
-  display: flex;
-  z-index: 991;
-
-}
 
 
 
@@ -368,39 +254,11 @@ input[type=submit]:hover {
   z-index: 995;
   top: 33px;
 
-
-}
-
-#divciudad h2 {
-  font-size: 1.2em;
-  max-height: 40px;
-  text-align: left;
-  padding:  10px;
-  flex: 2;
-
 }
 
 
-#ciudad {
-  flex: 3;
-  border-radius: 5%;
-  position: sticky;
-  font-size: 1rem;
-  z-index: 995;
-  top: 0px;
-  max-height: 80%;
-  padding-left: 5px;
-}
 
-#divciudad div button {
-  background-color: #04AA6D;
-  display: inline;
-  width: 28px;
-  height: 28px;
-  margin-top: 15px;
-  max-height: 40px;
-  border-radius: 5px;
-}
+
 
 
 
@@ -589,7 +447,7 @@ input[type=submit]:hover {
   #divciudad h2 {
     display: none;
   }
-
+ 
   #mapapepemi {
     width: 80vw;
     height: 20vh;
@@ -599,6 +457,12 @@ input[type=submit]:hover {
     height: 30vh;
     width: 60vw;
   }
+  .grid-agenda>input{
+	font-size: 0.8vw;
+	min-width: 35px!important;
+}
+  
+  
 }
 
 #listado {
@@ -863,14 +727,18 @@ input[type=submit]:hover {
   background-color: #2a84ce;
   border-radius: 5px;
   padding: 5px;
-  font-size: 0.8vW;
+ 
 }
 
 .grid-agenda>div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: justify;
   padding: 5px;
-  font-size: 2vW;
+  
+}
+.grid-agenda>input{
+	font-size: 0.8em;
+	min-width: 35px!important;
 }
 
 /* Style buttons */

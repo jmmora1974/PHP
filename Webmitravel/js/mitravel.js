@@ -1,7 +1,3 @@
-
-
-
-
 let miPos;
 const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let markerslong = 0;
@@ -245,7 +241,7 @@ const insertarAgenda = ((sitioinsertar, tiempoev = 90) => {
 
 	let itemagenda = {
 		"posicion": agenda.length ??= 0,
-		"hora": horaev,
+		"hora": horaev.toString(),
 		"nombre": nombrelugar,
 		"direccion": sitioinsertar.formatted_address,
 		"phone": phone,

@@ -1,10 +1,11 @@
 <?php
+require '../libraries/filtrado.php'; //función de saneamiento básico
 //toma los valores que llegan del formulario de busqueda 
 //se indican valores por defecto (que funcionen) por si no llegan
-$campo = $_POST['campo'] ?? 'titulo';
-$valor = $_POST['valor'] ?? 'valor';
-$orden = $_POST['orden'] ?? 'orden';
-$sentido = $_POST['sentido'] ?? 'sentido';
+$campo = filtrado($_POST['campo'] ?? 'titulo');
+$valor = filtrado($_POST['valor'] ?? 'valor');
+$orden = filtrado($_POST['orden'] ?? 'orden');
+$sentido = $_POST['sentido'] ?? 'ASC';
 
 // recupera los libros aplicando el filtro
 $libros = Libro::getFiltered($campo, $valor, $orden,$sentido);

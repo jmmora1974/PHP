@@ -9,19 +9,19 @@ function head(){ ?>
 		
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- frameworks predefinidos..-->
-		<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		-->
+		
 		
 		<link rel="stylesheet" type="text/css" href="https://robertsallent.com/css/generic.css">
 		<!-- estilo propio.-->
 		<link rel="stylesheet" href="./css/estilo.css">
-		<title>Libros y socios de la biblioteca</title>
+		<title>Libros y socios de la biblioteca JM</title>
 		<link rel="icon" type="image/x-icon" href="./imagenes/favicon.ico">
 		
 		
 		</head>
-		<?php cabecera("Libros y socios de la biblioteca","Activitat PHP UF1844 by Jose M Mora Perez");
+		<?php cabecera("Libros y socios de la biblioteca JM","Activitat PHP UF1844 by Jose M Mora Perez");
  } ?>
 
 <?php
@@ -41,7 +41,7 @@ function cabecera(string $titulo = '', string $subtitulo = '') {
 		<h2><?= $subtitulo ?></h2>
 	</hgroup>
 	<div class="search-container">
-		<form action="/action_page.php">
+		<form action="">
 			<input type="text" placeholder="Search.." name="search">
 			<button type="submit">
 				<i class="fa fa-search"></i>
@@ -54,36 +54,41 @@ function cabecera(string $titulo = '', string $subtitulo = '') {
 <?php
 }
 
+
 // pone el menu de la pagina
 // como hay mucho HTML seguido, sale a cuenta cortar el php
 function menu(string $actual = 'ini') {
 	?>
 
 
-<h1>Libros de la biblioteca - <?=$actual?></h1>
-<nav class=" topnav ">
-	<menu class="menu">
-		<li><a href="index.php">Inicio</a></li>
-		<li><a href="index.php?controlador=libro/list">Lista de libros</a></li>
-		<li><a href="index.php?controlador=libro/create">Nuevo Libro</a></li>
-		<li><a href="index.php?controlador=socio/list">Lista de socios</a></li>
-		<li><a href="index.php?controlador=socio/create">Nuevo socio</a></li>
-	</menu>
-</nav>
+<h1>Biblioteca JM - <?=$actual?></h1>
 
+	<menu class="menu">
+		<li <?=$actual=='Portada'?'class="button active"':''; ?>><a href="index.php">Inicio</a></li>
+		<li <?=$actual=='Listado libros'?'class="button active"':''; ?>><a href="index.php?controlador=libro/list">Lista de libros</a></li>
+		<li <?=$actual=='Nuevo libro'?'class="button active"':''; ?>><a href="index.php?controlador=libro/create">Nuevo Libro</a></li>
+		<li <?=$actual=='Listado Socios'?'class="button active"':''; ?>><a href="index.php?controlador=socio/list">Lista de socios</a></li>
+		<li <?=$actual=='Nuevo socio'?'class="button active"':''; ?>><a href="index.php?controlador=socio/create">Nuevo socio</a></li>
+		<li <?=$actual=='Listado temas'?'class="button active"':''; ?>><a href="index.php?controlador=tema/list">Lista de temas</a></li>
+		<li <?=$actual=='Nuevo tema'?'class="button active"':''; ?>><a href="index.php?controlador=tema/create">Nuevo tema</a></li>
+	</menu>
+
+	
 <?php
+
 }
 
 // pone el migas de la pagina
-function migas(array $entradas = NULL) {
-	
-	if($entradas){
-		echo "\t\t <ul class='migas'> \n"; 
-		foreach ($entradas as $pagina=>$enlace) 
-			echo "\t\t\t <li><a href='$enlace>$pagina</a></li>\n"; 
-		echo "\t\t </ul> \n";
+function migas(array $migas = []) {
+	//$migas = ["Inicio"=>"/index.php"] + $migas; // coloca el enlace a "inicio"
+	if($migas){
+		echo "\t\t <ul class='migas breadcrumbs '> ";
+		foreach ($migas as $pagina=>$enlace)
+			echo "\t\t\t <li><a href='$enlace'>$pagina</a></li>";
+			echo "\t\t </ul> \n";
 	}
 }
+
 
 
 // pone el pie de la pagina
@@ -109,11 +114,20 @@ function piedepagina(string $autor = '') {
 } ?>
 
 <?php 
-//Pone el boton de ir a la pagina de listado de libros
+//Pone el boton de ir a la pagina de listado de libros y socios
 function botonListado(){ ?>
 	<div class="centrado">
 	<a class="button" href="index.php?controlador=libro/list">Lista de libros</a>
 	<a class="button" href="index.php?controlador=socio/list">Lista de socios</a>
+	<a class="button" href="index.php?controlador=tema/list">Lista de temas</a>
+	</div>
+<?php } ?>
+
+<?php 
+//Pone el boton de ir a la pagina de listado de libros
+function botonListadoLibros(){ ?>
+	<div class="centrado">
+	<a class="button" href="index.php?controlador=libro/list">Lista de libros</a>
 	</div>
 <?php } ?>
 
@@ -124,4 +138,6 @@ function botonListadoSocios(){ ?>
 	<a class="button" href="index.php?controlador=socio/list">Lista de socios</a>
 	</div>
 <?php } ?>
+
+
 

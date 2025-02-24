@@ -5,7 +5,8 @@ require '../templates/template.php';
 <html lang="es">
 <?php head() ?>
 		<body>
-		<?php menu("Listado")?>
+		<?php menu("Listado libros");
+		migas(["Inicio"=>"index.php","listadolibros"=>"index.php?controlador=libro/list"]);?>
 		<form method="POST" class="search" action="index.php?controlador=libro/search">
 			
 			<label for="campo">Campo</label>
@@ -27,13 +28,13 @@ require '../templates/template.php';
 			<label for="orden">Orden</label>
 			<select name="orden">
 				<option value="titulo"
-				<?= !empty($campo)&&$campo=='titulo'?'selected' : '' ?>
+				<?= !empty($orden)&&$orden=='titulo'?'selected' : '' ?>
 				>Titulo</option>
 				<option value="editorial"
-				<?= !empty($campo)&&$campo=='editorial'?'selected' : '' ?>
+				<?= !empty($orden)&&$orden=='editorial'?'selected' : '' ?>
 				>Editorial</option>
 				<option value="autor"
-				<?= !empty($campo)&&$campo=='autor'?'selected' : '' ?>
+				<?= !empty($orden)&&$orden=='autor'?'selected' : '' ?>
 				>Autor</option>
 				
 			</select>

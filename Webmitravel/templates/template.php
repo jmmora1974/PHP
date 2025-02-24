@@ -1,4 +1,7 @@
 <?php
+include 'config/config.php';
+include 'libraries/autoload.php';
+//Comprobams que ha aceptado las cookies.
 if (isset ( $_REQUEST ['btngalleta'] )) {
 	$var = $_REQUEST ['chkgalleta'];
 	if (isset ( $var )) {
@@ -43,6 +46,35 @@ function aceptarCookies() {
 }
 
 ?> 
+<?php
+// pone el head de la pagina
+function head() {
+	?>
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="HTML, CSS, JavaScript">
+	<meta name="description"
+		content="Web de busqueda de aventuras, eventos, actividades, que hacer, what to do, planificador de actividades, agenda.">
+	<meta name="author" content="Jose Miguel Mora Perez">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- frameworks predefinidos..-->
+	 <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	
+	<link rel="stylesheet" type="text/css" href="https://robertsallent.com/css/generic.css"> 
+	<!-- estilo propio.-->
+	<link rel="stylesheet" href="./css/estilo.css">
+	<title>Mitravel</title>
+	<link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	<base href="./" target="https://mitravel.atwebpages.com/">
+	
+	<script src="./js/mitravel.js"></script>
+</head>
+<?php
+}
+?>
 
 <?php
 // pone el header de la pagina
@@ -56,31 +88,27 @@ function cabecera(string $titulo = '', string $subtitulo = '') {
 			src="./images/logomitravel.png" alt="Logo Mitravel"
 			style="width: 50px; height: 50px"></a>
 	</figure>
-	<hgroup class="flex4">
+	<hgroup class="titulo">
 		<h1><?=$titulo ?></h1>
 		<h2><?= $subtitulo ?></h2>
 	</hgroup>
-	<div class="search-container">
-		<form action="/action_page.php">
-			<input type="text" placeholder="Search.." name="search">
-			<button type="submit">
-				<i class="fa fa-search"></i>
-			</button>
-		</form>
+	<div class="bloqueCentrado">
+		<input type="text" placeholder="Search.." name="search">
+		<a class="button" href="">
+			<i class="fa fa-search"></i></a>
 	</div>
 
-	<form id="formlogin" class="form-container text-end"
-		action="/action_page.php">
-		<input type="text" id="usuariologin" placeholder="Escribe tu usuario"
-			name="usuario"> <input type="password" id="pwdlogin"
-			placeholder="Entra la contraseña" name="pswd">
-		<button type="submit" class="btn-login">Login</button>
-		<p>
-			<label for="remember">Recuerdame me </label> <input type="checkbox"
-				name="remember"> Registrate <a href="register.php" target="_self">aquí</a>
-		</p>
-
-	</form>
+	<a class="button"  target="_self" href="<?= isset($_COOKIE['isLogged']) ?
+					$_COOKIE['isLogged']==1 ?
+							'Login.php' :
+							'Login.php' :
+			'login.php'?>" id="btnLogin">
+			<?= isset($_COOKIE['isLogged']) ?
+			$_COOKIE['isLogged']!=1 ?
+							'Login' :
+							'Logoff' :
+							'Login'
+			?></a>
 </header>
 <?php
 }
@@ -90,8 +118,8 @@ function cabecera(string $titulo = '', string $subtitulo = '') {
 function menu(string $actual = 'ini') {
 	?>
 
-<nav class=" topnav ">
-	<menu>
+<nav class="topnav">
+	<menu class="menu ">
 		<li <?= $actual =='ini' ? 'class="active"':''?>><a href="#"
 			target="_self">Inicio</a></li>
 		<li <?= $actual =='planificador' ? 'class="active"':''?>><a
@@ -109,16 +137,16 @@ function menu(string $actual = 'ini') {
 }
 
 // pone el migas de la pagina
-function migas(array $entradas = NULL) {
-	
-	if($entradas){
-	echo "\t\t 	<ul class='migas'> \n"; 
-	 foreach ($entradas as $pagina=>$enlace) echo "\t\t\t
-	<li><a href='$enlace>$pagina</a></li>\n"; echo "\t\t
-</ul>
-\n";
+function migas(array $migas = []) {
+	//$migas = ["Inicio"=>"/index.php"] + $migas; // coloca el enlace a "inicio"
+	if($migas){
+		echo "\t\t <ul class='migas breadcrumbs '> ";
+		foreach ($migas as $pagina=>$enlace)
+			echo "\t\t\t <li><a href='$enlace'>$pagina</a></li>";
+			echo "\t\t </ul> \n";
 	}
 }
+
 
 
 // pone el mapa web
