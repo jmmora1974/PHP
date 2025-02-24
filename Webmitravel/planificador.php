@@ -7,7 +7,7 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6UK4XPWfiFX7c_W-_9d-Qh3H3yaDG5DM&callback=initMap&libraries=geometry,places&v=weekly&callback=initMap"
 		async defer></script>
 	<script src="./js/mitravel.js"></script>
- 
+ <script src="js/galeria.js"></script>
 <body>
 	<?php
 	try{

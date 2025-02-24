@@ -48,7 +48,7 @@ require 'exceptions/EmailException.php';
 			try {
 			// crea el nuevo mail y lo envia
 			$email = new Email ( $to, $from, $name, $subject, $message );
-			throw new Exception ("Mensaje enviado correctamente !");
+			
 			$email->send ();
 			echo "Mensaje enviado correctamente !";
 			
@@ -68,7 +68,7 @@ require 'exceptions/EmailException.php';
 
 	<main>
 		<div class="containerContacto">
-			<form id="formContacto" method="POST">
+			<form id="formContacto" method="POST" target="_self">
 
 				<label for="fnombre">Nombre</label> <input type="text" id="fnombre"
 					name="nombre" class="textContact" placeholder="Escriba su nombre.."

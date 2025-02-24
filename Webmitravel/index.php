@@ -1,5 +1,6 @@
 <?php
-	require 'templates/template.php';
+session_start(); // inicia o reaunda la sesión
+require 'templates/template.php';
 	//session_start();  // inicia o reaunda la sesión
 		
 ?>

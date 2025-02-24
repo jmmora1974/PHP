@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <?php head();?>
+<script src="js/galeria.js"></script>
 <body>
 	
 <?php
