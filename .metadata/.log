@@ -6464,3 +6464,20 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.wst.sse.core.internal
 	at org.eclipse.php.internal.core.codeassist.PHPCompletionEngine.complete(PHPCompletionEngine.java:110)
 	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:518)
 	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:499)
+!SESSION 2025-02-24 11:12:21.793 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.5
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.php.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.php.product
+
+!ENTRY org.eclipse.wst.sse.ui 2 2 2025-02-24 11:12:26.570
+!MESSAGE Configuration element ConfigurationElementHandle [name: proposalComputerExtendedActivation, id: org.eclipse.wst.jsdt.web.ui.ContentAssistProposals, handle id: 10606, namespace: org.eclipse.php.ui] intented to extend an existing completion proposal computer specified an invalid completion proposal computer ID org.eclipse.wst.jsdt.web.ui.ContentAssistProposals
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-02-24 11:12:27.352
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\A35mati'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
