@@ -1,11 +1,12 @@
 <?php
+//session_start();
 include 'config/config.php';
 include 'libraries/autoload.php';
 //Comprobams que ha aceptado las cookies.
 if (isset ( $_REQUEST ['btngalleta'] )) {
 	$var = $_REQUEST ['chkgalleta'];
 	if (isset ( $var )) {
-		session_start();
+		
 		setcookie ('consentimiento', 'true', 0 );
 	}
 }
