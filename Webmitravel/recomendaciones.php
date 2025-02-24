@@ -5,8 +5,14 @@
 <body>
 	
 <?php
+try{
 cabecera ( '&#9807;Mitravel', 'Planifica tus aventuras' );
 menu ( 'recomendaciones' );
+migas ( [
+		"Inicio" => "index.php",
+		"Recomendaciones" => "recomendaciones.php"
+] );
+
 if(empty($_COOKIE['consentimiento']))
 	aceptarCookies();
 ?>
@@ -179,6 +185,9 @@ if(empty($_COOKIE['consentimiento']))
 
 		<div class="clearfix"></div>
 		</div>
+		<?php } catch (Exception $e) {
+	 		error_log($e->getMessage(). PHP_EOL, 3, "errores.log");
+	 	}?>
 			<?php mapaweb();?>
 	</main>
 	<?php piedepagina ('Jose Miguel Mora Perez')?>

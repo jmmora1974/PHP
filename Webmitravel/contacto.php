@@ -8,6 +8,7 @@ require 'exceptions/EmailException.php';
 <?php head();?>
 <body>
 	<?php
+	try{
 	cabecera ( '&#9807;Mitravel', 'Planifica tus aventuras' );
 	menu ( 'contacto' );
 	migas ( [ 
@@ -20,7 +21,7 @@ require 'exceptions/EmailException.php';
 
 	// Si nos llega el formulario por POST
 	if (! empty ( $_POST ['enviocomentario'] )) {
-		
+			
 			// cargamos la funcion para sanear datos.
 			require 'libraries/filtrado.php';
 			// Preparacion de los parametros a pasarle a la funcion mail()
@@ -47,14 +48,19 @@ require 'exceptions/EmailException.php';
 			try {
 			// crea el nuevo mail y lo envia
 			$email = new Email ( $to, $from, $name, $subject, $message );
+			throw new Exception ("Mensaje enviado correctamente !");
 			$email->send ();
 			echo "Mensaje enviado correctamente !";
+			
 			// En caso de error de envío de email..
 		} catch ( EmailException $e ) {
+			error_log("Mensaje no enviado: ".$e->getMessage() . PHP_EOL, 3, "errores.log");
 			echo "Mensaje no enviado: " . $e->getMessage ();
 		}
 	}
-	
+	} catch (Exception $e) {
+		error_log($e->getMessage(). PHP_EOL, 3, "errores.log");
+	}
 
 	?>
   

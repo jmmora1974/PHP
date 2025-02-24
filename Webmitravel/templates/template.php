@@ -137,16 +137,16 @@ function menu(string $actual = 'ini') {
 }
 
 // pone el migas de la pagina
-function migas(array $entradas = NULL) {
-	
-	if($entradas){
-	echo "\t\t 	<ul class='migas'> \n"; 
-	 foreach ($entradas as $pagina=>$enlace) echo "\t\t\t
-	<li><a href='$enlace>$pagina</a></li>\n"; echo "\t\t
-</ul>
-\n";
+function migas(array $migas = []) {
+	//$migas = ["Inicio"=>"/index.php"] + $migas; // coloca el enlace a "inicio"
+	if($migas){
+		echo "\t\t <ul class='migas breadcrumbs '> ";
+		foreach ($migas as $pagina=>$enlace)
+			echo "\t\t\t <li><a href='$enlace'>$pagina</a></li>";
+			echo "\t\t </ul> \n";
 	}
 }
+
 
 
 // pone el mapa web

@@ -10,9 +10,14 @@
  
 <body>
 	<?php
-		
+	try{
 		cabecera('&#9807;Mitravel','Planifica tus aventuras');
 		menu('planificador');
+		migas ( [
+				"Inicio" => "index.php",
+				"Planificador" => "planificador.php"
+		] );
+		
 		if(empty($_COOKIE['consentimiento']))
 			aceptarCookies();
 	?>
@@ -156,7 +161,9 @@
 	
 		<?php piedepagina ('Jose Miguel Mora Perez')?>
 		
-	
+	<?php } catch (Exception $e) {
+	 		error_log($e->getMessage(). PHP_EOL, 3, "errores.log");
+	 	}?>
 	
 
 </body>

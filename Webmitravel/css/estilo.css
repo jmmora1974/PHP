@@ -254,9 +254,7 @@ input[type=submit]:hover {
   z-index: 995;
   top: 33px;
 
-
 }
-
 
 
 
@@ -449,7 +447,7 @@ input[type=submit]:hover {
   #divciudad h2 {
     display: none;
   }
-
+ 
   #mapapepemi {
     width: 80vw;
     height: 20vh;
@@ -459,6 +457,12 @@ input[type=submit]:hover {
     height: 30vh;
     width: 60vw;
   }
+  .grid-agenda>input{
+	font-size: 0.8vw;
+	min-width: 35px!important;
+}
+  
+  
 }
 
 #listado {
@@ -723,14 +727,18 @@ input[type=submit]:hover {
   background-color: #2a84ce;
   border-radius: 5px;
   padding: 5px;
-  font-size: 0.8vW;
+ 
 }
 
 .grid-agenda>div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: justify;
   padding: 5px;
-  font-size: 2vW;
+  
+}
+.grid-agenda>input{
+	font-size: 0.8em;
+	min-width: 35px!important;
 }
 
 /* Style buttons */

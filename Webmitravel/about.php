@@ -8,6 +8,10 @@
 	<?php
 		cabecera('&#9807;Mitravel','Planifica tus aventuras');
 		menu('about');
+		migas ( [
+				"Inicio" => "index.php",
+				"Sobre mi" => "about.php"
+		] );
 		if(empty($_COOKIE['consentimiento']))
 			aceptarCookies();
 	?>
