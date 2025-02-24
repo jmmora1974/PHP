@@ -1,6 +1,6 @@
 <?php
 session_start();
-setcookie("isLogged",true,time()-5000);
+setcookie("isLogged",false,time()+5000);
 require './templates/template.php';  ?>
 <!DOCTYPE html>
 <html lang="es">
