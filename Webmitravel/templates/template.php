@@ -9,7 +9,15 @@ if (isset ( $_REQUEST ['btngalleta'] )) {
 		
 		setcookie ('consentimiento', 'true', 0 );
 	}
+};
+
+
+//Devuelvela hora actual en formato Y-m-d H:i:s
+function ahora():string {
+	$hora=new DateTime('now');
+	return $hora1=$hora->format('Y-m-d H:i:s');
 }
+
 // Muestra el dialogo de aceptación de cookies
 function aceptarCookies() {
 	if (empty ( $_COOKIE ['consentimiento'] )) {
@@ -101,14 +109,13 @@ function cabecera(string $titulo = '', string $subtitulo = '') {
 
 	<a class="button"  target="_self" href="<?= isset($_COOKIE['isLogged']) ?
 					$_COOKIE['isLogged']==1 ?
-							'Login.php' :
-							'Login.php' :
-			'login.php'?>" id="btnLogin">
+							'index.php' :
+							'Login.php' :'login.php'?>" id="btnLogin">
 			<?= isset($_COOKIE['isLogged']) ?
 			$_COOKIE['isLogged']!=1 ?
 							'Login' :
 							'Logoff' :
-							'Login'
+							'Login';		
 			?></a>
 </header>
 <?php
@@ -237,4 +244,5 @@ function piedepagina(string $autor = '') {
 	</div>
 </footer>
 <?php
-} ?>
+} 
+?>

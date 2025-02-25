@@ -59,7 +59,8 @@ require 'exceptions/EmailException.php';
 		}
 	}
 	} catch (Exception $e) {
-		error_log($e->getMessage(). PHP_EOL, 3, "errores.log");
+		
+		error_log(ahora().' - '.$e->getMessage(). PHP_EOL, 3, "errores.log");
 	}
 
 	?>
