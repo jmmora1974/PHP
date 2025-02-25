@@ -109,7 +109,7 @@ function cabecera(string $titulo = '', string $subtitulo = '') {
 
 	<a class="button"  target="_self" href="<?= isset($_COOKIE['isLogged']) ?
 					$_COOKIE['isLogged']==1 ?
-							'index.php' :
+							'Login.php' :
 							'Login.php' :'login.php'?>" id="btnLogin">
 			<?= isset($_COOKIE['isLogged']) ?
 			$_COOKIE['isLogged']!=1 ?

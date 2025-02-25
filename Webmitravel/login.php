@@ -16,8 +16,11 @@ try
 		//Verificamos usuario y contraseña-
 		if($usuario&&$usuario=="test"&&$contrasena=="1234"){
 			if(empty($_COOKIE['isLogged'])){
-				echo "<p>Bienvenido.</p>";
+				echo "<script>alert( 'Bienvenido $usuario.');</script>";
+				
 				setcookie("isLogged",true,time()+5000); //Establecemos la COOKIE para la variable de si esta loginado.
+				header("Location: login.php", true, 301);
+				//redirect("index.php");
 				
 			}
 			
