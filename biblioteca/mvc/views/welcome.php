@@ -44,7 +44,9 @@
     		    <p>Su modo de empleo está inspirado en <code>Laravel</code> (aunque sus ancestros
     		       se inspiraban en <code>CodeIgniter</code>), lo que deriva en una transición muy sencilla
     		       desde <code>FastLight</code> hacia <code>Laravel</code>, <code>Symfony</code> u otros <i>frameworks</i> 
-    		       MVC sobre <code>PHP</code>.</p>	    
+    		       MVC sobre <code>PHP</code>.</p>	
+    		       
+    		       <p>by Jose Miguel Mora Perez<p>    
 		    </section>
 		    
 		    

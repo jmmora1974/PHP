@@ -157,8 +157,10 @@ class Base implements TemplateInterface{
         // parte izquierda (operaciones para todos los usuarios)
         $html = "<menu class='menu'>";
         $html .=   "<li><a href='/'>Inicio</a></li>";
-        $html .=   "<li><a href='/Example'>Ejemplos de maquetación</a></li>";
-          
+        
+        $html .=   "<li><a href='/Libro'>Libros</a></li>";
+        $html .=   "<li><a href='/Libro/create'>Nuevo libros</a></li>";
+        
         // parte derecha (solamente para usuarios concretos)
  
         // enlace a los tests de ejemplo (solamente administrador o rol de test)
