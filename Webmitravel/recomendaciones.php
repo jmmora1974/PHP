@@ -187,7 +187,7 @@ if(empty($_COOKIE['consentimiento']))
 		<div class="clearfix"></div>
 		</div>
 		<?php } catch (Exception $e) {
-	 		error_log($e->getMessage(). PHP_EOL, 3, "errores.log");
+	 		error_log(ahora().' - '.$e->getMessage(). PHP_EOL, 3, "errores.log");
 	 	}?>
 			<?php mapaweb();?>
 	</main>

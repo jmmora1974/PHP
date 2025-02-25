@@ -11,6 +11,12 @@
 			<item value="socio"/>
 		</list>
 		<list key="findhistory">
+			<item value="catc"/>
+			<item value="try"/>
+			<item value="heade"/>
+			<item value="isLo"/>
+			<item value="isloge"/>
+			<item value="islog"/>
 			<item value="media"/>
 			<item value="grid"/>
 			<item value="age"/>
@@ -20,12 +26,6 @@
 			<item value="na"/>
 			<item value="hea"/>
 			<item value="group"/>
-			<item value="grou"/>
-			<item value="gro"/>
-			<item value="gr"/>
-			<item value="h1"/>
-			<item value="titu"/>
-			<item value="head"/>
 		</list>
 	</section>
 </section>
