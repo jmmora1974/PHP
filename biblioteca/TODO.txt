@@ -1,0 +1,61 @@
+
+-------------------------------------------------------------------------------------------------------------
+LISTA DE COSAS PENDIENTES - TODO LIST
+
+Lista de mecanismos y herramientas que se irán incorporando (o no) en próximas versiones del framework FastLight.
+
+Autor: Robert Sallent
+Última revisión: 20/01/25
+
+Los cambios marcados con un ? están en fase de evaluación.
+
+-------------------------------------------------------------------------------------------------------------
+- CONFIG
+	- (v2.0.0) Ficheros de configuración de entorno.
+	- (v2.0.0) helper env()
+
+- CORE/HTTP
+	
+- LIBRARIES
+	- Implementar un sistema de seeding tipo faker.
+	- Mejorar el método XML::encode() para que sea recursivo y testearlo a fondo. Probarlo con APIs.
+	- Implementar el método CSV::decode()
+	- Mejorar la clase Email.
+	- Templated emails.
+
+- MODELO
+	- ? Métodos owns() e ownedBy() en Model.
+	- ? Nuevo método Model::insertRelated(entidad, idrelacionado, tabla)
+		
+- TEMPLATES Y VISTAS
+	- ? Hacer uso de <dialog> para modales
+	- (v2.0.0) Uso de componentes en las vistas.
+
+- TEST Y DOCUMENTACIÓN
+	- (WORKING): Mejorar la documentación y los ejemplos en los test.
+	- (WORKING): Añadir docblocks en todas las librerías.
+	- Crear documentación web a partir de los docblocks.
+	
+- HELPERS
+	- ? helper json() que retorna una JsonResponse
+	- ? helper xml() que retorna una XmlResponse
+	- ? helper csv() que retorna una CsvResponse
+		
+- API
+	- implementar mecanismo de API Keys	
+	- Arreglar XmlResponse para que trabaje correctamente con XML::encode() (una vez que esté revisado)
+
+- PETICIONES ASÍNCRONAS.
+	- Añadir un controlador específico para procesar las peticiones asíncronas y retornar respuestas JSON (XML?)
+
+- EXTRAS:
+	- ? En la vista del listado de errores, mostrar algunos gráficos de totales con chart.js
+	- Mejorar el mecanismo de password hashing para hacerlo más seguro.
+
+-------------------------------------------------------------------------------------------------------------
+ A evaluar... tal vez no se implemente por motivos docentes y se deja para los cursos de Laravel o Symfony
+-------------------------------------------------------------------------------------------------------------
+- Middleware.
+- Hacer uso de PSR4 para el autoload (poco probable que se implemente por ahora).
+
+                
