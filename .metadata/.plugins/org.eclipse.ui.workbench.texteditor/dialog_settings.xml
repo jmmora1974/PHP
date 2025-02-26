@@ -11,9 +11,12 @@
 			<item value="socio"/>
 		</list>
 		<list key="findhistory">
+			<item value="menu"/>
+			<item value="ERROr_vi"/>
+			<item value="ERRO"/>
+			<item value="heade"/>
 			<item value="catc"/>
 			<item value="try"/>
-			<item value="heade"/>
 			<item value="isLo"/>
 			<item value="isloge"/>
 			<item value="islog"/>
@@ -23,9 +26,6 @@
 			<item value="agen"/>
 			<item value="ciudad"/>
 			<item value="validarCookies()"/>
-			<item value="na"/>
-			<item value="hea"/>
-			<item value="group"/>
 		</list>
 	</section>
 </section>

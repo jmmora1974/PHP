@@ -37,7 +37,7 @@
 		<?php foreach($libros as $libro){   ?>
 				<tr>
 					<td><?=$libro->isbn?></td>
-				<td><a href='/Libro/show/<?=$libro->id?>'><? $libro->titulo?></a></td>
+				<td><a href='/Libro/show/<?=$libro->id?>'><?= $libro->titulo?></a></td>
 				<td><?=$libro->autor?></td>
 				<td>
 					<a class="" href='index.php?controlador=libro/show&id=<?=$libro->id?>'>Ver</a>

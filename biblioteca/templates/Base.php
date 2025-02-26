@@ -130,7 +130,7 @@ class Base implements TemplateInterface{
             <header>
                 <figure>
                     <a href='/'>
-                        <img alt='FastLight Logo' src='/images/template/fastlight_base.png'>
+                        <img alt='Moralioteca Logo' src='/images/template/fastlight_base.png'>
                     </a>
                 </figure>
                 <hgroup>
@@ -159,7 +159,7 @@ class Base implements TemplateInterface{
         $html .=   "<li><a href='/'>Inicio</a></li>";
         
         $html .=   "<li><a href='/Libro'>Libros</a></li>";
-        $html .=   "<li><a href='/Libro/create'>Nuevo libros</a></li>";
+        $html .=   "<li><a href='/Libro/create'>Nuevo libro</a></li>";
         
         // parte derecha (solamente para usuarios concretos)
  
