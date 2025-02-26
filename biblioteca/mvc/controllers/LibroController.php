@@ -38,16 +38,10 @@ class LibroController extends Controller{
 	 * @param int $id identificador del libro a mostrar
 	 * @return ViewResponse
 	 */
-	public function function_name($param) {
+	public function show(int $id=0) {
 		
-		//Comprueba que llega el ID
-		if(!$id)
-			throw new NothingToFindException ('No se indicó el libro a buscar');
 		
-		$libro = Libro::find($id); //busca el libro con ese ID
-		
-		//Comprueba que existe ese libro
-		if(!$libro)throw new NotFoundException('No se enontró el libro indicado');
+		$libro = Libro::findOrFail($id, 'No se enontró el libro indicado');
 		
 		// carga la vista y le pasa el libro recuperado
 		return view ('libro/show',['libro'=>$libro]);
@@ -60,6 +54,17 @@ class LibroController extends Controller{
 	 */
 	public function create(){
 		return view('libro/create');
+	}
+	
+	/**
+	 * Guarda los datos que llegan del formulario en la bdd
+	 * 
+	 * @ redirect Viewresponse
+	 */
+	public function store(){
+		//Comprueba que la petición venga del formulario
+		if(!request()->has('guardar'))
+			thro
 	}
 	 
 }

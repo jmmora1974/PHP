@@ -19,7 +19,7 @@
 		<?= $template->login() ?>
 		<?= $template->header('Lista de libros') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs() ?>
+		<?= $template->breadCrumbs()?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 		
@@ -39,10 +39,10 @@
 					<td><?=$libro->isbn?></td>
 				<td><a href='/Libro/show/<?=$libro->id?>'><?= $libro->titulo?></a></td>
 				<td><?=$libro->autor?></td>
-				<td>
-					<a class="" href='index.php?controlador=libro/show&id=<?=$libro->id?>'>Ver</a>
-					<a class="" href='index.php?controlador=libro/edit&id=<?=$libro->id?>'>Editar</a>
-					<a class="" href='index.php?controlador=libro/delete&id=<?=$libro->id?>'>Borrar</a>
+				<td class="centrado">
+					<a class="button" href='/libro/show/<?=$libro->id?>'>Ver</a>
+					<a class="button" href='/libro/edit&id=<?=$libro->id?>'>Editar</a>
+					<a class="button danger" href='/libro//delete&id=<?=$libro->id?>'>Borrar</a>
 					
 				</td>
 			</tr>
