@@ -64,7 +64,57 @@ class LibroController extends Controller{
 	public function store(){
 		//Comprueba que la petición venga del formulario
 		if(!request()->has('guardar'))
-			thro
-	}
-	 
+			throw new FormException('No se recibió el formulario');
+		
+			$libro = new Libro(); //Crea un libro
+			
+			//toma los datos que llegan por POST 
+			$libro->isbn	 	= request()->post('isbn');
+			$libro->titulo	 	= request()->post('titulo');
+			$libro->editorial 	= request()->post('editorial');
+			$libro->autor		= request()->post('autor');
+			$libro->idioma	 	= request()->post('idioma');
+			$libro->edicion 	= request()->post('edicion');
+			$libro->anyo	 	= request()->post('edicion');
+			$libro->edadrecomenda 	= request()->post('edadrecomenda');
+			$libro->paginas	 	= request()->post('paginas');
+			$libro->caracteristicas 	= request()->post('caracteristicas');
+			$libro->sinopsis	 	= request()->post('sinopsis');
+			
+			// Como en la configuración hemos indicado EMPTY_STRINGS_TO_NULL a true
+			//los datos en blanco serán tomado como NULL.
+			//En la BDD deberíamos permitir valores nulos en esos campos.
+			
+			//Si queremos poner lvalores por defecto podemos hacer:
+			// $libro->paginas = request-> post('paginas')??-1;
+			
+			// intenta guardar el libro en caso de la insercion falle vamos a evitar ir a la pagina de error y volver alformulario "nuevo libro"
+			try{
+				//guarda el libro en la base de datos
+				$libro->save();
+				
+				//flashea un mensaje de exito en sesion
+				Session::success("Guardado del libro $libro->titulo correcto.");
+				
+				//redirecciona a los detalles del nuevo libro
+				return redirect("/Libro/show/$libro->id");
+				
+			//si falla el guardado del libro..
+			} catch(SQLException $e){
+				//flashe un mensaje de error en session
+				Session::error("No se pudo guardar el libro $libro->titulo.");
+						
+				//Si esta en modo DEBUG vuelve a lanzar la excepcion
+				//esto hara qie acabemos en la pagina de error
+				if(DEBUG) 
+					throw new SQLException($e->getMessage());
+				
+				//regresa al formulario de creación de libro
+				return redirect("/Libro/create");
+			}
+	}		
+			
+			
+			
 }
+	 

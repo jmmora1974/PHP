@@ -9536,3 +9536,151 @@ java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
 	at org.eclipse.php.internal.core.codeassist.PHPCompletionEngine.complete(PHPCompletionEngine.java:120)
 	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:518)
 	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:499)
+!SESSION 2025-02-26 15:40:54.552 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.php.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.php.product
+
+!ENTRY org.eclipse.wst.sse.ui 2 2 2025-02-26 15:41:34.077
+!MESSAGE Configuration element ConfigurationElementHandle [name: proposalComputerExtendedActivation, id: org.eclipse.wst.jsdt.web.ui.ContentAssistProposals, handle id: 3575, namespace: org.eclipse.php.ui] intented to extend an existing completion proposal computer specified an invalid completion proposal computer ID org.eclipse.wst.jsdt.web.ui.ContentAssistProposals
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-02-26 15:41:41.820
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\jmora'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.dltk.core.index.lucene 4 4 2025-02-26 15:41:46.643
+!MESSAGE C:\xampp\htdocs\.metadata\.plugins\org.eclipse.dltk.core.index.lucene\index\ac379a3b-c834-45a9-9f05-3763c20acfa8
+!STACK 0
+java.nio.file.NoSuchFileException: C:\xampp\htdocs\.metadata\.plugins\org.eclipse.dltk.core.index.lucene\index\ac379a3b-c834-45a9-9f05-3763c20acfa8
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:197)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1854)
+	at java.base/java.nio.file.FileTreeWalker.getAttributes(FileTreeWalker.java:220)
+	at java.base/java.nio.file.FileTreeWalker.visit(FileTreeWalker.java:277)
+	at java.base/java.nio.file.FileTreeWalker.walk(FileTreeWalker.java:323)
+	at java.base/java.nio.file.Files.walkFileTree(Files.java:2792)
+	at java.base/java.nio.file.Files.walkFileTree(Files.java:2870)
+	at org.eclipse.dltk.internal.core.index.lucene.Utils.delete(Utils.java:40)
+	at org.eclipse.dltk.internal.core.index.lucene.IndexContainer$IndexCleaner.doClean(IndexContainer.java:79)
+	at org.eclipse.dltk.internal.core.index.lucene.IndexContainer$IndexCleaner.run(IndexContainer.java:63)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2025-02-26 23:35:18.980 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.php.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.php.product
+
+!ENTRY org.eclipse.wst.sse.ui 2 2 2025-02-26 23:35:47.488
+!MESSAGE Configuration element ConfigurationElementHandle [name: proposalComputerExtendedActivation, id: org.eclipse.wst.jsdt.web.ui.ContentAssistProposals, handle id: 3575, namespace: org.eclipse.php.ui] intented to extend an existing completion proposal computer specified an invalid completion proposal computer ID org.eclipse.wst.jsdt.web.ui.ContentAssistProposals
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-02-26 23:35:55.486
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\jmora'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.php.core 4 10001 2025-02-26 23:50:28.006
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
+	at org.eclipse.php.internal.core.index.PHPElementResolver$IndexMethod.<init>(PHPElementResolver.java:268)
+	at org.eclipse.php.internal.core.index.PHPElementResolver.resolve(PHPElementResolver.java:125)
+	at org.eclipse.dltk.core.index2.search.ModelAccess$1.match(ModelAccess.java:303)
+	at org.eclipse.dltk.internal.core.index.lucene.SearchMatchHandler.handle(SearchMatchHandler.java:163)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.lambda$5(LuceneSearchEngine.java:269)
+	at java.base/java.util.LinkedList$LLSpliterator.forEachRemaining(LinkedList.java:1249)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.lambda$4(LuceneSearchEngine.java:269)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.LinkedList$LLSpliterator.forEachRemaining(LinkedList.java:1249)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.search(LuceneSearchEngine.java:268)
+	at org.eclipse.dltk.core.index2.search.ModelAccess.findElements(ModelAccess.java:313)
+	at org.eclipse.php.internal.core.model.PHPModelAccess.findFileElements(PHPModelAccess.java:114)
+	at org.eclipse.php.internal.core.model.PHPModelAccess.findFunctions(PHPModelAccess.java:135)
+	at org.eclipse.php.internal.core.codeassist.strategies.FunctionsStrategy.apply(FunctionsStrategy.java:95)
+	at org.eclipse.php.internal.core.codeassist.strategies.LocalMethodElementsCompositeStrategy.apply(LocalMethodElementsCompositeStrategy.java:53)
+	at org.eclipse.php.internal.core.codeassist.PHPCompletionEngine.complete(PHPCompletionEngine.java:120)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:518)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:499)
+
+!ENTRY org.eclipse.php.core 4 10001 2025-02-26 23:52:53.343
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
+	at org.eclipse.php.internal.core.index.PHPElementResolver$IndexMethod.<init>(PHPElementResolver.java:268)
+	at org.eclipse.php.internal.core.index.PHPElementResolver.resolve(PHPElementResolver.java:125)
+	at org.eclipse.dltk.core.index2.search.ModelAccess$1.match(ModelAccess.java:303)
+	at org.eclipse.dltk.internal.core.index.lucene.SearchMatchHandler.handle(SearchMatchHandler.java:163)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.lambda$5(LuceneSearchEngine.java:269)
+	at java.base/java.util.LinkedList$LLSpliterator.forEachRemaining(LinkedList.java:1249)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.lambda$4(LuceneSearchEngine.java:269)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.LinkedList$LLSpliterator.forEachRemaining(LinkedList.java:1249)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.search(LuceneSearchEngine.java:268)
+	at org.eclipse.dltk.core.index2.search.ModelAccess.findElements(ModelAccess.java:313)
+	at org.eclipse.php.internal.core.model.PHPModelAccess.findFileElements(PHPModelAccess.java:114)
+	at org.eclipse.php.internal.core.model.PHPModelAccess.findFunctions(PHPModelAccess.java:135)
+	at org.eclipse.php.internal.core.codeassist.strategies.FunctionsStrategy.apply(FunctionsStrategy.java:95)
+	at org.eclipse.php.internal.core.codeassist.strategies.LocalMethodElementsCompositeStrategy.apply(LocalMethodElementsCompositeStrategy.java:53)
+	at org.eclipse.php.internal.core.codeassist.PHPCompletionEngine.complete(PHPCompletionEngine.java:120)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:518)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:499)
+
+!ENTRY org.eclipse.php.core 4 10001 2025-02-27 01:02:41.514
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
+	at org.eclipse.php.internal.core.index.PHPElementResolver$IndexMethod.<init>(PHPElementResolver.java:268)
+	at org.eclipse.php.internal.core.index.PHPElementResolver.resolve(PHPElementResolver.java:125)
+	at org.eclipse.dltk.core.index2.search.ModelAccess$1.match(ModelAccess.java:303)
+	at org.eclipse.dltk.internal.core.index.lucene.SearchMatchHandler.handle(SearchMatchHandler.java:163)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.lambda$5(LuceneSearchEngine.java:269)
+	at java.base/java.util.LinkedList$LLSpliterator.forEachRemaining(LinkedList.java:1249)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.lambda$4(LuceneSearchEngine.java:269)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.LinkedList$LLSpliterator.forEachRemaining(LinkedList.java:1249)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.search(LuceneSearchEngine.java:268)
+	at org.eclipse.dltk.core.index2.search.ModelAccess.findElements(ModelAccess.java:313)
+	at org.eclipse.php.internal.core.model.PHPModelAccess.findFileElements(PHPModelAccess.java:114)
+	at org.eclipse.php.internal.core.model.PHPModelAccess.findFunctions(PHPModelAccess.java:135)
+	at org.eclipse.php.internal.core.codeassist.strategies.FunctionsStrategy.apply(FunctionsStrategy.java:95)
+	at org.eclipse.php.internal.core.codeassist.strategies.LocalMethodElementsCompositeStrategy.apply(LocalMethodElementsCompositeStrategy.java:53)
+	at org.eclipse.php.internal.core.codeassist.PHPCompletionEngine.complete(PHPCompletionEngine.java:120)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:518)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:499)
