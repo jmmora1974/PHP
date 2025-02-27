@@ -1,6 +1,6 @@
 	
 <?php
-require_once 'exceptions/UploadException.php';
+require_once '../exceptions/UploadException.php';
 require_once 'Upload.php';
 
 /* $filtroDeserializados = serialize($_FILES);

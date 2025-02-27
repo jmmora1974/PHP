@@ -65,8 +65,37 @@ class LibroController extends Controller{
 		//Comprueba que la petición venga del formulario
 		if(!request()->has('guardar'))
 			throw new FormException('No se recibió el formulario');
-		
-			$libro = new Libro(); //Crea un libro
+	//OPCION AUTOMATICA
+			try{
+				//guarda el libro en la base de datos a partir de los datosPOST
+				$libro = Libro::create(request()->post());
+				
+				//flashea un mensaje de exito en sesion
+				Session::success("Guardado del libro $libro->titulo correcto.");
+				
+				//redirecciona a los detalles del nuevo libro
+				return redirect("/Libro/show/$libro->id");
+			}  catch(SQLException $e){
+				//prepara el mensaje de error
+				$mensaje = "No se pudo guardar el libro $libro->titulo.";
+				
+				if(str_contains($e->errorMessage(),'Duplicate entry'))
+						$mensaje.="<br>Ya existe un libro con ese <b>ISBN</b>.";
+				
+				//flashe un mensaje de error en session
+				Session::error($mensaje);
+				
+				//Si esta en modo DEBUG vuelve a lanzar la excepcion
+				//esto hara qie acabemos en la pagina de error
+				if(DEBUG)
+				throw new SQLException($e->getMessage());
+				
+				//regresa al formulario de creación de libro
+				return redirect("/Libro/create");
+			}
+
+	// OPCION TRADICIONAL	
+	/* 		$libro = new Libro(); //Crea un libro
 			
 			//toma los datos que llegan por POST 
 			$libro->isbn	 	= request()->post('isbn');
@@ -75,8 +104,8 @@ class LibroController extends Controller{
 			$libro->autor		= request()->post('autor');
 			$libro->idioma	 	= request()->post('idioma');
 			$libro->edicion 	= request()->post('edicion');
-			$libro->anyo	 	= request()->post('edicion');
-			$libro->edadrecomenda 	= request()->post('edadrecomenda');
+			$libro->anyo	 	= request()->post('anyo');
+			$libro->edadrecomendada 	= request()->post('edadrecomendada');
 			$libro->paginas	 	= request()->post('paginas');
 			$libro->caracteristicas 	= request()->post('caracteristicas');
 			$libro->sinopsis	 	= request()->post('sinopsis');
@@ -101,20 +130,22 @@ class LibroController extends Controller{
 				
 			//si falla el guardado del libro..
 			} catch(SQLException $e){
+				//prepara el mensaje de error
+				$mensaje = "No se pudo guardar el libro $libro->titulo.";
 				//flashe un mensaje de error en session
-				Session::error("No se pudo guardar el libro $libro->titulo.");
+				Session::error($mensaje);
 						
 				//Si esta en modo DEBUG vuelve a lanzar la excepcion
 				//esto hara qie acabemos en la pagina de error
-				if(DEBUG) 
-					throw new SQLException($e->getMessage());
+				//if(DEBUG) 
+					//throw new SQLException($e->getMessage());
 				
 				//regresa al formulario de creación de libro
 				return redirect("/Libro/create");
 			}
 	}		
 			
-			
-			
+	*/		
+	}
 }
 	 

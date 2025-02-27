@@ -26,7 +26,7 @@
 	<h1><?=APP_NAME?></h1>
 	<h2>Nuevo libro</h2>
 	
-	<form method="POST" action="index.php?controlador=libro/store">
+	<form method="POST" action="index.php?url=libro/store">
 		<div class="flex2">
 		<label for="isbn">ISBN</label>
 		<input type="text" name="isbn" value="<?= old('isbn')?>" required>

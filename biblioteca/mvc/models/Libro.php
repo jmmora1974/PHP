@@ -16,4 +16,9 @@ class Libro extends Model{
 		return DBMysqli::selectAll($consulta,'Ejemplar');
 	}
 	
+	//campos en los que se permite asignación masiva
+	protected static $fillable = ['isbn','titulo','editorial','idioma',
+			'autor', 'edicion', 'anyo', 'edadrecomendada',
+			'portada', 'caracteristicas', 'sinopsis','paginas'
+	];
 }
