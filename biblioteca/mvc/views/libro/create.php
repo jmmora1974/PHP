@@ -2,7 +2,7 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
-		<title>Portada - <?= APP_NAME ?></title>
+		<title>Nuevo Libro - <?= APP_NAME ?></title>
 		
 		<!-- META -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,14 +19,14 @@
 		<?= $template->login() ?>
 		<?= $template->header('Lista de libros') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs() ?>
+		<?= $template->breadCrumbs(['Libros'=>'/Libro','Nuevo'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
 	<h1><?=APP_NAME?></h1>
 	<h2>Nuevo libro</h2>
 	
-	<form method="POST" action="index.php?url=libro/store">
+	<form method="POST" enctype="multipart/form-data" action="/Libro/store">
 		<div class="flex2">
 		<label for="isbn">ISBN</label>
 		<input type="text" name="isbn" value="<?= old('isbn')?>" required>

@@ -40,8 +40,8 @@ class LibroController extends Controller{
 	 */
 	public function show(int $id=0) {
 		
-		
-		$libro = Libro::findOrFail($id, 'No se enontró el libro indicado');
+	
+		$libro = Libro::findOrFail($id, 'No se enontró el libro indicado'); //tb comprueba si no le ha llegado el ID
 		
 		// carga la vista y le pasa el libro recuperado
 		return view ('libro/show',['libro'=>$libro]);
@@ -65,10 +65,13 @@ class LibroController extends Controller{
 		//Comprueba que la petición venga del formulario
 		if(!request()->has('guardar'))
 			throw new FormException('No se recibió el formulario');
+		$libro=new Libro(); //crea el nuevo libro
+		
 	//OPCION AUTOMATICA
 			try{
 				//guarda el libro en la base de datos a partir de los datosPOST
-				$libro = Libro::create(request()->post());
+				$libro = Libro::create(request()->posts()); //mo es necesario en la  1.8.0
+				
 				
 				//flashea un mensaje de exito en sesion
 				Session::success("Guardado del libro $libro->titulo correcto.");
@@ -147,5 +150,77 @@ class LibroController extends Controller{
 			
 	*/		
 	}
-}
+	
+	/** 
+	 * Muestra el formulario de edición del libro
+	 * 
+	 * @param int $id el ID único del libro a editar
+	 * 
+	 * @return ViewResponse
+	 * 
+	 */
+	public function edit(int $id=0){
+		
+		// busca el libro con ese ID
+		$libro = Libro::findOrFail($id,'No se encontró el libro.');
+		
+		//retorna una ViewResponse con la vista con el formulario de edición
+		return view('libro/edit',['libro'=>$libro]);
+	}
+	
+	/** Actualzia la bdd con los datos POST del formulario
+	*/
+	public function update(){
+		
+		if(!request()->has('actualizar')) //si no llega el formulario ...
+			throw new FormException ('No se recibieron datos');
+		
+		$id = intval(request()->post('$id')); // recuperar el id via POST
+		
+		
+	//Con la actualización a 1.8.0 ya se puede recuperar el formulario y tratarlo directamente
+	/*
+		$libro = Libro::findOrFail($id,"No se ha encontrado el libro.");
+		
+		//recuperar el resto de campos 
+		$libro->isbn	= request()->post('isbn');
+		$libro->titulo	= request()->post('isbn');
+		$libro->editorial	= request()->post('isbn');
+		$libro->autor	= request()->post('isbn');
+		$libro->idioma	= request()->post('isbn');
+		$libro->edicion	= request()->post('isbn');
+		$libro->anyo	= request()->post('isbn');
+		$libro->edadrecomendada	= request()->post('isbn');
+		$libro->paginas	= request()->post('isbn');
+		$libro->caracteristicas = request()->post('isbn');
+		$libro->sinopsis	= request()->post('isbn');
+		*/
+		
+		//intenta actualizar el libro
+		try{
+			//$libro->update(); No es necesario en la 1.8.0 
+			// ya el metodo create ya actualiza si manda el 2ºparametro
+			$libro= Libro::create(request()->posts() ,$id);
+			
+			Session::success("Actualización del libro $libro->titulo correcta.");
+			return redirect("/Libro/edit/$id");
+			
+		// Si se produce un error al guardar el libro..
+		}catch (SQLException $e){
+			// prepara el mensaje de error
+			$mensaje = "No se pudo actualizar el libro";
+			
+		if(str_contains($e->errorMessage(),'Duplicate entry'))
+				$mensaje.="<br>Ya existe un libro con ese <b>ISBN</b>.";
+			Session::error($mensaje);
+			
+			if(DEBUG)
+				throw new SQLException($e->getMessage());
+			
+				return redirect("/Libro/edit/$id");
+		}
+	}
+	
+	
+}	
 	 

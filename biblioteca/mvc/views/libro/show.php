@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Portada - <?= APP_NAME ?></title>
+<title>Visualización de un libro - <?= APP_NAME ?></title>
 
 <!-- META -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,7 @@
 		<?= $template->login() ?>
 		<?= $template->header('Lista de libros') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs() ?>
+		<?= $template->breadCrumbs(['Libros'=>'/Libro','Detalles'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
