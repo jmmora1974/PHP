@@ -21,4 +21,6 @@ class Libro extends Model{
 			'autor', 'edicion', 'anyo', 'edadrecomendada',
 			'portada', 'caracteristicas', 'sinopsis','paginas'
 	];
+	
+	
 }
