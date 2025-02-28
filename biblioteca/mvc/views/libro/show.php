@@ -25,29 +25,31 @@
 	<main>
 		<h1><?=APP_NAME?></h1>
 		<section>
-			<h2>Detalles del libro</h2>
-			<h3><?=$libro->titulo?></h3>
+			<DIV class="flex2 centered">
+				<h2>Detalles del libro</h2>
+				<h3><?=$libro->titulo?></h3>
 
-			<p>
-				<b>ISBN:</b>  	<?= $libro->isbn ?></p>
-			<p>
-				<b>Titulo:</b>  	<?= $libro->titulo ?></p>
-			<p>
-				<b>Editorial:</b>  	<?= $libro->editorial ?></p>
-			<p>
-				<b>Autor:</b>  	<?= $libro->autor ?></p>
-			<p>
-				<b>Idioma:</b>  	<?= $libro->idioma ?></p>
-			<p>
-				<b>Edicion:</b>  	<?= $libro->edicion ?></p>
-			<p>
-				<b>Edad Recomendada:</b> 	<?= $libro->edadrecomendada ?? 'Pdt calificación' ?></p>
-			<p>
-				<b>Año:</b>  	<?= $libro->anyo ?? ' -- '?></p>
-			<p>
-				<b>Páginas:</b>  	<?= $libro->paginas ?? ' -- '?></p>
-			<p>
-				<b>Características:</b>  	<?= $libro->caracterisitcas ?? ' -- '?></p>
+				<p>
+					<b>ISBN:</b>  	<?= $libro->isbn ?></p>
+				<p>
+					<b>Titulo:</b>  	<?= $libro->titulo ?></p>
+				<p>
+					<b>Editorial:</b>  	<?= $libro->editorial ?></p>
+				<p>
+					<b>Autor:</b>  	<?= $libro->autor ?></p>
+				<p>
+					<b>Idioma:</b>  	<?= $libro->idioma ?></p>
+				<p>
+					<b>Edicion:</b>  	<?= $libro->edicion ?></p>
+				<p>
+					<b>Edad Recomendada:</b> 	<?= $libro->edadrecomendada ?? 'Pdt calificación' ?></p>
+				<p>
+					<b>Año:</b>  	<?= $libro->anyo ?? ' -- '?></p>
+				<p>
+					<b>Páginas:</b>  	<?= $libro->paginas ?? ' -- '?></p>
+				<p>
+					<b>Características:</b>  	<?= $libro->caracterisitcas ?? ' -- '?></p>
+			</DIV>
 		</section>
 		<section>
 			<h2>Sinopsis</h2>
@@ -58,7 +60,7 @@
 			<a class="button" onclick="history.back()">Atrás</a> <a
 				class="button" href="/Libro/list">Lista de libros</a> <a
 				class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a> <a
-				class="button danger" href="/Libro/delete/<?=$libro->id?>">Borrar</a>
+				class="button-danger" href="/Libro/delete/<?=$libro->id?>">Borrar</a>
 		</div>
 	</main>
 </body>

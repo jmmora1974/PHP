@@ -27,7 +27,9 @@ class LibroController extends Controller{
 	 * 
 	 */
 	public function list(){
-		$libros = Libro::orderBy();  //sale ordenado
+	  //	$libros = Libro::orderBy();  //sale ordenado, sin ejemplares
+	 
+		$libros= V_libro::orderBy('titulo'); // recupera los libros junto la información extra (ejemplares)
 	
 		//	carga la vista que los muestra
 		return view('libro/list',['libros'=>$libros]);
@@ -256,7 +258,7 @@ class LibroController extends Controller{
 				try{
 					$libro->deleteObject();
 					Session::success("Se ha borrado el libro $libro->titulo.");
-					return redirect("Libro/list");
+					return redirect("/Libro/list");
 				//si se produce un error en la operació con la bdd..
 				} catch (SQLException $e){
 					

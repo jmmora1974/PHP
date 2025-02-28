@@ -26,11 +26,15 @@
 	<h1><?=APP_NAME?></h1>
 	<h2>Borrar libro</h2>
 	
-	<form method="POST" enctype="multipart/form-data" cñass?"p2 m2" action="/Libro/destroy">
+	<form method="POST" enctype="multipart/form-data" class="p2 m2 centered" action="/Libro/destroy">
 		<p>Confirmar el borrado del libro:<b>"<?= $libro->titulo ?>"</b></p>
 		
 		<input type="hidden" name="id" value="<?= $libro->id ?>">
-		<input type="submit" class="button-danger" name="borrar" value="Borrar">
+		 <?=  $libro->hasAny('Ejemplar') ?			
+			'El libro dispone de ejemplares. No se puede eliminar.':
+		 '<input type="submit" class="button-danger" name="borrar" value="Borrar">';
+		 ?>
+		
 	</form>
 	
 		<div class="centered">
