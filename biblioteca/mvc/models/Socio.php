@@ -13,4 +13,10 @@ class Socio extends Model{
 		//Retorna una lista de Prestamo
 		return DBMysqli::selectAll($consulta,'Prestamo');
 	}
+	
+	//campos en los que se permite asignación masiva
+	protected static $fillable = ['dni','nombre','apellidos','poblacion',
+			'telefono','email'
+	];
+	
 }
