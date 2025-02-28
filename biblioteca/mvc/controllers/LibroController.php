@@ -175,8 +175,8 @@ class LibroController extends Controller{
 		if(!request()->has('actualizar')) //si no llega el formulario ...
 			throw new FormException ('No se recibieron datos');
 		
-		$id = intval(request()->post('$id')); // recuperar el id via POST
-		
+		$id = intval(request()->post('id')); // recuperar el id via POST
+	
 		
 	//Con la actualización a 1.8.0 ya se puede recuperar el formulario y tratarlo directamente
 	/*
@@ -221,6 +221,52 @@ class LibroController extends Controller{
 		}
 	}
 	
+	/** 
+	 * Muestra el formulario de confirmación de eliminación
+	 * 
+	 * @param int $id identificador único del libro a eliminar
+	 * 
+	 * @return ViewResponse
+	 */	
+	public function delete(int $id=0){
+		
+		$libro = Libro::findOrFail($id, "No existe el libro.");
+		
+		return view('libro/delete',['libro'=> $libro]);
+	}
 	
+	/** Elimina el libro de la base de datos
+	 * @return RedirectResponse
+	 */
+	public function destroy(){
+		//comprueba que le llega el formulario de confirmación
+		if(!request()->has('borrar'))
+			throw new FormException("No se recibió la confirmación");
+		
+			$id 	=intval(request()->post('id')); //Recupera el identiicador
+			$libro	=Libro::findOrFail($id);
+			
+			//si el libro tiene ejemplares, no permitiremos su borrado
+			//mas adelante ocultaeremos el boton de "borrar" en estos casos 
+			// para que no el usuario no llegue al formulario de confirmación
+			if($libro->hasAny('Ejemplar'))
+				throw new Exception("No se puede borrar el libro mientras tenga ejemplares.");
+			
+				//intenta borrar el libro
+				try{
+					$libro->deleteObject();
+					Session::success("Se ha borrado el libro $libro->titulo.");
+					return redirect("Libro/list");
+				//si se produce un error en la operació con la bdd..
+				} catch (SQLException $e){
+					
+					Session::error("No se pudo borrar el libro $libro->titulo.");
+					
+					if(DEBUG)
+						throw new SQLException($e->getMessage());
+						
+						return redirect("/Libro/delete/$id");
+				}
+	}
 }	
 	 

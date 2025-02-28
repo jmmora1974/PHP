@@ -29,7 +29,6 @@
 	<form method="POST" enctype="multipart/form-data" action="/Libro/update">
 		<div class="flex2">
 		
-	
 		<input type="hidden" name="id" value="<?= $libro->id ?>" required>
 		
 		<label for="isbn">ISBN</label>
@@ -74,7 +73,7 @@
 			<a class="button" onclick="history.back()">Atrás</a>
 			<a class="button" href="/Libro/list">Lista de libros</a>
 			<a class="button" href="/Libro/show/<?=$libro->id?>">Detalles</a>
-			<a class="button" href="/Libro/delete/<?=$libros->id?>">Borrado</a>
+			<a class="button" href="/Libro/delete/<?=$libro->id?>">Borrado</a>
 		</div>		
 	</form>
 </main>		
