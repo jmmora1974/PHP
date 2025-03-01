@@ -167,7 +167,7 @@ class Base implements TemplateInterface{
         //Enlaces restringidos
         $html .=   "<li><a href='/Panel'>Panel del bibliotecario</a></li>";
              
-        $html .=   "<li><a href='/Socio'>Socios</a></li>";
+     //   $html .=   "<li><a href='/Socio'>Socios</a></li>";
      //   $html .=   "<li><a href='/Socio/create'>Nuevo Socio</a></li>";
         
       

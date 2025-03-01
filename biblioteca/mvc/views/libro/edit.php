@@ -73,7 +73,9 @@
 			<a class="button" onclick="history.back()">Atrás</a>
 			<a class="button" href="/Libro/list">Lista de libros</a>
 			<a class="button" href="/Libro/show/<?=$libro->id?>">Detalles</a>
-			<a class="button-danger" href="/Libro/delete/<?=$libro->id?>">Borrado</a>
+			<?php if(!$libro->hasAny('Ejemplar')){ ?> 
+				<a class="button-danger" href="/Libro/delete/<?=$libro->id?>">Borrado</a>
+			<?php } ?>
 		</div>		
 	</form>
 </main>		

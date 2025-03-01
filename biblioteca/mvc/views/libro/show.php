@@ -49,6 +49,8 @@
 					<b>Páginas:</b>  	<?= $libro->paginas ?? ' -- '?></p>
 				<p>
 					<b>Características:</b>  	<?= $libro->caracterisitcas ?? ' -- '?></p>
+				<p>
+					<b>Ejemplares:</b>  	<?= $libro->ejemplares ?? ' -- '?></p>
 			</DIV>
 		</section>
 		<section>
@@ -57,10 +59,14 @@
 		</section>
 
 		<div class="centrado">
-			<a class="button" onclick="history.back()">Atrás</a> <a
-				class="button" href="/Libro/list">Lista de libros</a> <a
-				class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a> <a
-				class="button-danger" href="/Libro/delete/<?=$libro->id?>">Borrar</a>
+			<a class="button" onclick="history.back()">Atrás</a> 
+			<a class="button" href="/Libro/list">Lista de libros</a> 
+			<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>
+			<?php if(!$libro->hasAny('Ejemplar')){ ?>
+				<a class="button-danger" href="/Libro/delete/<?=$libro->id ?>">Borrar</a>';
+			<?php }?>
+				
+				
 		</div>
 	</main>
 </body>
