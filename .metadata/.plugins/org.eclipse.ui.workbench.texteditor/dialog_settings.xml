@@ -5,27 +5,30 @@
 		<item key="replaceBarOpen" value="true"/>
 		<list key="replacehistory">
 			<item value="tema"/>
+			<item value="Tema"/>
+			<item value="socio"/>
+			<item value="Socio"/>
+			<item value="Socios"/>
 			<item value="getEjemplares"/>
 			<item value="libro"/>
 			<item value="$libro"/>
-			<item value="socio"/>
 		</list>
 		<list key="findhistory">
+			<item value="socio"/>
 			<item value="menu"/>
-			<item value="ERROr_vi"/>
-			<item value="ERRO"/>
-			<item value="heade"/>
-			<item value="catc"/>
-			<item value="try"/>
-			<item value="isLo"/>
-			<item value="isloge"/>
-			<item value="islog"/>
-			<item value="media"/>
-			<item value="grid"/>
-			<item value="age"/>
-			<item value="agen"/>
-			<item value="ciudad"/>
-			<item value="validarCookies()"/>
+			<item value="id"/>
+			<item value="destr"/>
+			<item value="del"/>
+			<item value="destdel"/>
+			<item value="dest"/>
+			<item value="dele"/>
+			<item value="edit"/>
+			<item value="s"/>
+			<item value="Socio"/>
+			<item value="titul"/>
+			<item value="store"/>
+			<item value="edi"/>
+			<item value="list"/>
 		</list>
 	</section>
 </section>
