@@ -2,11 +2,11 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
-		<title>Nuevo Socio - <?= APP_NAME ?></title>
+		<title>Nuevo Tema - <?= APP_NAME ?></title>
 		
 		<!-- META -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Lista de socios - <?= APP_NAME ?>">
+		<meta name="description" content="Creación de temas - <?= APP_NAME ?>">
 		<meta name="author" content="Jose Miguel Mora Perez">
 		
 		<!-- FAVICON -->
@@ -17,34 +17,22 @@
 	</head>
 	<body>
 		<?= $template->login() ?>
-		<?= $template->header('Lista de socios') ?>
+		<?= $template->header('Crear de tema') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs(['Socios'=>'/Socio','Nuevo'=>null]) ?>
+		<?= $template->breadCrumbs(['Temas'=>'/Tema','Nuevo'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
 	<h1><?=APP_NAME?></h1>
-	<h2>Nuevo socio</h2>
+	<h2>Nuevo tema</h2>
 	
-	<form method="POST" enctype="multipart/form-data" action="/socio/store">
+	<form method="POST" enctype="multipart/form-data" action="/tema/store">
 		<div class="flex2">
-		<label for="dni">DNI</label>
-		<input type="text" name="dni" value="<?= old('dni')?>" required>
+		<label for="tema">Tema</label>
+		<input type="text" name="tema" value="<?= old('tema')?>" required>
 		<br>
-		<label for="nombre">Nombre</label>
-		<input type="text" name="nombre" value="<?= old('nombre')?>" required>
-		<br>
-		<label for="apellidos">Apellidos</label>
-		<input type="text" name="apellidos" value="<?= old('apellidos')?>" >
-		<br>
-		<label for="poblacion">Poblacion</label>
-		<input type="text" name="poblacion" value="<?= old('poblacion')?>" >
-		<br>
-		<label for="telefono">Telefono</label>
-		<input type="number" min="0" name="telefono" value="<?=old('telefono')?>">
-		<br>
-		<label for="email">Email</label>
-		<input type="email" name="email" value="<?=old('email')?>">
+		<label for="descripcion">Descripción</label>
+		<input type="text" name="descripcion" value="<?= old('descripcion')?>" required>
 		<br>
 		<div class="centered mt2">
 				<input type="submit" class="button" name="guardar" value="Guardar">
@@ -53,7 +41,7 @@
 		</div>
 		<div class="centrado my2">
 			<a class="button" onclick="history.back()">Atrás</a>
-			<a class="button" href="/socio/list">Lista de socios</a>
+			<a class="button" href="/tema/list">Lista de temas</a>
 		</div>		
 	</form>
 </main>		

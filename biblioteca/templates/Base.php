@@ -161,7 +161,7 @@ class Base implements TemplateInterface{
         //Enlaces para todo el mundo
         $html .=   "<li><a href='/Libro'>Libros</a></li>";
      //   $html .=   "<li><a href='/Libro/create'>Nuevo libro</a></li>";
-        $html .=   "<li><a href='/Eje'>Temas</a></li>";
+        $html .=   "<li><a href='/Tema'>Temas</a></li>";
         // $html .=   "<li><a href='/Tema/create'>Nuevo Tema</a></li>";
         
         //Enlaces restringidos
