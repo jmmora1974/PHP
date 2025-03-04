@@ -103,8 +103,8 @@
 							//$prestado=$ejemplar->getPrestamoActual();
 							
 							if(!$ejemplar->hasAny('Prestamo')){ ?> 
-								<!-- <a class="button-danger" href="/ejemplar/delete/<?=$ejemplar->id ?>">Eliminar</a> -->
-								<a class="button" onclick="confirmar(<?=$ejemplar->id ?>)">Borrar</a>
+								 <a class="button" href="/ejemplar/edit/<?=$ejemplar->id ?>">Editar</a> 
+								<a class="button-danger" onclick="confirmar(<?=$ejemplar->id ?>)">Borrar</a>
 							<?php } ?>
 							</td>
 					<?php } ?>

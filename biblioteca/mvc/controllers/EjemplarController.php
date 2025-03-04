@@ -161,4 +161,78 @@ class EjemplarController extends Controller{
 		
 	}
 	
+	/**
+	 * Muestra el formulario de edición del ejemplar del libro
+	 *
+	 * @param int $id el ID único del ejemplar a editar
+	 *
+	 * @return ViewResponse
+	 *
+	 */
+	public function edit(int $id=0){
+		
+		// busca el libro con ese ID
+		$ejemplar = Ejemplar::findOrFail($id,'No se encontró el ejemplar.');
+		
+		//recupera los ejemplares del libro
+		//$ejemplares= $libro->hasMany('Ejemplar');
+		
+		//retorna una ViewResponse con la vista con el formulario de edición
+		return view('ejemplar/edit',['ejemplar'=>$ejemplar, 'ejemplar'=>$ejemplar]);
+	}
+	
+	/** Actualzia la bdd con los datos POST del formulario
+	 */
+	public function update(){
+		
+		if(!request()->has('actualizar')) //si no llega el formulario ...
+			throw new FormException ('No se recibieron datos');
+			
+			$id = intval(request()->post('id')); // recuperar el id via POST
+			
+			
+			//Con la actualización a 1.8.0 ya se puede recuperar el formulario y tratarlo directamente
+			/*
+			 $libro = Libro::findOrFail($id,"No se ha encontrado el libro.");
+			 
+			 //recuperar el resto de campos
+			 $libro->isbn	= request()->post('isbn');
+			 $libro->titulo	= request()->post('isbn');
+			 $libro->editorial	= request()->post('isbn');
+			 $libro->autor	= request()->post('isbn');
+			 $libro->idioma	= request()->post('isbn');
+			 $libro->edicion	= request()->post('isbn');
+			 $libro->anyo	= request()->post('isbn');
+			 $libro->edadrecomendada	= request()->post('isbn');
+			 $libro->paginas	= request()->post('isbn');
+			 $libro->caracteristicas = request()->post('isbn');
+			 $libro->sinopsis	= request()->post('isbn');
+			 */
+			
+			//intenta actualizar el libro
+			try{
+				//$libro->update(); No es necesario en la 1.8.0
+				// ya el metodo create ya actualiza si manda el 2ºparametro
+				$ejemplar= Ejemplar::create(request()->posts() ,$id);
+				
+				Session::success("Actualización del ejemplar $ejemplar->id del libro $libro->titulo correcta.");
+				return redirect("/Libro/edit/$ejemplar->idlibro");
+				
+				// Si se produce un error al guardar el libro..
+			}catch (SQLException $e){
+				// prepara el mensaje de error
+				$mensaje = "No se pudo actualizar el ejemplar";
+				
+				if(str_contains($e->errorMessage(),'Duplicate entry'))
+					$mensaje.="<br>Ya existe un ejemplar con ese <b>ID</b>.";
+					Session::error($mensaje);
+					
+					if(DEBUG)
+						throw new SQLException($e->getMessage());
+						
+						return redirect("/Libro/edit/$ejemplar->idlibro");
+			}
+	}
+	
+	
 }

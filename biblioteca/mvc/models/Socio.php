@@ -8,10 +8,10 @@ class Socio extends Model{
 	 * @return array lista de prestamos del socio
 	 */
 	public function getPrestamos():array{
-		$consulta = "SELECT * FROM prestamos WHERE idsocio=$this->id";
+		$consulta = "SELECT * FROM V_socios WHERE id=$this->id";
 		
 		//Retorna una lista de Prestamo
-		return DBMysqli::selectAll($consulta,'Prestamo');
+		return DBMysqli::selectAll($consulta,'V_socio');
 	}
 	
 	//campos en los que se permite asignación masiva

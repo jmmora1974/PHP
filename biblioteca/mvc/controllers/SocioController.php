@@ -29,7 +29,7 @@ class SocioController extends Controller{
 	public function list(){
 	  //	$socios = Socio::orderBy();  //sale ordenado, sin ejemplares
 	 
-		$socios= Socio::orderBy('apellidos'); // recupera los socios junto la información extra (prestamos)
+		$socios= socio::all(); // recupera los socios junto la información extra (prestamos)
 	
 		//	carga la vista que los muestra
 		return view('socio/list',['socios'=>$socios]);

@@ -2,7 +2,7 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
-		<title> Ejemplares - <?= APP_NAME ?></title>
+		<title> Prestamos - <?= APP_NAME ?></title>
 		
 		<!-- META -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,21 +19,21 @@
 		<?= $template->login() ?>
 		<?= $template->header('Nuevo de ejemplar') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs(['Ejemplares'=>'/Ejemplar','Nuevo'=>null]) ?>
+		<?= $template->breadCrumbs(['Prestamos'=>'/Prestamo','Nuevo'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
 	<h1><?=APP_NAME?></h1>
-	<h2>Nuevo ejemplar para el libro <b>"<?=$libro->titulo?>"</b></h2>
-	<p>Estás a punto de crear un nuevo ejemplar para el libro <b>"<?=$libro->titulo?>"</b></p>
-	<form method="POST" enctype="multipart/form-data" action="/Ejemplar/store">
+	<h2>Nuevo prestamo de libros</h2>
+	<p>Estás a punto de crear un nuevo Prestamo</p>
+	<form method="POST" enctype="multipart/form-data" action="/Prestamo/store">
 		<div class="flex2">
 		
+		<label for="idsocio">ID Socio</label>
+		<input type="text" name="idsocio" value="<?= old('idsocio')?>">
+		<br>
 		
-		<input type="text" name="idlibro" value="<?=$libro->id?><?= old('idlibro')?>" hidden>
-		<br> 
-		
-		<label for="anyo">Año</label>
+		<label for="idjemplar">ID Ejemplar</label>
 		<input type="text" name="anyo" value="<?= old('anyo')?>" required>
 		<br>
 		<label for="precio">Precio</label>
