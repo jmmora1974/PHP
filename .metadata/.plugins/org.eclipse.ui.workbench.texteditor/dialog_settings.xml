@@ -11,6 +11,7 @@
 			<item value="socio"/>
 		</list>
 		<list key="findhistory">
+			<item value="edi"/>
 			<item value="menu"/>
 			<item value="ERROr_vi"/>
 			<item value="ERRO"/>
@@ -25,7 +26,6 @@
 			<item value="age"/>
 			<item value="agen"/>
 			<item value="ciudad"/>
-			<item value="validarCookies()"/>
 		</list>
 	</section>
 </section>
