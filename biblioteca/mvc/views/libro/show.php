@@ -28,7 +28,6 @@
 			<DIV class="flex2 centered">
 				<h2>Detalles del libro</h2>
 				<h3><?=$libro->titulo?></h3>
-
 				<p>
 					<b>ISBN:</b>  	<?= $libro->isbn ?></p>
 				<p>
@@ -56,6 +55,32 @@
 		<section>
 			<h2>Sinopsis</h2>
 			<p><?= $libro->sinopsis ? paragraph($libro->sinopsis) : 'SIN DETALLES'?></p>
+		</section>
+		<section>
+			<h2>Ejemplares</h2>
+			<?php 
+			if(!$ejemplares){
+					echo "<div class='warning p2'><p>No hay ejemplares de este libro.</p></div>";
+			} else { ?>
+				<table class="table w100 centered-block">
+					<tr>
+						<th>ID</th><th>Año</th><th>Precio</th><th>Estado</th>
+					</tr>
+					<?php 
+					foreach($ejemplares as $ejemplar){ ?>
+						<tr>
+							<td> <?=$ejemplar->id ?></td>
+							<td> <?=$ejemplar->anyo ?></td>
+							<td> <?=$ejemplar->precio ?></td>
+							<td> <?=$ejemplar->estado ?></td>
+						</tr>
+					<?php } ?>	
+				</table>
+				<div class="p1 right">
+					Existen <?= sizeof($ejemplares) ?> ejemplares de este libro.
+				</div>				
+				
+			<?php } ?>
 		</section>
 
 		<div class="centrado">

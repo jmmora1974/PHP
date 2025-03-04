@@ -43,11 +43,40 @@
 					<b>Email:</b>  	<?= $socio->email ?></p>
 				<p >
 					<b>Alta:</b> 	<?= $socio->alta ?></p>
-				<?php if($socio->hasAny('Prestamo')){ ?> 
-				<p > <b> El socio tiene prestamos vigentes </b></p>
-			<?php }?>
+			
 				
 			</DIV>
+		</section>
+		<section>
+			<h3>Prestamos del socio</h3>
+			<table class="table w100 centered-block">
+					<tr>
+						<th>ID</th><th>Socio</th><th>Ejemplar</th><th>Titulo</th><th>Limite</th><th>Devolución</th><th>Operaciones</th>
+					</tr>
+				<?php 
+					$prestamos = $socio->getPrestamos();
+					foreach($prestamos as $prestamo ){ ?>
+						<tr>
+							<td> <?=$prestamo->id ?></td>
+							<td> <?=$socio->nombre.' '.$socio->apellidos ?></td>
+							<td> <?=$prestamo->idejemplar ?></td>
+							<td> <?=$prestamo->titulo ?></td>
+							<td> <?=$prestamo->limite ?></td>
+							<td> <?=$prestamo->devolucion ?></td>
+							<td class="centrado">	<?php
+									if(!$prestamos){ ?>
+										<a class="button-danger" href="/Ejemplar/delete/<?=$prestamo->idejemplar?>">Borrar</a>
+									<?php }?>
+						</td>
+						</tr>
+						<?php }?>	
+													
+				<?php
+				if(!$prestamos){ ?>
+							<p><b> El socio tiene prestamos vigentes </b></p>
+						
+			<?php }?>
+			</table>
 		</section>
 		
 		<div class="centrado">
