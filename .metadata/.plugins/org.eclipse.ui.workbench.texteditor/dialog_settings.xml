@@ -5,12 +5,16 @@
 		<item key="replaceBarOpen" value="true"/>
 		<list key="replacehistory">
 			<item value="tema"/>
+			<item value="Tema"/>
+			<item value="socio"/>
+			<item value="Socio"/>
+			<item value="Socios"/>
 			<item value="getEjemplares"/>
 			<item value="libro"/>
 			<item value="$libro"/>
-			<item value="socio"/>
 		</list>
 		<list key="findhistory">
+<<<<<<< HEAD
 			<item value="edi"/>
 			<item value="menu"/>
 			<item value="ERROr_vi"/>
@@ -26,6 +30,23 @@
 			<item value="age"/>
 			<item value="agen"/>
 			<item value="ciudad"/>
+=======
+			<item value="socio"/>
+			<item value="menu"/>
+			<item value="id"/>
+			<item value="destr"/>
+			<item value="del"/>
+			<item value="destdel"/>
+			<item value="dest"/>
+			<item value="dele"/>
+			<item value="edit"/>
+			<item value="s"/>
+			<item value="Socio"/>
+			<item value="titul"/>
+			<item value="store"/>
+			<item value="edi"/>
+			<item value="list"/>
+>>>>>>> fb9c9f7ee9dd425c85f744578740dc8d3c87fe0a
 		</list>
 	</section>
 </section>

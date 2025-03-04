@@ -24,10 +24,10 @@
 		<?= $template->acceptCookies() ?>
 	<main>
 	<h1><?=APP_NAME?></h1>
-	<h2>Edición del libro <?= $libro->titulo ?></h2>
-	
+	<h2>Edición del libro: <b>"<?= $libro->titulo ?>"</b></h2>
+	<section>
 	<form method="POST" enctype="multipart/form-data" action="/Libro/update">
-		<div class="flex2">
+		<div class="centrado">
 		
 		<input type="hidden" name="id" value="<?= $libro->id ?>" required>
 		
@@ -66,16 +66,68 @@
 			<br>
 			<div class="centered mt2">
 				<input type="submit" class="button" name="actualizar" value="Actualizar">
-				<input type="reset" class="button" value="Reset">	
+				<input type="reset" class="button" value="Reset" onclick="<?php redirect('/Libro/edit/$libro->id');?>">	
 			</div>
 		</div>
+		</form>
+		</section>
+		<section>
+			<script>
+				function confirmar(id){
+					if(confirm('Seguro que deseas eliminar?'))
+						location.href='/Ejemplar/destroy/'+id
+				}
+			</script>
+			<h2>Ejemplares de <b>"<?=$libro->titulo?>"</b></h2>
+						<div class="centrado">
+					<a class="button" href="/Ejemplar/create/<?=$libro->id ?>">Nuevo ejemplar</a>
+					
+				</div>
+			<?php 
+			if(!$ejemplares){
+					echo "<div class='warning p2'><p>No hay ejemplares de este libro.</p></div>";
+			} else { ?>
+				<table class="table w100 centered-block">
+					<tr>
+						<th>ID</th><th>Año</th><th>Precio</th><th>Estado</th><th>Operacion</th>
+					</tr>
+					<?php 
+					foreach($ejemplares as $ejemplar ){ ?>
+						<tr>
+							<td> <?=$ejemplar->id ?></td>
+							<td> <?=$ejemplar->anyo ?></td>
+							<td> <?=$ejemplar->precio ?></td>
+							<td> <?=$ejemplar->estado ?></td>
+							<td class="centrado">
+							<?php
+							//$prestado=$ejemplar->getPrestamoActual();
+							
+							if(!$ejemplar->hasAny('Prestamo')){ ?> 
+								<!-- <a class="button-danger" href="/ejemplar/delete/<?=$ejemplar->id ?>">Eliminar</a> -->
+								<a class="button" onclick="confirmar(<?=$ejemplar->id ?>)">Borrar</a>
+							<?php } ?>
+							</td>
+					<?php } ?>
+						</tr>
+					<?php } ?>	
+				</table>
+				<div class="p1 right">
+					Existen <?= sizeof($ejemplares) ?> ejemplares de este libro.
+				</div>	
+					
+				
+		
+				
+		</section>
 		<div class="centrado m1">
 			<a class="button" onclick="history.back()">Atrás</a>
 			<a class="button" href="/Libro/list">Lista de libros</a>
 			<a class="button" href="/Libro/show/<?=$libro->id?>">Detalles</a>
-			<a class="button" href="/Libro/delete/<?=$libro->id?>">Borrado</a>
+			<?php if(!$libro->hasAny('Ejemplar')){ ?> 
+				<a class="button-danger" href="/Libro/delete/<?=$libro->id?>">Borrado</a>
+			<?php } ?>
 		</div>		
-	</form>
+	
 </main>		
 	
 	

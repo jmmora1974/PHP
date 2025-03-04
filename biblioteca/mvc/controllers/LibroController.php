@@ -27,7 +27,9 @@ class LibroController extends Controller{
 	 * 
 	 */
 	public function list(){
-		$libros = Libro::orderBy();  //sale ordenado
+	  //	$libros = Libro::orderBy();  //sale ordenado, sin ejemplares
+	 
+		$libros= V_libro::orderBy('titulo'); // recupera los libros junto la información extra (ejemplares)
 	
 		//	carga la vista que los muestra
 		return view('libro/list',['libros'=>$libros]);
@@ -41,10 +43,14 @@ class LibroController extends Controller{
 	public function show(int $id=0) {
 		
 	
-		$libro = Libro::findOrFail($id, 'No se enontró el libro indicado'); //tb comprueba si no le ha llegado el ID
+		// Recupera el libro
+		$libro = Libro::findOrFail($id, 'No se encontró el libro indicado'); //tb comprueba si no le ha llegado el ID
+		
+		//recupera los ejemplares del libro
+		$ejemplares= $libro->hasMany('Ejemplar');		
 		
 		// carga la vista y le pasa el libro recuperado
-		return view ('libro/show',['libro'=>$libro]);
+		return view ('libro/show',['libro'=>$libro,'ejemplares'=>$ejemplares]);
 		
 	}
 	
@@ -164,8 +170,11 @@ class LibroController extends Controller{
 		// busca el libro con ese ID
 		$libro = Libro::findOrFail($id,'No se encontró el libro.');
 		
+		//recupera los ejemplares del libro
+		$ejemplares= $libro->hasMany('Ejemplar');
+		
 		//retorna una ViewResponse con la vista con el formulario de edición
-		return view('libro/edit',['libro'=>$libro]);
+		return view('libro/edit',['libro'=>$libro, 'ejemplares'=>$ejemplares]);
 	}
 	
 	/** Actualzia la bdd con los datos POST del formulario
@@ -256,7 +265,7 @@ class LibroController extends Controller{
 				try{
 					$libro->deleteObject();
 					Session::success("Se ha borrado el libro $libro->titulo.");
-					return redirect("Libro/list");
+					return redirect("/Libro/list");
 				//si se produce un error en la operació con la bdd..
 				} catch (SQLException $e){
 					

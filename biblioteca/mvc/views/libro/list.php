@@ -33,16 +33,21 @@
        						<th>ISBN</th>
        						<th>Título</th>
        						<th>Autor</th>
+       						<th>Ejemplares</th>
        						<th class="centrado">Operaciones</th>
 		<?php foreach($libros as $libro){   ?>
 				<tr>
 					<td><?=$libro->isbn?></td>
 				<td><a href='/Libro/show/<?=$libro->id?>'><?= $libro->titulo?></a></td>
 				<td><?=$libro->autor?></td>
+				<td><?=$libro->ejemplares?></td>
 				<td class="centrado">
-					<a class="button" href='/libro/show/<?=$libro->id?>'>Ver</a>
-					<a class="button" href='/libro/edit/<?=$libro->id?>'>Editar</a>
-					<a class="button danger" href='/libro/delete/<?=$libro->id?>'>Borrar</a>
+					<a class="button" href='/libro/show/<?=$libro->id?>'>
+						<img src="/images/icons/show.png" alt="Ver" style="width:20px;height:20px;"></a>
+					<a class="button" href='/libro/edit/<?=$libro->id?>'><img src="/images/icons/edit.png" alt="Editar" style="width:20px;height:20px;"></a>
+					<?php if(!$libro->ejemplares){ ?>
+						<a class="button-danger" href='/libro/delete/<?=$libro->id?>'><img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"></a>
+					<?php } ?>
 					
 				</td>
 			</tr>

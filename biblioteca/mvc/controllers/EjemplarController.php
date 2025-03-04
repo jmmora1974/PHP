@@ -1,0 +1,164 @@
+<?php
+use http\Message;
+
+/**
+ * EjemplarController
+ *
+ * Operaciones con los  ejemplares de libro
+ *
+ * @autor Jose Miguel Mora Perez ® CIFO Valles 2025®
+ */
+
+class EjemplarController extends Controller{
+	
+	/**
+	 * Mérodo por defecto
+	 *
+	 * Redirige al método list() de este mismo controlado.
+	 *
+	 * @return ViewResponse
+	 */
+	public function index(){
+		return $this->list();
+	}
+	
+	/**
+	 * Listado de libros
+	 *
+	 * @return ViewResponse
+	 *
+	 */
+	public function list(){
+		
+		
+		$ejemplares= Ejemplar::all(); // recupera los ejemplares del libro
+		
+		//	carga la vista que los muestra
+		return view('ejemplar/list',['ejemplares'=>$ejemplares]);
+	}
+	
+	/**
+	 * Muestra los detalles del un libro
+	 * @param int $id identificador del libro a mostrar
+	 * @return ViewResponse
+	 */
+	public function show(int $id=0) {
+		
+		
+		// Recupera el libro
+		$libro = Ejemplar::findOrFail($id, 'No se encontró el ejemplar indicado'); //tb comprueba si no le ha llegado el ID
+		
+		//recupera los ejemplares del libro
+		$ejemplares= $libro->hasMany('Ejemplar');
+		
+		// carga la vista y le pasa el libro recuperado
+		return view ('ejemplar/show',['libro'=>$libro,'ejemplares'=>$ejemplares]);
+		
+	}
+	
+	/**
+	 * Muestra el formulario de nuevo ejemplar
+	 * @return ViewResponse
+	 */
+	public function create(int $idlibro=-1){
+		
+		$libro = Libro::findOrFail($idlibro,'No se encontró el libro.');
+		
+		//retorna una ViewResponse con la vista con el formulario de creacion
+		return view('Ejemplar/create',['libro'=>$libro]);
+	}
+	
+	/**
+	 * Guarda los datos que llegan del formulario en la bdd
+	 * 
+	 * @ redirect Viewresponse
+	 */
+	public function store(){
+		//Comprueba que la petición venga del formulario
+		if(!request()->has('guardar'))
+			throw new FormException('No se recibió el formulario');
+		$ejemplar=new Ejemplar(); //crea el nuevo ejemplar
+		
+	//OPCION AUTOMATICA
+			try{
+				
+				//guarda el libro en la base de datos a partir de los datosPOST
+				$ejemplar = Ejemplar::create(request()->posts()); 
+				
+				
+				//flashea un mensaje de exito en sesion
+				Session::success("Guardado del ejemplar $ejemplar->id correcto.");
+				
+				//redirecciona a los detalles del nuevo libro
+				return redirect("/Libro/edit/$ejemplar->idlibro");
+			}  catch(SQLException $e){
+				//prepara el mensaje de error
+				$mensaje = "No se pudo guardar el ejemplar del libro ".$libro->titulo;
+				
+				if(str_contains($e->errorMessage(),'Duplicate entry'))
+						$mensaje.="<br>Ya existe un ejemplar con ese <b>ID</b>.";
+				
+				//flashe un mensaje de error en session
+				Session::error($mensaje);
+				
+				//Si esta en modo DEBUG vuelve a lanzar la excepcion
+				//esto hara qie acabemos en la pagina de error
+				if(DEBUG)
+				throw new SQLException($e->getMessage());
+				
+				//regresa al formulario de creación de libro
+				return redirect("/Ejemplar/create/$libro->id");
+			}
+
+	}
+	
+	/**
+	 * Muestra el formulario de confirmación de eliminación
+	 *
+	 * @param int $id identificador único del libro a eliminar
+	 *
+	 * @return ViewResponse
+	 */
+	public function delete(int $id=0){
+		
+		$libro = Libro::findOrFail($id, "No existe el libro.");
+		
+		return view('libro/delete',['libro'=> $libro]);
+	}
+	
+	/** Elimina el ejemplar de la base de datos
+	 * @return RedirectResponse
+	 */
+	public function destroy(int $id=-1){
+
+		//Recupera el elemplar de la BDD			
+		$ejemplar	=Ejemplar::findOrFail($id, "No se encontró el ejemplar.");
+		$libro=Libro::findOrFail($ejemplar->idlibro,"No se ha encontrado el libro");
+		//Si hay prestamos, no permitimos el borrado
+		try{
+			if($ejemplar->hasAny('Prestamo','idejemplar')){
+				throw new Exception("No se puede borrar el ejemplar mientras está prestado.");
+				return redirect("/Libro/edit/$ejemplar->idlibro");
+			}
+		} catch (Exception $e){
+						Session::error($e->getMessage());
+			
+				return redirect("/Libro/edit/$ejemplar->idlibro");
+		}	
+			//intenta borrar el ejemplar
+		try{
+				$ejemplar->deleteObject();
+				Session::success("Se ha borrado el ejemplar $ejemplar->id de libro $libro->titulo.");
+				return redirect("/Libro/edit/$ejemplar->idlibro");
+				//si se produce un error en la operació con la bdd..
+		} catch (Exception $e){
+			
+			Session::error("No se pudo borrar el ejemplar $ejemplar->id de  $libro->titulo.");
+			
+			
+			return redirect("/Libro/edit/$ejemplar->idlibro");
+		}
+		
+	}
+	
+}
