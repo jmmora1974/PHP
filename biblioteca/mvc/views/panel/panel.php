@@ -50,6 +50,14 @@
        	
        			</ul>
        		</section>
+       		<section>
+       			<h3><b>Operaciones con Prestamos</b></h3>
+       			<ul>
+       				<li><a href='/Prestamo'>Prestamos</a></li>
+        			<li><a href='/Prestamo/create'>Nuevo Prestamo</a></li>
+       	
+       			</ul>
+       		</section>
        		
        		
 			</main>
