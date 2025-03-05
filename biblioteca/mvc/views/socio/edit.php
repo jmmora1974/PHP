@@ -51,37 +51,37 @@
 			<br>
 			<section>
 			<h3>Prestamos del socio</h3>
+			<a class="button" href="/Prestamo/create/">Nuevo Prestamo</a>
 			<table class="table w100 centered-block">
 					<tr>
-						<th>ID</th><th>Socio</th><th>Ejemplar</th><th>Titulo</th><th>Limite</th><th>Devolución</th><th>Operaciones</th>
+						<th>ID</th><th>Socio</th><th>Ejemplar</th><th>Titulo</th><th>Limite</th><th>Devolución</th><th>Incidencias</th><th>Operaciones</th>
 					</tr>
 				<?php 
 					$prestamos = $socio->getPrestamos();
 					foreach($prestamos as $prestamo ){ ?>
 						<tr>
-							<td> <?=$prestamo->id ?></td>
-							<td> <?=$socio->nombre.' '.$socio->apellidos ?></td>
-							<td> <?=$prestamo->idejemplar ?></td>
+							<td> <?=$prestamo->idprestamo ?></td>
+							<td> <?=$prestamo->nombre.' '.$prestamo->apellidos ?></td>
 							<td> <?=$prestamo->titulo ?></td>
+							<td> <?=$prestamo->idejemplar ?></td>							
 							<td> <?=$prestamo->limite ?></td>
 							<td> <?=$prestamo->devolucion ?></td>
-							<td class="centrado">	<?php
-									if(!$prestamos){ ?>
-										<a class="button-danger" href="/Ejemplar/delete/<?=$prestamo->idejemplar?>">Borrar</a>
+							<td> <?=$prestamo->incidencia?></td>
+							<td class="centrado">	
+							<a class="button" href="/Prestamo/incidencia/<?=$prestamo->idprestamo?>">Inicidencia</a>
+							<?php
+							if ($prestamo->devolucion){ ?>
+										
+									<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->idprestamo?>">Eliminar</a>
 									<?php }?>
-						</td>
+									
+							</td>
 						</tr>
-						<?php }?>	
-													
-				<?php
-				if($prestamos){ ?>
-							<p><b> El socio tiene prestamos vigentes </b></p>
-						
-			<?php }?>
+					<?php }?>					
 			</table>
 		</section>
-			<?php if($socio->hasAny('Prestamo')){ ?>
-					<p>El socio tiene prestamos vigentes.</p>
+			<?php if(!$socio->hasAny('Prestamo')){ ?>
+					<p>El socio no tiene prestamos vigentes.</p>
 			<?php } ?>
 			
 			<div class="centered mt2">

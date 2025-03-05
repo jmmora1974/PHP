@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Visualización de un socio - <?= APP_NAME ?></title>
+<title>Visualización de un prestamo - <?= APP_NAME ?></title>
 
 <!-- META -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Ver socios - <?= APP_NAME ?>">
+<meta name="description" content="Ver prestamos - <?= APP_NAME ?>">
 <meta name="author" content="Jose Miguel Mora Perez">
 
 <!-- FAVICON -->
@@ -17,50 +17,49 @@
 	</head>
 <body>
 		<?= $template->login() ?>
-		<?= $template->header('Lista de socios') ?>
+		<?= $template->header('Lista de prestamos') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs(['Socios'=>'/Socio','Detalles'=>null]) ?>
+		<?= $template->breadCrumbs(['Prestamos'=>'/Prestamo','Detalles'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
 		<h1><?=APP_NAME?></h1>
 		<section>
 			<DIV class="flex2 centered">
-				<h2>Detalles del socio</h2>
-				<h3><?=$socio->titulo?></h3>
+				<h2>Detalles del prestamo</h2>
+				<h3><?=$prestamo->titulo?></h3>
 
 				<p>
-					<b>DNI:</b>  	<?= $socio->dni ?></p>
+					<b>DNI:</b>  	<?= $prestamo->dni ?></p>
 				<p>
-					<b>Nombre:</b>  	<?= $socio->nombre ?></p>
+					<b>Nombre:</b>  	<?= $prestamo->nombre ?></p>
 				<p>
-					<b>Apellidos:</b>  	<?= $socio->apellidos ?></p>
+					<b>Apellidos:</b>  	<?= $prestamo->apellidos ?></p>
 				<p>
-					<b>Población:</b>  	<?= $socio->poblacion ?></p>
+					<b>Población:</b>  	<?= $prestamo->poblacion ?></p>
 				<p>
-					<b>Telefono:</b>  	<?= $socio->telefono ?></p>
+					<b>Telefono:</b>  	<?= $prestamo->telefono ?></p>
 				<p>
-					<b>Email:</b>  	<?= $socio->email ?></p>
+					<b>Email:</b>  	<?= $prestamo->email ?></p>
 				<p >
-					<b>Alta:</b> 	<?= $socio->alta ?></p>
+					<b>Alta:</b> 	<?= $prestamo->alta ?></p>
 			
 				
 			</DIV>
 		</section>
 		<section>
-			<h3>Prestamos del socio</h3>
+			<h3>Prestamos del prestamo</h3>
 			<a class="button" href="/Prestamo/create/">Nuevo Prestamo</a>
 			<table class="table w100 centered-block">
-			<?php 
-				$prestamos = $socio->getPrestamos();
-				if(!sizeof($prestamos)>0){ ?>
-							<p><b> El socio tiene prestamos vigentes </b></p>
-						
-				<?php } else { ?>
 					<tr>
-						<th>ID</th><th>Socio</th><th>Titulo</th><th>Ejemplar</th><th>Limite</th><th>Devolución</th><th>Incidencias</th><th>Operaciones</th>
+						<th>ID</th><th>Prestamo</th><th>Titulo</th><th>Ejemplar</th><th>Limite</th><th>Devolución</th><th>Incidencias</th><th>Operaciones</th>
 					</tr>
 				<?php 
+				$prestamos = $prestamo->getPrestamos();
+				if(!$prestamos){ ?>
+							<p><b> El prestamo tiene prestamos vigentes </b></p>
+						
+				<?php } else {
 					
 					foreach($prestamos as $prestamo ){ ?>
 						<tr>
@@ -75,10 +74,10 @@
 							<a class="button" href="/Prestamo/incidencia/<?=$prestamo->idprestamo?>">Inicidencia</a>
 							<?php
 							if ($prestamo->devolucion){ ?>
-										<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->idprestamo?>">Eliminar</a>
-							<?php } else {?>
-								<a class="button-success" href="/Prestamo/devolucion/<?=$prestamo->idprestamo?>">Devolución</a>
-							<?php }?>		
+										
+									<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->idprestamo?>">Eliminar</a>
+									<?php }?>
+									
 							</td>
 						</tr>
 						<?php }
@@ -91,10 +90,10 @@
 		
 		<div class="centrado">
 			<a class="button" onclick="history.back()">Atrás</a> 
-			<a class="button" href="/Socio/list">Lista de socios</a> 
-			<a class="button" href="/Socio/edit/<?=$socio->id?>">Editar</a>
-			<?php if(!$prestamos){ ?> 
-				<a class="button-danger" href="/Socio/delete/<?=$socio->id?>">Borrar</a>
+			<a class="button" href="/Prestamo/list">Lista de prestamos</a> 
+			<a class="button" href="/Prestamo/edit/<?=$prestamo->id?>">Editar</a>
+			<?php if(!$prestamo->hasAny('Prestamo')){ ?> 
+				<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->id?>">Borrar</a>
 			<?php } ?>
 		</div>
 	</main>

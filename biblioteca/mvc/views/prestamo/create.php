@@ -2,7 +2,7 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
-		<title> Ejemplares - <?= APP_NAME ?></title>
+		<title> Prestamos - <?= APP_NAME ?></title>
 		
 		<!-- META -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,30 +19,32 @@
 		<?= $template->login() ?>
 		<?= $template->header('Nuevo de ejemplar') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs(['Ejemplares'=>'/Ejemplar','Nuevo'=>null]) ?>
+		<?= $template->breadCrumbs(['Prestamos'=>'/Prestamo','Nuevo'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
 	<h1><?=APP_NAME?></h1>
-	<h2>Nuevo ejemplar para el libro <b>"<?=$libro->titulo?>"</b></h2>
-	<p>Estás a punto de crear un nuevo ejemplar para el libro <b>"<?=$libro->titulo?>"</b></p>
-	<form method="POST" enctype="multipart/form-data" action="/Ejemplar/store">
+	<h2>Nuevo prestamo de libros</h2>
+	<p>Estás a punto de crear un nuevo Prestamo para <b><?=$socio->nombre.' '.$socio->apellidos ?></b></b></p>
+	<form method="POST" enctype="multipart/form-data" action="/Prestamo/store">
 		<div class="flex2">
 		
-		
-		<input type="text" name="idlibro" value="<?=$libro->id?><?= old('idlibro')?>" hidden>
-		<br> 
-		
-		<label for="anyo">Año</label>
-		<input type="text" name="anyo" value="<?= old('anyo')?>" required>
+		<label for="idsocio">ID Socio</label>
+		<input type="text" name="idsocio" value="<?= old('idsocio')?><?= $socio->id ?>">
+		<label for="nombre"><?=$socio->nombre.' '.$socio->apellidos ?></label>
 		<br>
-		<label for="precio">Precio</label>
-		<input type="number" step="0.01" name="precio" value="<?= old('precio')?>" required>
-			<br>
-			<label for="estado">Estado</label>
-			<input type="text" name="estado" value="<?= old('estado')?>" required>
-			<br>
-			<div class="centered mt2">
+		
+		<label for="idejemplar">ID Ejemplar</label>
+		<input type="text" name="idejemplar" value="<?= old('idejemplar')?>" required>
+		<br>
+		<label for="limite">Limite</label>
+		<input type="date" name="limite" value="<?php
+					$date = new DateTime();
+					$date->modify('+1 week');
+					echo $date->format('Y-m-d'); 
+			?>" required>
+		<br>
+		<div class="centered mt2">
 				<input type="submit" class="button" name="guardar" value="Guardar">
 				<input type="reset" class="button" value="Reset">	
 			</div>

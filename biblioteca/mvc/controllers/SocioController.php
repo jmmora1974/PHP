@@ -29,7 +29,7 @@ class SocioController extends Controller{
 	public function list(){
 	  //	$socios = Socio::orderBy();  //sale ordenado, sin ejemplares
 	 
-		$socios= Socio::orderBy('apellidos'); // recupera los socios junto la información extra (prestamos)
+		$socios= socio::all(); // recupera los socios junto la información extra (prestamos)
 	
 		//	carga la vista que los muestra
 		return view('socio/list',['socios'=>$socios]);
@@ -43,7 +43,7 @@ class SocioController extends Controller{
 	public function show(int $id=0) {
 		
 	
-		$socio = Socio::findOrFail($id, 'No se enontró el socio indicado'); //tb comprueba si no le ha llegado el ID
+		$socio = V_socio::findOrFail($id, 'No se enontró el socio indicado'); //tb comprueba si no le ha llegado el ID
 		
 		// carga la vista y le pasa el socio recuperado
 		return view ('socio/show',['socio'=>$socio]);
