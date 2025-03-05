@@ -638,10 +638,7 @@ CREATE TABLE stats(
 CREATE OR REPLACE VIEW V_libros AS 
 SELECT l.*, count(e.id) as ejemplares FROM libros l 
 	LEFT JOIN ejemplares e ON l.id=e.idlibro  GROUP BY l.id;
-
-
-
-
+    
 -- vista que muestra compras junto con datos del producto
 CREATE OR REPLACE VIEW v_socios AS
 SELECT s.*, e.id as idejemplar, p.id AS idprestamo, p.prestamo, p.limite, p.devolucion, p.incidencia, l.titulo,l.id as idlibro
@@ -649,4 +646,6 @@ FROM socios s LEFT JOIN prestamos p ON s.id = p.idsocio
 			 LEFT JOIN ejemplares e ON e.id = p.idejemplar
              LEFT JOIN libros l ON e.idlibro=l.id;
              
-             
+
+UPDATE libros SET portada=null ;
+                 

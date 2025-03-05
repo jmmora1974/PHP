@@ -175,10 +175,10 @@ class EjemplarController extends Controller{
 		$ejemplar = Ejemplar::findOrFail($id,'No se encontró el ejemplar.');
 		
 		//recupera los ejemplares del libro
-		//$ejemplares= $libro->hasMany('Ejemplar');
+		 $libro= $ejemplar->belongsTo('Libro');
 		
 		//retorna una ViewResponse con la vista con el formulario de edición
-		return view('ejemplar/edit',['ejemplar'=>$ejemplar, 'ejemplar'=>$ejemplar]);
+		 return view('ejemplar/edit',['ejemplar'=>$ejemplar, 'libro'=>$libro]);
 	}
 	
 	/** Actualzia la bdd con los datos POST del formulario
@@ -208,14 +208,14 @@ class EjemplarController extends Controller{
 			 $libro->caracteristicas = request()->post('isbn');
 			 $libro->sinopsis	= request()->post('isbn');
 			 */
-			
+			$libro= request()->post('idlibro');
 			//intenta actualizar el libro
 			try{
 				//$libro->update(); No es necesario en la 1.8.0
 				// ya el metodo create ya actualiza si manda el 2ºparametro
 				$ejemplar= Ejemplar::create(request()->posts() ,$id);
 				
-				Session::success("Actualización del ejemplar $ejemplar->id del libro $libro->titulo correcta.");
+				Session::success("Actualización del ejemplar $ejemplar->id del libro $ejemplar->idlibro correcta.");
 				return redirect("/Libro/edit/$ejemplar->idlibro");
 				
 				// Si se produce un error al guardar el libro..

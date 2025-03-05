@@ -28,9 +28,10 @@
 	<form method="POST" enctype="multipart/form-data" action="/Ejemplar/update">
 		<div class="flex2">
 		
-		
+		<h3>Edición del ejemplar (<?=$ejemplar->id?>) del libro <b>"<?=$libro->titulo?>"</b></h3>
 		<input type="text" name="id" value="<?=$ejemplar->id?><?= old('id')?>" hidden>
 		<br>
+		<input type="text" name="idlibro" value="<?=$libro->id?><?= old('idlibro')?>" hidden>
 		
 		<label for="anyo">Año</label>
 		<input type="text" name="anyo" value="<?=$ejemplar->anyo?><?= old('anyo')?>" required>

@@ -25,24 +25,26 @@
 	<main>
 	<h1><?=APP_NAME?></h1>
 	<h2>Nuevo prestamo de libros</h2>
-	<p>Estás a punto de crear un nuevo Prestamo</p>
+	<p>Estás a punto de crear un nuevo Prestamo para <b><?=$socio->nombre.' '.$socio->apellidos ?></b></b></p>
 	<form method="POST" enctype="multipart/form-data" action="/Prestamo/store">
 		<div class="flex2">
 		
 		<label for="idsocio">ID Socio</label>
-		<input type="text" name="idsocio" value="<?= old('idsocio')?>">
+		<input type="text" name="idsocio" value="<?= old('idsocio')?><?= $socio->id ?>">
+		<label for="nombre"><?=$socio->nombre.' '.$socio->apellidos ?></label>
 		<br>
 		
-		<label for="idjemplar">ID Ejemplar</label>
-		<input type="text" name="anyo" value="<?= old('anyo')?>" required>
+		<label for="idejemplar">ID Ejemplar</label>
+		<input type="text" name="idejemplar" value="<?= old('idejemplar')?>" required>
 		<br>
-		<label for="precio">Precio</label>
-		<input type="number" step="0.01" name="precio" value="<?= old('precio')?>" required>
-			<br>
-			<label for="estado">Estado</label>
-			<input type="text" name="estado" value="<?= old('estado')?>" required>
-			<br>
-			<div class="centered mt2">
+		<label for="limite">Limite</label>
+		<input type="date" name="limite" value="<?php
+					$date = new DateTime();
+					$date->modify('+1 week');
+					echo $date->format('Y-m-d'); 
+			?>" required>
+		<br>
+		<div class="centered mt2">
 				<input type="submit" class="button" name="guardar" value="Guardar">
 				<input type="reset" class="button" value="Reset">	
 			</div>

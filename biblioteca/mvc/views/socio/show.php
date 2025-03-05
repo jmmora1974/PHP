@@ -51,15 +51,16 @@
 			<h3>Prestamos del socio</h3>
 			<a class="button" href="/Prestamo/create/">Nuevo Prestamo</a>
 			<table class="table w100 centered-block">
+			<?php 
+				$prestamos = $socio->getPrestamos();
+				if(!sizeof($prestamos)>0){ ?>
+							<p><b> El socio tiene prestamos vigentes </b></p>
+						
+				<?php } else { ?>
 					<tr>
 						<th>ID</th><th>Socio</th><th>Titulo</th><th>Ejemplar</th><th>Limite</th><th>Devolución</th><th>Incidencias</th><th>Operaciones</th>
 					</tr>
 				<?php 
-				$prestamos = $socio->getPrestamos();
-				if(!$prestamos){ ?>
-							<p><b> El socio tiene prestamos vigentes </b></p>
-						
-				<?php } else {
 					
 					foreach($prestamos as $prestamo ){ ?>
 						<tr>
@@ -74,10 +75,10 @@
 							<a class="button" href="/Prestamo/incidencia/<?=$prestamo->idprestamo?>">Inicidencia</a>
 							<?php
 							if ($prestamo->devolucion){ ?>
-										
-									<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->idprestamo?>">Eliminar</a>
-									<?php }?>
-									
+										<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->idprestamo?>">Eliminar</a>
+							<?php } else {?>
+								<a class="button-success" href="/Prestamo/devolucion/<?=$prestamo->idprestamo?>">Devolución</a>
+							<?php }?>		
 							</td>
 						</tr>
 						<?php }
@@ -92,7 +93,7 @@
 			<a class="button" onclick="history.back()">Atrás</a> 
 			<a class="button" href="/Socio/list">Lista de socios</a> 
 			<a class="button" href="/Socio/edit/<?=$socio->id?>">Editar</a>
-			<?php if(!$socio->hasAny('Prestamo')){ ?> 
+			<?php if(!$prestamos){ ?> 
 				<a class="button-danger" href="/Socio/delete/<?=$socio->id?>">Borrar</a>
 			<?php } ?>
 		</div>

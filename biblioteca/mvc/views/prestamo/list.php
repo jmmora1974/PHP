@@ -51,9 +51,9 @@
 					<td><?=$prestamo->devolucion?></td>
 					<td><?=$prestamo->incidencia?></td>
 					<td class="centrado">
-						<a href="/Prestamo/ampliar/<?php $prestamo->id?>">Ampliar</a> -
-						<a href="/Prestamo/devolver/<?php $prestamo->id?>">Devolver</a> -
-						<a href="/Prestamo/incidencia/<?php $prestamo->id?>">Incidencia</a>  
+						<a href="/Prestamo/ampliar/<?=$prestamo->id?>">Ampliar</a> -
+						<a href="/Prestamo/devolucion/<?= $prestamo->id?>">Devolucion</a> -
+						<a href="/Prestamo/incidencia/<?=$prestamo->id?>">Incidencia</a>  
 							
 				</td>
 			</tr>
