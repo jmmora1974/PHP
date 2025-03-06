@@ -28,18 +28,12 @@
 	<p>Estás a punto de crear un nuevo Prestamo para <b><?=$socio->nombre.' '.$socio->apellidos ?></b></p>
 	<form method="POST" enctype="multipart/form-data" action="/Prestamo/store">
 		<div class="flex2">
-		<script>
-        function buscaSocio(idsocio){
-            location.href='/Prestamo/create/'+idsocio;
-            const anchor = document.getElementByName("idsocio");
-			const result = anchor.href;
-            
-        }
-    </script>
+
 	
 		<label for="idsocio">ID Socio</label>
 		<input type="text" name="idsocio"  value="<?= $socio->id ?>" onchange="buscaSocio(event.target.value)">
-		<label for="nombre" name="nombresocio"><?=$socio->nombre.' '.$socio->apellidos ?></label>
+		<input type="text" id="nombresocio" name="nombresocio" value="<?=$socio->nombre ?>" disabled>
+		<input type="text" id="apellidossocio" name="apellidossocio" value="<?=$socio->apellidos ?>" disabled>
 		<br>
 		
 		<label for="idejemplar">ID Ejemplar</label>
@@ -62,6 +56,16 @@
 			<a class="button" href="/Libro/list">Lista de libros</a>
 		</div>		
 	</form>
+			<script>
+        function buscaSocio(idsocio){
+        	
+        	location.href='/Prestamo/create/'+idsocio;
+        	
+            const anchor = document.getElementByName("idsocio");
+			const result = anchor.href;
+            
+        }
+    </script>
 </main>		
 	
 </body>

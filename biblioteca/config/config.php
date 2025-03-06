@@ -57,7 +57,7 @@ define('AUTOLOAD_DIRECTORIES',  [
  * APLICACIÓN
  * -------------------------------------------------------------*/
 
-define('APP_NAME', 'App Moralioteca ');   // Título de la aplicación.
+define('APP_NAME', 'App Biblio Mora ');   // Título de la aplicación.
 define('APP_TYPE', 'WEB');                  // Tipo de aplicación: WEB o API.
 
 define('APP_VERSION', '0.1.0');  // versión actual del framework o aplicación desarrollada
@@ -145,7 +145,13 @@ define('ADMIN_ROLE', 'ROLE_ADMIN');
  * LOGIN
  * -------------------------------------------------------------*/
 
-define('REDIRECT_AFTER_LOGIN', '/');                // Redirección tras login.
+define('REDIRECT_AFTER_LOGIN', '/User/home');                // Redirección tras login.
+
+//carpeta para las imagenes de los usuarios
+define('USER_IMAGE_FOLDER','/images/users');
+
+// imagen por defecto para los usuarios
+define('DEFAULT_USER_IMAGE','default.png');
 
 define('LOG_LOGIN_ERRORS', false);                 // Guardar errores de login en fichero de log.
 define('LOGIN_ERRORS_FILE', '../logs/login.log');  // Nombre del fichero para los errores de login.
@@ -176,7 +182,7 @@ define('VIEWS_FOLDER', '../mvc/views');     // Carpeta para las vistas.
 
 // Template a usar en las vistas (en la carpeta templates).
 // Las opciones disponibles por defecto son Base, Dark, Neon o Retro.
-define('TEMPLATE', 'Base');
+define('TEMPLATE', 'Dark');
 
 
 
