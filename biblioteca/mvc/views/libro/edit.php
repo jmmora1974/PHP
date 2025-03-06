@@ -129,9 +129,7 @@
 			<a class="button" onclick="history.back()">Atrás</a>
 			<a class="button" href="/Libro/list">Lista de libros</a>
 			<a class="button" href="/Libro/show/<?=$libro->id?>">Detalles</a>
-			<?php if(!$libro->hasAny('Ejemplar')){ ?> 
-				<a class="button-danger" href="/Libro/delete/<?=$libro->id?>">Borrado</a>
-			<?php } ?>
+			
 		</div>	
 		<section>
 			<h2>Temas en <b>"<?= $libro->titulo?>"</b></h2>
@@ -143,7 +141,7 @@
 					<tr>
 						<th>ID</th>
 						<th>Tema</th>
-						<th>Borrar</th>
+						<th>Operaciones</th>
 					</tr>
 				<?php foreach($temas as $tema){?>
 					<tr>
@@ -151,8 +149,13 @@
 						<td><a href='/Tema/show/<?=$tema->id ?>'>
 							<?= $tema->tema?></a>
 						</td>
-						<td><a href='/Libro/removeTema/<?=$tema->id ?>/<?=$libro->id ?>'>
-							Eliminar</a></td>
+						<td class="centrado">
+							<form method="POST" class="no-border" action="/Libro/removetema">
+								<input type="hidden" name="idlibro" value="<?= $libro->id ?>">
+								<input type="hidden" name="idtema" value="<?= $tema->id ?>">
+								<input type="submit" class="button-danger" name="remove" value="Borrar">
+							</form>
+						</td>
 					</tr>
 					<?php } ?>
 				</table>
@@ -175,9 +178,7 @@
 			<a class="button" onclick="history.back()">Atrás</a>
 			<a class="button" href="/Libro/list">Lista de libros</a>
 			<a class="button" href="/Libro/show/<?=$libro->id?>">Detalles</a>
-			<?php if(!$libro->hasAny('Ejemplar')){ ?> 
-				<a class="button-danger" href="/Libro/delete/<?=$libro->id?>">Borrado</a>
-			<?php } ?>
+			
 		</div>	
 		
 	

@@ -28,6 +28,40 @@ class Libro extends Model{
 		return $temas;
 	}
 	
+	/**
+	 *  Añade un tema a un libro
+	 *
+	 *  @param int $idtema identificador del tema a añadir
+	 *  @return int
+	 */
+	public function addTema(int $idtema):int{
+		
+		//prepara la consulta
+		$consulta = "INSERT INTO temas_libros(idlibro,idtema)
+					VALUES ($this->id,$idtema)";
+		
+		// Ejecuta el comando SQL
+		return (DB_CLASS)::insert($consulta);
+		
+	}
+	/**
+	 *  Añade un tema a un libro
+	 *
+	 *  @param int $idtema identificador del tema a añadir
+	 *  @return int
+	 */
+	public function removeTema(int $idtema):int{
+		
+		//prepara la consulta
+		$consulta = "DELETE FROM temas_libros
+					WHERE idlibro= $this->id AND idtema=$idtema";
+		
+		// Ejecuta el comando SQL
+		return (DB_CLASS)::delete($consulta);
+		
+	}
+	
+	
 	//campos en los que se permite asignación masiva
 	protected static $fillable = ['isbn','titulo','editorial','idioma',
 			'autor', 'edicion', 'anyo', 'edadrecomendada',
