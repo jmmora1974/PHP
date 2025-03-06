@@ -19,7 +19,7 @@
 		<?= $template->login() ?>
 		<?= $template->header('Edició de un libro') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs(['Libros'=>'/Libro','Edicion'=>null]) ?>
+		<?= $template->breadCrumbs(['Libros'=>'/Libro',$libro->titulo=>'/Libro/show/'.$libro->id,'Edicion'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>

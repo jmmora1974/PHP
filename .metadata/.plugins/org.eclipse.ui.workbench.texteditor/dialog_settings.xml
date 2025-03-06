@@ -4,21 +4,21 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+			<item value="remov"/>
+			<item value="store"/>
+			<item value="edit"/>
+			<item value="back"/>
+			<item value="POST"/>
+			<item value="thr"/>
+			<item value="addte"/>
+			<item value="request"/>
+			<item value="addt"/>
 			<item value="destr"/>
 			<item value="delete"/>
 			<item value="dele"/>
 			<item value="inci"/>
 			<item value="filte"/>
 			<item value="sho"/>
-			<item value="men"/>
-			<item value="creat"/>
-			<item value="devol"/>
-			<item value="edit"/>
-			<item value="format"/>
-			<item value="date"/>
-			<item value="update"/>
-			<item value="getPrestamos"/>
-			<item value="PREST"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Prestamo"/>

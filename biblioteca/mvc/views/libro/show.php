@@ -19,7 +19,7 @@
 		<?= $template->login() ?>
 		<?= $template->header('Lista de libros') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs(['Libros'=>'/Libro','Detalles'=>null]) ?>
+		<?= $template->breadCrumbs(['Libros'=>'/Libro',$libro->titulo=>'/Libro/show/'.$libro->id,'Detalles'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
@@ -51,6 +51,16 @@
 				<p>
 					<b>Ejemplares:</b>  	<?= $libro->ejemplares ?? ' -- '?></p>
 			</DIV>
+			<div class="centrado">
+			<a class="button" onclick="history.back()">Atrás</a> 
+			<a class="button" href="/Libro/list">Lista de libros</a> 
+			<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>
+			<?php if(!$libro->hasAny('Ejemplar')){ ?>
+				<a class="button-danger" href="/Libro/delete/<?=$libro->id ?>">Borrar</a>';
+			<?php }?>
+				
+				
+		</div>
 		</section>
 		<section>
 			<h2>Sinopsis</h2>
@@ -81,6 +91,12 @@
 				</div>				
 				
 			<?php } ?>
+			<div class="centrado">
+			<a class="button" onclick="history.back()">Atrás</a> 
+			<a class="button" href="/Libro/list">Lista de libros</a> 
+			<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>			
+				
+		</div>
 		</section>
 		<section>
 			<h2>Temas en <b>"<?= $libro->titulo?>"</b></h2>
@@ -110,9 +126,7 @@
 			<a class="button" onclick="history.back()">Atrás</a> 
 			<a class="button" href="/Libro/list">Lista de libros</a> 
 			<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>
-			<?php if(!$libro->hasAny('Ejemplar')){ ?>
-				<a class="button-danger" href="/Libro/delete/<?=$libro->id ?>">Borrar</a>';
-			<?php }?>
+			
 				
 				
 		</div>
