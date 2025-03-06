@@ -1,5 +1,4 @@
 <?php
-use http\Message;
 
 /**
  * PrestamoController
@@ -31,7 +30,7 @@ class PrestamoController extends Controller{
 	public function list(){
 		
 		
-		$prestamos= V_prestamo::all(); // recupera los prestamoes del prestamo
+		$prestamos= V_prestamo::orderBy('prestamo','DESC'); // recupera los prestamoes del prestamo
 		
 		//	carga la vista que los muestra
 		return view('prestamo/list',['prestamos'=>$prestamos]);
@@ -48,7 +47,7 @@ class PrestamoController extends Controller{
 		// Recupera el prestamo
 		$prestamo = Prestamo::findOrFail($id, 'No se encontró el prestamo indicado'); //tb comprueba si no le ha llegado el ID
 		
-		//recupera los prestamoes del prestamo
+		//recupera los prestamos del socio
 		$prestamos= $prestamo->hasMany('Prestamo');
 		
 		// carga la vista y le pasa el prestamo recuperado
@@ -63,10 +62,13 @@ class PrestamoController extends Controller{
 	public function create(int $id=0){
 		
 		
-		// Recupera el prestamo
-		$socio = Socio::findOrFail($id, 'No se encontró el socio indicado'); //tb comprueba si no le ha llegado el ID
+		if ($id==0){
+			$socio=[];
+		} else{
+			// Recupera el prestamo
+			$socio = Socio::findOrFail($id, 'No se encontró el socio indicado'); //tb comprueba si no le ha llegado el ID
+		}
 		
-	
 		//retorna una ViewResponse con la vista con el formulario de creacion
 		return view('Prestamo/create',['socio'=>$socio]);
 	}
@@ -94,13 +96,13 @@ class PrestamoController extends Controller{
 				
 				
 				//flashea un mensaje de exito en sesion
-				Session::success("Guardado del prestamo $prestamo->id correcto.");
+				Session::success("Guardado del prestamo $prestamo->id  para el socio $prestamo->idsocio correcto.");
 				
 				//redirecciona a los detalles del nuevo prestamo
 				return redirect("/Socio/show/$prestamo->idsocio");
 			}  catch(SQLException $e){
 				//prepara el mensaje de error
-				$mensaje = "No se pudo guardar el prestamo del prestamo ".$prestamo->id;
+				$mensaje = "No se pudo guardar el prestamo del socio ".$prestamo->id;
 				
 				if(str_contains($e->errorMessage(),'Duplicate entry'))
 						$mensaje.="<br>Ya existe un prestamo con ese <b>ID</b>.";
@@ -136,27 +138,17 @@ class PrestamoController extends Controller{
 	/** Elimina el prestamo de la base de datos
 	 * @return RedirectResponse
 	 */
-	public function destroy(int $id=-1){
-
+	public function destroy(){
+		$id=intval(request()->post('id'));
 		//Recupera el elemplar de la BDD			
-		$prestamo	=Prestamo::findOrFail($id, "No se encontró el prestamo.");
-		$prestamo=Prestamo::findOrFail($prestamo->idprestamo,"No se ha encontrado el prestamo");
-		//Si hay prestamos, no permitimos el borrado
-		try{
-			if($prestamo->hasAny('Prestamo','idprestamo')){
-				throw new Exception("No se puede borrar el prestamo mientras está prestado.");
-				return redirect("/Prestamo/edit/$prestamo->idprestamo");
-			}
-		} catch (Exception $e){
-						Session::error($e->getMessage());
-			
-				return redirect("/Prestamo/edit/$prestamo->idprestamo");
-		}	
+		//$prestamo	=Prestamo::findOrFail($id, "No se encontró el prestamo.");
+		$prestamo=Prestamo::findOrFail($id,"No se ha encontrado el prestamo");
+		
 			//intenta borrar el prestamo
 		try{
 				$prestamo->deleteObject();
 				Session::success("Se ha borrado el prestamo $prestamo->id de prestamo $prestamo->titulo.");
-				return redirect("/Prestamo/edit/$prestamo->idprestamo");
+				return redirect("/Prestamo");
 				//si se produce un error en la operació con la bdd..
 		} catch (Exception $e){
 			
@@ -181,14 +173,14 @@ class PrestamoController extends Controller{
 		$date = new DateTime();
 		 
 		$prestamo->devolucion=$date->format('Y-m-d');
-		var_dump($prestamo);
+	
 		//intenta actualizar el prestamo
 		try{
 			// ya el metodo create ya actualiza si manda el 2ºparametro
-			$prestamo= Prestamo::create(array($prestamo),$id);
+			$prestamonuevo= $prestamo->update();
 			
-			Session::success("Actualización del prestamo $prestamo->id correcta.");
-			return redirect("/Prestamo");
+			Session::success("Actualización del prestamo $prestamo->id para el socio $prestamo->idsocio correcta.");
+			return redirect("/Socio/show/$prestamo->idsocio");
 			
 			// Si se produce un error al guardar el libro..
 		}catch (SQLException $e){
@@ -202,10 +194,137 @@ class PrestamoController extends Controller{
 				if(DEBUG)
 					throw new SQLException($e->getMessage());
 					
-					return redirect("/Prestamo");
+					return redirect("/Socio/show/$prestamo->idsocio");
 		}
 		
 		
+	}
+	
+	/**
+	 * Realiza el proceso de incidencia de un libro
+	 *
+	 * @param int $id identificador único del prestamo a procesar
+	 *
+	 * @return ViewResponse
+	 */
+	public function incidencia(int $id=0){
+		
+		$prestamo = Prestamo::findOrFail($id, "No existe el prestamo.");
+		
+		//	carga la vista que los muestra
+		return view('prestamo/incidencia',['prestamo'=>$prestamo]);
+		
+	}
+	
+	/**
+	 * Realiza el guardado de incidencia de un libro
+	 *
+	 
+	 * @return ViewResponse
+	 */
+	public function guardaincidencia(){
+		//Comprueba que la petición venga del formulario
+		if(!request()->has('guardar'))
+			throw new FormException('No se recibió el formulario');
+			
+			
+			try{
+				$id=intval(request()->post('id'));
+				$prestamo = Prestamo::findOrFail($id, "No existe el prestamo.");
+			
+				$prestamo->incidencia= request()->post('incidencia');
+				
+				//guarda el prestamo en la base de datos a partir de los datosPOST
+			
+				$prestamo->update();
+				
+			
+			Session::success("Actualización del prestamo $prestamo->id para el socio $prestamo->idsocio correcta.");
+			return redirect("/Socio/show/$prestamo->idsocio");
+			
+			// Si se produce un error al guardar el libro..
+		}catch (SQLException $e){
+			// prepara el mensaje de error
+			$mensaje = "No se pudo actualizar el prestamo";
+			
+			if(str_contains($e->errorMessage(),'Duplicate entry'))
+				$mensaje.="<br>Ya existe un prestamo con ese <b>ID</b>.";
+				Session::error($mensaje);
+				
+				if(DEBUG)
+					throw new SQLException($e->getMessage());
+					
+					return redirect("/Socio/show/$prestamo->idsocio");
+		}
+		
+		
+	}
+	/**
+	 * Muestra el formulario de ampliación de un prestamo
+	 * @return ViewResponse
+	 */
+	public function ampliar(int $id=0){
+		
+		
+		if ($id==0){
+			$prestamo=[];
+			$socio=[];
+		} else{
+			// Recupera el prestamo
+			$prestamo = Prestamo::findOrFail($id, 'No se encontró el prestamo indicado'); //tb comprueba si no le ha llegado el ID
+			// Recupera el socio
+			$socio = Socio::findOrFail($prestamo->idsocio, 'No se encontró el socio indicado');
+		}
+		
+		//retorna una ViewResponse con la vista con el formulario de creacion
+		return view('Prestamo/ampliar',['prestamo'=>$prestamo,'socio'=>$socio]);
+	}
+	
+	/**
+	 * Muestra el formulario de ampliación de un prestamo
+	 * @return ViewResponse
+	 */
+	public function ampliacion(int $id=0){
+		//Comprueba que la petición venga del formulario
+		if(!request()->has('ampliar'))
+			throw new FormException('No se recibió el formulario');
+		$prestamo=new Prestamo();
+					
+			try{
+				$prestamo->id=intval(request()->post('id'));
+				$prestamo->idsocio=intval(request()->post('idsocio'));
+				$prestamo->idejemplar=intval(request()->post('idejemplar'));
+				$prestamo->limite= request()->post('limite');
+				
+				//guarda el prestamo en la base de datos a partir de los datosPOST
+				//$prestamo = Prestamo::create($prestamo);
+				$prestamo->update();
+				
+				
+				//flashea un mensaje de exito en sesion
+				Session::success("Guardada ampliación del prestamo $prestamo->id  para el socio $prestamo->idsocio correcto.");
+				
+				//redirecciona a los detalles del nuevo prestamo
+				return redirect("/Socio/show/$prestamo->idsocio");
+			}  catch(SQLException $e){
+				//prepara el mensaje de error
+				$mensaje = "No se pudo guardar el prestamo del socio ".$prestamo->id;
+				
+				if(str_contains($e->errorMessage(),'Duplicate entry'))
+					$mensaje.="<br>Ya existe un prestamo con ese <b>ID</b>.";
+					
+					//flashe un mensaje de error en session
+					Session::error($mensaje);
+					
+					//Si esta en modo DEBUG vuelve a lanzar la excepcion
+					//esto hara qie acabemos en la pagina de error
+					if(DEBUG)
+						throw new SQLException($e->getMessage());
+						
+						//regresa al formulario de creación de prestamo
+						return redirect("/Prestamo/create/$prestamo->idsocio");
+			}
+			
 	}
 	
 }

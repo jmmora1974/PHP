@@ -26,7 +26,7 @@
 		<main>
     		<h1><?= APP_NAME ?></h1>
        		<h2>Lista completa de prestamos</h2>
-       		<a class="button" href="/Prestamo/create/">Nuevo Prestamo</a>
+       		<a class="button" href="/Prestamo/create/0">Nuevo Prestamo</a>
        		
        		<?php if($prestamos){ ?>
        			<table class="table w100">
@@ -51,9 +51,13 @@
 					<td><?=$prestamo->devolucion?></td>
 					<td><?=$prestamo->incidencia?></td>
 					<td class="centrado">
-						<a href="/Prestamo/ampliar/<?=$prestamo->id?>">Ampliar</a> -
-						<a href="/Prestamo/devolucion/<?= $prestamo->id?>">Devolucion</a> -
-						<a href="/Prestamo/incidencia/<?=$prestamo->id?>">Incidencia</a>  
+						<a href="/Prestamo/incidencia/<?=$prestamo->id?>">Incidencia</a> - 
+						<?php if (!$prestamo->devolucion){?>
+							<a href="/Prestamo/ampliar/<?=$prestamo->id?>">Ampliar</a> -
+							<a href="/Prestamo/devolucion/<?= $prestamo->id?>">Devolucion</a> 
+						<?php }else {?>
+							<a href="/Prestamo/delete/<?=$prestamo->id?>">Eliminar</a>  
+						<?php }?>
 							
 				</td>
 			</tr>

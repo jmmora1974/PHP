@@ -49,7 +49,7 @@
 		</section>
 		<section>
 			<h3>Prestamos del prestamo</h3>
-			<a class="button" href="/Prestamo/create/">Nuevo Prestamo</a>
+			<a class="button" href="/Prestamo/create/<?=$socio->id?>">Nuevo Prestamo</a>
 			<table class="table w100 centered-block">
 					<tr>
 						<th>ID</th><th>Prestamo</th><th>Titulo</th><th>Ejemplar</th><th>Limite</th><th>Devolución</th><th>Incidencias</th><th>Operaciones</th>
@@ -63,7 +63,7 @@
 					
 					foreach($prestamos as $prestamo ){ ?>
 						<tr>
-							<td> <?=$prestamo->idprestamo ?></td>
+							<td> <?=$prestamo->id ?></td>
 							<td> <?=$prestamo->nombre.' '.$prestamo->apellidos ?></td>
 							<td> <?=$prestamo->titulo ?></td>
 							<td> <?=$prestamo->idejemplar ?></td>							
@@ -71,11 +71,11 @@
 							<td> <?=$prestamo->devolucion ?? '<b>PENDIENTE<b>' ?></td>
 							<td> <?=$prestamo->incidencia ?? 'SIN INCIDENCIAS' ?></td>
 							<td class="centrado">	
-							<a class="button" href="/Prestamo/incidencia/<?=$prestamo->idprestamo?>">Inicidencia</a>
+							<a class="button" href="/Prestamo/incidencia/<?=$prestamo->id?>">Inicidencia</a>
 							<?php
 							if ($prestamo->devolucion){ ?>
 										
-									<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->idprestamo?>">Eliminar</a>
+									<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->id?>">Eliminar</a>
 									<?php }?>
 									
 							</td>

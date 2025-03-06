@@ -99,11 +99,12 @@
 							<td> <?=$ejemplar->precio ?></td>
 							<td> <?=$ejemplar->estado ?></td>
 							<td class="centrado">
+							<a class="button" href="/ejemplar/edit/<?=$ejemplar->id ?>">Editar</a> 
 							<?php
 							//$prestado=$ejemplar->getPrestamoActual();
 							
 							if(!$ejemplar->hasAny('Prestamo')){ ?> 
-								 <a class="button" href="/ejemplar/edit/<?=$ejemplar->id ?>">Editar</a> 
+							
 								<a class="button-danger" onclick="confirmar(<?=$ejemplar->id ?>)">Borrar</a>
 							<?php } ?>
 							</td>

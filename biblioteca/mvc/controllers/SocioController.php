@@ -42,11 +42,15 @@ class SocioController extends Controller{
 	 */
 	public function show(int $id=0) {
 		
-	
+		
 		$socio = V_socio::findOrFail($id, 'No se enontró el socio indicado'); //tb comprueba si no le ha llegado el ID
 		
+		//recupera los prestamos del socio
+		$prestamos= $socio->hasMany('V_prestamo','idsocio','id'); //OK
+		rsort( $prestamos);
+		
 		// carga la vista y le pasa el socio recuperado
-		return view ('socio/show',['socio'=>$socio]);
+		return view ('socio/show',['socio'=>$socio, 'prestamos'=>$prestamos]);
 		
 	}
 	
@@ -114,8 +118,11 @@ class SocioController extends Controller{
 		// busca el socio con ese ID
 		$socio = Socio::findOrFail($id,'No se encontró el socio.');
 		
+		//recupera los prestamos del socio
+		$prestamos= $socio->hasMany('Prestamo');
+		
 		//retorna una ViewResponse con la vista con el formulario de edición
-		return view('socio/edit',['socio'=>$socio]);
+		return view('socio/edit',['socio'=>$socio,'prestamos'=>$prestamos]);
 	}
 	
 	/** Actualzia la bdd con los datos POST del formulario

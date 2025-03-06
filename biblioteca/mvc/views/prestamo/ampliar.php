@@ -6,7 +6,7 @@
 		
 		<!-- META -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Nuevo de ejemplar - <?= APP_NAME ?>">
+		<meta name="description" content="Ampliación prestamo  - <?= APP_NAME ?>">
 		<meta name="author" content="Jose Miguel Mora Perez">
 		
 		<!-- FAVICON -->
@@ -17,33 +17,26 @@
 	</head>
 	<body>
 		<?= $template->login() ?>
-		<?= $template->header('Nuevo de ejemplar') ?>
+		<?= $template->header('Ampliación prestamo') ?>
 		<?= $template->menu() ?>
 		<?= $template->breadCrumbs(['Prestamos'=>'/Prestamo','Nuevo'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
 	<h1><?=APP_NAME?></h1>
-	<h2>Nuevo prestamo de libros</h2>
-	<p>Estás a punto de crear un nuevo Prestamo para <b><?=$socio->nombre.' '.$socio->apellidos ?></b></p>
-	<form method="POST" enctype="multipart/form-data" action="/Prestamo/store">
+	<h2>Ampliación prestamo de libros</h2>
+	<p>Estás a punto de crear un nuevo Prestamo para <b><?=$prestamo->id ?></b></p>
+	<form method="POST" enctype="multipart/form-data" action="/Prestamo/ampliacion">
 		<div class="flex2">
-		<script>
-        function buscaSocio(idsocio){
-            location.href='/Prestamo/create/'+idsocio;
-            const anchor = document.getElementByName("idsocio");
-			const result = anchor.href;
-            
-        }
-    </script>
-	
+		<input type="text" name="id"  value="<?= $prestamo->id ?>" hidden>
+		
 		<label for="idsocio">ID Socio</label>
-		<input type="text" name="idsocio"  value="<?= $socio->id ?>" onchange="buscaSocio(event.target.value)">
+		<input type="text" name="idsocio"  value="<?= $socio->id ?>" >
 		<label for="nombre" name="nombresocio"><?=$socio->nombre.' '.$socio->apellidos ?></label>
 		<br>
 		
-		<label for="idejemplar">ID Ejemplar</label>
-		<input type="text" name="idejemplar" value="<?= old('idejemplar')?>" required>
+		<label for="idejemplar">ID Ejemplar: </label>
+		<input type="text" name="idejemplar" value="<?= $prestamo->idejemplar ?>" >
 		<br>
 		<label for="limite">Limite</label>
 		<input type="date" name="limite" value="<?php
@@ -53,7 +46,7 @@
 			?>" required>
 		<br>
 		<div class="centered mt2">
-				<input type="submit" class="button" name="guardar" value="Guardar">
+				<input type="submit" class="button" name="ampliar" value="Ampliar">
 				<input type="reset" class="button" value="Reset">	
 			</div>
 		</div>

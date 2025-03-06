@@ -163,7 +163,7 @@ class Base implements TemplateInterface{
      //   $html .=   "<li><a href='/Libro/create'>Nuevo libro</a></li>";
         $html .=   "<li><a href='/Tema'>Temas</a></li>";
         // $html .=   "<li><a href='/Tema/create'>Nuevo Tema</a></li>";
-        
+        $html .=   "<li><a href='/Prestamo'>Prestamos</a></li>";
         //Enlaces restringidos
         $html .=   "<li><a href='/Panel'>Panel del bibliotecario</a></li>";
              

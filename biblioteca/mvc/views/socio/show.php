@@ -48,41 +48,47 @@
 			</DIV>
 		</section>
 		<section>
-			<h3>Prestamos del socio</h3>
-			<a class="button" href="/Prestamo/create/">Nuevo Prestamo</a>
+			<h3>Prestamos del socio <b>"<?= $socio->nombre.' '.$socio->apellidos ?>"</b></h3>
+			
+			<a class="button" href="/Prestamo/create/<?=$socio->id?>">Nuevo Prestamo</a>
+			
 			<table class="table w100 centered-block">
-			<?php 
-				$prestamos = $socio->getPrestamos();
-				if(!sizeof($prestamos)>0){ ?>
-							<p><b> El socio tiene prestamos vigentes </b></p>
-						
-				<?php } else { ?>
+			
 					<tr>
 						<th>ID</th><th>Socio</th><th>Titulo</th><th>Ejemplar</th><th>Limite</th><th>Devolución</th><th>Incidencias</th><th>Operaciones</th>
 					</tr>
 				<?php 
 					
-					foreach($prestamos as $prestamo ){ ?>
+				
+				
+				foreach($prestamos as $prestamo ){ ?>
 						<tr>
-							<td> <?=$prestamo->idprestamo ?></td>
+							<td> <?=$prestamo->id ?></td>
 							<td> <?=$prestamo->nombre.' '.$prestamo->apellidos ?></td>
 							<td> <?=$prestamo->titulo ?></td>
 							<td> <?=$prestamo->idejemplar ?></td>							
 							<td> <?=$prestamo->limite ?></td>
-							<td> <?=$prestamo->devolucion ?? '<b>PENDIENTE<b>' ?></td>
-							<td> <?=$prestamo->incidencia ?? 'SIN INCIDENCIAS' ?></td>
+							<td> <?=$prestamo->devolucion ?></td>
+							<td> <?=$prestamo->incidencia?></td>
 							<td class="centrado">	
-							<a class="button" href="/Prestamo/incidencia/<?=$prestamo->idprestamo?>">Inicidencia</a>
+							<a class="button" href="/Prestamo/incidencia/<?=$prestamo->id?>">Inicidencia</a>
 							<?php
 							if ($prestamo->devolucion){ ?>
-										<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->idprestamo?>">Eliminar</a>
-							<?php } else {?>
-								<a class="button-success" href="/Prestamo/devolucion/<?=$prestamo->idprestamo?>">Devolución</a>
-							<?php }?>		
+										
+									<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->id?>">Eliminar</a>
+									<?php } else {?>
+								<a class="button-success" href="/Prestamo/devolucion/<?=$prestamo->id?>">Devolución</a>
+							<?php }?>	
+									
 							</td>
 						</tr>
-						<?php }
-				}?>	
+						<?php } ?>
+						
+						
+					<?php 	
+						if(!$prestamos) { 
+							echo "<p><b> El socio tiene prestamos vigentes </b></p>";
+					}?>	
 									
 				
 				
