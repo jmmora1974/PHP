@@ -132,6 +132,7 @@ define('USER_ROLES', [
     'Editor'        => 'ROLE_EDITOR',
     'Test'          => 'ROLE_TEST',
     'API'           => 'ROLE_API',
+		
     'Estudiante'    => 'ROLE_STUDENT',
     'Bloqueado'     => 'ROLE_BLOCKED'
 ]);

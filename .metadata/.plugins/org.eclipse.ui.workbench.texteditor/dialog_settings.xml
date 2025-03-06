@@ -3,6 +3,8 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
 		<list key="findhistory">
+			<item value="login"/>
+			<item value="heade"/>
 			<item value="format"/>
 			<item value="date"/>
 			<item value="update"/>
