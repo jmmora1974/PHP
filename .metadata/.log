@@ -12450,3 +12450,6 @@ java.lang.NoSuchMethodException: org.eclipse.jface.text.contentassist.ContentAss
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+
+!ENTRY org.eclipse.core.resources 2 10035 2025-03-06 01:38:40.701
+!MESSAGE The workspace will exit with unsaved changes in this session.
