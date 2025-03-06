@@ -15,6 +15,18 @@ class Libro extends Model{
 		//Retorna una lista de Ejemplar
 		return DBMysqli::selectAll($consulta,'Ejemplar');
 	}
+	/**
+	 * Recupera los temas de un libro
+	 *
+	 * @return array lista de temas del libro
+	 */
+	public function getTemas():array{
+		
+		$temas = $this->belongsToMany('Tema','temas_libros');
+		//$libros = $tema->belongsToMany(‘Libro’, ‘temas_libros’);
+		//Retorna una lista de temas
+		return $temas;
+	}
 	
 	//campos en los que se permite asignación masiva
 	protected static $fillable = ['isbn','titulo','editorial','idioma',

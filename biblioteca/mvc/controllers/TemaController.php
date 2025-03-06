@@ -45,8 +45,11 @@ class TemaController extends Controller{
 	
 		$tema = Tema::findOrFail($id, 'No se enontró el tema indicado'); //tb comprueba si no le ha llegado el ID
 		
+		//recueramos los libros del tema
+		$libros=$tema->getLibrosTema();
+		
 		// carga la vista y le pasa el tema recuperado
-		return view ('tema/show',['tema'=>$tema]);
+		return view ('tema/show',['tema'=>$tema,'libros'=>$libros]);
 		
 	}
 	

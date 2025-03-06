@@ -47,10 +47,18 @@ class LibroController extends Controller{
 		$libro = Libro::findOrFail($id, 'No se encontró el libro indicado'); //tb comprueba si no le ha llegado el ID
 		
 		//recupera los ejemplares del libro
-		$ejemplares= $libro->hasMany('Ejemplar');		
+		$ejemplares= $libro->hasMany('Ejemplar');	
+		
+		//recuperamos los temas del libro
+		$temas = $libro->getTemas();
+		//$temas = $libro->belongsToMany('Tema','temas_libros'); //si no tenemos el getTemas
 		
 		// carga la vista y le pasa el libro recuperado
-		return view ('libro/show',['libro'=>$libro,'ejemplares'=>$ejemplares]);
+		return view ('libro/show',[
+				'libro'=>$libro,
+				'ejemplares'=>$ejemplares,
+				'temas'=>$temas
+				]);
 		
 	}
 	
@@ -173,9 +181,18 @@ class LibroController extends Controller{
 		//recupera los ejemplares del libro
 		$ejemplares= $libro->hasMany('Ejemplar');
 		
+		//recuperamos los temas del libro
+		$temas = $libro->getTemas();
+		
+		//Lista de temas ordenados alfabeticamente
+		$listaTemas= Tema::orderBy('tema');
+				
 		//retorna una ViewResponse con la vista con el formulario de edición
-		return view('libro/edit',['libro'=>$libro, 'ejemplares'=>$ejemplares]);
+		return view('libro/edit',['libro'=>$libro, 'ejemplares'=>$ejemplares, 
+				'temas'=>$temas, 'listaTemas'=>$listaTemas]);
 	}
+	
+	
 	
 	/** Actualzia la bdd con los datos POST del formulario
 	*/
@@ -229,6 +246,63 @@ class LibroController extends Controller{
 				return redirect("/Libro/edit/$id");
 		}
 	}
+	/**
+	 *  Añade un tema a un libro
+	 *
+	 *  @param int $idtema identificador del tema a añadir
+	 *  
+	 */
+	public function addTema(){
+	
+		
+		if(!request()->has('add')) //si no llega el formulario ...
+			throw new FormException ('No se recibieron datos');
+			
+		//recogemos los datos del formulario
+		//creamos un tema de libro nuevo con los datos del formulario
+		$temalibro = new TemaLibro();
+		
+		$temalibro->idlibro=request()->post('idlibro');
+		$temalibro->idtema=request()->post('idtema');
+		$temalibro->save()??
+			Session::error("No se pudo guardar el tema $temalibro->idtema del libro $temalibro->idlibro.");
+		Session::success("Se guardo el tema $temalibro->idtema para el libro $temalibro->idlibro correctamente.");
+		
+		//prepara la consulta
+		//$consulta = "INSERT INTO temas_libros(idlibro,idtema)
+		//			VALUES ($temalibro->idlibro=, $temalibro->idtema)";
+		
+		
+		// Ejecuta el comando SQL
+		// (DB_CLASS)::insert($consulta) ?
+		 //	Session::success("Se guardo el tema $tema->tema para el libro $libro->titulo."): 
+		// 	Session::error("No se pudo borrar el tema $tema->tema dellibro $libro->titulo."); 
+		 
+		 //retorna una ViewResponse con la vista con el formulario de edición
+		 return redirect('/libro/edit/'.$temalibro->idlibro);
+		
+	}
+	/**
+	 *  Añade un tema a un libro
+	 *
+	 *  @param int $idtema identificador del tema a añadir
+	 * 
+	 */
+	public function removeTema(int $idtema, int $idlibro){
+		
+		//prepara la consulta
+		$consulta = "DELETE FROM temas_libros
+					WHERE idlibro= $idlibro AND idtema=$idtema";
+		
+		// Ejecuta el comando SQL
+		(DB_CLASS)::delete($consulta)? 
+			Session::success("Se borro el tema $idtema para el libro $idlibro correctamente."):
+			Session::error("No se pudo borrar el tema $idtema del libro $idlibro.");
+		
+		return redirect('/libro/edit/'.$idlibro.'');
+		
+	}
+	
 	
 	/** 
 	 * Muestra el formulario de confirmación de eliminación

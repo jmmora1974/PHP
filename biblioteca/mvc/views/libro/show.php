@@ -82,6 +82,29 @@
 				
 			<?php } ?>
 		</section>
+		<section>
+			<h2>Temas en <b>"<?= $libro->titulo?>"</b></h2>
+			<?php 
+			if(!$temas){
+				echo "<div class='warning p2'><p>No se han indicado temas.</p></div>";
+			} else { ?>
+				<table class="table w100">
+					<tr>
+						<th>ID</th>
+						<th>Tema</th>
+					</tr>
+				<?php foreach($temas as $tema){?>
+					<tr>
+						<td><?= $tema->id ?></td>
+						<td><a href='/Tema/show/<?=$tema->id ?>'>
+							<?= $tema->tema?></a>
+						</td>
+					</tr>
+					<?php } ?>
+				</table>
+			<?php } ?>
+			
+		</section>
 
 		<div class="centrado">
 			<a class="button" onclick="history.back()">Atrás</a> 

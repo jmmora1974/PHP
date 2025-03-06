@@ -71,6 +71,14 @@
 		</div>
 		</form>
 		</section>
+		<div class="centrado m1">
+			<a class="button" onclick="history.back()">Atrás</a>
+			<a class="button" href="/Libro/list">Lista de libros</a>
+			<a class="button" href="/Libro/show/<?=$libro->id?>">Detalles</a>
+			<?php if(!$libro->hasAny('Ejemplar')){ ?> 
+				<a class="button-danger" href="/Libro/delete/<?=$libro->id?>">Borrado</a>
+			<?php } ?>
+		</div>	
 		<section>
 			<script>
 				function confirmar(id){
@@ -115,10 +123,7 @@
 				<div class="p1 right">
 					Existen <?= sizeof($ejemplares) ?> ejemplares de este libro.
 				</div>	
-					
-				
-		
-				
+							
 		</section>
 		<div class="centrado m1">
 			<a class="button" onclick="history.back()">Atrás</a>
@@ -127,7 +132,54 @@
 			<?php if(!$libro->hasAny('Ejemplar')){ ?> 
 				<a class="button-danger" href="/Libro/delete/<?=$libro->id?>">Borrado</a>
 			<?php } ?>
-		</div>		
+		</div>	
+		<section>
+			<h2>Temas en <b>"<?= $libro->titulo?>"</b></h2>
+			<?php 
+			if(!$temas){
+				echo "<div class='warning p2'><p>No se han indicado temas.</p></div>";
+			} else { ?>
+				<table class="table w100">
+					<tr>
+						<th>ID</th>
+						<th>Tema</th>
+						<th>Borrar</th>
+					</tr>
+				<?php foreach($temas as $tema){?>
+					<tr>
+						<td><?= $tema->id ?></td>
+						<td><a href='/Tema/show/<?=$tema->id ?>'>
+							<?= $tema->tema?></a>
+						</td>
+						<td><a href='/Libro/removeTema/<?=$tema->id ?>/<?=$libro->id ?>'>
+							Eliminar</a></td>
+					</tr>
+					<?php } ?>
+				</table>
+				
+				
+			<?php } ?>
+			<form class="w50 m0 no-border centrado" method="POST" action="/Libro/addtema">
+					<input type="hidden" name="idlibro" value="<?= $libro->id ?>">
+					<select name="idtema">
+					<?php 
+					foreach($listaTemas as $nuevoTema){
+						echo "<option value='$nuevoTema->id'>$nuevoTema->tema</option>\n";
+					}?>
+					</select>
+					<input type="submit" class="button-success" name="add" value="Añadir tema">
+				</form>
+			
+		</section>
+		<div class="centrado m1">
+			<a class="button" onclick="history.back()">Atrás</a>
+			<a class="button" href="/Libro/list">Lista de libros</a>
+			<a class="button" href="/Libro/show/<?=$libro->id?>">Detalles</a>
+			<?php if(!$libro->hasAny('Ejemplar')){ ?> 
+				<a class="button-danger" href="/Libro/delete/<?=$libro->id?>">Borrado</a>
+			<?php } ?>
+		</div>	
+		
 	
 </main>		
 	
