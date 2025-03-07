@@ -29,7 +29,50 @@
        		<a class="button" href="/Prestamo/create/0">Nuevo Prestamo</a>
        		
        		<?php if($prestamos){ ?>
-       			<table class="table w100">
+       			
+      		
+		      		<!--  FILTR DE BÚSQUEDA -->
+		      		<?php 
+		      		//si hay filtro guardado en sesión
+		      		if($filtro){
+		      					      			//pone el formulario de "quitar filtro
+		      			//el metrodo removeFilterForm necesita conocer el filtro
+		      			// y ka ruta a la que se envia el formulario
+		      			echo $template->removeFilterForm($filtro,'/Prestamo/list');
+		      		//en caso contrario
+		      		} else {
+		      			//pone el formulario de "nuevo filtro"
+		      			echo $template->filterForm(
+			      			[
+			      				'ID' => 'id',
+			      				'Prestamo' => 'prestamo',
+			      				'Titulo' => 'titulo',
+			      				'Limite' => 'limite',
+			      				'Devolucion' => 'devolucion'								
+			 
+			      			],
+			      			//lista de campos para el desplegable "ordenado por "
+			      			[
+			      			'Prestamo' => 'prestamo',
+			      			'Titulo' => 'titulo',
+			      			'Limite' => 'limite',
+			      			'Devolucion' => 'devolucion'
+			    				
+			    			],
+			    			// valor por defecto para "buscar en"
+			    			'Prestamo',
+			    			// valor por defecto para "ordenado por"
+			    			'Prestamo'
+						);
+		      			
+		      		}?>
+		       		
+		       		<!--  Enlaces creados por el paginador -->
+		       		<div class="rigth">
+		       			<?=$paginator->stats()?>
+		       		</div>
+       		
+       		<table class="table w100">
        					<tr>
        						<th>ID</th>
        						<th>Socio</th>
@@ -69,7 +112,9 @@
 					<p>No hay prestamos que mostrar</p>
 				</div>
 				<?php } ?>
+				<?= $paginator->ellipsisLinks()?>
 			</main>
+			
 			<?= $template->footer() ?>
 </body>
 

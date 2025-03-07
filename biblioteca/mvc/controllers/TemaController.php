@@ -26,13 +26,41 @@ class TemaController extends Controller{
 	 * @return ViewResponse
 	 * 
 	 */
-	public function list(){
-	  //	$temas = Tema::orderBy();  //sale ordenado, sin ejemplares
+	public function list(int $page=1){
 	 
-		$temas= Tema::orderBy('tema'); // recupera los temas 
-	
+	 		//analiza si hay filtros, pone uno nuevo o quit el existente
+		$filtro = Filter::apply('temas');
+		
+		$limit = RESULTS_PER_PAGE; //Numer de resultados por pagina
+		
+		//si hay filtro
+		if($filtro){
+			//recupera el total de libros que cumplen los criterios del filtro
+			$total = Tema::filteredResults($filtro);
+			
+			//crea el objeto paginador
+			$paginator = new Paginator('/Tema/list', $page, $limit, $total,'es');
+			
+			//recupera los libros que cumplen los criteros del filtro
+			$temas= Tema::filter($filtro, $limit, $paginator->getOffset());
+			// recupera los libros junto la información extra (ejemplares)
+		} else {
+			
+			$total = Tema::total(); //total del libro
+			
+			//crea el objeto paginador
+			$paginator = new Paginator('/Tema/list', $page, $limit, $total,'es');
+			
+			
+			$temas= Tema::orderBy('tema', 'ASC', $limit, $paginator->getOffset()); // recupera los libros junto la información extra (ejemplares)
+			
+			
+		}
+		
+		
+		
 		//	carga la vista que los muestra
-		return view('tema/list',['temas'=>$temas]);
+	return view('tema/list',['temas'=>$temas,'paginator'=>$paginator,'filtro' => $filtro]);
 	}
 	
 	/**
@@ -45,8 +73,11 @@ class TemaController extends Controller{
 	
 		$tema = Tema::findOrFail($id, 'No se enontró el tema indicado'); //tb comprueba si no le ha llegado el ID
 		
+		//recueramos los libros del tema
+		$libros=$tema->getLibrosTema();
+		
 		// carga la vista y le pasa el tema recuperado
-		return view ('tema/show',['tema'=>$tema]);
+		return view ('tema/show',['tema'=>$tema,'libros'=>$libros]);
 		
 	}
 	

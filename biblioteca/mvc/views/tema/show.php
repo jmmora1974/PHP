@@ -46,6 +46,36 @@
 				<a class="button-danger" href="/Tema/delete/<?=$tema->id?>">Borrar</a>
 			<?php } ?>
 		</div>
+		<section>
+			<h2>Libros del tema <b>"<?= $tema->tema?>"</b></h2>
+			<?php 
+			if(!$libros){
+				echo "<div class='warning p2'><p>No hay libros de este tema.</p></div>";
+			} else { ?>
+				<table class="table w100">
+					<tr>
+						<th>ID</th>
+						<th>Titulo</th>
+						<th>Editorial</th>
+						<th>Autor</th>
+						<th>Año</th>
+					
+					</tr>
+				<?php foreach($libros as $libro){?>
+					<tr>
+						<td><?= $libro->id ?></td>
+						<td><a href='/Tema/show/<?=$libro->id ?>'>
+							<?= $libro->titulo?></a>
+						</td>
+						<td><?= $libro->editorial ?></td>
+						<td><?= $libro->autor ?></td>
+						<td><?= $libro->anyo ?></td>
+					</tr>
+					<?php } ?>
+				</table>
+			<?php } ?>
+			
+		</section>
 	</main>
 </body>
 

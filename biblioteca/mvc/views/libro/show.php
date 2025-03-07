@@ -19,7 +19,7 @@
 		<?= $template->login() ?>
 		<?= $template->header('Lista de libros') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs(['Libros'=>'/Libro','Detalles'=>null]) ?>
+		<?= $template->breadCrumbs(['Libros'=>'/Libro',$libro->titulo=>'/Libro/show/'.$libro->id,'Detalles'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
@@ -51,6 +51,16 @@
 				<p>
 					<b>Ejemplares:</b>  	<?= $libro->ejemplares ?? ' -- '?></p>
 			</DIV>
+			<div class="centrado">
+			<a class="button" onclick="history.back()">Atrás</a> 
+			<a class="button" href="/Libro/list">Lista de libros</a> 
+			<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>
+			<?php if(!$libro->hasAny('Ejemplar')){ ?>
+				<a class="button-danger" href="/Libro/delete/<?=$libro->id ?>">Borrar</a>';
+			<?php }?>
+				
+				
+		</div>
 		</section>
 		<section>
 			<h2>Sinopsis</h2>
@@ -81,15 +91,42 @@
 				</div>				
 				
 			<?php } ?>
+			<div class="centrado">
+			<a class="button" onclick="history.back()">Atrás</a> 
+			<a class="button" href="/Libro/list">Lista de libros</a> 
+			<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>			
+				
+		</div>
+		</section>
+		<section>
+			<h2>Temas en <b>"<?= $libro->titulo?>"</b></h2>
+			<?php 
+			if(!$temas){
+				echo "<div class='warning p2'><p>No se han indicado temas.</p></div>";
+			} else { ?>
+				<table class="table w100">
+					<tr>
+						<th>ID</th>
+						<th>Tema</th>
+					</tr>
+				<?php foreach($temas as $tema){?>
+					<tr>
+						<td><?= $tema->id ?></td>
+						<td><a href='/Tema/show/<?=$tema->id ?>'>
+							<?= $tema->tema?></a>
+						</td>
+					</tr>
+					<?php } ?>
+				</table>
+			<?php } ?>
+			
 		</section>
 
 		<div class="centrado">
 			<a class="button" onclick="history.back()">Atrás</a> 
 			<a class="button" href="/Libro/list">Lista de libros</a> 
 			<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>
-			<?php if(!$libro->hasAny('Ejemplar')){ ?>
-				<a class="button-danger" href="/Libro/delete/<?=$libro->id ?>">Borrar</a>';
-			<?php }?>
+			
 				
 				
 		</div>

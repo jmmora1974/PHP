@@ -17,7 +17,7 @@
 	</head>
 	<body>
 		<?= $template->login() ?>
-		<?= $template->header('Nuevo de ejemplar') ?>
+		<?= $template->header('Nuevo de prestamo') ?>
 		<?= $template->menu() ?>
 		<?= $template->breadCrumbs(['Prestamos'=>'/Prestamo','Nuevo'=>null]) ?>
 		<?= $template->messages() ?>
@@ -25,7 +25,7 @@
 	<main>
 	<h1><?=APP_NAME?></h1>
 	<h2>Nuevo prestamo de libros</h2>
-	<p>Estás a punto de crear un nuevo Prestamo para <b><?=$socio->nombre.' '.$socio->apellidos ?></b></p>
+	<p>Estás a punto de crear un nuevo prestamo para <b><?=$socio->nombre.' '.$socio->apellidos ?></b></p>
 	<form method="POST" enctype="multipart/form-data" action="/Prestamo/store">
 		<div class="flex2">
 
@@ -46,7 +46,7 @@
 					echo $date->format('Y-m-d'); 
 			?>" required>
 		<br>
-		<div class="centered mt2">
+		<div class="centered mt2"  id="nuevoejemplar">
 				<input type="submit" class="button" name="guardar" value="Guardar">
 				<input type="reset" class="button" value="Reset">	
 			</div>
@@ -59,9 +59,9 @@
 			<script>
         function buscaSocio(idsocio){
         	
-        	location.href='/Prestamo/create/'+idsocio;
+        	location.href='/Prestamo/create/'+idsocio+'#nuevoejemplar';
         	
-            const anchor = document.getElementByName("idsocio");
+            const anchor = document.getElementById("nuevoejemplar");
 			const result = anchor.href;
             
         }

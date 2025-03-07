@@ -27,14 +27,44 @@ class PrestamoController extends Controller{
 	 * @return ViewResponse
 	 *
 	 */
-	public function list(){
+	public function list(int $page=1){
+		
+		//analiza si hay filtros, pone uno nuevo o quit el existente
+		$filtro = Filter::apply('prestamos');
+		
+		$limit = RESULTS_PER_PAGE; //Numer de resultados por pagina
+		
+		//si hay filtro
+		if($filtro){
+			//recupera el total de libros que cumplen los criterios del filtro
+			$total = V_prestamo::filteredResults($filtro);
+			
+			//crea el objeto paginador
+			$paginator = new Paginator('/Prestamo/list', $page, $limit, $total,'es');
+			
+			//recupera los libros que cumplen los criteros del filtro
+			$prestamos= V_prestamo::filter($filtro, $limit, $paginator->getOffset());
+			// recupera los libros junto la información extra (ejemplares)
+		} else {
+			
+			$total = V_prestamo::total(); //total del libro
+			
+			//crea el objeto paginador
+			$paginator = new Paginator('/Prestamo/list', $page, $limit, $total,'es');
+			
+			
+			$prestamos= V_prestamo::orderBy('prestamo', 'ASC', $limit, $paginator->getOffset()); // recupera los libros junto la información extra (ejemplares)
+			
+			
+		}
 		
 		
-		$prestamos= V_prestamo::orderBy('prestamo','DESC'); // recupera los prestamoes del prestamo
 		
 		//	carga la vista que los muestra
-		return view('prestamo/list',['prestamos'=>$prestamos]);
+		return view('prestamo/list',['prestamos'=>$prestamos,'paginator'=>$paginator,'filtro' => $filtro]);
 	}
+	
+	
 	
 	/**
 	 * Muestra los detalles del un prestamo

@@ -28,6 +28,48 @@
        		<h2>Lista completa de temas</h2>
        		
        		<?php if($temas){ ?>
+       		
+      		
+		      		<!--  FILTR DE BÚSQUEDA -->
+		      		<?php 
+		      		//si hay filtro guardado en sesión
+		      		if($filtro){
+		      					      			//pone el formulario de "quitar filtro
+		      			//el metrodo removeFilterForm necesita conocer el filtro
+		      			// y ka ruta a la que se envia el formulario
+		      			echo $template->removeFilterForm($filtro,'/Tema/list');
+		      		//en caso contrario
+		      		} else {
+		      			//pone el formulario de "nuevo filtro"
+		      			echo $template->filterForm(
+			      			[
+			      				'ID' => 'id',
+			      				'Tema' => 'tema',
+								'Descripcion' => 'descripcion'
+								
+			 
+			      			],
+			      			//lista de campos para el desplegable "ordenado por "
+			      			[
+			      			'ID' => 'id',
+			      			'Tema' => 'tema',
+			      			'Descripcion' => 'descripcion'
+			    				
+			    			],
+			    			// valor por defecto para "buscar en"
+			    			'Tema',
+			    			// valor por defecto para "ordenado por"
+			    			'Tema'
+						);
+		      			
+		      		}?>
+		       		
+		       		<!--  Enlaces creados por el paginador -->
+		       		<div class="rigth">
+		       			<?=$paginator->stats()?>
+		       		</div>
+       		
+       		
        			<table class="table w100">
        					<tr>
        						<th>Tema</th>
@@ -57,6 +99,7 @@
 				</div>
 				<?php } ?>
 			</main>
+				<?= $paginator->ellipsisLinks()?>
 			<?= $template->footer() ?>
 </body>
 

@@ -27,19 +27,64 @@
     		<h1><?= APP_NAME ?></h1>
        		<h2>Lista completa de libros</h2>
        		
-       		<?php if($libros){ ?>
+      		<?php if($libros){ ?>
+      		
+      		<!--  FILTR DE BÚSQUEDA -->
+      		<?php 
+      		//si hay filtro guardado en sesión
+      		if($filtro){
+      			
+      			//pone el formulario de "quitar filtro
+      			//el metrodo removeFilterForm necesita conocer el filtro
+      			// y ka ruta a la que se envia el formulario
+      			echo $template->removeFilterForm($filtro,'/Libro/list');
+      		//en caso contrario
+      		} else {
+      			//pone el formulario de "nuevo filtro"
+      			echo $template->filterForm(
+      			[
+      				'Titulo' => 'titulo',
+					'Editorial' => 'editorial',
+					'Autor' => 'autor',
+					'ISBN' => 'isbn'
+ 
+      			],
+      			//lista de campos para el desplegable "ordenado por "
+      			[
+      			'Titulo' => 'titulo',
+      			'Editorial' => 'editorial',
+      			'Autor' => 'autor',
+      			'ISBN' => 'isbn'
+    				
+    			],
+    			// valor por defecto para "buscar en"
+    			'Titulo',
+    			// valor por defecto para "ordenado por"
+    			'Titulo'
+			);
+      			
+      		}?>
+       		
+       		<!--  Enlaces creados por el paginador -->
+       		<div class="rigth">
+       			<?=$paginator->stats()?>
+       		</div>
        			<table class="table w100">
        					<tr>
        						<th>ISBN</th>
        						<th>Título</th>
        						<th>Autor</th>
+       						<th>Editorial</th>
+       						<th>Año</th>
        						<th>Ejemplares</th>
        						<th class="centrado">Operaciones</th>
 		<?php foreach($libros as $libro){   ?>
 				<tr>
 					<td><?=$libro->isbn?></td>
-				<td><a href='/Libro/show/<?=$libro->id?>'><?= $libro->titulo?></a></td>
+				<td><a href='/Libro/show/<?=$libro->id?>' ><?= $libro->titulo?></a></td>
 				<td><?=$libro->autor?></td>
+				<td><?=$libro->editorial?></td>
+				<td><?=$libro->anyo?></td>
 				<td><?=$libro->ejemplares?></td>
 				<td class="centrado">
 					<a class="button" href='/libro/show/<?=$libro->id?>'>
@@ -60,6 +105,7 @@
 				</div>
 				<?php } ?>
 			</main>
+			<?= $paginator->ellipsisLinks()?>
 			<?= $template->footer() ?>
 </body>
 

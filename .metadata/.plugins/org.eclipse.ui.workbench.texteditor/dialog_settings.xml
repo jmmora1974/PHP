@@ -2,22 +2,31 @@
 <section name="Workbench">
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
+		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+<<<<<<< HEAD
 			<item value="login"/>
 			<item value="heade"/>
 			<item value="format"/>
 			<item value="date"/>
 			<item value="update"/>
+=======
+			<item value="remov"/>
+			<item value="store"/>
+>>>>>>> 23d459646e88a1512c758b76eb4f4988544fbb64
 			<item value="edit"/>
-			<item value="getPrestamos"/>
-			<item value="PREST"/>
-			<item value="Ejemplar"/>
-			<item value="Ejemplare"/>
-			<item value="libro"/>
-			<item value="socio"/>
-			<item value="Libro"/>
-			<item value="ejemplar"/>
-			<item value="Socio"/>
+			<item value="back"/>
+			<item value="POST"/>
+			<item value="thr"/>
+			<item value="addte"/>
+			<item value="request"/>
+			<item value="addt"/>
+			<item value="destr"/>
+			<item value="delete"/>
+			<item value="dele"/>
+			<item value="inci"/>
+			<item value="filte"/>
+			<item value="sho"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Prestamo"/>

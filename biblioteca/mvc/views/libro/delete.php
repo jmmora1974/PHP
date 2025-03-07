@@ -19,7 +19,7 @@
 		<?= $template->login() ?>
 		<?= $template->header('Confirmación borrado de un libro') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs(['Libros'=>'/Libro','Confirmar borrado'=>null]) ?>
+		<?= $template->breadCrumbs(['Libros'=>'/Libro',$libro->titulo=>'/Libro/show/'.$libro->id,'Confirmar borrado'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
