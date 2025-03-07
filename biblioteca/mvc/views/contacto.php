@@ -48,7 +48,7 @@
     					</div>    					
     				</form>       				
     			</section>
-    			<section class="flex1">
+    			<section cS
     				<h2>Ubicación y mapa</h2>
 					
 					<div class="mapouter"><div class="gmap_canvas"
