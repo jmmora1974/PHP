@@ -161,6 +161,7 @@ class Base implements TemplateInterface{
         $html .=   "<li><a href='/Libro'>Libros</a></li>";
         $html .=   "<li><a href='/Tema'>Temas</a></li>";
         $html .=   "<li><a href='/Prestamo'>Prestamos</a></li>";
+        $html .=   "<li><a href='/Panel'>Panel del bibliotecario</a></li>";
 	    //Enlaces restringidos
 	    //Enlaces para bibliotecarios
         if(Login::role('ROLE_:LIBRARIAN')){
