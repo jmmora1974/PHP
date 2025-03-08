@@ -26,7 +26,7 @@
 	<h1><?=APP_NAME?></h1>
 	<h2>Nuevo libro</h2>
 	
-	<form method="POST" enctype="multipart/form-data" action="/Libro/store">
+	<form method="POST" class="flex-container gap2" enctype="multipart/form-data" action="/Libro/store">
 		<div class="flex2">
 		<label for="isbn">ISBN</label>
 		<input type="text" name="isbn" value="<?= old('isbn')?>" required>
@@ -63,6 +63,9 @@
 			<label for="caracteristicas">Caracterís.</label>
 			<input type="number" min="0" name="caracteristicas" value="<?=old('caracteristicas')?>">
 			<br>
+			<label for="portada">Portada</label>
+			<input type="file" name="portada" accept="image/*" id="file-with-preview">
+			<br>
 			
 			<label>Tema</label>
 			<select name="idtema">
@@ -80,11 +83,17 @@
 				<input type="reset" class="button" value="Reset">	
 			</div>
 		</div>
-		<div class="centrado my2">
+		<figure class="flex1 centrado">
+			<img src="<?=BOOK_IMAGE_FOLDER.'/'.($libro->portada ?? DEFAULT_BOOK_IMAGE)?>"
+				 	class="cover enlarge-image" alt="Previsualización de la portada del libro <?= $libro->titulo?>">				 		
+				 <figcaption>Previsualización de la portada del libro <?= "$libro->titulo, de $libro->autor"?> </figcaption>
+		</figure>
+			
+	</form>
+	<div class="centrado my2">
 			<a class="button" onclick="history.back()">Atrás</a>
 			<a class="button" href="/Libro/list">Lista de libros</a>
-		</div>		
-	</form>
+		</div>	
 </main>		
 	
 	

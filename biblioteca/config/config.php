@@ -202,6 +202,11 @@ define('RESULTS_PER_PAGE', 10);  // Número de resultados por página
 define('UPLOAD_FOLDER', '../storage'); // carpeta por defecto para las subidas de ficheros
 define('UPLOAD_MAX_SIZE', 0);          // tamaño máximo para las subidas, en bytes (0 sin límite)
 
+//carpta para las imagenes de las poratadas de los libros
+define('BOOK_IMAGE_FOLDER','/images/books');
+
+//imagen por defecto para los libros que no tengan portada
+define('DEFAULT_BOOK_IMAGE','cover.png');
 
 
 /* -------------------------------------------------------------
@@ -300,5 +305,4 @@ define('ALLOW_CREDENTIALS', 'true');                 // ¿Se permite el envío d
 
 define('API_AUTHENTICATION', 'COOKIE'); // puede ser COOKIE (implementado) o KEY (no implementado aún)
 
-    
-    
+

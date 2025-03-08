@@ -6,7 +6,7 @@
  *
  * Última revisión: 18/02/2025
  * 
- * @author Robert Sallent <robertsallent@gmail.com>
+ * @author Robert Sallent <robertsallent@gmail.com> && Jose Miguel Mora Perez 
  *
  */
 class Base implements TemplateInterface{

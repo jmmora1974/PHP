@@ -71,6 +71,7 @@
        		</div>
        			<table class="table w100">
        					<tr>
+       						<th>Portada</th>
        						<th>ISBN</th>
        						<th>Título</th>
        						<th>Autor</th>
@@ -79,8 +80,14 @@
        						<th>Ejemplares</th>
        						<th class="centrado">Operaciones</th>
 		<?php foreach($libros as $libro){   ?>
-				<tr>
-					<td><?=$libro->isbn?></td>
+			<tr>
+				<td class="centrado">
+					<a href='/Libro/show/<?= $libro->id ?>'>
+						<img src="<?=BOOK_IMAGE_FOLDER.'/'.($libro->portada ?? DEFAULT_BOOK_IMAGE)?>"
+							class="table-image" alta="Portada de <?= $libro->titulo ?>"
+							title="Portada de <?=$libro->titulo?>">
+					</a>
+				<td><?=$libro->isbn?></td>
 				<td><a href='/Libro/show/<?=$libro->id?>' ><?= $libro->titulo?></a></td>
 				<td><?=$libro->autor?></td>
 				<td><?=$libro->editorial?></td>

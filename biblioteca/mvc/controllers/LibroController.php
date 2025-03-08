@@ -114,7 +114,19 @@ class LibroController extends Controller{
 				//guarda el libro en la base de datos a partir de los datosPOST
 				$libro = Libro::create(request()->posts()); //no es necesario en la  1.8.0
 				$libro->addTema($idtema); // Le pone el tema principal
-							
+				
+				//recupera la portada como objeto UploadedFile (o null si no llega)
+				$file = request()->file(
+						'portada', 	// nombre del input
+						8000000, 	//tamaño maximo del fichero
+						['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
+				);
+				
+				//si hay fichero, lo guardamos y actualizamos el campo "portada"
+				if($file){
+					$libro->portada=$file->store('../public/'.BOOK_IMAGE_FOLDER, 'book_');
+					$libro->update(); //actualiza el libro para añadir la portada
+				}
 				//flashea un mensaje de exito en sesion
 				Session::success("Guardado del libro $libro->titulo correcto.");
 				
@@ -137,6 +149,22 @@ class LibroController extends Controller{
 				
 				//regresa al formulario de creación de libro
 				return redirect("/Libro/create");
+				
+				//si falla el guardado de la portada
+			} catch (UploadException $e) {
+				//preparamos un mensaje de advertencia
+				//no de errom puesto que el libro se guardó correctamente,
+				Session::warning("El libro se guardó correctamente, pero no se pudo subir el fichero de imagen.");
+				
+				if(DEBUG)
+					throw new UploadException($e->getMessage());
+				
+				//redirigimos a la edición del libro
+				//por si quiere volver a intentar subir la image
+				redirect("/Libro/edit/$libro->id");
+					
+				
+					
 			}
 
 	// OPCION TRADICIONAL	
