@@ -17,9 +17,9 @@
 	</head>
 	<body>
 		<?= $template->login() ?>
-		<?= $template->header('Lista de libros') ?>
+		<?= $template->header('Home') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs(['Libros'=>null])?>
+		<?= $template->breadCrumbs(['Home'=>null])?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 		

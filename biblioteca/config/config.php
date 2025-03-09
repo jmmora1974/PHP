@@ -57,7 +57,7 @@ define('AUTOLOAD_DIRECTORIES',  [
  * APLICACIÓN
  * -------------------------------------------------------------*/
 
-define('APP_NAME', 'App Biblio Mora ');   // Título de la aplicación.
+define('APP_NAME', 'App Biblio JM ');   // Título de la aplicación.
 define('APP_TYPE', 'WEB');                  // Tipo de aplicación: WEB o API.
 
 define('APP_VERSION', '0.1.0');  // versión actual del framework o aplicación desarrollada

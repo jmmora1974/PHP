@@ -101,7 +101,7 @@ class Base implements TemplateInterface{
                  $html .= "<span class='pc'> eres <a class='negrita' href='/Admin'>administrador</a>.</span>";
             
             // pone la imagen de perfil y el enlace a logout
-            $html .= "  <img class='xx-small middle my1' src='/images/users/".($user->picture ?? 'default.png')."' alt='Imagen de perfil'>
+            $html .= "  <img class='xx-small middle my1' src='/images/users/".($user->picture ?? DEFAULT_USER_IMAGE)."' alt='Imagen de perfil'>
                         <a class='button' href='/Logout'>LogOut</a>
                      </div>";
 
@@ -160,12 +160,12 @@ class Base implements TemplateInterface{
         $html .=   "<li><a href='/'>Inicio</a></li>";
         $html .=   "<li><a href='/Libro'>Libros</a></li>";
         $html .=   "<li><a href='/Tema'>Temas</a></li>";
-        $html .=   "<li><a href='/Prestamo'>Prestamos</a></li>";
-        $html .=   "<li><a href='/Panel'>Panel del bibliotecario</a></li>";
+       
+        
 	    //Enlaces restringidos
 	    //Enlaces para bibliotecarios
         if(Login::role('ROLE_:LIBRARIAN')){
-	       		
+        	//$html .=   "<li><a href='/Prestamo'>Prestamos</a></li>";
     	       $html .=   "<li><a href='/Panel'>Panel del bibliotecario</a></li>";
         }
         
@@ -192,8 +192,8 @@ class Base implements TemplateInterface{
         if((Login::oneRole(ERROR_ROLES)) && (DB_ERRORS || LOG_ERRORS || LOG_LOGIN_ERRORS))
             $html .=   "<li><a href='/Error/list'>Errores</a></li>";
           
-        $html .=   "<li><a href='https://github.com/robertsallent/fastlight'>GitHub</a></li>";
-            
+        $html .=   "<li><a href='https://github.com/robertsallent/fastlight'>GitHub Original</a></li>";
+        $html .=   "<li><a href='https://github.com/jmmora1974/PHP/tree/feature/pp1/biblioteca'>GitHub Jose</a></li>";
         $html .= "</menu>";
         $html .= "</nav>";
         

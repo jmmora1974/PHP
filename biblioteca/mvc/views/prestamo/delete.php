@@ -2,7 +2,7 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
-		<title>Moralioteca - Confirmación de borrado de prestamo - <?= APP_NAME ?></title>
+		<title>Biblio JM - Confirmación de borrado de prestamo - <?= APP_NAME ?></title>
 		
 		<!-- META -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
