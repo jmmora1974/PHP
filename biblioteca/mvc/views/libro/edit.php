@@ -25,8 +25,8 @@
 	<main>
 	<h1><?=APP_NAME?></h1>
 	<h2>Edición del libro: <b>"<?= $libro->titulo ?>"</b></h2>
-	<section>
-	<form method="POST" enctype="multipart/form-data" action="/Libro/update">
+	<section class="flex-container gap2">
+	<form method="POST" enctype="multipart/form-data" action="/Libro/update" class="flex2 no-border">
 		<div class="centrado">
 		
 		<input type="hidden" name="id" value="<?= $libro->id ?>" required>
@@ -61,6 +61,9 @@
 			<label for="caracteristicas">Caracterís.</label>
 			<input type="number" min="0" name="caracteristicas" value="<?=old('caracteristicas', $libro->caracteristicas)?>">
 			<br>
+			<label for="portada">Portada</label>
+			<input type="file" name="portada" accept="image/*" id="file-with-preview">
+			<br>
 			<label for="sinopsis">Sinopsis</label>
 			<textarea name="sinopsis" class="w50"><?=old('sinopsis')?></textarea>
 			<br>
@@ -70,6 +73,17 @@
 			</div>
 		</div>
 		</form>
+		<figure class="flex1 centrado p2">
+				<img src="<?=BOOK_IMAGE_FOLDER.'/'.($libro->portada ?? DEFAULT_BOOK_IMAGE)?>"
+				 	class="cover enlarge-image" alt="Portada del libro <?= $libro->titulo?>">				 		
+				 <figcaption>Portada del libro <?= "$libro->titulo, de $libro->autor"?> </figcaption>
+				<!-- Botón de eliminar la portada (sin cambiar nada mas) -->
+				<form method="POST" action="/Libro/dropcover" class="no-border">
+					<input type="hidden" name="id" value="<?= $libro->id?>">
+					<input type="submit" class="button-danger" name="borrar" value="Eliminar portada">
+				</form>
+			</figure>
+			
 		</section>
 		<div class="centrado m1">
 			<a class="button" onclick="history.back()">Atrás</a>
