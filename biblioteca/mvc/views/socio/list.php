@@ -26,6 +26,7 @@
 		<main>
     		<h1><?= APP_NAME ?></h1>
        		<h2>Lista completa de socios</h2>
+       		<a class="button" href='/Socio/create'>Nuevo Socio</a>
      		<?php if($socios){ ?>
       		
 		      		<!--  FILTR DE BÚSQUEDA -->
@@ -70,6 +71,7 @@
        		
        			<table class="table w100">
        					<tr>
+       						<th>Foto</th>
        						<th>DNI</th>
        						<th>Nombre</th>
        						<th>Apellidos</th>
@@ -80,9 +82,19 @@
        						<th class="centrado">Acciones</th>
 				<?php foreach($socios as $socio){   ?>
 						<tr>
-							<td><?=$socio->dni?></td>
+						<td><script src="/js/BigPicture.js"></script>
+			
+			<figure class="flex1 centrado p2">
+		
+				<img src="<?=PROFILE_IMAGE_FOLDER.'/'.($socio->foto ?? DEFAULT_PROFILE_IMAGE)?>"
+				 	class="table-image enlarge-image" alt="Foto de perfil de <?= $socio->nombre.' ',$socio->apellidos?>">
+						 		
+				 <figcaption>Foto de perfil de <?= $socio->nombre.' ',$socio->apellidos?> </figcaption>
+				 
+			</figure>
+							<td><a href='/Socio/show/<?=$socio->id?>'><?=$socio->dni?></a></td>
 						<td><a href='/Socio/show/<?=$socio->id?>'><?= $socio->nombre?></a></td>
-						<td><?=$socio->apellidos?></td>
+						<td><a href='/Socio/show/<?=$socio->id?>'><?=$socio->apellidos?></a></td>
 						<td><?=$socio->poblacion?></td>
 						<td><?=$socio->telefono?></td>
 						<td><?=$socio->email?></td>

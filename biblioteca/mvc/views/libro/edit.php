@@ -78,7 +78,7 @@
 				 	class="cover enlarge-image" alt="Portada del libro <?= $libro->titulo?>">				 		
 				 <figcaption>Portada del libro <?= "$libro->titulo, de $libro->autor"?> </figcaption>
 				<!-- Botón de eliminar la portada (sin cambiar nada mas) -->
-				<form method="POST" action="/Libro/dropcover" class="no-border">
+				<form method="POST" action="/Libro/dropcover" enctype="multipart/form-data" class="no-border">
 					<input type="hidden" name="id" value="<?= $libro->id?>">
 					<input type="submit" class="button-danger" name="borrar" value="Eliminar portada">
 				</form>

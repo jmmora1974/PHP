@@ -208,6 +208,12 @@ define('BOOK_IMAGE_FOLDER','/images/books');
 //imagen por defecto para los libros que no tengan portada
 define('DEFAULT_BOOK_IMAGE','cover.png');
 
+//carpta para las imagenes de las poratadas de los libros
+define('PROFILE_IMAGE_FOLDER','/images/members');
+
+//imagen por defecto para los libros que no tengan portada
+define('DEFAULT_PROFILE_IMAGE','profile.webp');
+
 
 /* -------------------------------------------------------------
  * MENSAJE DE "ACEPTAR COOKIES"

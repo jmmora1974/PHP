@@ -24,10 +24,11 @@
 		<?= $template->acceptCookies() ?>
 	<main>
 		<h1><?=APP_NAME?></h1>
-		<section>
-			<DIV class="flex2 centered">
+		<section id="detalles" class="flex-container gap2">
+			<div class="flex2 centered">
 				<h2>Detalles del socio</h2>
-				<h3><?=$socio->titulo?></h3>
+				
+				<h3><?=$socio->nombre?></h3>
 
 				<p>
 					<b>DNI:</b>  	<?= $socio->dni ?></p>
@@ -46,6 +47,13 @@
 			
 				
 			</DIV>
+			<script src="/js/BigPicture.js"></script>
+			
+			<figure class="flex1 centrado p2">
+				<img src="<?=PROFILE_IMAGE_FOLDER.'/'.($socio->foto ?? DEFAULT_PROFILE_IMAGE)?>"
+				 	class="cover enlarge-image" alt="Foto de perfil de <?= $socio->nombre.' ',$socio->apellidos?>">				 		
+				 <figcaption>Foto de perfil de <?= $socio->nombre.' ',$socio->apellidos?> </figcaption>
+			</figure>
 		</section>
 		<section>
 			<h3>Prestamos del socio <b>"<?= $socio->nombre.' '.$socio->apellidos ?>"</b></h3>
