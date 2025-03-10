@@ -128,10 +128,12 @@
 								<td> <?=$role ?></td>
 								
 								<td class="centrado">	
-									
-									<a class="button-danger" href="/User/delete/<?=$user->id?>">Eliminar</a>
+									<form method="POST" action="/User/quitarol" enctype="multipart/form-data" class="no-border"> 
+										<input type="hidden" name="id" value="<?=$user->id ?>">
+										<input type="hidden" name="role" value="<?=$role?>">
+										<input type="submit" name="quitarrol" value="Quitar rol" class="button-danger">
 						
-										
+									</form>	
 								</td>
 							</tr>
 						<?php }?>

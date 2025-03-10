@@ -2,11 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Visualización de un socio - <?= APP_NAME ?></title>
+<title>Visualización de un usuario - <?= APP_NAME ?></title>
 
 <!-- META -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Ver socios - <?= APP_NAME ?>">
+<meta name="description" content="Ver usuairos - <?= APP_NAME ?>">
 <meta name="author" content="Jose Miguel Mora Perez">
 
 <!-- FAVICON -->
@@ -17,99 +17,73 @@
 	</head>
 <body>
 		<?= $template->login() ?>
-		<?= $template->header('Lista de socios') ?>
+		<?= $template->header('Lista de usuairos') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs(['Socios'=>'/Socio','Detalles'=>null]) ?>
+		<?= $template->breadCrumbs(['Usuarios'=>'/User','Detalles'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
 		<h1><?=APP_NAME?></h1>
 		<section id="detalles" class="flex-container gap2">
-			<div class="flex2 centered">
-				<h2>Detalles del socio</h2>
-				
-				<h3><?=$socio->nombre?></h3>
+	<div class="flex2 centered">	
+		
+			<input type="hidden" name="id" value="<?= $user->id ?>" >
+		<label for="displayname">Displayname</label>
+			<input type="text" name="displayname" value="<?= $user->displayname ?>" required disabled>
+			<br>
+			<label for="telefono">Telefono</label>
+			<input type="number" min="0" name="telefono" value="<?=$user->telefono?>" disabled>
+			<br>
+			<label for="email">Email</label>
+			<input type="email" name="email" value="<?=$user->email ?>" disabled >
+			<br>
+			
+			
+	<?php    //Los administradores podran ver las siguientes opciones
 
-				<p>
-					<b>DNI:</b>  	<?= $socio->dni ?></p>
-				<p>
-					<b>Nombre:</b>  	<?= $socio->nombre ?></p>
-				<p>
-					<b>Apellidos:</b>  	<?= $socio->apellidos ?></p>
-				<p>
-					<b>Población:</b>  	<?= $socio->poblacion ?></p>
-				<p>
-					<b>Telefono:</b>  	<?= $socio->telefono ?></p>
-				<p>
-					<b>Email:</b>  	<?= $socio->email ?></p>
-				<p >
-					<b>Alta:</b> 	<?= $socio->alta ?></p>
+		if ( Login::role ( 'ROLE_ADMIN' )) { ?>
+			<label for="password">Password</label>
+			<input type="password" name="password" value="<?=$user->password ?>" disabled>
+			<br>
+			<label for="alta">Alta</label>
+			<input type="text" name="alta" value="<?=  $user->created_at?>" disabled>
+			<br>
+			<label for="alta">Bloqueado</label>
+			<input type="text" name="blocked" value="<?= $user->blocked_at?>" disabled>
+			<br>
+			<label for="alta">Ultima actualización </label>
+			<input type="text" name="updated" value="<?=  $user->updated_at?>" disabled>
+			<br>
+			
+		<?php } ?>
+		
+		
+			<label>Rol</label>
+			<input type="text" name="updated" value="<?= arrayToString($user->roles, false, false)?>" disabled>
 			
 				
-			</DIV>
+				
+		
+	</div>
+		<div class="flex2">
 			<script src="/js/BigPicture.js"></script>
-			
-			<figure class="flex1 centrado p2">
-				<img src="<?=PROFILE_IMAGE_FOLDER.'/'.($socio->foto ?? DEFAULT_PROFILE_IMAGE)?>"
-				 	class="cover enlarge-image" alt="Foto de perfil de <?= $socio->nombre.' ',$socio->apellidos?>">				 		
-				 <figcaption>Foto de perfil de <?= $socio->nombre.' ',$socio->apellidos?> </figcaption>
+				<figure class="flex1 centrado p2">
+				<img src="<?=USER_IMAGE_FOLDER.'/'.($user->picture ?? DEFAULT_USER_IMAGE)?>"
+				 	class="cover enlarge-image" alt="Foto de perfil de <?= $user->displayname ?>">				 		
+				 <figcaption>Foto de perfil de <?= $user->displayname ?> </figcaption>
+		
+			<br>
+				
 			</figure>
-		</section>
-		<section>
-			<h3>Prestamos del socio <b>"<?= $socio->nombre.' '.$socio->apellidos ?>"</b></h3>
-			
-			<a class="button" href="/Prestamo/create/<?=$socio->id?>">Nuevo Prestamo</a>
-			
-			<table class="table w100 centered-block">
-			
-					<tr>
-						<th>ID</th><th>Socio</th><th>Titulo</th><th>Ejemplar</th><th>Limite</th><th>Devolución</th><th>Incidencias</th><th>Operaciones</th>
-					</tr>
-				<?php 
-					
-				
-				
-				foreach($prestamos as $prestamo ){ ?>
-						<tr>
-							<td> <?=$prestamo->id ?></td>
-							<td> <?=$prestamo->nombre.' '.$prestamo->apellidos ?></td>
-							<td> <?=$prestamo->titulo ?></td>
-							<td> <?=$prestamo->idejemplar ?></td>							
-							<td> <?=$prestamo->limite ?></td>
-							<td> <?=$prestamo->devolucion ?></td>
-							<td> <?=$prestamo->incidencia?></td>
-							<td class="centrado">	
-							<a class="button" href="/Prestamo/incidencia/<?=$prestamo->id?>">Inicidencia</a>
-							<?php
-							if ($prestamo->devolucion){ ?>
-										
-									<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->id?>">Eliminar</a>
-									<?php } else {?>
-								<a class="button-success" href="/Prestamo/devolucion/<?=$prestamo->id?>">Devolución</a>
-							<?php }?>	
-									
-							</td>
-						</tr>
-						<?php } ?>
-						
-						
-					<?php 	
-						if(!$prestamos) { 
-							echo "<p><b> El socio tiene prestamos vigentes </b></p>";
-					}?>	
-									
-				
-				
-			</table>
+			</div>
+		
 		</section>
 		
 		<div class="centrado">
 			<a class="button" onclick="history.back()">Atrás</a> 
-			<a class="button" href="/Socio/list">Lista de socios</a> 
-			<a class="button" href="/Socio/edit/<?=$socio->id?>">Editar</a>
-			<?php if(!$prestamos){ ?> 
-				<a class="button-danger" href="/Socio/delete/<?=$socio->id?>">Borrar</a>
-			<?php } ?>
+			<a class="button" href="/User/list">Lista de usuarios</a> 
+			<a class="button" href="/User/edit/<?=$user->id?>">Editar</a>
+			
 		</div>
 	</main>
 </body>

@@ -79,7 +79,21 @@ class UserController extends Controller{
     	//	carga la vista que los muestra
     	return view('user/list',['users'=>$users,'paginator'=>$paginator,'filtro' => $filtro]);
     }
+    /**
+     * Muestra los detalles del un usuario
+     * @param int $id identificador del usuario a mostrar
+     * @return ViewResponse
+     */
+    public function show(int $id=0) {
+    	
+    	
+    	$user = User::findOrFail($id, 'No se enontró el usuairo indicado'); //tb comprueba si no le ha llegado el ID
+    	
     
+    	// carga la vista y le pasa el socio recuperado
+    	return view ('user/show',['user'=>$user]);
+    	
+    }
     
     /**
      * Muestra el formulario de "nuevo usuario"
@@ -259,7 +273,7 @@ class UserController extends Controller{
     				$user->deleteObject();
     				//si hay imagen de la perfil, hay que borrarla
     				if($user->picture){
-    					File::remove('../public/'.PROFILE_IMAGE_FOLDER.'/'.$user->picture,true);
+    					File::remove('../public/'.USER_IMAGE_FOLDER.'/'.$user->picture,true);
     					
     				}
     				
@@ -375,6 +389,40 @@ class UserController extends Controller{
     		}catch (SQLException $e){
     			// prepara el mensaje de error
     			$mensaje = "No se pudo actualizar el usuario";
+    			
+    			if(str_contains($e->errorMessage(),'Duplicate entry'))
+    				$mensaje.="<br>Ya existe un usuario con ese <b>ID</b>.";
+    				Session::error($mensaje);
+    				
+    				if(DEBUG)
+    					throw new SQLException($e->getMessage());
+    					
+    					return redirect("/user/edit/$id");
+    		}
+    }
+    /** Agrega nuevos roles a los usuairos
+     */
+    public function quitarol(){
+    	
+    	if(!request()->has('quitarrol')) //si no llega el formulario ...
+    		throw new FormException ('No se recibieron datos');
+    		
+    		$id = intval(request()->post('id')); // recuperar el id via POST
+    		$user=User::findOrFail($id ,"No se ha encontrado el usuario.");
+    		$rolaquitar=request()->post('role');
+    		$user->removeRole($rolaquitar);
+    		
+    		//intenta actualizar el usuario
+    		try{
+    			$user->update();
+    			
+    			Session::success("ELiminado  rol $rolnuevo  usuario $user->displayname correctamente.");
+    			return redirect("/User/edit/$id#roles");
+    			
+    			// Si se produce un error al guardar el usuario..
+    		}catch (SQLException $e){
+    			// prepara el mensaje de error
+    			$mensaje = "No se pudo quitar el rol del usuario";
     			
     			if(str_contains($e->errorMessage(),'Duplicate entry'))
     				$mensaje.="<br>Ya existe un usuario con ese <b>ID</b>.";

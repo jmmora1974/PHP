@@ -108,9 +108,7 @@
 					<?php }?>					
 			</table>
 		</section>
-			<?php if(!$socio->hasAny('Prestamo')){ ?>
-					<p>El socio no tiene prestamos vigentes.</p>
-			<?php } ?>
+		
 			
 			
 		<div class="centrado m1">

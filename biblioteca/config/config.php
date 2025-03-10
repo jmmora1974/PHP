@@ -131,8 +131,8 @@ define('USER_ROLES', [
     'Supervisor'    => 'ROLE_SUPERVISOR',
     'Editor'        => 'ROLE_EDITOR',
     'Test'          => 'ROLE_TEST',
-    'API'           => 'ROLE_API',
-		
+	'API'           => 'ROLE_API',
+	'Bibliotecario' => 'ROLE_LIBRARIAN',
     'Estudiante'    => 'ROLE_STUDENT',
     'Bloqueado'     => 'ROLE_BLOCKED'
 ]);

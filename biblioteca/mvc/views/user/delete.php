@@ -2,7 +2,7 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
-		<title> <?=APP_NAME?> - Confirmación de borrado de socio - <?= APP_NAME ?></title>
+		<title> <?=APP_NAME?> - Confirmación de borrado de usuario - <?= APP_NAME ?></title>
 		
 		<!-- META -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,11 +26,14 @@
 	<h1><?=APP_NAME?></h1>
 	<h2>Borrar usuario</h2>
 	
-	<form method="POST" enctype="multipart/form-data" class="p2 m2 centered" action="/Socio/destroy">
+	<form method="POST" enctype="multipart/form-data" class="p2 m2 centered" action="/User/destroy">
 		<p>Confirmar el borrado del usuario:<b>"<?= $user->displayname?>"</b></p>
-		
+		<?php
+			//Enlace solo para el administrador
+		if(Login::role('ROLE_ADMIN')){?>
 		<input type="hidden" name="id" value="<?= $user->id ?>">
-				
+		<?php }?>
+				<input type="submit" class="button-danger" name="borrar" value="Borrar">
 	</form>
 	
 		<div class="centered">
