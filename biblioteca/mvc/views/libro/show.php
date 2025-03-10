@@ -52,10 +52,12 @@
 			<div class="centrado w100">
 			<a class="button" onclick="history.back()">Atrás</a> 
 			<a class="button" href="/Libro/list">Lista de libros</a> 
-			<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>
-			<?php if(!$libro->hasAny('Ejemplar')){ ?>
-				<a class="button-danger" href="/Libro/delete/<?=$libro->id ?>">Borrar</a>';
-			<?php }?>
+			<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
+				<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>
+					<?php  if(!$libro->hasAny('Ejemplar')){ ?>
+					<a class="button-danger" href="/Libro/delete/<?=$libro->id ?>">Borrar</a>';
+					<?php }?>
+				<?php } ?>
 				
 				
 		</div>
@@ -92,7 +94,10 @@
 			<div class="centrado">
 			<a class="button" onclick="history.back()">Atrás</a> 
 			<a class="button" href="/Libro/list">Lista de libros</a> 
-			<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>			
+			<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
+						<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>
+			<?php } ?>			
+			
 				
 		</div>
 		</section>
@@ -123,8 +128,10 @@
 		<div class="centrado">
 			<a class="button" onclick="history.back()">Atrás</a> 
 			<a class="button" href="/Libro/list">Lista de libros</a> 
-			<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>
-			
+			<?php  
+				if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
+						<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>
+				<?php } ?>
 				
 				
 		</div>

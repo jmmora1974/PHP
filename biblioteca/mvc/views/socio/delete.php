@@ -28,12 +28,12 @@
 	
 	<form method="POST" enctype="multipart/form-data" class="p2 m2 centered" action="/Socio/destroy">
 		<p>Confirmar el borrado del socio:<b>"<?= $socio->nombre.' '.$socio->apellidos ?>"</b></p>
-		
-		<input type="hidden" name="id" value="<?= $socio->id ?>">
-		 <?=  $socio->hasAny('Prestamo') ?			
-			'El socio dispone de prestamos. No se puede eliminar.':
-		 '<input type="submit" class="button-danger" name="borrar" value="Borrar">';
-		 ?>
+		<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
+				<input type="hidden" name="id" value="<?= $socio->id ?>">
+				 <?=  $socio->hasAny('Prestamo') ?			
+					'El socio dispone de prestamos. No se puede eliminar.':
+				 '<input type="submit" class="button-danger" name="borrar" value="Borrar">';
+			}?>
 		
 	</form>
 	

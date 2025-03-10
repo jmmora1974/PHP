@@ -35,31 +35,7 @@
      					<li><a href='/User/create'>Nuevo usuario</a></li>
 					</ul>
        			</section>
-       			<section class="flex1">
-       				<h3><b>Operaciones con socios</b></h3>
-       				<ul>
-       					<li><a href='/Socio'>Socios</a></li>
-     					<li><a href='/Socio/create'>Nuevo Socio</a></li>
-     				</ul>
-       			</section>
-       		</div>
-       		<div class="flex-container gap2">
-       		<section class="flex1">
-       			<h3><b>Operaciones con temas</b></h3>
-       			<ul>
-       				<li><a href='/Tema'>Temas</a></li>
-        			<li><a href='/Tema/create'>Nuevo Tema</a></li>
-       	
-       			</ul>
-       		</section>
-       		<section class="flex1">
-       			<h3><b>Operaciones con Prestamos</b></h3>
-       			<ul>
-       				<li><a href='/Prestamo'>Prestamos</a></li>
-        			<li><a href='/Prestamo/create'>Nuevo Prestamo</a></li>
-       	
-       			</ul>
-       		</section>
+       			
        		</div>
        		
 			</main>

@@ -54,7 +54,9 @@
 		
 		
 		<div class="centered mt2">
+		<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
 				<input type="submit" class="button" name="guardar" value="Guardar">
+		<?php }?>
 				<input type="reset" class="button" value="Reset">	
 		</div>
 		</form>

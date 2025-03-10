@@ -41,10 +41,14 @@
 		<div class="centrado">
 			<a class="button" onclick="history.back()">Atrás</a> 
 			<a class="button" href="/Tema/list">Lista de temas</a> 
-			<a class="button" href="/Tema/edit/<?=$tema->id?>">Editar</a>
-			<?php if(!$tema->hasAny('TemaLibro')){ ?> 
-				<a class="button-danger" href="/Tema/delete/<?=$tema->id?>">Borrar</a>
-			<?php } ?>
+			<?php  
+				if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
+					<a class="button" href="/Tema/edit/<?=$tema->id?>">Editar</a>
+					<?php 
+					if(!$tema->hasAny('TemaLibro')){ ?>
+						<a class="button-danger" href="/Tema/delete/<?=$tema->id?>">Borrar</a>
+				<?php } 
+				} ?>
 		</div>
 		<section>
 			<h2>Libros del tema <b>"<?= $tema->tema?>"</b></h2>

@@ -103,6 +103,7 @@ class TemaController extends Controller{
 	//OPCION AUTOMATICA
 			try{
 				//guarda el tema en la base de datos a partir de los datosPOST
+				//$tema->saneate(); //sanea las entradas.
 				$tema = Tema::create(request()->posts()); //mo es necesario en la  1.8.0
 				
 				
@@ -163,6 +164,7 @@ class TemaController extends Controller{
 		try{
 			//$tema->update(); No es necesario en la 1.8.0 
 			// ya el metodo create ya actualiza si manda el 2ºparametro
+			//$tema->saneate(); //sanea las entradas.
 			$tema= Tema::create(request()->posts() ,$id);
 			
 			Session::success("Actualización del tema $tema->tema   correcta.");

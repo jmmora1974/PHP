@@ -41,8 +41,10 @@
 			<a class="button" onclick="history.back()">Atrás</a>
 			<a class="button" href="/Tema/list">Lista de temas</a>
 			<a class="button" href="/Tema/show/<?=$tema->id?>">Detalles</a>
-			<?php if($tema->hasAny('TemaLibro')){ ?> 
-			<a class="button" href="/Tema/edit/<?=$tema->id?>">Edición</a>
+			<?php if($tema->hasAny('TemaLibro')){ ?>
+				<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?> 
+					<a class="button" href="/Tema/edit/<?=$tema->id?>">Edición</a>
+				<?php } ?>
 			<?php } else{?>
 			<p>Existen libros de este tema</p>
 			<?php }?>

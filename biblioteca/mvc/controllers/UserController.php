@@ -20,7 +20,7 @@ class UserController extends Controller{
      */
     public function home():Response{
         
-    	Auth::check(); // autorización(solo usuarios identificados
+    	Auth::check(); // autorización, solo usuarios identificados
 		
     	//carga la vista home y le pasa el usuario idenntificado
     	// el usuario se puede recuperar mediante el metodo Login::user()
@@ -35,7 +35,8 @@ class UserController extends Controller{
      * @return ViewResponse
      */
     public function index(){
-    //	Auth::admin(); // autorización(solo administradores)
+   		
+    	Auth::admin(); // autorización(solo administradores)
     	return $this->list();
     }
     
@@ -47,7 +48,7 @@ class UserController extends Controller{
      */
     public function list(int $page=1){
     	
-    	//Auth::admin(); // autorización(solo administradores)
+    	Auth::admin(); // autorización(solo administradores)
     	
     	//analiza si hay filtros, pone uno nuevo o quit el existente
     	$filtro = Filter::apply('usuarios');
@@ -155,6 +156,7 @@ class UserController extends Controller{
     			$user->addRole('ROLE_USER', request()->post('roles'));
     			
     			try{
+    				//$user->saneate(); //sanea las entradas.
     				$user->save();  // Guarda el usuario
     				
     				$file = request()->file(  //recupera la foto
@@ -165,6 +167,7 @@ class UserController extends Controller{
     				//si hay fichero, lo guardamos y actualziamos eel campo 'picture'
     				if($file){
     					$user->picture = $file->store('../public/'.USER_IMAGE_FOLDER,'user_');
+    					//$user->saneate(); //sanea las entradas.
     					$user->update();  //actualiza el usuario en la BDD para añadir la foto
     				}
     				Session::success("Nuevo usuario $user->displayname creado con éxito");
@@ -205,7 +208,7 @@ class UserController extends Controller{
      *
      */
     public function edit(int $id=0){
-    	Auth::admin(); //solo administradores
+    	Auth::admin(); // Solo administradores
     	// busca el usuario con ese ID
     	$user = User::findOrFail($id,'No se encontró el usuario.');
     	

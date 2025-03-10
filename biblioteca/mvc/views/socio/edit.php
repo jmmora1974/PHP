@@ -50,8 +50,10 @@
 				<br>
 				
 			<div class="centered mt2 ">
+			<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
 				<input type="submit" class="button" name="actualizar" value="Actualizar">
-				<input type="reset" class="button" value="Reset" onclick="<?php redirect('/Socio/edit/$socio->id');?>">	
+				<input type="reset" class="button" value="Reset" onclick="<?php redirect('/Socio/edit/$socio->id');?>">
+				<?php }?>	
 			</div>
 		</form>
 	</div>
@@ -67,11 +69,16 @@
 				<form method="POST" action="/Socio/changefotoprofile" enctype="multipart/form-data"  class="no-border" id="formfoto" name="formfoto">
 					<input type="hidden" name="id" value="<?= $socio->id?>">
 						<label for="foto">Foto perfil</label>
-			<input type="file" name="foto" accept="image/*" id="file-with-preview" value="<?= old('alta', $socio->foto)?>">
-					<input type="submit" class="button" name="cambiar" value="Cambiar foto perfil">
-					<?php if($socio->foto)
-						echo '<input type="submit" class="button-danger" name="borrar" value="Eliminar foto perfil">';
-						?>
+					
+			<?php  if( Login::role('ROLE_LIBRARIAN')|| Login::user()->email == $socio->email) {// autorización(solo bibliotecarios) ?>
+							<input type="file" name="foto" accept="image/*" id="file-with-preview" value="<?= old('alta', $socio->foto)?>">
+							
+							<input type="submit" class="button" name="cambiar" value="Cambiar foto perfil">
+							<?php if($socio->foto)
+								echo '<input type="submit" class="button-danger" name="borrar" value="Eliminar foto perfil">';
+								?>
+			<?php } ?>
+			
 				</form>
 			</figure>
 			</div>
@@ -95,14 +102,16 @@
 							<td> <?=$prestamo->limite ?></td>
 							<td> <?=$prestamo->devolucion ?></td>
 							<td> <?=$prestamo->incidencia?></td>
-							<td class="centrado">	
+							<td class="centrado">
+					<?php  
+					if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
 							<a class="button" href="/Prestamo/incidencia/<?=$prestamo->id?>">Inicidencia</a>
 							<?php
 							if ($prestamo->devolucion){ ?>
 										
 									<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->id?>">Eliminar</a>
 									<?php }?>
-									
+						<?php }?>			
 							</td>
 						</tr>
 					<?php }?>					
@@ -113,13 +122,16 @@
 			
 		<div class="centrado m1">
 			<a class="button" onclick="history.back()">Atrás</a>
+			<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
 			<a class="button" href="/Socio/list">Lista de socios</a>
-			<a class="button" href="/Socio/show/<?=$socio->id?>">Detalles</a>
-			<?php if(!$socio->hasAny('Prestamo')){ ?>
-					<a class="button-danger" href='/socio/delete/<?=$socio->id?>'>
-						Borrado <img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"> 
-					</a>
-			<?php } ?>
+						<a class="button" href="/Socio/show/<?=$socio->id?>">Detalles</a>
+			
+						<?php if(!$socio->hasAny('Prestamo')){ ?>
+							<a class="button-danger" href='/socio/delete/<?=$socio->id?>'>
+								Borrado <img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"> 
+							</a>
+						<?php } 
+				}?>
 					
 		</div>		
 	

@@ -82,12 +82,15 @@
 				<td><?=$tema->descripcion?></td>
 				<td class="centrado">
 					<a class="button" href='/tema/show/<?=$tema->id?>'>
-						<img src="/images/icons/show.png" alt="Ver" style="width:20px;height:20px;"></a>
-					<a class="button" href='/tema/edit/<?=$tema->id?>'><img src="/images/icons/edit.png" alt="Editar" style="width:20px;height:20px;"></a>
-					<?php  if(!$tema->hasAny('TemaLibro')){ ?>
-						<a class="button-danger" href='/tema/delete/<?=$tema->id?>'><img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"></a>
+					<img src="/images/icons/show.png" alt="Ver" style="width:20px;height:20px;"></a>
+					<?php  
+					if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
+						
+						<a class="button" href='/tema/edit/<?=$tema->id?>'><img src="/images/icons/edit.png" alt="Editar" style="width:20px;height:20px;"></a>
+							<?php  if(!$tema->hasAny('TemaLibro')){ ?>
+									<a class="button-danger" href='/tema/delete/<?=$tema->id?>'><img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"></a>
+							<?php }?>
 					<?php }?>
-					
 				</td>
 			</tr>
 			

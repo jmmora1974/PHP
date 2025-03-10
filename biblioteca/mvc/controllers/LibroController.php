@@ -119,7 +119,11 @@ class LibroController extends Controller{
 		//OPCION AUTOMATICA
 				try{
 					//guarda el libro en la base de datos a partir de los datosPOST
+				
 					$libro = Libro::create(request()->posts()); //no es necesario en la  1.8.0
+					//$libro->saneate(); //sanea las entradas.
+					$libro->update();
+					
 					$libro->addTema($idtema); // Le pone el tema principal
 					
 					//recupera la portada como objeto UploadedFile (o null si no llega)
@@ -301,6 +305,7 @@ class LibroController extends Controller{
 			try{
 				//$libro->update(); No es necesario en la 1.8.0 
 				// ya el metodo create ya actualiza si manda el 2ºparametro
+				//$libro->saneate(); //sanea las entradas.
 				$libro= Libro::create(request()->posts() ,$id);
 				//libro->update(); //actualiza solo los datos sin imagen de portada
 				

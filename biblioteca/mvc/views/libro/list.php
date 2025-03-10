@@ -96,12 +96,13 @@
 				<td class="centrado">
 					<a class="button" href='/libro/show/<?=$libro->id?>'>
 						<img src="/images/icons/show.png" alt="Ver" style="width:20px;height:20px;"></a>
-					<a class="button" href='/libro/edit/<?=$libro->id?>'><img src="/images/icons/edit.png" alt="Editar" style="width:20px;height:20px;"></a>
-					<?php if(!$libro->ejemplares){ ?>
-						<a class="button-danger" href='/libro/delete/<?=$libro->id?>'><img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"></a>
-					<?php } ?>
-					
-				</td>
+					<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
+							<a class="button" href='/libro/edit/<?=$libro->id?>'><img src="/images/icons/edit.png" alt="Editar" style="width:20px;height:20px;"></a>
+							<?php if(!$libro->ejemplares){ ?>
+							<a class="button-danger" href='/libro/delete/<?=$libro->id?>'><img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"></a>
+								<?php } 
+      						}?>
+									</td>
 			</tr>
 			
 			<?php } ?>

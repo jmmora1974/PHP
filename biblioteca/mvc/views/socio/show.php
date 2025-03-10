@@ -57,8 +57,11 @@
 		</section>
 		<section>
 			<h3>Prestamos del socio <b>"<?= $socio->nombre.' '.$socio->apellidos ?>"</b></h3>
-			
-			<a class="button" href="/Prestamo/create/<?=$socio->id?>">Nuevo Prestamo</a>
+		
+		<?php  // autorización(solo bibliotecarios 
+			if( Login::role('ROLE_LIBRARIAN')) { ?>
+				<a class="button" href="/Prestamo/create/<?=$socio->id?>">Nuevo Prestamo</a>
+		<?php }?>
 			
 			<table class="table w100 centered-block">
 			
@@ -78,15 +81,20 @@
 							<td> <?=$prestamo->limite ?></td>
 							<td> <?=$prestamo->devolucion ?></td>
 							<td> <?=$prestamo->incidencia?></td>
-							<td class="centrado">	
-							<a class="button" href="/Prestamo/incidencia/<?=$prestamo->id?>">Inicidencia</a>
-							<?php
-							if ($prestamo->devolucion){ ?>
-										
-									<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->id?>">Eliminar</a>
-									<?php } else {?>
-								<a class="button-success" href="/Prestamo/devolucion/<?=$prestamo->id?>">Devolución</a>
-							<?php }?>	
+							<td class="centrado">
+							
+							<?php  // autorización(solo bibliotecarios) 
+							  if( Login::role('ROLE_LIBRARIAN')|| Login::user()->email == $socio->email) { ?>
+								
+									<a class="button" href="/Prestamo/incidencia/<?=$prestamo->id?>">Inicidencia</a>
+									<?php
+									if ($prestamo->devolucion){ ?>
+												
+											<a class="button-danger" href="/Prestamo/delete/<?=$prestamo->id?>">Eliminar</a>
+											<?php } else {?>
+										<a class="button-success" href="/Prestamo/devolucion/<?=$prestamo->id?>">Devolución</a>
+									<?php }
+							  }?>	
 									
 							</td>
 						</tr>
@@ -105,11 +113,14 @@
 		
 		<div class="centrado">
 			<a class="button" onclick="history.back()">Atrás</a> 
+		<?php  // autorización(solo bibliotecarios 
+		if( Login::role('ROLE_LIBRARIAN')) { ?>
 			<a class="button" href="/Socio/list">Lista de socios</a> 
 			<a class="button" href="/Socio/edit/<?=$socio->id?>">Editar</a>
 			<?php if(!$prestamos){ ?> 
 				<a class="button-danger" href="/Socio/delete/<?=$socio->id?>">Borrar</a>
-			<?php } ?>
+			<?php } 
+		}?>
 		</div>
 	</main>
 </body>

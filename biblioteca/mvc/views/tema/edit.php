@@ -43,7 +43,9 @@
 		?>
 			
 			<div class="centered mt2">
+			<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
 				<input type="submit" class="button" name="actualizar" value="Actualizar">
+			<?php }?>
 				<input type="reset" class="button" value="Reset" onclick="<?php redirect('/Tema/edit/$tema->id');?>">	
 			</div>
 		</div>
@@ -51,11 +53,12 @@
 			<a class="button" onclick="history.back()">Atrás</a>
 			<a class="button" href="/Tema/list">Lista de temas</a>
 			<a class="button" href="/Tema/show/<?=$tema->id?>">Detalles</a>
-			<?= !$tema->hasAny('TemaLibro') ?
-			"<a class='button-danger' href='/tema/delete/<?=$tema->id?>'>Borrado <img src='/images/icons/delete.png' alt='Borrar' style='width:20px;height:20px;'>
-			</a>" : '';		
-			
-			?>
+			<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
+					<?= !$tema->hasAny('TemaLibro') ?
+					"<a class='button-danger' href='/tema/delete/<?=$tema->id?>'>Borrado <img src='/images/icons/delete.png' alt='Borrar' style='width:20px;height:20px;'>
+					</a>" : '';		
+					
+					}?>
 			
 		
 					
