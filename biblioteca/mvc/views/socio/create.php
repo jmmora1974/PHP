@@ -29,7 +29,8 @@
 	<form method="POST" enctype="multipart/form-data" action="/socio/store">
 		<div class="flex2">
 			<label for="dni">DNI</label>
-			<input type="text" name="dni" value="<?= old('dni')?>" required>
+			<input type="text" name="dni" value="<?= old('dni')?>" pattern="[XYZ\d]\d{7}[A-Z]$" 
+						title="DNI- 8 dígitos y una letra, NIF Letra 7 digitos Letra"    required>
 			<br>
 			<label for="nombre">Nombre</label>
 			<input type="text" name="nombre" value="<?= old('nombre')?>" required>
@@ -38,13 +39,13 @@
 			<input type="text" name="apellidos" value="<?= old('apellidos')?>" >
 			<br>
 			<label for="poblacion">Poblacion</label>
-			<input type="text" name="poblacion" value="<?= old('poblacion')?>" >
+			<input type="text" name="poblacion" value="<?= old('poblacion')?>" required >
 			<br>
 			<label for="telefono">Telefono</label>
-			<input type="number" min="0" name="telefono" value="<?=old('telefono')?>">
+			<input type="number" min="0" name="telefono" value="<?=old('telefono')?>" required>
 			<br>
 			<label for="email">Email</label>
-			<input type="email" name="email" value="<?=old('email')?>">
+			<input type="email" name="email" value="<?=old('email')?>" required>
 			<br>
 			<label for="foto">Foto perfil</label>
 			<input type="file" name="foto" accept="image/*" id="file-with-preview" value="<?= old('alta', $socio->foto)?>">

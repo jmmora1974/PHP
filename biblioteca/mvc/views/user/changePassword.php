@@ -2,11 +2,11 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
-		<title>Edición de usuario - <?= APP_NAME ?></title>
+		<title>Cambio contraseña de usuario - <?= APP_NAME ?></title>
 		
 		<!-- META -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Edición de usuario  - <?= APP_NAME ?>">
+		<meta name="description" content="Cambio contraseña de usuario - <?= APP_NAME ?>">
 		<meta name="author" content="Jose Miguel Mora Perez">
 		
 		<!-- FAVICON -->
@@ -17,61 +17,37 @@
 	</head>
 	<body>
 		<?= $template->login() ?>
-		<?= $template->header('Edición de usuario') ?>
+		<?= $template->header('Cambio contraseña de usuario') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs(['Usuarios'=>'/User','Edicion'=>null]) ?>
+		<?= $template->breadCrumbs(['Usuarios'=>'/User','Cambio contraseña'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
 	<?php 	Auth::check(); // autorización(solo usuarios identificados ?>
 	
 	<h1><?=APP_NAME?></h1>
-	<h2>Edición del usuairo: <b>"<?= $user->displayname?>"</b></h2>
+	<h2>Cambio contraseña de  <b>"<?= $user->displayname?>"</b></h2>
 	<section id="detalles" class="flex-container gap2">
 	<div class="flex2 centered">	
-		<form method="POST" enctype="multipart/form-data" action="/User/update">
+		<form method="POST" enctype="multipart/form-data" action="/User/changePassword">
 			<input type="hidden" name="id" value="<?= $user->id ?>" >
-		<label for="displayname">Displayname</label>
-			<input type="text" name="displayname" value="<?= $user->displayname ?>" required>
-			<br>
-			<label for="telefono">Telefono</label>
-			<input type="number" min="0" name="telefono" value="<?=$user->phone?>">
-			<br>
-			<label for="email">Email</label>
-			<input type="email" name="email" value="<?=$user->email ?>">
-			<br>
-			
-			
-	<?php    //Los administradores podran ver las siguientes opciones
+					
 
-		if ( Login::role ( 'ROLE_ADMIN' )) { ?>
-			<label for="password">Password</label>
-			<input type="password" name="password" value="<?=$user->password ?>">
+			<label for="oldpassword">Contraseña antigua:</label>
+			<input type="password" name="oldpassword">
 			<br>
-			<label for="alta">Alta</label>
-			<input type="text" name="alta" value="<?=  $user->created_at?>" disabled>
+			<label for="newpassword">Nueva contraseña:</label>
+			<input type="password" name="newpassword" >
 			<br>
-			<label for="alta">Bloqueado</label>
-			<input type="text" name="blocked" value="<?= $user->blocked_at?>" disabled>
-			<br>
-			<label for="alta">Ultima actualización </label>
-			<input type="text" name="updated" value="<?=  $user->updated_at?>" disabled>
+			<label for="repeatpassword">Repetir contraseña:</label>
+			<input type="password" name="repeatpassword" >
 			<br>
 			
-		<?php } ?>
 		
-		
-			<label>Rol</label>
-			<input type="text" name="updated" value="<?= arrayToString($user->roles, false, false)?>" disabled>
-			
-				
 				
 			<div class="centered mt2 ">
-				<input type="submit" class="button" name="actualizar" value="Actualizar">
-				<input type="reset" class="button" value="Reset" onclick="<?php redirect('/User/edit/$user->id');?>">	
-					<a class="button-danger" href='/user/delete/<?=$user->id?>'>
-						Borrado <img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"> 
-					</a>
+				<input type="submit" class="button" name="cambiar" value="Cambiar">
+				
 			</div>
 		</form>
 	</div>
@@ -83,16 +59,7 @@
 				 <figcaption>Foto de perfil de <?= $user->displayname ?> </figcaption>
 		
 			<br>
-				<!-- Botón de eliminar la portada (sin cambiar nada mas) -->
-				<form method="POST" action="/User/changeuserfoto" enctype="multipart/form-data"  class="no-border">
-					<input type="hidden" name="id" value="<?= $user->id?>">
-						<label for="picture">Foto perfil</label>
-			<input type="file" name="picture" accept="image/*" id="file-with-preview" value="<?= old('picture', $user->picture)?>">
-					<input type="submit" class="button" name="cambiar" value="Cambiar foto perfil">
-					<?php if($user->picture)
-						echo '<input type="submit" class="button-danger" name="borrar" value="Eliminar foto perfil">';
-						?>
-				</form>
+				
 			</figure>
 			</div>
 		

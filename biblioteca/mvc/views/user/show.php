@@ -32,7 +32,7 @@
 			<input type="text" name="displayname" value="<?= $user->displayname ?>" required disabled>
 			<br>
 			<label for="telefono">Telefono</label>
-			<input type="number" min="0" name="telefono" value="<?=$user->telefono?>" disabled>
+			<input type="number" min="0" name="telefono" value="<?=$user->phone?>" disabled>
 			<br>
 			<label for="email">Email</label>
 			<input type="email" name="email" value="<?=$user->email ?>" disabled >

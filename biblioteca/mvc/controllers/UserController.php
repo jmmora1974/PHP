@@ -20,7 +20,7 @@ class UserController extends Controller{
      */
     public function home():Response{
         
-    	Auth::check(); // autorización(solo usuarios identificados
+    	//Auth::check(); // autorización(solo usuarios identificados
 		
     	//carga la vista home y le pasa el usuario idenntificado
     	// el usuario se puede recuperar mediante el metodo Login::user()
@@ -35,6 +35,7 @@ class UserController extends Controller{
      * @return ViewResponse
      */
     public function index(){
+    //	Auth::admin(); // autorización(solo administradores)
     	return $this->list();
     }
     
@@ -45,6 +46,9 @@ class UserController extends Controller{
      *
      */
     public function list(int $page=1){
+    	
+    	//Auth::admin(); // autorización(solo administradores)
+    	
     	//analiza si hay filtros, pone uno nuevo o quit el existente
     	$filtro = Filter::apply('usuarios');
     	
@@ -86,6 +90,7 @@ class UserController extends Controller{
      */
     public function show(int $id=0) {
     	
+    	Auth::admin(); // autorización(solo administradores)
     	
     	$user = User::findOrFail($id, 'No se enontró el usuairo indicado'); //tb comprueba si no le ha llegado el ID
     	
@@ -102,6 +107,8 @@ class UserController extends Controller{
      */
     public function create(){
     	
+    	Auth::admin(); // autorización(solo administradores)
+    	
     	//Operacion solamente para el administrador
     	//equivale a Auth::role('ROLE_ADMIN') pero es mas corto
     	//Auth::admin();
@@ -115,7 +122,7 @@ class UserController extends Controller{
      * @ return RedirectResponse
      */
     public function store(){
-    	
+    	Auth::admin(); // autorización(solo administradores)
     	//Esta operación solamente la puede hacer el administrador
     	Auth::admin();
     	
@@ -198,7 +205,7 @@ class UserController extends Controller{
      *
      */
     public function edit(int $id=0){
-    	
+    	Auth::admin(); // autorización(solo administradores)
     	// busca el usuario con ese ID
     	$user = User::findOrFail($id,'No se encontró el usuario.');
     	
@@ -210,7 +217,7 @@ class UserController extends Controller{
     /** Actualzia la bdd con los datos POST del formulario
      */
     public function update(){
-    	
+    	Auth::admin(); // autorización(solo administradores)
     	if(!request()->has('actualizar')) //si no llega el formulario ...
     		throw new FormException ('No se recibieron datos');
     		
@@ -250,7 +257,7 @@ class UserController extends Controller{
      * @return ViewResponse
      */
     public function delete(int $id=0){
-    	
+    	Auth::admin(); // autorización(solo administradores)
     	$user = User::findOrFail($id, "No existe el usuario.");
     	
     	return view('user/delete',['user'=> $user]);
@@ -260,6 +267,7 @@ class UserController extends Controller{
      * @return RedirectResponse
      */
     public function destroy(){
+    	Auth::admin(); // autorización(solo administradores)
     	//comprueba que le llega el formulario de confirmación
     	if(!request()->has('borrar'))
     		throw new FormException("No se recibió la confirmación");
@@ -304,6 +312,7 @@ class UserController extends Controller{
      * @return RedirectResponse
      */
     public function changeuserfoto(){
+    	Auth::check(); // autorización(solo usuarios registrdos)
     	//Comprueba que la petición venga del formulario
     	if((!request()->has('borrar'))
     			&& (!request()->has('cambiar')))
@@ -369,12 +378,13 @@ class UserController extends Controller{
     /** Agrega nuevos roles a los usuairos
      */
     public function agregarrol(){
-    	
+    	Auth::admin(); // autorización(solo administradores)
     	if(!request()->has('agregarrol')) //si no llega el formulario ...
     		throw new FormException ('No se recibieron datos');
     		
     		$id = intval(request()->post('id')); // recuperar el id via POST
     		$user=User::findOrFail($id ,"No se ha encontrado el usuario.");
+    		
     		$rolnuevo=request()->post('roles');
     		$user->addRole($rolnuevo);
     		
@@ -400,15 +410,16 @@ class UserController extends Controller{
     					return redirect("/user/edit/$id");
     		}
     }
-    /** Agrega nuevos roles a los usuairos
+    /** Elimina roles a los usuarios
      */
     public function quitarol(){
-    	
+    	Auth::admin(); // autorización(solo administradores)
     	if(!request()->has('quitarrol')) //si no llega el formulario ...
     		throw new FormException ('No se recibieron datos');
     		
     		$id = intval(request()->post('id')); // recuperar el id via POST
     		$user=User::findOrFail($id ,"No se ha encontrado el usuario.");
+    		
     		$rolaquitar=request()->post('role');
     		$user->removeRole($rolaquitar);
     		
@@ -434,6 +445,81 @@ class UserController extends Controller{
     					return redirect("/user/edit/$id");
     		}
     }
+    
+    /** Agrega nuevos roles a los usuarios
+     * 
+     * @return ViewResponse
+     */
+    public function cambiaContrasenya(){
+    	
+    	
+    	
+    	Auth::check(); // autorización(solo usuarios identificados
+    	
+    	//carga la vista home y le pasa el usuario idenntificado
+    	// el usuario se puede recuperar mediante el metodo Login::user()
+    	return view('user/changePassword', ['user'=>Login::user()]);
+    
+    	
+    }
+    
+    /** Agrega nuevos roles a los usuarios
+     */
+    public function changePassword(){
+    	Auth::check(); // autorización(solo usuarios identificados 
+    	
+    	if(!request()->has('cambiar')) //si no llega el formulario ...
+    		throw new FormException ('No se recibieron datos');
+    		
+    		$id = intval(request()->post('id')); // recuperar el id via POST
+    		$user=User::findOrFail($id ,"No se ha encontrado el usuario.");
+    		
+    		//recupera el password y lo encriptaa
+    		//en este caso no lo cogemos de la Request, poruqe el saneamiento
+    		//podria provocar que el password cambiara(y el usuario no podria  hacer login)
+    		//no es peligroso porque el encriptarlo no afectarán los caracteres especiales
+    		$oldpassword=md5($_POST['oldpassword']);
+    		$newpass =md5($_POST['newpassword']); 
+    		$repeatpass =md5($_POST['repeatpassword']);
+    		
+    		//Comprueba que los dos passwords nuevos coinciden
+    		if ($user->password != $oldpassword){
+    			Session::warning ("Las contraseña antigua no es correcta.");
+    			return  view("/user/changePassword");
+    		}
+    		
+    		//Comprueba que los dos passwords nuevos coinciden
+    		if ($newpass != $repeatpass){
+    			Session::warning ("Las claves nuevas no coinciden.");
+    			return redirect("history.back()");
+    		}
+    		
+    		$user->password = $newpass;
+    		
+    		//intenta actualizar el usuario 
+    		try{
+    			$user->update();
+    			
+    			Session::success("Cambiada la contraseña del usuario $user->displayname correctamente.");
+    			return redirect("/User/home");
+    			
+    			// Si se produce un error al guardar el usuario..
+    		}catch (SQLException $e){
+    			// prepara el mensaje de error
+    			$mensaje = "No se pudo cambiar la contraseña.";
+    			
+    			if(str_contains($e->errorMessage(),'Duplicate entry'))
+    				$mensaje.="<br>Ya existe un usuario con ese <b>ID</b>.";
+    				Session::error($mensaje);
+    				
+    				if(DEBUG)
+    					throw new SQLException($e->getMessage());
+    					
+    					return redirect("/user/home");
+    		}
+    }
+    
+    
     
 }
 

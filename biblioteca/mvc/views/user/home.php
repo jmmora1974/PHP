@@ -24,6 +24,10 @@
 		<?= $template->acceptCookies() ?>
 		
 		<main>
+		<?php 
+			//	comprobamos que el usuario está loginado
+		//Auth::check(); // autorización(solo usuarios identificados
+		?>
     		<section class="flex-container" id="user-data">
     			<div class="flex2">
     				<h2>"Home de <?= $user->displayname?>"</h2>
@@ -33,6 +37,7 @@
     				<p><b>Telefono:</b> 			<?= $user->phone ?></p>
     				<p><b>Fecha de alta:</b> 		<?= $user->create_at ?></p>
     				<p><b>Última modificación:</b> 	<?= $user->updated_at ?? '--'?></p>
+    				<a class="button" href="/User/cambiaContrasenya">Cambiar contraseña</a>
     			</div>
     			<!-- Esta parte solamente si creais la carpeta para las fotos de perfil  -->
     			<figure class="flex1 centrado">
