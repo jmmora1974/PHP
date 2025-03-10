@@ -11,6 +11,7 @@
  *   @since v1.3.0
  *   @since v1.4.2 añadido el método all() que retorna un array con todas las cabeceras recibidas
  */
+#[\AllowDynamicProperties]
 class HttpHeader{
     
     /**

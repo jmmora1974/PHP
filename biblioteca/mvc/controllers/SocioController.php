@@ -118,7 +118,7 @@ class SocioController extends Controller{
 				$socio->update();
 				
 				//flashea un mensaje de exito en sesion
-				Session::success("Guardado del socio $socio->nombre $socio->apellido correcto.");
+				Session::success("Guardado del socio $socio->nombre $socio->apellidos correcto.");
 				
 				//redirecciona a los detalles del nuevo socio
 				return redirect("/Socio/show/$socio->id");
@@ -289,7 +289,7 @@ class SocioController extends Controller{
 							['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
 						)){
 					$socio->foto=$file->store('../public/'.PROFILE_IMAGE_FOLDER, 'profile_');
-					echo "cambiada foto $socio->foto";
+					
 				} else {
 					if(request()->has('cambiar')){
 						 Session::warning("Debes seleccionar la foto que deseas subir.");

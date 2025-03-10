@@ -3,12 +3,24 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
 		<list key="findhistory">
+			<item value="apelli"/>
+			<item value="user_image"/>
+			<item value="menu"/>
+			<item value="login"/>
+			<item value="user"/>
+			<item value="boo"/>
+			<item value="delete"/>
+			<item value="deñete"/>
 			<item value="drop"/>
-			<item value="dest"/>
-			<item value="des"/>
-			<item value="update"/>
-			<item value="create"/>
+			<item value="stor"/>
+			<item value="ejemp"/>
+			<item value="ejem`ñ"/>
+			<item value="libro"/>
 			<item value="upda"/>
+			<item value="dest"/>
+		</list>
+		<list key="replacehistory">
+			<item value="socio"/>
 		</list>
 	</section>
 </section>

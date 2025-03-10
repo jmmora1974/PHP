@@ -34,4 +34,17 @@ class PanelController extends Controller{
 		return view('panel/panel',[]);
 		
 	}
+	/**
+	 * Panel de administrador
+	 *Retorna la vista con las operaciones del administrador
+	 *
+	 * @return ViewResponse
+	 *
+	 */
+	public function admin(){
+		
+		//	carga la vista que los muestra
+		return view('panel/admin',[]);
+		
+	}
 }

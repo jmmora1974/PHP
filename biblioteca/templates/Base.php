@@ -164,13 +164,13 @@ class Base implements TemplateInterface{
         
 	    //Enlaces restringidos
 	    //Enlaces para bibliotecarios
-        if(Login::role('ROLE_:LIBRARIAN')){
+        if(Login::role('ROLE_LIBRARIAN')){
         	//$html .=   "<li><a href='/Prestamo'>Prestamos</a></li>";
     	       $html .=   "<li><a href='/Panel'>Panel del bibliotecario</a></li>";
         }
         
         //Enlace solo para el administrador
-        if(Login::role('ROLE_:ADMIN')){
+        if(Login::role('ROLE_ADMIN')){
   			$html .=   "<li><a href='/Panel/admin'>Panel administrador</a></li>";
         }
         
