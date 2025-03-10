@@ -20,7 +20,7 @@ class UserController extends Controller{
      */
     public function home():Response{
         
-    	//Auth::check(); // autorización(solo usuarios identificados
+    	Auth::check(); // autorización(solo usuarios identificados
 		
     	//carga la vista home y le pasa el usuario idenntificado
     	// el usuario se puede recuperar mediante el metodo Login::user()
@@ -107,11 +107,11 @@ class UserController extends Controller{
      */
     public function create(){
     	
-    	Auth::admin(); // autorización(solo administradores)
+    
     	
     	//Operacion solamente para el administrador
     	//equivale a Auth::role('ROLE_ADMIN') pero es mas corto
-    	//Auth::admin();
+    	Auth::admin();
     	
     	return view ('user/create');
     }
@@ -122,7 +122,7 @@ class UserController extends Controller{
      * @ return RedirectResponse
      */
     public function store(){
-    	Auth::admin(); // autorización(solo administradores)
+    	
     	//Esta operación solamente la puede hacer el administrador
     	Auth::admin();
     	
@@ -205,7 +205,7 @@ class UserController extends Controller{
      *
      */
     public function edit(int $id=0){
-    	Auth::admin(); // autorización(solo administradores)
+    	Auth::admin(); //solo administradores
     	// busca el usuario con ese ID
     	$user = User::findOrFail($id,'No se encontró el usuario.');
     	
@@ -217,7 +217,7 @@ class UserController extends Controller{
     /** Actualzia la bdd con los datos POST del formulario
      */
     public function update(){
-    	Auth::admin(); // autorización(solo administradores)
+    	Auth::check(); // debe estar loginado para cambir el perfil
     	if(!request()->has('actualizar')) //si no llega el formulario ...
     		throw new FormException ('No se recibieron datos');
     		
@@ -312,7 +312,7 @@ class UserController extends Controller{
      * @return RedirectResponse
      */
     public function changeuserfoto(){
-    	Auth::check(); // autorización(solo usuarios registrdos)
+    	Auth::check(); // autorización(solo usuarios registrados)
     	//Comprueba que la petición venga del formulario
     	if((!request()->has('borrar'))
     			&& (!request()->has('cambiar')))

@@ -4,6 +4,9 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+			<item value="store"/>
+			<item value="home"/>
+			<item value="create"/>
 			<item value="create("/>
 			<item value="create ("/>
 			<item value="edit "/>

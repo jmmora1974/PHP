@@ -5,3 +5,4 @@
 /tmp/*
 !/tmp/readme.txt
 /logs/*.log
+/DBB/
