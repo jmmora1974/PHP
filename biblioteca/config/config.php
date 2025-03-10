@@ -57,7 +57,7 @@ define('AUTOLOAD_DIRECTORIES',  [
  * APLICACIÓN
  * -------------------------------------------------------------*/
 
-define('APP_NAME', 'App Biblio Mora ');   // Título de la aplicación.
+define('APP_NAME', 'App Biblio JM ');   // Título de la aplicación.
 define('APP_TYPE', 'WEB');                  // Tipo de aplicación: WEB o API.
 
 define('APP_VERSION', '0.1.0');  // versión actual del framework o aplicación desarrollada
@@ -131,8 +131,8 @@ define('USER_ROLES', [
     'Supervisor'    => 'ROLE_SUPERVISOR',
     'Editor'        => 'ROLE_EDITOR',
     'Test'          => 'ROLE_TEST',
-    'API'           => 'ROLE_API',
-		
+	'API'           => 'ROLE_API',
+	'Bibliotecario' => 'ROLE_LIBRARIAN',
     'Estudiante'    => 'ROLE_STUDENT',
     'Bloqueado'     => 'ROLE_BLOCKED'
 ]);
@@ -202,6 +202,17 @@ define('RESULTS_PER_PAGE', 10);  // Número de resultados por página
 define('UPLOAD_FOLDER', '../storage'); // carpeta por defecto para las subidas de ficheros
 define('UPLOAD_MAX_SIZE', 0);          // tamaño máximo para las subidas, en bytes (0 sin límite)
 
+//carpta para las imagenes de las poratadas de los libros
+define('BOOK_IMAGE_FOLDER','/images/books');
+
+//imagen por defecto para los libros que no tengan portada
+define('DEFAULT_BOOK_IMAGE','cover.png');
+
+//carpta para las imagenes de las poratadas de los libros
+define('PROFILE_IMAGE_FOLDER','/images/members');
+
+//imagen por defecto para los libros que no tengan portada
+define('DEFAULT_PROFILE_IMAGE','profile.webp');
 
 
 /* -------------------------------------------------------------
@@ -300,5 +311,4 @@ define('ALLOW_CREDENTIALS', 'true');                 // ¿Se permite el envío d
 
 define('API_AUTHENTICATION', 'COOKIE'); // puede ser COOKIE (implementado) o KEY (no implementado aún)
 
-    
-    
+

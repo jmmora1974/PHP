@@ -114,7 +114,19 @@ class LibroController extends Controller{
 				//guarda el libro en la base de datos a partir de los datosPOST
 				$libro = Libro::create(request()->posts()); //no es necesario en la  1.8.0
 				$libro->addTema($idtema); // Le pone el tema principal
-							
+				
+				//recupera la portada como objeto UploadedFile (o null si no llega)
+				$file = request()->file(
+						'portada', 	// nombre del input
+						8000000, 	//tamaño maximo del fichero
+						['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
+				);
+				
+				//si hay fichero, lo guardamos y actualizamos el campo "portada"
+				if($file){
+					$libro->portada=$file->store('../public/'.BOOK_IMAGE_FOLDER, 'book_');
+					$libro->update(); //actualiza el libro para añadir la portada
+				}
 				//flashea un mensaje de exito en sesion
 				Session::success("Guardado del libro $libro->titulo correcto.");
 				
@@ -137,6 +149,22 @@ class LibroController extends Controller{
 				
 				//regresa al formulario de creación de libro
 				return redirect("/Libro/create");
+				
+				//si falla el guardado de la portada
+			} catch (UploadException $e) {
+				//preparamos un mensaje de advertencia
+				//no de errom puesto que el libro se guardó correctamente,
+				Session::warning("El libro se guardó correctamente, pero no se pudo subir el fichero de imagen.");
+				
+				if(DEBUG)
+					throw new UploadException($e->getMessage());
+				
+				//redirigimos a la edición del libro
+				//por si quiere volver a intentar subir la image
+				redirect("/Libro/edit/$libro->id");
+					
+				
+					
 			}
 
 	// OPCION TRADICIONAL	
@@ -255,7 +283,24 @@ class LibroController extends Controller{
 			//$libro->update(); No es necesario en la 1.8.0 
 			// ya el metodo create ya actualiza si manda el 2ºparametro
 			$libro= Libro::create(request()->posts() ,$id);
+			//libro->update(); //actualiza solo los datos sin imagen de portada
 			
+			//recupera la portada como objeto UploadedFile (o null si no llega)
+			$file = request()->file(
+					'portada', 	// nombre del input
+					8000000, 	//tamaño maximo del fichero
+					['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
+					);
+			
+			//si hay fichero, lo guardamos y actualizamos el campo "portada"
+			if($file){
+				if($libro->portada) //elimina el fichero anterior (si lo hay)
+					File::remove('../public/'.BOOK_IMAGE_FOLDER.'/'.$libro->portada);
+				//coloca el nuevo fichero y actualiza la propiedad
+				$libro->portada=$file->store('../public/'.BOOK_IMAGE_FOLDER, 'book_');
+				$libro->update(); //actualiza el libro para añadir la portada
+			}
+			//flashea un mensaje de exito en sesion
 			Session::success("Actualización del libro $libro->titulo correcta.");
 			return redirect("/Libro/edit/$id");
 			
@@ -272,9 +317,57 @@ class LibroController extends Controller{
 				throw new SQLException($e->getMessage());
 			
 				return redirect("/Libro/edit/$id");
+		}catch (UploadException $e){
+				$mensaje.="Cambios guardados, pero no se modificó la portada.";
+				Session::error($mensaje);
+				
+				if(DEBUG)
+					throw new SQLException($e->getMessage());
+					
+					return redirect("/Libro/edit/$id");
 		}
 	}
 	
+	/**
+	 * Elimina la imagen de portada
+	 * 
+	 * @return RedirectResponse
+	 */
+	public function dropcover(){
+		//Comprueba que la petición venga del formulario
+		if(!request()->has('borrar'))
+			throw new FormException('No se recibió el formulario');
+			//$libro=new Libro(); //crea el nuevo libro
+			
+			//recupera el idtema del desplegable
+			$id = intval(request()->post('id'));
+			$libro = Libro::findOrFail($id, "no se ha encontrado el libro.");
+			
+			$tmp = $libro->portada; //recordatemos el nombre para poder borrarlo luego
+			$libro->portada = NULL; //marca la portada a NULL
+			
+			try{
+				//preimero guardamos en la bb y luego eliminamos el fichero
+				$libro->update();
+				File::remove('../public/'.BOOK_IMAGE_FOLDER.'/'.$tmp, true);
+				
+				Session::success("Borrado de la portada del libro $libro->titulo realizada.");
+				return redirect("/Libro/edit/$libro->id");
+
+			}  catch(SQLException $e){
+				Session::error("No se pudo eliminar la portada.");
+				if(DEBUG)
+					throw new SQLException($e->getMessage());
+					
+					return redirect("/Libro/edit/$id");
+			} catch(FileException $e){
+				Session::warning ("No se pudo eliminar el fichero del disco.");
+				if(DEBUG)
+					throw new SQLException($e->getMessage());
+					
+					return redirect("/Libro/edit/$id");
+			}
+	}
 	/**
 	 *  Añade un tema a un libro
 	 *
@@ -391,6 +484,11 @@ class LibroController extends Controller{
 				//intenta borrar el libro
 				try{
 					$libro->deleteObject();
+					
+					//si hay imagen de la portada, hay que borrarla
+					if($libro->portada)
+						File::remove('../public/'.BOOK_IMAGE_FOLDER.'/'.$libro->portada,true);
+					
 					Session::success("Se ha borrado el libro $libro->titulo.");
 					return redirect("/Libro/list");
 				//si se produce un error en la operació con la bdd..
@@ -402,6 +500,13 @@ class LibroController extends Controller{
 						throw new SQLException($e->getMessage());
 						
 						return redirect("/Libro/delete/$id");
+				}catch(FileException $e){
+					Session::warning ("Se eliminó el libro pero no se pudo eliminar el fichero del disco.");
+					if(DEBUG)
+						throw new SQLException($e->getMessage());
+						//No podemos redirigir al libro porque ya no existe
+						//volvemos al listado de libros
+						return redirect("/Libro");
 				}
 	}
 }	

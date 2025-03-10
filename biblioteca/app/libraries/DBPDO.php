@@ -12,7 +12,7 @@
  * @since v1.7.0 la clase DBPDO hereda de la clase abstracta DB
  * @since v1.8.0 nuevo método estático lastErrorMessage()
 */
-
+#[\AllowDynamicProperties]
 class DBPDO extends DB{ 
     
     /** @var ?PDO conexión con la Base de Datos. */

@@ -27,7 +27,7 @@
  * @since v1.8.0 se puede usar el método create() tanto para crear como para actualizar
  */
 
-
+#[\AllowDynamicProperties]
 abstract class Model{
          
  

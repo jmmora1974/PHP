@@ -27,22 +27,24 @@
     		<h1><?= APP_NAME ?></h1>
        		<h2>Panel del bibliotecario</h2>
        		<p>Aquí encontrarés los enlaces a las distintas operaciones.</p>
-       		<section>
-       			<h3><b>Operaciones con libros</b></h3>
-       			<ul>
-       				<li><a href='/Libro'>Libros</a></li>
-     				<li><a href='/Libro/create'>Nuevo libro</a></li>
-        		
-       			</ul>
-       		</section>
-       		<section>
-       			<h3><b>Operaciones con socios</b></h3>
-       			<ul>
-       				<li><a href='/Socio'>Socios</a></li>
-     				<li><a href='/Socio/create'>Nuevo Socio</a></li>
-     			</ul>
-       		</section>
-       		<section>
+       		<div class="flex-container gap2">
+       			<section class="flex1">
+       				<h3><b>Operaciones con libros</b></h3>
+       				<ul>
+       					<li><a href='/Libro'>Libros</a></li>
+     					<li><a href='/Libro/create'>Nuevo libro</a></li>
+					</ul>
+       			</section>
+       			<section class="flex1">
+       				<h3><b>Operaciones con socios</b></h3>
+       				<ul>
+       					<li><a href='/Socio'>Socios</a></li>
+     					<li><a href='/Socio/create'>Nuevo Socio</a></li>
+     				</ul>
+       			</section>
+       		</div>
+       		<div class="flex-container gap2">
+       		<section class="flex1">
        			<h3><b>Operaciones con temas</b></h3>
        			<ul>
        				<li><a href='/Tema'>Temas</a></li>
@@ -50,7 +52,7 @@
        	
        			</ul>
        		</section>
-       		<section>
+       		<section class="flex1">
        			<h3><b>Operaciones con Prestamos</b></h3>
        			<ul>
        				<li><a href='/Prestamo'>Prestamos</a></li>
@@ -58,7 +60,7 @@
        	
        			</ul>
        		</section>
-       		
+       		</div>
        		
 			</main>
 			<?= $template->footer() ?>

@@ -22,36 +22,34 @@
 		<?= $template->breadCrumbs(['Libros'=>'/Libro',$libro->titulo=>'/Libro/show/'.$libro->id,'Detalles'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
+		
 	<main>
 		<h1><?=APP_NAME?></h1>
-		<section>
-			<DIV class="flex2 centered">
+		<section id="detalles" class="flex-container gap2">
+			<div class="flex2 centered">
 				<h2>Detalles del libro</h2>
 				<h3><?=$libro->titulo?></h3>
-				<p>
-					<b>ISBN:</b>  	<?= $libro->isbn ?></p>
-				<p>
-					<b>Titulo:</b>  	<?= $libro->titulo ?></p>
-				<p>
-					<b>Editorial:</b>  	<?= $libro->editorial ?></p>
-				<p>
-					<b>Autor:</b>  	<?= $libro->autor ?></p>
-				<p>
-					<b>Idioma:</b>  	<?= $libro->idioma ?></p>
-				<p>
-					<b>Edicion:</b>  	<?= $libro->edicion ?></p>
-				<p>
-					<b>Edad Recomendada:</b> 	<?= $libro->edadrecomendada ?? 'Pdt calificación' ?></p>
-				<p>
-					<b>Año:</b>  	<?= $libro->anyo ?? ' -- '?></p>
-				<p>
-					<b>Páginas:</b>  	<?= $libro->paginas ?? ' -- '?></p>
-				<p>
-					<b>Características:</b>  	<?= $libro->caracterisitcas ?? ' -- '?></p>
-				<p>
-					<b>Ejemplares:</b>  	<?= $libro->ejemplares ?? ' -- '?></p>
-			</DIV>
-			<div class="centrado">
+				<p><b>ISBN:</b> 	<?= $libro->isbn ?></p>
+				<p><b>Titulo:</b>  	<?= $libro->titulo ?></p>
+				<p><b>Editorial:</b>  	<?= $libro->editorial ?></p>
+				<p><b>Autor:</b>  	<?= $libro->autor ?></p>
+				<p><b>Idioma:</b>  	<?= $libro->idioma ?></p>
+				<p><b>Edicion:</b>  	<?= $libro->edicion ?></p>
+				<p><b>Edad Recomendada:</b> 	<?= $libro->edadrecomendada ?? 'Pdt calificación' ?></p>
+				<p><b>Año:</b>  	<?= $libro->anyo ?? ' -- '?></p>
+				<p><b>Páginas:</b>  	<?= $libro->paginas ?? ' -- '?></p>
+				<p><b>Características:</b>  	<?= $libro->caracterisitcas ?? ' -- '?></p>
+				<p><b>Ejemplares:</b>  	<?= $libro->ejemplares ?? ' -- '?></p>
+			</div>
+			<script src="/js/BigPicture.js"></script>
+			
+			<figure class="flex1 centrado p2">
+				<img src="<?=BOOK_IMAGE_FOLDER.'/'.($libro->portada ?? DEFAULT_BOOK_IMAGE)?>"
+				 	class="cover enlarge-image" alt="Portada del libro <?= $libro->titulo?>">				 		
+				 <figcaption>Portada del libro <?= "$libro->titulo, de $libro->autor"?> </figcaption>
+			</figure>
+			
+			<div class="centrado w100">
 			<a class="button" onclick="history.back()">Atrás</a> 
 			<a class="button" href="/Libro/list">Lista de libros</a> 
 			<a	class="button" href="/Libro/edit/<?=$libro->id?>">Editar</a>
@@ -131,6 +129,7 @@
 				
 		</div>
 	</main>
+	
 </body>
 
 </html>

@@ -34,24 +34,24 @@ class SocioController extends Controller{
 		
 		//si hay filtro
 		if($filtro){
-			//recupera el total de libros que cumplen los criterios del filtro
+			//recupera el total de socios que cumplen los criterios del filtro
 			$total = Socio::filteredResults($filtro);
 			
 			//crea el objeto paginador
 			$paginator = new Paginator('/Socio/list', $page, $limit, $total,'es');
 			
-			//recupera los libros que cumplen los criteros del filtro
+			//recupera los socios que cumplen los criteros del filtro
 			$socios= Socio::filter($filtro, $limit, $paginator->getOffset());
-			// recupera los libros junto la información extra (ejemplares)
+			// recupera los socios junto la información extra (prestamos)
 		} else {
 			
-			$total = Socio::total(); //total del libro
+			$total = Socio::total(); //total del socio
 			
 			//crea el objeto paginador
 			$paginator = new Paginator('/Socio/list', $page, $limit, $total,'es');
 			
 			
-			$socios= Socio::orderBy('nombre', 'ASC', $limit, $paginator->getOffset()); // recupera los libros junto la información extra (ejemplares)
+			$socios= Socio::orderBy('nombre', 'ASC', $limit, $paginator->getOffset()); // recupera los socios junto la información extra (prestamos)
 			
 			
 		}
@@ -105,9 +105,20 @@ class SocioController extends Controller{
 				//guarda el socio en la base de datos a partir de los datosPOST
 				$socio = Socio::create(request()->posts()); //mo es necesario en la  1.8.0
 				
+				//En el caso de querer cambiar la foto, adjunto fichero, guardaremos el fichero subido
+				//recupera la foto de perfil como objeto UploadedFile (o null si no llega)
+				if($file = request()->file(
+						'foto', 	// nombre del input
+						8000000, 	//tamaño maximo del fichero
+						['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
+						)){
+							$socio->foto=$file->store('../public/'.PROFILE_IMAGE_FOLDER, 'profile_');
+							
+				}
+				$socio->update();
 				
 				//flashea un mensaje de exito en sesion
-				Session::success("Guardado del socio $socio->nombre $socio->apellido correcto.");
+				Session::success("Guardado del socio $socio->nombre $socio->apellidos correcto.");
 				
 				//redirecciona a los detalles del nuevo socio
 				return redirect("/Socio/show/$socio->id");
@@ -221,6 +232,12 @@ class SocioController extends Controller{
 				//intenta borrar el socio
 				try{
 					$socio->deleteObject();
+					//si hay imagen de la perfil, hay que borrarla
+					if($socio->foto){
+						File::remove('../public/'.PROFILE_IMAGE_FOLDER.'/'.$socio->foto,true);
+					
+					}
+						
 					Session::success("Se ha borrado el socio $socio->nombre  $socio->apellidos.");
 					return redirect("/Socio/list");
 				//si se produce un error en la operación con la bdd..
@@ -232,7 +249,83 @@ class SocioController extends Controller{
 						throw new SQLException($e->getMessage());
 						
 						return redirect("/Socio/delete/$id");
+				}catch(FileException $e){
+					Session::warning ("Se eliminó el socio $socio->nombre  $socio->apellidos pero no se pudo eliminar el fichero del disco.");
+					if(DEBUG)
+						throw new SQLException($e->getMessage());
+						//No podemos redirigir al socio porque ya no existe
+						//volvemos al listado de socios
+						return redirect("/Socio");
 				}
+	}
+	
+	/**
+	 * Elimina la imagen de perfil
+	 *
+	 * @return RedirectResponse
+	 */
+	public function changefotoprofile(){
+		//Comprueba que la petición venga del formulario
+		if((!request()->has('borrar')) 
+				&& (!request()->has('cambiar')))
+			throw new FormException('No se recibió el formulario');
+		
+			//recupera el idtema del desplegable
+			$id = intval(request()->post('id'));
+			$socio = Socio::findOrFail($id, "no se ha encontrado el socio.");
+			
+			$tmp = $socio->foto; //recordatemos el nombre para poder borrarlo luego
+			
+			//en el caso de que se haya pulsado Eliminar
+			if(request()->has('borrar'))
+				$socio->foto = NULL; //marca la foto perfil a NULL
+			
+			try{
+				//En el caso de querer cambiar la foto, adjunto fichero, guardaremos el fichero subido
+				//recupera la foto de perfil como objeto UploadedFile (o null si no llega)
+				if($file = request()->file(
+							'foto', 	// nombre del input
+							8000000, 	//tamaño maximo del fichero
+							['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
+						)){
+					$socio->foto=$file->store('../public/'.PROFILE_IMAGE_FOLDER, 'profile_');
+					
+				} else {
+					if(request()->has('cambiar')){
+						 Session::warning("Debes seleccionar la foto que deseas subir.");
+					return redirect("/Socio/edit/$socio->id");
+				 }
+				}
+				$socio->update();
+				Session::success("Se ha sustituido o eliminado la foto de perfil de $socio->nombre $socio->apellidos correctamente.");
+				
+				//si ya existia la foto, tratara de eliminarla primero
+				if($tmp)
+					File::remove('../public/'.PROFILE_IMAGE_FOLDER.'/'.$tmp, true);
+					
+				return redirect("/Socio/edit/$socio->id");
+				
+			}  catch(SQLException $e){
+				Session::error("No se pudo eliminar la foto de perfil.");
+				if(DEBUG)
+					throw new SQLException($e->getMessage());
+					
+					return redirect("/Socio/edit/$id");
+			} catch(FileException $e){
+				Session::warning ("No se pudo eliminar el fichero del disco.");
+				if(DEBUG)
+					throw new SQLException($e->getMessage());
+					
+					return redirect("/Socio/edit/$id");
+			}catch (UploadException $e){
+				$mensaje.="Cambios guardados, pero no se modificó la foto de perfil.";
+				Session::error($mensaje);
+				
+				if(DEBUG)
+					throw new SQLException($e->getMessage());
+					
+					return redirect("/Socio/edit/$socio->id");
+			}
 	}
 }	
 	 

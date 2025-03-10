@@ -3,6 +3,7 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
 		<list key="findhistory">
+<<<<<<< HEAD
 			<item value="tema"/>
 			<item value="Tema"/>
 			<item value="Socio"/>
@@ -12,6 +13,32 @@
 		<list key="replacehistory">
 			<item value="Prestamo"/>
 			<item value="V_prestamo"/>
+=======
+			<item value="dele"/>
+			<item value="socio"/>
+			<item value="show"/>
+			<item value="Socio"/>
+			<item value="ROLES"/>
+			<item value="changefoto"/>
+			<item value="$socio"/>
+			<item value="USER_IM"/>
+			<item value="foto"/>
+			<item value="$user-&gt;foto"/>
+			<item value="EDIT ("/>
+			<item value="EDIT("/>
+			<item value="alta"/>
+			<item value="create"/>
+			<item value="apelli"/>
+		</list>
+		<list key="replacehistory">
+			<item value="usuario"/>
+			<item value="usuairo"/>
+			<item value="$user-&gt;picture"/>
+			<item value="User"/>
+			<item value="$user"/>
+			<item value="user"/>
+			<item value="socio"/>
+>>>>>>> 7c2c839f3e807922556ccd1740969a0ad8015786
 		</list>
 	</section>
 </section>
