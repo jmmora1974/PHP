@@ -112,19 +112,38 @@ class LibroController extends Controller{
 			//Comprueba que la petición venga del formulario
 			if(!request()->has('guardar'))
 				throw new FormException('No se recibió el formulario');
-			//$libro=new Libro(); //crea el nuevo libro
 			
 			//recupera el idtema del desplegable
 			$idtema = intval(request()->post('idtema'));
 		//OPCION AUTOMATICA
 				try{
-					//guarda el libro en la base de datos a partir de los datosPOST
-				
-					$libro = Libro::create(request()->posts()); //no es necesario en la  1.8.0
-					//$libro->saneate(); //sanea las entradas.
-					$libro->update();
+					//cargamos la libreria de filtrado
+					//require '../app/libraries/filtrado.php';
 					
+					$librotemp=new Libro(); //crea el nuevo libro temporal para crear y validar
+					
+			
+					//guarda el libro en la base de datos a partir de los datosPOST
+					foreach( request()->posts() as $campo=>$valor) //pasamos a objeto Libro
+						$librotemp ->$campo=$valor;
+					
+					//antes sanearemos las entradas
+					//$librotemp=request()->posts(); 
+					
+					//Validaremos que los datos sean correctos
+					if($errores = $librotemp->validate())
+						throw new ValidationException(
+								"<br>".arrayToString($errores, false, false,".<br>")
+						);
+						
+				//	foreach($librotemp as $campo=>$valor)  //SE FILTRA EN LA MODEL
+					//		$campo = filtrado($valor);
+					
+							
+					//$libro->saneate(); //sanea las entradas.
+						$libro = Libro::create((array)$librotemp); //no es necesario en la  1.8.0
 					$libro->addTema($idtema); // Le pone el tema principal
+				
 					
 					//recupera la portada como objeto UploadedFile (o null si no llega)
 					$file = request()->file(

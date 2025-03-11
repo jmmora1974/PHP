@@ -27,7 +27,7 @@
     		<h1><?= APP_NAME ?></h1>
        		<h2>Lista completa de libros</h2>
        		
-      		<?php if($libros){ ?>
+      		
       		
       		<!--  FILTR DE BÚSQUEDA -->
       		<?php 
@@ -67,8 +67,13 @@
        		
        		<!--  Enlaces creados por el paginador -->
        		<div class="rigth">
+       			
        			<?=$paginator->stats()?>
        		</div>
+       	<?php if($libros){ ?>
+       		<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
+       				<a class="button" href="/Libro/create">Nuevo libro</a>
+       			<?php }?>
        			<table class="table w100">
        					<tr>
        						<th>Portada</th>
@@ -79,8 +84,8 @@
        						<th>Año</th>
        						<th>Ejemplares</th>
        						<th class="centrado">Operaciones</th>
-		<?php foreach($libros as $libro){   ?>
-			<tr>
+			<?php foreach($libros as $libro){   ?>
+				<tr>
 				<td class="centrado">
 					<a href='/Libro/show/<?= $libro->id ?>'>
 						<img src="<?=BOOK_IMAGE_FOLDER.'/'.($libro->portada ?? DEFAULT_BOOK_IMAGE)?>"

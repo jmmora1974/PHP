@@ -40,16 +40,6 @@
 			</section>
 			<section class="flex1">
 				<h3>
-					<b>Operaciones con Ejemplares</b>
-				</h3>
-				<ul>
-					<li><a href='/Ejemplar'>Ejemplares</a></li>
-					<li><a href='/Ejemplar/create'>Nuevo Ejemplar</a></li>
-
-				</ul>
-			</section>
-			<section class="flex1">
-				<h3>
 					<b>Operaciones con temas</b>
 				</h3>
 				<ul>

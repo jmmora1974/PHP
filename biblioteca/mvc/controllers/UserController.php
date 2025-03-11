@@ -156,7 +156,7 @@ class UserController extends Controller{
     			$user->addRole('ROLE_USER', request()->post('roles'));
     			
     			try{
-    				//$user->saneate(); //sanea las entradas.
+    				$user->saneate(); //sanea las entradas.  no necesario, si se realiza en la clase Model::create
     				$user->save();  // Guarda el usuario
     				
     				$file = request()->file(  //recupera la foto

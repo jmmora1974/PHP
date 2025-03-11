@@ -30,7 +30,8 @@
 #[\AllowDynamicProperties]
 abstract class Model{
          
- 
+ 	
+		
     /**
      * Retorna el nombre de la tabla, que será el nombre indicado en la propiedad
      * estática $table de la clase hija. En caso de no existir esta propiedad, 
@@ -121,7 +122,9 @@ abstract class Model{
      * @return object la instancia del modelo creada.
      */
     public static function create(array $data, $id = null):object{
-        
+    	// cargamos la funcion para sanear datos.
+    	require '../app/libraries/filtrado.php';
+    	
         $class = get_called_class();    // recupera el nombre de la clase del modelo
         $entity = new $class();         // crea una instancia de esa clase
 
@@ -130,11 +133,13 @@ abstract class Model{
             // pero solamente lo hace si el nombre de la propiedad permite la asignación masiva,
             // esto es, está incluida en en el array $fillable de la clase del modelo
             if(in_array($property, $class::getFillables())) 
-                $entity->$property = $value;
+            	$entity->$property = filtrado($value);     //realiza otro saneamiento 
         
-        
+               
         $entity->id = $id; // toma el id que llega por parámetro
-                
+         
+       // $entity = saneate(); // Sanea las entradas
+        
         // una vez tiene el objeto preparado, lo guarda o lo actualiza en la BDD  
         // si hay ID hará una actualización, sino un guardado
         $entity->id ? $entity->update() : $entity->save();
@@ -142,8 +147,7 @@ abstract class Model{
         return $entity;
     }
     
-    
-    
+   
     /**
      * Recupera todas las entidades y las retorna en un array.
      * 

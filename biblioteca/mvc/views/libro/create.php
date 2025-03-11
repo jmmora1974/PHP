@@ -29,16 +29,16 @@
 	<form method="POST" class="flex-container gap2" enctype="multipart/form-data" action="/Libro/store">
 		<div class="flex2">
 		<label for="isbn">ISBN</label>
-		<input type="text" name="isbn" value="<?= old('isbn')?>" required>
+		<input type="text" name="isbn" value="<?= old('isbn')?>" minlength="9" maxlenght="17" required>
 		<br>
 		<label for="titulo">Título</label>
-		<input type="text" name="titulo" value="<?= old('titulo')?>" required>
+		<input type="text" name="titulo" value="<?= old('titulo')?>" maxlenght="64" required>
 			<br>
 			<label for="editorial">Editorial</label>
-			<input type="text" name="editorial" value="<?= old('editorial')?>" required>
+			<input type="text" name="editorial" value="<?= old('editorial')?>" maxlenght="64" required>
 			<br>
 			<label for="autor">Autor</label>
-			<input type="text" name="autor" value="<?= old('autor')?>" required>
+			<input type="text" name="autor" value="<?= old('autor')?>" maxlength="256" required>
 			<br>
 			<label for="idioma">Idioma</label>
 			<select name="idioma">
@@ -49,22 +49,22 @@
 			</select>
 			<br>
 			<label for="edicion">Edicion</label>
-			<input type="number" min="0" name="edicion" value="<?=old('edicion')?>">
+			<input type="number" min="0" name="edicion" maxlength="256"  value="<?=old('edicion')?>">
 			<br>
 			<label for="anyo">Año</label>
-			<input type="number" min="0" name="anyo" value="<?=old('anyo')?>">
+			<input type="number" min="0" name="anyo">
 			<br>
 			<label for="edadrecomendada">Edad rec.</label>
-			<input type="number" min="0" max="99" name="edadrecomendada" value="<?=old('edadrecomendada')?>">
+			<input type="number" min="0" max="120" name="edadrecomendada" required>
 			<br>
 			<label for="paginas">Páginas</label>
 			<input type="number" min="0" name="paginas" value="<?=old('paginas')?>">
 			<br>
 			<label for="caracteristicas">Caracterís.</label>
-			<input type="number" min="0" name="caracteristicas" value="<?=old('caracteristicas')?>">
+			<input type="text" name="caracteristicas" value="<?=old('caracteristicas')?>">
 			<br>
 			<label for="portada">Portada</label>
-			<input type="file" name="portada" accept="image/*" id="file-with-preview">
+			<input type="file" name="portada" accept="image/*" id="file-with-preview" maxlength="512" >
 			<br>
 			
 			<label>Tema</label>

@@ -98,7 +98,7 @@ class Base implements TemplateInterface{
             
             // si el usuario es administrador, le informa de ello
             if($user->isAdmin())
-                 $html .= "<span class='pc'> eres <a class='negrita' href='/Admin'>administrador</a>.</span>";
+                 $html .= "<span class='pc'> eres <a class='negrita' href='/Panel/admin'>administrador</a>.</span>";
             
             // pone la imagen de perfil y el enlace a logout
             $html .= "  <img class='xx-small middle my1' src='/images/users/".($user->picture ?? DEFAULT_USER_IMAGE)."' alt='Imagen de perfil'>
