@@ -93,9 +93,10 @@ class LibroController extends Controller{
 	 * @return ViewResponse
 	 */
 	public function create(){
-		if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios)
+		if( Login::oneRole(['ROLE_LIBRARIAN','ROLE_TEST'])) {// autorización(solo bibliotecarios)
 			return view('libro/create',['listaTemas'=>Tema::orderBy('tema')]);
 		}
+		session::error("No puedes realizar esta operación.");
 		return redirect('/libro');
 		// si no  tiene acceso, no informa delerror, simplemente  redirige al listado de libros
 		
@@ -107,8 +108,11 @@ class LibroController extends Controller{
 	 * @ redirect Viewresponse
 	 */
 	public function store(){
-		if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios)
-			
+		if( !Login::oneRole(['ROLE_LIBRARIAN','ROLE_TEST']))  {// autorización(solo bibliotecarios)
+			session::error("No puedes realizar esta operación.");
+			return redirect('/libro');
+		}
+		
 			//Comprueba que la petición venga del formulario
 			if(!request()->has('guardar'))
 				throw new FormException('No se recibió el formulario');
@@ -196,10 +200,7 @@ class LibroController extends Controller{
 						
 					
 				}
-					// si no  tiene acceso, no informa delerror, simplemente  redirige al listado de libros
-			} else{
-					return redirect('/libro');
-			}
+				
 		
 		
 			

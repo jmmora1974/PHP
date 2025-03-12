@@ -87,10 +87,13 @@ class TemaController extends Controller{
 	 * @return ViewResponse
 	 */
 	public function create(){
-		//Solo bibliotecario y test pueden crear
-		Auth::oneRole(['ROLE_LIBRARIAN','ROLE_TEST']);
+		if( Login::oneRole(['ROLE_LIBRARIAN','ROLE_TEST'])) {// autorización(solo bibliotecarios y test)
+			return view('tema/create');
+		}
+		session::error("No puedes realizar esta operación.");
+		return redirect('/libro');
 		
-		return view('tema/create');
+		
 	}
 	
 	/**
