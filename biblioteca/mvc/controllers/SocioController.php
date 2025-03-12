@@ -118,9 +118,23 @@ class SocioController extends Controller{
 			
 		//OPCION AUTOMATICA
 				try{
+					
+					//Recuperamos el fomulario, saneamos y validamos antes de guardar en BDD
+					$sociotemp=new Socio(); //crea el nuevo libro temporal para crear y validar
+					
+					//guarda el socio en la base de datos a partir de los datos POST
+					foreach( request()->posts() as $campo=>$valor) //pasamos a objeto Socio
+						$sociotemp ->$campo=$valor;
+						
+						//Validaremos que los datos sean correctos
+						if($errores = $sociotemp->validate())
+							throw new ValidationException(
+									"<br>".arrayToString($errores, false, false,".<br>")
+									);
+							
 					//guarda el socio en la base de datos a partir de los datosPOST
 					//$socio->saneate(); //sanea las entradas.
-					$socio = Socio::create(request()->posts()); //mo es necesario en la  1.8.0
+							$socio = Socio::create((array)$sociotemp); //mo es necesario en la  1.8.0
 					
 					//En el caso de querer cambiar la foto, adjunto fichero, guardaremos el fichero subido
 					//recupera la foto de perfil como objeto UploadedFile (o null si no llega)
@@ -201,10 +215,24 @@ class SocioController extends Controller{
 		
 			//intenta actualizar el socio
 			try{
+				
+				//Recuperamos el fomulario, saneamos y validamos antes de guardar en BDD
+				$sociotemp=new Socio(); //crea el nuevo libro temporal para crear y validar
+				
+				//guarda el socio en la base de datos a partir de los datos POST
+				foreach( request()->posts() as $campo=>$valor) //pasamos a objeto Socio
+					$sociotemp ->$campo=$valor;
+					
+					//Validaremos que los datos sean correctos
+					if($errores = $sociotemp->validate(true))
+						throw new ValidationException(
+								"<br>".arrayToString($errores, false, false,".<br>")
+								);
+						
 				//$socio->update(); No es necesario en la 1.8.0 
 				// ya el metodo create ya actualiza si manda el 2ºparametro
 				//$socio->saneate(); //sanea las entradas.
-				$socio= Socio::create(request()->posts() ,$id);
+				$socio= Socio::create((array)$sociotemp,$id);
 				
 				Session::success("Actualización del socio $socio->nombre  $socio->apellidos correcta.");
 				return redirect("/Socio/edit/$id");

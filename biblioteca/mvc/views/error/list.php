@@ -7,7 +7,7 @@
     		<!-- META -->
     		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     		<meta name="description" content="Lista de errores en <?= APP_NAME ?>">
-    		<meta name="author" content="Robert Sallent">
+    		<meta name="author" content="Jose Miguel Mora Perez">
     		
     		<!-- FAVICON -->
     		<link rel="shortcut icon" href="/favicon.ico" type="image/png">	

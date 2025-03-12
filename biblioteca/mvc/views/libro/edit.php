@@ -97,7 +97,7 @@
 			<script>
 				function confirmar(id){
 					if(confirm('Seguro que deseas eliminar?'))
-						location.href='/Ejemplar/destroy/'+id
+						location.href='/Ejemplar/destroy/'+id;
 				}
 			</script>
 			<h2>Ejemplares de <b>"<?=$libro->titulo?>"</b></h2>

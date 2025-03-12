@@ -332,10 +332,20 @@ class LibroController extends Controller{
 						['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
 						);
 			
-				//$libro->update(); No es necesario en la 1.8.0 
-				// ya el metodo create ya actualiza si manda el 2ºparametro
-				//$libro->saneate(); //sanea las entradas.
-				$libro= Libro::create(request()->posts() ,$id);
+				//Recuperamos el fomulario, saneamos y validamos antes de guardar en BDD				
+				$librotemp=new Libro(); //crea el nuevo libro temporal para crear y validar
+				
+				//guarda el libro en la base de datos a partir de los datosPOST
+				foreach( request()->posts() as $campo=>$valor) //pasamos a objeto Libro
+					$librotemp ->$campo=$valor;
+					
+					//Validaremos que los datos sean correctos
+					if($errores = $librotemp->validate(true))
+						throw new ValidationException(
+								"<br>".arrayToString($errores, false, false,".<br>")
+								);
+				$libro = Libro::create((array)$librotemp,$id);
+				
 				//libro->update(); //actualiza solo los datos sin imagen de portada
 			
 				$libro=Libro::findOrFail($id);

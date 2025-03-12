@@ -29,7 +29,7 @@
 	<form method="POST" enctype="multipart/form-data" action="/socio/store">
 		<div class="flex2">
 			<label for="dni">DNI</label>
-			<input type="text" name="dni" value="<?= old('dni')?>" pattern="[XYZ\d]\d{7}[A-Z]$" 
+			<input type="text" name="dni" value="<?= old('dni')?>" 
 						title="DNI- 8 dígitos y una letra, NIF Letra 7 digitos Letra"    required>
 			<br>
 			<label for="nombre">Nombre</label>
@@ -40,6 +40,9 @@
 			<br>
 			<label for="poblacion">Poblacion</label>
 			<input type="text" name="poblacion" value="<?= old('poblacion')?>" required >
+			<br>
+			<label for="cp">Codigo Postal</label>
+			<input type="text" name="cp" value="<?= old('cp')?>" required >
 			<br>
 			<label for="telefono">Telefono</label>
 			<input type="number" min="0" name="telefono" value="<?=old('telefono')?>" required>

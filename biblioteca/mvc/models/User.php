@@ -78,7 +78,36 @@ class User extends Model implements Authenticable{
             $usuario->parseJsonFields();
         
         return $usuario;
-    }   
+    }  
+    
+    /** Metodo que retorna los errores de validación de un Libro,
+     *
+     * Si no hay errores, retorna un array vacío.
+     *
+     * @param bool $checkId Indica si se debe hacer la comprobación dobre el campo id (no se hace en un store pero si en un update)
+     *
+     * @return array El listado de errores de validación
+     */
+    public function validate(bool $checkId =false):array{
+    	$errores =[];
+    	
+    	//el campo id solamente se comprube en el udate()
+    	if($checkId && empty(intval($this->id)))
+    		$errores['id']="No se indicó el identificador";
+    		
+    		    			//displayname: de 1 a 64 caracteres
+    			if (empty($this->displayname)||strlen($this->displayname)<1 || strlen($this->displayname)>64)
+    				$errores['displayname']="Error en la longitud del displayname."  ;
+    				
+    				//telefono: numero de 9 digitos y que comienzen por 6,7,8 o 9
+    				if (empty($this->phone)|| strlen($this->phone)<9 || strlen($this->phone)>9 
+    						||!preg_match('/^[6-9]{1}[0-9]{8}$/i',$this->phone))
+    					$errores['phone']="Error en el numero de telefono";
+    					
+    			//Otras comprobaciones que queramos filtrar
+    			return $errores;
+    }
+   
 }
     
     

@@ -138,6 +138,14 @@ class PrestamoController extends Controller{
 					$prestamo->idsocio=intval(request()->post('idsocio'));
 					$prestamo->idejemplar=intval(request()->post('idejemplar'));
 					$prestamo->limite= request()->post('limite');
+					
+			
+					//Validaremos que los datos sean correctos
+					if($errores = $prestamo->validate())
+						throw new ValidationException(
+								"<br>".arrayToString($errores, false, false,".<br>")
+								);
+							
 				
 					//guarda el prestamo en la base de datos a partir de los datosPOST
 					//$prestamo = Prestamo::create($prestamo);
@@ -301,6 +309,12 @@ class PrestamoController extends Controller{
 				
 					$prestamo->incidencia= request()->post('incidencia');
 					
+					//Validaremos que los datos sean correctos
+					if($errores = $prestamo->validate(true,true))
+						throw new ValidationException(
+								"<br>".arrayToString($errores, false, false,".<br>")
+								);
+						
 					//guarda el prestamo en la base de datos a partir de los datosPOST
 					//$prestamo->saneate(); //sanea las entradas.
 					$prestamo->update();
@@ -371,6 +385,11 @@ class PrestamoController extends Controller{
 					$prestamo->idejemplar=intval(request()->post('idejemplar'));
 					$prestamo->limite= request()->post('limite');
 					
+					//Validaremos que los datos sean correctos
+					if($errores = $prestamo->validate(true,false))
+						throw new ValidationException(
+								"<br>".arrayToString($errores, false, false,".<br>")
+								);
 					//guarda el prestamo en la base de datos a partir de los datosPOST
 					//$prestamo = Prestamo::create($prestamo);
 					//$prestamo->saneate(); //sanea las entradas.
