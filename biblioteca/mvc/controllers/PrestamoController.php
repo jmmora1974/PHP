@@ -107,7 +107,7 @@ class PrestamoController extends Controller{
 		// autorización(solo bibliotecarios
 		if( Login::role('ROLE_LIBRARIAN')) { 
 			if ($id==0){
-				$socio=[];
+				$socio=new Socio();
 			} else{
 				// Recupera el prestamo
 				$socio = Socio::findOrFail($id, 'No se encontró el socio indicado'); //tb comprueba si no le ha llegado el ID

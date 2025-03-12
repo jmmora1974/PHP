@@ -70,7 +70,8 @@ class TemaController extends Controller{
 	 */
 	public function show(int $id=0) {
 		
-	
+		
+		
 		$tema = Tema::findOrFail($id, 'No se enontró el tema indicado'); //tb comprueba si no le ha llegado el ID
 		
 		//recueramos los libros del tema
@@ -86,6 +87,9 @@ class TemaController extends Controller{
 	 * @return ViewResponse
 	 */
 	public function create(){
+		//Solo bibliotecario y test pueden crear
+		Auth::oneRole(['ROLE_LIBRARIAN','ROLE_TEST']);
+		
 		return view('tema/create');
 	}
 	
@@ -95,6 +99,9 @@ class TemaController extends Controller{
 	 * @ redirect Viewresponse
 	 */
 	public function store(){
+		//Solo bibliotecario y test pueden crear
+		Auth::oneRole(['ROLE_LIBRARIAN','ROLE_TEST']);
+		
 		//Comprueba que la petición venga del formulario
 		if(!request()->has('guardar'))
 			throw new FormException('No se recibió el formulario');
@@ -142,6 +149,8 @@ class TemaController extends Controller{
 	 * 
 	 */
 	public function edit(int $id=0){
+		//Solo bibliotecario y test pueden crear
+		Auth::oneRole(['ROLE_LIBRARIAN','ROLE_TEST']);
 		
 		// busca el tema con ese ID
 		$tema = Tema::findOrFail($id,'No se encontró el tema.');
@@ -153,6 +162,8 @@ class TemaController extends Controller{
 	/** Actualzia la bdd con los datos POST del formulario
 	*/
 	public function update(){
+		//Solo bibliotecario y test pueden crear
+		Auth::oneRole(['ROLE_LIBRARIAN','ROLE_TEST']);
 		
 		if(!request()->has('actualizar')) //si no llega el formulario ...
 			throw new FormException ('No se recibieron datos');
@@ -194,6 +205,8 @@ class TemaController extends Controller{
 	 * @return ViewResponse
 	 */	
 	public function delete(int $id){
+		//Solo bibliotecario y test pueden crear
+		Auth::oneRole(['ROLE_LIBRARIAN','ROLE_TEST']);
 		
 		$tema = Tema::findOrFail($id, "No existe el tema.");
 		
@@ -204,6 +217,9 @@ class TemaController extends Controller{
 	 * @return RedirectResponse
 	 */
 	public function destroy(){
+		//Solo bibliotecario y test pueden crear
+		Auth::oneRole(['ROLE_LIBRARIAN','ROLE_TEST']);
+		
 		//comprueba que le llega el formulario de confirmación
 		if(!request()->has('borrar'))
 			throw new FormException("No se recibió la confirmación");

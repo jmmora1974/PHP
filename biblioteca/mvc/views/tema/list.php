@@ -27,8 +27,6 @@
     		<h1><?= APP_NAME ?></h1>
        		<h2>Lista completa de temas</h2>
        		
-       		<?php if($temas){ ?>
-       		
       		
 		      		<!--  FILTR DE BÚSQUEDA -->
 		      		<?php 
@@ -69,6 +67,8 @@
 		       			<?=$paginator->stats()?>
 		       		</div>
        		
+       		
+       		<?php if($temas){ ?>
        		
        			<table class="table w100">
        					<tr>

@@ -100,7 +100,7 @@ class EjemplarController extends Controller{
 			try{
 				
 				//guarda el libro en la base de datos a partir de los datosPOST
-				$ejemplar->saneate(); //sanea las entradas.
+				//$ejemplar->saneate(); //sanea las entradas.
 				$ejemplar = Ejemplar::create(request()->posts()); 
 				
 				

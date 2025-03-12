@@ -142,7 +142,8 @@ class LibroController extends Controller{
 							
 					//$libro->saneate(); //sanea las entradas.
 						$libro = Libro::create((array)$librotemp); //no es necesario en la  1.8.0
-					$libro->addTema($idtema); // Le pone el tema principal
+						
+						$libro->addTema($idtema); // Le pone el tema principal
 				
 					
 					//recupera la portada como objeto UploadedFile (o null si no llega)
@@ -322,11 +323,6 @@ class LibroController extends Controller{
 			
 			//intenta actualizar el libro
 			try{
-				//$libro->update(); No es necesario en la 1.8.0 
-				// ya el metodo create ya actualiza si manda el 2ºparametro
-				//$libro->saneate(); //sanea las entradas.
-				$libro= Libro::create(request()->posts() ,$id);
-				//libro->update(); //actualiza solo los datos sin imagen de portada
 				
 				//recupera la portada como objeto UploadedFile (o null si no llega)
 				$file = request()->file(
@@ -334,13 +330,21 @@ class LibroController extends Controller{
 						8000000, 	//tamaño maximo del fichero
 						['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
 						);
-				
-				//si hay fichero, lo guardamos y actualizamos el campo "portada"
-				if($file){
-					if($libro->portada) //elimina el fichero anterior (si lo hay)
+			
+				//$libro->update(); No es necesario en la 1.8.0 
+				// ya el metodo create ya actualiza si manda el 2ºparametro
+				//$libro->saneate(); //sanea las entradas.
+				$libro= Libro::create(request()->posts() ,$id);
+				//libro->update(); //actualiza solo los datos sin imagen de portada
+			
+				$libro=Libro::findOrFail($id);
+									
+				if($file && $libro->portada) { //elimina el fichero anterior (si lo hay)
 						File::remove('../public/'.BOOK_IMAGE_FOLDER.'/'.$libro->portada);
+				
 					//coloca el nuevo fichero y actualiza la propiedad
 					$libro->portada=$file->store('../public/'.BOOK_IMAGE_FOLDER, 'book_');
+					
 					$libro->update(); //actualiza el libro para añadir la portada
 				}
 				//flashea un mensaje de exito en sesion
@@ -368,6 +372,15 @@ class LibroController extends Controller{
 						throw new SQLException($e->getMessage());
 						
 						return redirect("/Libro/edit/$id");
+			}catch (Exception $e){
+				$mensaje.="Error generico.";
+				Session::error($mensaje);
+				
+				if(DEBUG)
+					throw new Exception($e->getMessage());
+					
+					return redirect("/Libro/edit/$id");
+				
 			}
 			// si no  tiene acceso, no informa del error, simplemente  redirige al listado de libros
 		} else{

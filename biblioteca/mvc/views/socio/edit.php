@@ -86,7 +86,7 @@
 		</section>
 			<section>
 			<h3>Prestamos del socio</h3>
-			<a class="button" href="/Prestamo/create/<?=$socio->id?>">Nuevo Prestamo</a>
+			<a class="button" href="/prestamo/create/<?=$socio->id?>">Nuevo Prestamo</a>
 			<table class="table w100 centered-block">
 					<tr>
 						<th>ID</th><th>Socio</th><th>Ejemplar</th><th>Titulo</th><th>Limite</th><th>Devolución</th><th>Incidencias</th><th>Operaciones</th>

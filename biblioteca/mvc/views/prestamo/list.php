@@ -28,8 +28,7 @@
        		<h2>Lista completa de prestamos</h2>
        		<a class="button" href="/Prestamo/create/0">Nuevo Prestamo</a>
        		
-       		<?php if($prestamos){ ?>
-       			
+       		
       		
 		      		<!--  FILTR DE BÚSQUEDA -->
 		      		<?php 
@@ -71,7 +70,8 @@
 		       		<div class="rigth">
 		       			<?=$paginator->stats()?>
 		       		</div>
-       		
+       		<?php if($prestamos){ ?>
+       			
        		<table class="table w100">
        					<tr>
        						<th>ID</th>
