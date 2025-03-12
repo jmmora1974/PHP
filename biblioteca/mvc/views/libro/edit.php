@@ -93,7 +93,7 @@
 				<a class="button-danger" href="/Libro/delete/<?=$libro->id?>">Borrado</a>
 			<?php } ?>
 		</div>	
-		<section>
+		<section id="secejemplares">
 			<script>
 				function confirmar(id){
 					if(confirm('Seguro que deseas eliminar?'))
@@ -145,7 +145,7 @@
 			<a class="button" href="/Libro/show/<?=$libro->id?>">Detalles</a>
 			
 		</div>	
-		<section>
+		<section id="sectemas">
 			<h2>Temas en <b>"<?= $libro->titulo?>"</b></h2>
 			<?php 
 			if(!$temas){

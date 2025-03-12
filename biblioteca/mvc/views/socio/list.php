@@ -27,8 +27,7 @@
     		<h1><?= APP_NAME ?></h1>
        		<h2>Lista completa de socios</h2>
        		<a class="button" href='/Socio/create'>Nuevo Socio</a>
-     		<?php if($socios){ ?>
-      		
+     		
 		      		<!--  FILTR DE BÚSQUEDA -->
 		      		<?php 
 		      		//si hay filtro guardado en sesión
@@ -68,7 +67,8 @@
 		       		<div class="rigth">
 		       			<?=$paginator->stats()?>
 		       		</div>
-       		
+       		<?php if($socios){ ?>
+      		
        			<table class="table w100">
        					<tr>
        						<th>Foto</th>

@@ -93,9 +93,10 @@ class LibroController extends Controller{
 	 * @return ViewResponse
 	 */
 	public function create(){
-		if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios)
+		if( Login::oneRole(['ROLE_LIBRARIAN','ROLE_TEST'])) {// autorización(solo bibliotecarios)
 			return view('libro/create',['listaTemas'=>Tema::orderBy('tema')]);
 		}
+		session::error("No puedes realizar esta operación.");
 		return redirect('/libro');
 		// si no  tiene acceso, no informa delerror, simplemente  redirige al listado de libros
 		
@@ -107,8 +108,11 @@ class LibroController extends Controller{
 	 * @ redirect Viewresponse
 	 */
 	public function store(){
-		if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios)
-			
+		if( !Login::oneRole(['ROLE_LIBRARIAN','ROLE_TEST']))  {// autorización(solo bibliotecarios)
+			session::error("No puedes realizar esta operación.");
+			return redirect('/libro');
+		}
+		
 			//Comprueba que la petición venga del formulario
 			if(!request()->has('guardar'))
 				throw new FormException('No se recibió el formulario');
@@ -142,7 +146,8 @@ class LibroController extends Controller{
 							
 					//$libro->saneate(); //sanea las entradas.
 						$libro = Libro::create((array)$librotemp); //no es necesario en la  1.8.0
-					$libro->addTema($idtema); // Le pone el tema principal
+						
+						$libro->addTema($idtema); // Le pone el tema principal
 				
 					
 					//recupera la portada como objeto UploadedFile (o null si no llega)
@@ -195,10 +200,7 @@ class LibroController extends Controller{
 						
 					
 				}
-					// si no  tiene acceso, no informa delerror, simplemente  redirige al listado de libros
-			} else{
-					return redirect('/libro');
-			}
+				
 		
 		
 			
@@ -322,11 +324,6 @@ class LibroController extends Controller{
 			
 			//intenta actualizar el libro
 			try{
-				//$libro->update(); No es necesario en la 1.8.0 
-				// ya el metodo create ya actualiza si manda el 2ºparametro
-				//$libro->saneate(); //sanea las entradas.
-				$libro= Libro::create(request()->posts() ,$id);
-				//libro->update(); //actualiza solo los datos sin imagen de portada
 				
 				//recupera la portada como objeto UploadedFile (o null si no llega)
 				$file = request()->file(
@@ -334,13 +331,21 @@ class LibroController extends Controller{
 						8000000, 	//tamaño maximo del fichero
 						['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
 						);
-				
-				//si hay fichero, lo guardamos y actualizamos el campo "portada"
-				if($file){
-					if($libro->portada) //elimina el fichero anterior (si lo hay)
+			
+				//$libro->update(); No es necesario en la 1.8.0 
+				// ya el metodo create ya actualiza si manda el 2ºparametro
+				//$libro->saneate(); //sanea las entradas.
+				$libro= Libro::create(request()->posts() ,$id);
+				//libro->update(); //actualiza solo los datos sin imagen de portada
+			
+				$libro=Libro::findOrFail($id);
+									
+				if($file && $libro->portada) { //elimina el fichero anterior (si lo hay)
 						File::remove('../public/'.BOOK_IMAGE_FOLDER.'/'.$libro->portada);
+				
 					//coloca el nuevo fichero y actualiza la propiedad
 					$libro->portada=$file->store('../public/'.BOOK_IMAGE_FOLDER, 'book_');
+					
 					$libro->update(); //actualiza el libro para añadir la portada
 				}
 				//flashea un mensaje de exito en sesion
@@ -368,6 +373,15 @@ class LibroController extends Controller{
 						throw new SQLException($e->getMessage());
 						
 						return redirect("/Libro/edit/$id");
+			}catch (Exception $e){
+				$mensaje.="Error generico.";
+				Session::error($mensaje);
+				
+				if(DEBUG)
+					throw new Exception($e->getMessage());
+					
+					return redirect("/Libro/edit/$id");
+				
 			}
 			// si no  tiene acceso, no informa del error, simplemente  redirige al listado de libros
 		} else{
@@ -450,12 +464,12 @@ class LibroController extends Controller{
 			try{
 				$libro->addTema($idtema);
 				Session::success("Se ha añadido el tema '$tema->tema' para el libro '$libro->titulo' correctamente.");
-				return redirect("/Libro/edit/$idlibro");
+				return redirect("/Libro/edit/$idlibro#sectemas");
 			}catch (SQLException $e){
 				Session::error("No se pudo añadir el tema $tema->tema del libro $libro->titulo.");
 				if (DEBUG) 
 						throw new SQLException($e->getMessage());
-				return redirect("/Libro/edit/$idlibro");
+				return redirect("/Libro/edit/$idlibro#sectemas");
 			}
 				
 	
@@ -494,18 +508,18 @@ class LibroController extends Controller{
 				try{
 					$libro->removeTema($idtema);
 					Session::success("Se ha eliminado el tema '$tema->tema' para el libro '$libro->titulo' correctamente.");
-					return redirect("/Libro/edit/$idlibro");
+					return redirect("/Libro/edit/$idlibro#sectemas");
 				
 				//Si se produce un error
 				}catch (SQLException $e){
 					Session::error("No se pudo eliminar el tema $tema->tema del libro $libro->titulo.");
 					if (DEBUG)
 						throw new SQLException($e->getMessage());
-						return redirect("/Libro/edit/$idlibro");
+						return redirect("/Libro/edit/$idlibro#sectemas");
 				}
 				
 				
-				return redirect('/libro/edit/'.$temalibro->idlibro);
+				return redirect('/libro/edit/'.$temalibro->idlibro.'#sectemas');
 				// si no  tiene acceso, no informa del error, simplemente  redirige al listado de libros
 		} else{
 			return redirect('/libro');

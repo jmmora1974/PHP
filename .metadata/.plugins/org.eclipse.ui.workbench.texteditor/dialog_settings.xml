@@ -4,12 +4,17 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+<<<<<<< HEAD
 			<item value="save"/>
 			<item value="create"/>
 			<item value="href"/>
+=======
+			<item value="idtema"/>
+			<item value="requir"/>
+			<item value="sane"/>
+>>>>>>> dc7f4328b1e795df803c47f6735dca3f223989f0
 			<item value="saneat"/>
 			<item value="saneate"/>
-			<item value="sane"/>
 			<item value="saneate()"/>
 			<item value="store"/>
 			<item value="home"/>

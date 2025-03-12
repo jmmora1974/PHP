@@ -71,16 +71,16 @@ class EjemplarController extends Controller{
 	 */
 	public function create(int $idlibro=-1){
 		
-		if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios)
-			
+		if( Login::oneRole(['ROLE_LIBRARIAN','ROLE_TEST'])) {// autorización(solo bibliotecarios)
 			$libro = Libro::findOrFail($idlibro,'No se encontró el libro.');
-		
 			//retorna una ViewResponse con la vista con el formulario de creacion
-			return view('Ejemplar/create',['libro'=>$libro]);
+			return view('ejemplar/create',['libro'=>$libro]);
 		}
 		//Si no es bibliotecario, redirige a la home
-		return redirect('/');
-
+		session::error("No puedes realizar esta operación.");
+		return redirect('/libro');
+		
+		
 	}
 	
 	/**
@@ -100,7 +100,7 @@ class EjemplarController extends Controller{
 			try{
 				
 				//guarda el libro en la base de datos a partir de los datosPOST
-				$ejemplar->saneate(); //sanea las entradas.
+				//$ejemplar->saneate(); //sanea las entradas.
 				$ejemplar = Ejemplar::create(request()->posts()); 
 				
 				
@@ -108,7 +108,7 @@ class EjemplarController extends Controller{
 				Session::success("Guardado del ejemplar $ejemplar->id correcto.");
 				
 				//redirecciona a los detalles del nuevo libro
-				return redirect("/Libro/edit/$ejemplar->idlibro");
+				return redirect("/Libro/edit/$ejemplar->idlibro#secejemplares");
 			}  catch(SQLException $e){
 				//prepara el mensaje de error
 				$mensaje = "No se pudo guardar el ejemplar del libro ".$libro->titulo;

@@ -70,6 +70,7 @@
        			
        			<?=$paginator->stats()?>
        		</div>
+       	
        	<?php if($libros){ ?>
        		<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
        				<a class="button" href="/Libro/create">Nuevo libro</a>

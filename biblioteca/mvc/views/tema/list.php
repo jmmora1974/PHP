@@ -27,8 +27,6 @@
     		<h1><?= APP_NAME ?></h1>
        		<h2>Lista completa de temas</h2>
        		
-       		<?php if($temas){ ?>
-       		
       		
 		      		<!--  FILTR DE BÚSQUEDA -->
 		      		<?php 
@@ -69,6 +67,8 @@
 		       			<?=$paginator->stats()?>
 		       		</div>
        		
+       			<a class="button" href="/Tema/create">Nuevo tema</a>
+       		<?php if($temas){ ?>
        		
        			<table class="table w100">
        					<tr>
@@ -84,7 +84,7 @@
 					<a class="button" href='/tema/show/<?=$tema->id?>'>
 					<img src="/images/icons/show.png" alt="Ver" style="width:20px;height:20px;"></a>
 					<?php  
-					if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
+					if( Login::role('ROLE_LIBRARIAN')) {// autorización(solo bibliotecarios) ?>
 						
 						<a class="button" href='/tema/edit/<?=$tema->id?>'><img src="/images/icons/edit.png" alt="Editar" style="width:20px;height:20px;"></a>
 							<?php  if(!$tema->hasAny('TemaLibro')){ ?>

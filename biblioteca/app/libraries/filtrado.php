@@ -2,7 +2,8 @@
 //funcion para filtrar los datos.
 function filtrado($datos){
 	
-	$palabrasprohibidas = array('script', '<?', 'admin'); // Lista de palabras no autorizadas
+	$palabrasprohibidas = array('script', '<?'); // Lista de palabras no autorizadas
+
 
 	if($datos){
 		$datos= str_replace($palabrasprohibidas, ' ', $datos);
@@ -13,5 +14,6 @@ function filtrado($datos){
 		return $datos;
 	}
 	return NULL;
-}
 
+}
+?>

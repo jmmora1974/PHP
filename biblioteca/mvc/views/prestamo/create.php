@@ -37,14 +37,14 @@
 		<br>
 		
 		<label for="idejemplar">ID Ejemplar</label>
-		<input type="text" name="idejemplar" value="<?= old('idejemplar')?>" required>
+		<input type="text" name="idejemplar" value="<?= old('idejemplar')?>">
 		<br>
 		<label for="limite">Limite</label>
 		<input type="date" name="limite" value="<?php
 					$date = new DateTime();
 					$date->modify('+1 week');
 					echo $date->format('Y-m-d'); 
-			?>" required>
+			?>" >
 		<br>
 		<div class="centered mt2"  id="nuevoejemplar">
 				<input type="submit" class="button" name="guardar" value="Guardar">

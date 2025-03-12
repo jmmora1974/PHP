@@ -30,7 +30,7 @@
 		<div class="flex2">
 		
 		
-		<input type="text" name="idlibro" value="<?=$libro->id?><?= old('idlibro')?>" hidden>
+		<input type="text" name="idlibro" value="<?=$libro->id?>" hidden=true>
 		<br> 
 		
 		<label for="anyo">Año</label>
