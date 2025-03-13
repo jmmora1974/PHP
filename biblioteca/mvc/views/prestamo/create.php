@@ -31,14 +31,13 @@
 
 	
 		<label for="idsocio">ID Socio</label>
-		<input type="text" name="idsocio"  value="<?= $socio->id ?>" id="idsocio">
+		<input type="text" name="idsocio"  value="<?= $socio->id ?>" onchange="buscaSocio(event.target.value)">
 		<input type="text" id="nombresocio" name="nombresocio" value="<?=$socio->nombre ?>" disabled>
 		<input type="text" id="apellidossocio" name="apellidossocio" value="<?=$socio->apellidos ?>" disabled>
 		<br>
 		
 		<label for="idejemplar">ID Ejemplar</label>
-		<input type="text" name="idejemplar" id="idejemplar" value="<?= old('idejemplar')?>">
-		<output id="outejemplar"></output>
+		<input type="text" name="idejemplar" value="<?= old('idejemplar')?>">
 		<br>
 		<label for="limite">Limite</label>
 		<input type="date" name="limite" value="<?php
@@ -57,11 +56,13 @@
 			<a class="button" href="/Libro/list">Lista de libros</a>
 		</div>		
 	</form>
-			<script>	
-			$(document).load(function(){  
-				$('#idsocio').change(function(){
-					location.href='/Prestamo/create/12';
-				}
+			<script>
+        function buscaSocio(idsocio){
+        	
+        	location.href='/Prestamo/create/'+idsocio+'#nuevoejemplar';
+        	
+            const anchor = document.getElementById("nuevoejemplar");
+			const result = anchor.href;
             
         }
     </script>

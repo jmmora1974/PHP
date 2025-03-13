@@ -45,8 +45,6 @@
 				<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?> 
 					<a class="button" href="/Tema/edit/<?=$tema->id?>">Edición</a>
 				<?php } ?>
-			<?php } else{?>
-			<p>Existen libros de este tema</p>
 			<?php }?>
 		</div>		
 	

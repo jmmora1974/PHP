@@ -42,12 +42,12 @@ class Socio extends Model{
 				$errores['apellidos']="Error en la longitud de los apellidos."  ;
 			
 			//Población: de 1 a 128 caracteres
-			if (empty($this->poblacion)||strlen($this->poblacion)<1 || strlen($this->poblacion)>128)
-				$errores['poblacion']="Error en la longitud de la población."  ;
+			//if (empty($this->poblacion)||strlen($this->poblacion)<1 || strlen($this->poblacion)>128)
+				//$errores['poblacion']="Error en la longitud de la población."  ;
 			
-			//CodigoPostal: de 5caracteres
-			if (empty($this->cp)||strlen($this->cp)<5 || strlen($this->cp)>5)
-				$errores['CodigoPostal']="Error en la longitud de la población."  ;
+			//CodigoPostal: de 5 caracteres
+			//if (empty($this->cp)||strlen($this->cp)<5 || strlen($this->cp)>5)
+				//$errores['CodigoPostal']="Error en la longitud de la CodigoPostal."  ;
 			
 			//telefono: numero de 9 digitos y que comienzen por 6,7,8 o 9
 			if (empty($this->telefono)|| strlen($this->telefono)<9 || strlen($this->telefono)>9

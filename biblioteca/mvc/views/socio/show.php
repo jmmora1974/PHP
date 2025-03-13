@@ -39,6 +39,8 @@
 				<p>
 					<b>Población:</b>  	<?= $socio->poblacion ?></p>
 				<p>
+					<b>Codigo Postal:</b>  	<?= $socio->cp ?></p>
+				<p>
 					<b>Telefono:</b>  	<?= $socio->telefono ?></p>
 				<p>
 					<b>Email:</b>  	<?= $socio->email ?></p>
