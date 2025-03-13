@@ -130,7 +130,8 @@ class UserController extends Controller{
     	//Comprueba  que llega el formulario
     	if(!request()->has("guardar"))
     		throw new FormException ("No se recibió el formulario");
-    	
+    		
+    			
     		$user = new User(); //crea el nuevo usuario
     		
     		//recupera el password y lo encriptaa
