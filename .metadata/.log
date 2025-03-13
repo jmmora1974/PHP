@@ -4412,3 +4412,308 @@ Caused by: java.io.FileNotFoundException: C:\Program Files\Git\mingw64\share\git
 	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:106)
 	at org.eclipse.swt.graphics.ImageLoader.load(ImageLoader.java:178)
 	... 44 more
+!SESSION 2025-03-13 20:04:50.318 -----------------------------------------------
+eclipse.buildId=4.34.0.20241128-0756
+java.version=21.0.6
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.php.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.php.product
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2025-03-13 20:05:47.066
+!MESSAGE Unable to load resource file:/C:/xampp/htdocs/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+!STACK 0
+org.eclipse.emf.ecore.resource.impl.ResourceSetImpl$1DiagnosticWrappedException: org.xml.sax.SAXParseExceptionpublicId: file:/C:/xampp/htdocs/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/C:/xampp/htdocs/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; El marcador en el documento que precede al elemento raíz debe tener el formato correcto.
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.handleDemandLoadException(ResourceSetImpl.java:319)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:278)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.getResource(ResourceSetImpl.java:406)
+	at org.eclipse.e4.ui.internal.workbench.ResourceHandler.getResource(ResourceHandler.java:287)
+	at org.eclipse.e4.ui.internal.workbench.ResourceHandler.loadResource(ResourceHandler.java:263)
+	at org.eclipse.e4.ui.internal.workbench.ResourceHandler.loadMostRecentModel(ResourceHandler.java:166)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application.loadApplicationModel(E4Application.java:368)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application.createE4Workbench(E4Application.java:244)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:592)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:570)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:178)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+Caused by: org.xml.sax.SAXParseExceptionpublicId: file:/C:/xampp/htdocs/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/C:/xampp/htdocs/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; El marcador en el documento que precede al elemento raíz debe tener el formato correcto.
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:204)
+	at java.xml/com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:178)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(XMLScanner.java:1465)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(XMLDocumentScannerImpl.java:862)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:605)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:114)
+	at java.xml/com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:542)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:889)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:825)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at java.xml/com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1224)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:637)
+	at java.xml/com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl.parse(SAXParserImpl.java:326)
+	at org.eclipse.emf.ecore.xmi.impl.XMLLoadImpl.load(XMLLoadImpl.java:175)
+	at org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl.doLoad(XMLResourceImpl.java:260)
+	at org.eclipse.emf.ecore.resource.impl.ResourceImpl.load(ResourceImpl.java:1563)
+	at org.eclipse.emf.ecore.resource.impl.ResourceImpl.load(ResourceImpl.java:1342)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoad(ResourceSetImpl.java:259)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:274)
+	... 21 more
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2025-03-13 20:05:47.074
+!MESSAGE The persisted application model has no top-level window. Reinitializing with the default application model.
+!STACK 0
+java.lang.Exception
+	at org.eclipse.e4.ui.internal.workbench.ResourceHandler.loadMostRecentModel(ResourceHandler.java:171)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application.loadApplicationModel(E4Application.java:368)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application.createE4Workbench(E4Application.java:244)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:592)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:339)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:570)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:173)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:178)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:208)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:143)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:109)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:439)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:271)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:668)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:605)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1481)
+
+!ENTRY org.eclipse.egit.ui 2 0 2025-03-13 20:06:18.026
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\jmora'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.dltk.core.index.lucene 4 4 2025-03-13 20:06:26.710
+!MESSAGE C:\xampp\htdocs\.metadata\.plugins\org.eclipse.dltk.core.index.lucene\index\d9fd500f-29b8-40cc-bc7b-9d763f2bf61b
+!STACK 0
+java.nio.file.NoSuchFileException: C:\xampp\htdocs\.metadata\.plugins\org.eclipse.dltk.core.index.lucene\index\d9fd500f-29b8-40cc-bc7b-9d763f2bf61b
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:53)
+	at java.base/sun.nio.fs.WindowsFileAttributeViews$Basic.readAttributes(WindowsFileAttributeViews.java:38)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.readAttributes(WindowsFileSystemProvider.java:197)
+	at java.base/java.nio.file.Files.readAttributes(Files.java:1854)
+	at java.base/java.nio.file.FileTreeWalker.getAttributes(FileTreeWalker.java:220)
+	at java.base/java.nio.file.FileTreeWalker.visit(FileTreeWalker.java:277)
+	at java.base/java.nio.file.FileTreeWalker.walk(FileTreeWalker.java:323)
+	at java.base/java.nio.file.Files.walkFileTree(Files.java:2792)
+	at java.base/java.nio.file.Files.walkFileTree(Files.java:2870)
+	at org.eclipse.dltk.internal.core.index.lucene.Utils.delete(Utils.java:40)
+	at org.eclipse.dltk.internal.core.index.lucene.IndexContainer$IndexCleaner.doClean(IndexContainer.java:79)
+	at org.eclipse.dltk.internal.core.index.lucene.IndexContainer$IndexCleaner.run(IndexContainer.java:63)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.wst.sse.ui 2 2 2025-03-13 21:10:53.771
+!MESSAGE Configuration element ConfigurationElementHandle [name: proposalComputerExtendedActivation, id: org.eclipse.wst.jsdt.web.ui.ContentAssistProposals, handle id: 3575, namespace: org.eclipse.php.ui] intented to extend an existing completion proposal computer specified an invalid completion proposal computer ID org.eclipse.wst.jsdt.web.ui.ContentAssistProposals
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 21:24:46.714
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
+	at org.eclipse.php.internal.core.index.PHPElementResolver$IndexMethod.<init>(PHPElementResolver.java:268)
+	at org.eclipse.php.internal.core.index.PHPElementResolver.resolve(PHPElementResolver.java:125)
+	at org.eclipse.dltk.core.index2.search.ModelAccess$1.match(ModelAccess.java:303)
+	at org.eclipse.dltk.internal.core.index.lucene.SearchMatchHandler.handle(SearchMatchHandler.java:163)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.lambda$5(LuceneSearchEngine.java:269)
+	at java.base/java.util.LinkedList$LLSpliterator.forEachRemaining(LinkedList.java:1249)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.lambda$4(LuceneSearchEngine.java:269)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.LinkedList$LLSpliterator.forEachRemaining(LinkedList.java:1249)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.search(LuceneSearchEngine.java:268)
+	at org.eclipse.dltk.core.index2.search.ModelAccess.findElements(ModelAccess.java:313)
+	at org.eclipse.php.internal.core.model.PHPModelAccess.findFileElements(PHPModelAccess.java:114)
+	at org.eclipse.php.internal.core.model.PHPModelAccess.findFunctions(PHPModelAccess.java:135)
+	at org.eclipse.php.internal.core.codeassist.strategies.FunctionsStrategy.apply(FunctionsStrategy.java:95)
+	at org.eclipse.php.internal.core.codeassist.strategies.LocalMethodElementsCompositeStrategy.apply(LocalMethodElementsCompositeStrategy.java:53)
+	at org.eclipse.php.internal.core.codeassist.PHPCompletionEngine.complete(PHPCompletionEngine.java:120)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:518)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:499)
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 21:33:19.803
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
+	at org.eclipse.php.internal.core.index.PHPElementResolver$IndexMethod.<init>(PHPElementResolver.java:268)
+	at org.eclipse.php.internal.core.index.PHPElementResolver.resolve(PHPElementResolver.java:125)
+	at org.eclipse.dltk.core.index2.search.ModelAccess$1.match(ModelAccess.java:303)
+	at org.eclipse.dltk.internal.core.index.lucene.SearchMatchHandler.handle(SearchMatchHandler.java:163)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.lambda$5(LuceneSearchEngine.java:269)
+	at java.base/java.util.LinkedList$LLSpliterator.forEachRemaining(LinkedList.java:1249)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.lambda$4(LuceneSearchEngine.java:269)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.LinkedList$LLSpliterator.forEachRemaining(LinkedList.java:1249)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.search(LuceneSearchEngine.java:268)
+	at org.eclipse.dltk.core.index2.search.ModelAccess.findElements(ModelAccess.java:313)
+	at org.eclipse.php.internal.core.model.PHPModelAccess.findFileElements(PHPModelAccess.java:114)
+	at org.eclipse.php.internal.core.model.PHPModelAccess.findFunctions(PHPModelAccess.java:135)
+	at org.eclipse.php.internal.core.codeassist.strategies.FunctionsStrategy.apply(FunctionsStrategy.java:95)
+	at org.eclipse.php.internal.core.codeassist.strategies.LocalMethodElementsCompositeStrategy.apply(LocalMethodElementsCompositeStrategy.java:53)
+	at org.eclipse.php.internal.core.codeassist.PHPCompletionEngine.complete(PHPCompletionEngine.java:120)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:518)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:499)
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 21:33:24.326
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException: Index 2 out of bounds for length 2
+	at org.eclipse.php.internal.core.index.PHPElementResolver$IndexMethod.<init>(PHPElementResolver.java:268)
+	at org.eclipse.php.internal.core.index.PHPElementResolver.resolve(PHPElementResolver.java:125)
+	at org.eclipse.dltk.core.index2.search.ModelAccess$1.match(ModelAccess.java:303)
+	at org.eclipse.dltk.internal.core.index.lucene.SearchMatchHandler.handle(SearchMatchHandler.java:163)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.lambda$5(LuceneSearchEngine.java:269)
+	at java.base/java.util.LinkedList$LLSpliterator.forEachRemaining(LinkedList.java:1249)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.lambda$4(LuceneSearchEngine.java:269)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.LinkedList$LLSpliterator.forEachRemaining(LinkedList.java:1249)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at org.eclipse.dltk.internal.core.index.lucene.LuceneSearchEngine.search(LuceneSearchEngine.java:268)
+	at org.eclipse.dltk.core.index2.search.ModelAccess.findElements(ModelAccess.java:313)
+	at org.eclipse.php.internal.core.model.PHPModelAccess.findFileElements(PHPModelAccess.java:114)
+	at org.eclipse.php.internal.core.model.PHPModelAccess.findFunctions(PHPModelAccess.java:135)
+	at org.eclipse.php.internal.core.codeassist.strategies.FunctionsStrategy.apply(FunctionsStrategy.java:95)
+	at org.eclipse.php.internal.core.codeassist.strategies.LocalMethodElementsCompositeStrategy.apply(LocalMethodElementsCompositeStrategy.java:53)
+	at org.eclipse.php.internal.core.codeassist.PHPCompletionEngine.complete(PHPCompletionEngine.java:120)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:518)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:499)
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 21:39:52.835
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 21:39:58.552
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 21:45:23.271
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 21:46:37.277
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 21:46:37.682
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 21:52:00.640
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 21:53:31.829
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 21:55:58.506
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 22:00:24.238
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 22:22:54.831
+!MESSAGE PHPCore plugin internal error
+!STACK 1
+org.eclipse.dltk.core.ModelException: JsonLibroController [in JsonLoginController.php [in mvc/controllers [in <project root> [in api.biblioteca]]]] does not exist
+	at org.eclipse.dltk.internal.core.ModelOperation.runOperation(ModelOperation.java:766)
+	at org.eclipse.dltk.internal.core.SourceType.newSupertypeHierarchy(SourceType.java:406)
+	at org.eclipse.dltk.internal.core.SourceType.newSupertypeHierarchy(SourceType.java:370)
+	at org.eclipse.php.core.codeassist.CompletionCompanion.getSuperTypeHierarchy(CompletionCompanion.java:442)
+	at org.eclipse.php.internal.core.codeassist.strategies.ClassFieldsStrategy.apply(ClassFieldsStrategy.java:80)
+	at org.eclipse.php.internal.core.codeassist.PHPCompletionEngine.complete(PHPCompletionEngine.java:120)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:518)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:499)
+!SUBENTRY 1 org.eclipse.dltk.core 4 969 2025-03-13 22:22:54.831
+!MESSAGE JsonLibroController [in JsonLoginController.php [in mvc/controllers [in <project root> [in api.biblioteca]]]] does not exist
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 22:22:54.834
+!MESSAGE PHPCore plugin internal error
+!STACK 1
+org.eclipse.dltk.core.ModelException: JsonLibroController [in JsonLoginController.php [in mvc/controllers [in <project root> [in api.biblioteca]]]] does not exist
+	at org.eclipse.dltk.internal.core.ModelOperation.runOperation(ModelOperation.java:766)
+	at org.eclipse.dltk.internal.core.SourceType.newSupertypeHierarchy(SourceType.java:406)
+	at org.eclipse.dltk.internal.core.SourceType.newSupertypeHierarchy(SourceType.java:370)
+	at org.eclipse.php.core.codeassist.CompletionCompanion.getSuperTypeHierarchy(CompletionCompanion.java:442)
+	at org.eclipse.php.internal.core.codeassist.strategies.ClassMethodsStrategy.apply(ClassMethodsStrategy.java:87)
+	at org.eclipse.php.internal.core.codeassist.PHPCompletionEngine.complete(PHPCompletionEngine.java:120)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:518)
+	at org.eclipse.dltk.internal.core.Openable$CompletionThread.run(Openable.java:499)
+!SUBENTRY 1 org.eclipse.dltk.core 4 969 2025-03-13 22:22:54.834
+!MESSAGE JsonLibroController [in JsonLoginController.php [in mvc/controllers [in <project root> [in api.biblioteca]]]] does not exist
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 22:47:54.052
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 22:48:45.555
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 22:50:48.376
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 22:52:41.721
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException
+
+!ENTRY org.eclipse.php.core 4 10001 2025-03-13 23:36:58.484
+!MESSAGE PHPCore plugin internal error
+!STACK 0
+java.lang.ArrayIndexOutOfBoundsException

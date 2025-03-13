@@ -2,18 +2,24 @@
 <section name="Workbench">
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
+		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
-<<<<<<< HEAD
-			<item value="indica"/>
-			<item value="ejempl"/>
-			<item value="ejem`pl"/>
-			<item value="addte"/>
-=======
-			<item value="IMAGE"/>
-			<item value="APP_NA"/>
-			<item value="biblio"/>
-			<item value="CORS"/>
->>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
+			<item value="recibi"/>
+			<item value="m"/>
+			<item value="reci"/>
+			<item value="find"/>
+			<item value="DB"/>
+			<item value="libro"/>
+			<item value="USER_IMAGE_FOLDER"/>
+			<item value="PROFI"/>
+			<item value="BOOKS"/>
+			<item value="Libro"/>
+			<item value="OPT"/>
+			<item value="ALLOW_"/>
+		</list>
+		<list key="replacehistory">
+			<item value="socio"/>
+			<item value="Socio"/>
 		</list>
 	</section>
 </section>

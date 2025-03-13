@@ -110,7 +110,7 @@ define('RESPONSE_CHARSET', 'utf-8'); // charset para las respuestas HTTP
 define('DB_HOST','localhost');  // Host.
 define('DB_USER','root');       // Usuario.
 define('DB_PASS','');           // Password.
-define('DB_NAME','fastlight');  // Nombre de la base de datos.
+define('DB_NAME','biblioteca');  // Nombre de la base de datos.
 define('DB_PORT',  3306);       // Puerto.
 define('DB_CHARSET','utf8');    // Codificación de caracteres.
 
@@ -154,26 +154,17 @@ define('USER_IMAGE_FOLDER','/images/users');
 // imagen por defecto para los usuarios que no tengan
 define('DEFAULT_USER_IMAGE', 'default.png');
 
-// carpeta para las imágenes de los usuarios
-define('USER_IMAGE_FOLDER','/images/users');
-
-// imagen por defecto para los usuarios que no tengan
-define('DEFAULT_USER_IMAGE', 'default.png');
-
-
 // carpeta para las imágenes de portada de los libros
 define('BOOK_IMAGE_FOLDER','../../../biblioteca/public/images/books');
 
 // imagen por defecto para la portada de libros que no tengan
 define('DEFAULT_BOOK_IMAGE', 'default.png');
 
-// carpeta para las imágenes de la portada de los libros
-define('BOOK_IMAGE_FOLDER','../../../biblioteca/public/images/books');
+// carpeta para las imágenes de portada de los libros
+define('PROFILE_IMAGE_FOLDER','../../../biblioteca/public/images/members');
 
 // imagen por defecto para la portada de libros que no tengan
-define('DEFAULT_BOOK_IMAGE', 'default.png');
-
-
+define('DEFAULT_PROFILE_IMAGE', 'default.png');
 
 
 
@@ -327,8 +318,8 @@ define('STATS_ROLES', ['ROLE_ADMIN', 'ROLE_TEST']);
  * -------------------------------------------------------------*/
 
 // Cabeceras CORS:
-define('ALLOW_ORIGIN', 'http://localhost','*');          // Orígenes aceptados para peticiones.
-define('ALLOW_METHODS', 'POST, GET, PUT, DELETE, OPTIONS');   // Métodos aceptados para peticiones.
+define('ALLOW_ORIGIN', '*');          // Orígenes aceptados para peticiones.
+define('ALLOW_METHODS', 'POST, GET, PUT, PATCH, DELETE, OPTIONS');   // Métodos aceptados para peticiones.
 define('ALLOW_HEADERS', 'csrf_token');               // Encabezados permitidos.
 define('ALLOW_CREDENTIALS', 'true');                 // ¿Se permite el envío de credenciales?
 
