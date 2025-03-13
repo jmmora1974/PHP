@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="ASCII"?>
+<<<<<<< HEAD
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_ennwUf9rEe-BhrNNo5vaSw" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_enoXYP9rEe-BhrNNo5vaSw" bindingContexts="_enoXaf9rEe-BhrNNo5vaSw">
   <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;delete.php&quot; tooltip=&quot;biblioteca/mvc/views/tema/delete.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/tema/delete.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Tema.php&quot; tooltip=&quot;biblioteca/mvc/models/Tema.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/models/Tema.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;SocioController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/SocioController.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/SocioController.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;show.php&quot; tooltip=&quot;biblioteca/mvc/views/socio/show.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/socio/show.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;create.php&quot; tooltip=&quot;biblioteca/mvc/views/prestamo/create.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/prestamo/create.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;PrestamoController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/PrestamoController.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/PrestamoController.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Socio.php&quot; tooltip=&quot;biblioteca/mvc/models/Socio.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/models/Socio.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Libro.php&quot; tooltip=&quot;biblioteca/mvc/models/Libro.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/models/Libro.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;User.php&quot; tooltip=&quot;biblioteca/mvc/models/User.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/models/User.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;LibroController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/LibroController.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/LibroController.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;UserController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/UserController.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/UserController.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;create.php&quot; tooltip=&quot;biblioteca/mvc/views/libro/create.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/libro/create.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;create.php&quot; tooltip=&quot;biblioteca/mvc/views/ejemplar/create.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/ejemplar/create.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Controller.php&quot; tooltip=&quot;biblioteca/mvc/controllers/Controller.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/Controller.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;create.php&quot; tooltip=&quot;biblioteca/mvc/views/socio/create.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/socio/create.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Prestamo.php&quot; tooltip=&quot;biblioteca/mvc/models/Prestamo.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/models/Prestamo.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.dltk.ui.ExternalSourceModuleEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Core.php&quot; tooltip=&quot;C:\xampp\htdocs\.metadata\.plugins\org.eclipse.php.core\__language__\16d7de26 - Core.php&quot;>&#xD;&#xA;&lt;persistable elementID=&quot;=biblioteca/C:&amp;gt;xampp&amp;gt;htdocs&amp;gt;.metadata&amp;gt;.plugins&amp;gt;org.eclipse.php.core&amp;gt;__language__&amp;gt;16d7de26&amp;lt;{Core.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;edit.php&quot; tooltip=&quot;biblioteca/mvc/views/libro/edit.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/libro/edit.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;list.php&quot; tooltip=&quot;biblioteca/mvc/views/tema/list.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/tema/list.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;list.php&quot; tooltip=&quot;biblioteca/mvc/views/libro/list.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/libro/list.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;TemaController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/TemaController.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/TemaController.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;EjemplarController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/EjemplarController.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/EjemplarController.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;filtrado.php&quot; tooltip=&quot;biblioteca/app/libraries/filtrado.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/app/libraries/filtrado.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
   <children xsi:type="basic:TrimmedWindow" xmi:id="_enoXYP9rEe-BhrNNo5vaSw" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_hQwVwP9rEe-BhrNNo5vaSw" label="%trimmedwindow.label.eclipseSDK" x="26" y="26" width="1024" height="768">
+=======
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_yn0DMP-iEe-BhrNNo5vaSw" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_yn0DMf-iEe-BhrNNo5vaSw" bindingContexts="_yn3uFP-iEe-BhrNNo5vaSw">
+  <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workbench>&#xD;&#xA;&lt;mruList>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;User.php&quot; tooltip=&quot;api.biblioteca/mvc/models/User.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api.biblioteca/mvc/models/User.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Stat.php&quot; tooltip=&quot;api.biblioteca/mvc/models/Stat.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api.biblioteca/mvc/models/Stat.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Model.php&quot; tooltip=&quot;api.biblioteca/mvc/models/Model.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api.biblioteca/mvc/models/Model.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;frame.php&quot; tooltip=&quot;api.biblioteca/mvc/views/examples/frame.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api.biblioteca/mvc/views/examples/frame.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;config.php&quot; tooltip=&quot;api.biblioteca/config/config.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/api.biblioteca/config/config.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;list.php&quot; tooltip=&quot;biblioteca/mvc/views/tema/list.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/tema/list.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;delete.php&quot; tooltip=&quot;biblioteca/mvc/views/tema/delete.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/tema/delete.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Tema.php&quot; tooltip=&quot;biblioteca/mvc/models/Tema.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/models/Tema.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;SocioController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/SocioController.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/SocioController.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;show.php&quot; tooltip=&quot;biblioteca/mvc/views/socio/show.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/socio/show.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;create.php&quot; tooltip=&quot;biblioteca/mvc/views/prestamo/create.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/prestamo/create.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;PrestamoController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/PrestamoController.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/PrestamoController.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Socio.php&quot; tooltip=&quot;biblioteca/mvc/models/Socio.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/models/Socio.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Libro.php&quot; tooltip=&quot;biblioteca/mvc/models/Libro.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/models/Libro.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;User.php&quot; tooltip=&quot;biblioteca/mvc/models/User.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/models/User.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;LibroController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/LibroController.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/LibroController.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;UserController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/UserController.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/UserController.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;create.php&quot; tooltip=&quot;biblioteca/mvc/views/libro/create.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/libro/create.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;create.php&quot; tooltip=&quot;biblioteca/mvc/views/ejemplar/create.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/ejemplar/create.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Controller.php&quot; tooltip=&quot;biblioteca/mvc/controllers/Controller.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/Controller.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;create.php&quot; tooltip=&quot;biblioteca/mvc/views/socio/create.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/socio/create.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Prestamo.php&quot; tooltip=&quot;biblioteca/mvc/models/Prestamo.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/models/Prestamo.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.dltk.ui.ExternalSourceModuleEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;Core.php&quot; tooltip=&quot;C:\xampp\htdocs\.metadata\.plugins\org.eclipse.php.core\__language__\16d7de26 - Core.php&quot;>&#xD;&#xA;&lt;persistable elementID=&quot;=biblioteca/C:&amp;gt;xampp&amp;gt;htdocs&amp;gt;.metadata&amp;gt;.plugins&amp;gt;org.eclipse.php.core&amp;gt;__language__&amp;gt;16d7de26&amp;lt;{Core.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;edit.php&quot; tooltip=&quot;biblioteca/mvc/views/libro/edit.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/libro/edit.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;list.php&quot; tooltip=&quot;biblioteca/mvc/views/libro/list.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/views/libro/list.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;TemaController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/TemaController.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/TemaController.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;EjemplarController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/EjemplarController.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/mvc/controllers/EjemplarController.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;file factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; id=&quot;org.eclipse.php.editor&quot; name=&quot;filtrado.php&quot; tooltip=&quot;biblioteca/app/libraries/filtrado.php&quot;>&#xD;&#xA;&lt;persistable path=&quot;/biblioteca/app/libraries/filtrado.php&quot;/>&#xD;&#xA;&lt;/file>&#xD;&#xA;&lt;/mruList>&#xD;&#xA;&lt;/workbench>"/>
+  <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_yn0DMf-iEe-BhrNNo5vaSw" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_yn0DMv-iEe-BhrNNo5vaSw" label="%trimmedwindow.label.eclipseSDK" x="878" y="0" width="1024" height="1047">
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
     <persistedState key="coolBarVisible" value="true"/>
     <persistedState key="perspectiveBarVisible" value="true"/>
     <persistedState key="isRestored" value="true"/>
     <persistedState key="show_in_time" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;show_in_time/>"/>
     <persistedState key="workingSets" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;workingSets/>"/>
+<<<<<<< HEAD
     <persistedState key="aggregateWorkingSetId" value="Aggregate for window 1741802285561"/>
+=======
+    <persistedState key="aggregateWorkingSetId" value="Aggregate for window 1741854335128"/>
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
     <tags>topLevel</tags>
     <tags>shellMaximized</tags>
     <children xsi:type="basic:PartSashContainer" xmi:id="_hQwVwP9rEe-BhrNNo5vaSw" selectedElement="_hQwVwf9rEe-BhrNNo5vaSw" horizontal="true">
@@ -63,10 +74,17 @@
           <tags>persp.newWizSC:org.eclipse.php.composer.ui.projectFromPackagewizard</tags>
           <tags>persp.newWizSC:org.eclipse.php.phpunit.wizards.TestCaseWizard</tags>
           <tags>persp.newWizSC:org.eclipse.php.phpunit.wizards.TestSuiteWizard</tags>
+<<<<<<< HEAD
           <children xsi:type="basic:PartSashContainer" xmi:id="_iAkpIf9rEe-BhrNNo5vaSw" selectedElement="_iAkpJP9rEe-BhrNNo5vaSw" horizontal="true">
             <children xsi:type="basic:PartStack" xmi:id="_iAkpIv9rEe-BhrNNo5vaSw" elementId="topLeft" containerData="2200" selectedElement="_iAkpI_9rEe-BhrNNo5vaSw">
               <tags>noFocus</tags>
               <children xsi:type="advanced:Placeholder" xmi:id="_iAkpI_9rEe-BhrNNo5vaSw" elementId="org.eclipse.ui.navigator.ProjectExplorer" ref="_iAGvEP9rEe-BhrNNo5vaSw" closeable="true">
+=======
+          <children xsi:type="basic:PartSashContainer" xmi:id="_yn0DNf-iEe-BhrNNo5vaSw" selectedElement="_yn0DNv-iEe-BhrNNo5vaSw" horizontal="true">
+            <children xsi:type="basic:PartStack" xmi:id="_yn0DNv-iEe-BhrNNo5vaSw" elementId="topLeft" containerData="2200" selectedElement="_yn0DN_-iEe-BhrNNo5vaSw">
+              <tags>active</tags>
+              <children xsi:type="advanced:Placeholder" xmi:id="_yn0DN_-iEe-BhrNNo5vaSw" elementId="org.eclipse.ui.navigator.ProjectExplorer" ref="_yn15Cv-iEe-BhrNNo5vaSw" closeable="true">
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
                 <tags>View</tags>
                 <tags>categoryTag:General</tags>
               </children>
@@ -170,6 +188,7 @@
       <tags>View</tags>
       <tags>categoryTag:General</tags>
     </sharedElements>
+<<<<<<< HEAD
     <sharedElements xsi:type="advanced:Area" xmi:id="_h_o1AP9rEe-BhrNNo5vaSw" elementId="org.eclipse.ui.editorss" selectedElement="_h_o1Af9rEe-BhrNNo5vaSw">
       <children xsi:type="basic:PartStack" xmi:id="_h_o1Af9rEe-BhrNNo5vaSw" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_ljUrcP-dEe-BhrNNo5vaSw">
         <tags>EditorStack</tags>
@@ -177,34 +196,63 @@
         <tags>active</tags>
         <children xsi:type="basic:Part" xmi:id="_-W73YP-PEe-BhrNNo5vaSw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="UserController.php" iconURI="platform:/plugin/org.eclipse.php.ui/icons/full/obj16/phpfile.png" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.php.editor&quot; name=&quot;UserController.php&quot; partName=&quot;UserController.php&quot; title=&quot;UserController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/UserController.php&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/biblioteca/mvc/controllers/UserController.php&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;3655&quot; selectionTopPixel=&quot;2736&quot;/>&#xD;&#xA;&lt;/editor>"/>
+=======
+    <sharedElements xsi:type="advanced:Area" xmi:id="_yn14zP-iEe-BhrNNo5vaSw" elementId="org.eclipse.ui.editorss" selectedElement="_yn14zf-iEe-BhrNNo5vaSw">
+      <children xsi:type="basic:PartStack" xmi:id="_yn14zf-iEe-BhrNNo5vaSw" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_np8pAAAGEfCNg6vv7ZOizw">
+        <tags>EditorStack</tags>
+        <tags>org.eclipse.e4.primaryDataStack</tags>
+        <children xsi:type="basic:Part" xmi:id="_h01hsAAEEfCNg6vv7ZOizw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="config.php" iconURI="platform:/plugin/org.eclipse.php.ui/icons/full/obj16/phpfile.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.php.editor&quot; name=&quot;config.php&quot; partName=&quot;config.php&quot; title=&quot;config.php&quot; tooltip=&quot;api.biblioteca/config/config.php&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/api.biblioteca/config/config.php&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;6444&quot; selectionTopPixel=&quot;2888&quot;/>&#xD;&#xA;&lt;/editor>"/>
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
           <tags>org.eclipse.php.editor</tags>
         </children>
+<<<<<<< HEAD
         <children xsi:type="basic:Part" xmi:id="_Jvx-8P-QEe-BhrNNo5vaSw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="LibroController.php" iconURI="platform:/plugin/org.eclipse.php.ui/icons/full/obj16/phpfile.png" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.php.editor&quot; name=&quot;LibroController.php&quot; partName=&quot;LibroController.php&quot; title=&quot;LibroController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/LibroController.php&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/biblioteca/mvc/controllers/LibroController.php&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;3971&quot; selectionTopPixel=&quot;2394&quot;/>&#xD;&#xA;&lt;/editor>"/>
+=======
+        <children xsi:type="basic:Part" xmi:id="_lha2QAAGEfCNg6vv7ZOizw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="frame.php" iconURI="platform:/plugin/org.eclipse.php.ui/icons/full/obj16/phpfile.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.php.editor&quot; name=&quot;frame.php&quot; partName=&quot;frame.php&quot; title=&quot;frame.php&quot; tooltip=&quot;api.biblioteca/mvc/views/examples/frame.php&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/api.biblioteca/mvc/views/examples/frame.php&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
           <tags>org.eclipse.php.editor</tags>
         </children>
+<<<<<<< HEAD
         <children xsi:type="basic:Part" xmi:id="_iXG6AP-QEe-BhrNNo5vaSw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Libro.php" iconURI="platform:/plugin/org.eclipse.php.ui/icons/full/obj16/phpfile.png" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.php.editor&quot; name=&quot;Libro.php&quot; partName=&quot;Libro.php&quot; title=&quot;Libro.php&quot; tooltip=&quot;biblioteca/mvc/models/Libro.php&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/biblioteca/mvc/models/Libro.php&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2841&quot; selectionTopPixel=&quot;1482&quot;/>&#xD;&#xA;&lt;/editor>"/>
+=======
+        <children xsi:type="basic:Part" xmi:id="_nObKoAAGEfCNg6vv7ZOizw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Model.php" iconURI="platform:/plugin/org.eclipse.php.ui/icons/full/obj16/phpfile.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.php.editor&quot; name=&quot;Model.php&quot; partName=&quot;Model.php&quot; title=&quot;Model.php&quot; tooltip=&quot;api.biblioteca/mvc/models/Model.php&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/api.biblioteca/mvc/models/Model.php&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
           <tags>org.eclipse.php.editor</tags>
         </children>
+<<<<<<< HEAD
         <children xsi:type="basic:Part" xmi:id="_kERxAP-REe-BhrNNo5vaSw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Socio.php" iconURI="platform:/plugin/org.eclipse.php.ui/icons/full/obj16/phpfile.png" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.php.editor&quot; name=&quot;Socio.php&quot; partName=&quot;Socio.php&quot; title=&quot;Socio.php&quot; tooltip=&quot;biblioteca/mvc/models/Socio.php&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/biblioteca/mvc/models/Socio.php&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2643&quot; selectionTopPixel=&quot;980&quot;/>&#xD;&#xA;&lt;/editor>"/>
+=======
+        <children xsi:type="basic:Part" xmi:id="_nZgZQAAGEfCNg6vv7ZOizw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Stat.php" iconURI="platform:/plugin/org.eclipse.php.ui/icons/full/obj16/phpfile.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.php.editor&quot; name=&quot;Stat.php&quot; partName=&quot;Stat.php&quot; title=&quot;Stat.php&quot; tooltip=&quot;api.biblioteca/mvc/models/Stat.php&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/api.biblioteca/mvc/models/Stat.php&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
           <tags>org.eclipse.php.editor</tags>
         </children>
+<<<<<<< HEAD
         <children xsi:type="basic:Part" xmi:id="_CF44kP-UEe-BhrNNo5vaSw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="PrestamoController.php" iconURI="platform:/plugin/org.eclipse.php.ui/icons/full/obj16/phpfile.png" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.php.editor&quot; name=&quot;PrestamoController.php&quot; partName=&quot;PrestamoController.php&quot; title=&quot;PrestamoController.php&quot; tooltip=&quot;biblioteca/mvc/controllers/PrestamoController.php&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/biblioteca/mvc/controllers/PrestamoController.php&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;18&quot; selectionOffset=&quot;160&quot; selectionTopPixel=&quot;1140&quot;/>&#xD;&#xA;&lt;/editor>"/>
+=======
+        <children xsi:type="basic:Part" xmi:id="_np8pAAAGEfCNg6vv7ZOizw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="User.php" iconURI="platform:/plugin/org.eclipse.php.ui/icons/full/obj16/phpfile.png" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.php.editor&quot; name=&quot;User.php&quot; partName=&quot;User.php&quot; title=&quot;User.php&quot; tooltip=&quot;api.biblioteca/mvc/models/User.php&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/api.biblioteca/mvc/models/User.php&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
           <tags>org.eclipse.php.editor</tags>
         </children>
+<<<<<<< HEAD
         <children xsi:type="basic:Part" xmi:id="_D4ZYAP-UEe-BhrNNo5vaSw" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="create.php" iconURI="platform:/plugin/org.eclipse.php.ui/icons/full/obj16/phpfile.png" closeable="true">
           <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.php.editor&quot; name=&quot;create.php&quot; partName=&quot;create.php&quot; title=&quot;create.php&quot; tooltip=&quot;biblioteca/mvc/views/prestamo/create.php&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/biblioteca/mvc/views/prestamo/create.php&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;27&quot; selectionLength=&quot;42&quot; selectionOffset=&quot;1136&quot; selectionTopPixel=&quot;532&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
@@ -237,19 +285,31 @@
           <tags>active</tags>
           <tags>activeOnClose</tags>
         </children>
+=======
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
       </children>
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_iAGvEP9rEe-BhrNNo5vaSw" elementId="org.eclipse.ui.navigator.ProjectExplorer" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Project Explorer" iconURI="platform:/plugin/org.eclipse.ui.navigator.resources/icons/full/eview16/resource_persp.png" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.ui.navigator.resources.ProjectExplorer"/>
       <persistedState key="originalCompatibilityViewBundle" value="org.eclipse.ui.navigator.resources"/>
-      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view CommonNavigator.LINKING_ENABLED=&quot;0&quot; org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets=&quot;0&quot;>&#xD;&#xA;&lt;lastRecentlyUsedFilters/>&#xD;&#xA;&lt;/view>"/>
+      <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;view CommonNavigator.LINKING_ENABLED=&quot;0&quot; currentWorkingSetName=&quot;Aggregate for window 1741854335128&quot; org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets=&quot;0&quot;>&#xD;&#xA;&lt;lastRecentlyUsedFilters/>&#xD;&#xA;&lt;/view>"/>
       <tags>View</tags>
       <tags>categoryTag:General</tags>
+<<<<<<< HEAD
       <menus xmi:id="_ibqCoP9rEe-BhrNNo5vaSw" elementId="org.eclipse.ui.navigator.ProjectExplorer">
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
       </menus>
       <toolbar xmi:id="_ibqCof9rEe-BhrNNo5vaSw" elementId="org.eclipse.ui.navigator.ProjectExplorer" visible="false"/>
+=======
+      <tags>active</tags>
+      <tags>activeOnClose</tags>
+      <menus xmi:id="_yn15C_-iEe-BhrNNo5vaSw" elementId="org.eclipse.ui.navigator.ProjectExplorer">
+        <tags>ViewMenu</tags>
+        <tags>menuContribution:menu</tags>
+      </menus>
+      <toolbar xmi:id="_yn15Vv-iEe-BhrNNo5vaSw" elementId="org.eclipse.ui.navigator.ProjectExplorer" visible="false"/>
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_iAPR8P9rEe-BhrNNo5vaSw" elementId="org.eclipse.ui.views.ProblemView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/eview16/problems_view.png" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.ui.internal.views.markers.ProblemsView"/>
@@ -297,7 +357,11 @@
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
       </menus>
+<<<<<<< HEAD
       <toolbar xmi:id="_ix4KQf9rEe-BhrNNo5vaSw" elementId="org.eclipse.ui.views.ContentOutline" visible="false"/>
+=======
+      <toolbar xmi:id="_yn2fpv-iEe-BhrNNo5vaSw" elementId="org.eclipse.ui.views.ContentOutline" visible="false"/>
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_iAPR9f9rEe-BhrNNo5vaSw" elementId="org.eclipse.php.ui.projectOutline" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="PHP Project Outline" iconURI="platform:/plugin/org.eclipse.php.ui/icons/full/obj16/php_project_outline.png" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.php.internal.ui.projectoutlineview.ProjectOutlinePart"/>
@@ -333,7 +397,11 @@
         <tags>ViewMenu</tags>
         <tags>menuContribution:menu</tags>
       </menus>
+<<<<<<< HEAD
       <toolbar xmi:id="_v16y4f9sEe-BhrNNo5vaSw" elementId="org.eclipse.wst.server.ui.ServersView" visible="false"/>
+=======
+      <toolbar xmi:id="_yn2f2v-iEe-BhrNNo5vaSw" elementId="org.eclipse.wst.server.ui.ServersView" visible="false"/>
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_iAcGQv9rEe-BhrNNo5vaSw" elementId="org.eclipse.php.phpunit.PHPUnitView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="PHPUnit" iconURI="platform:/plugin/org.eclipse.php.phpunit/icons/full/main.png" tooltip="" closeable="true">
       <persistedState key="originalCompatibilityViewClass" value="org.eclipse.php.phpunit.ui.view.PHPUnitView"/>
@@ -366,7 +434,11 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hkZDcP9rEe-BhrNNo5vaSw" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_hkl3wP9rEe-BhrNNo5vaSw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" enabled="false" command="_eygKuf9rEe-BhrNNo5vaSw"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_usglR__kEe-Ng6vv7ZOizw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_yn8Akf-iEe-BhrNNo5vaSw"/>
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hkZDcf9rEe-BhrNNo5vaSw" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -374,8 +446,13 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hkZqgP9rEe-BhrNNo5vaSw" elementId="org.eclipse.ui.workbench.edit">
         <tags>Draggable</tags>
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_hko7EP9rEe-BhrNNo5vaSw" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" tooltip="Undo" command="_eyfjmv9rEe-BhrNNo5vaSw"/>
         <children xsi:type="menu:HandledToolItem" xmi:id="_hkqJMP9rEe-BhrNNo5vaSw" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" tooltip="Redo" enabled="false" command="_eyj1Jf9rEe-BhrNNo5vaSw"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_usqWQ__kEe-Ng6vv7ZOizw" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" tooltip="Undo" enabled="false" command="_yn8AbP-iEe-BhrNNo5vaSw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_usqWRP_kEe-Ng6vv7ZOizw" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" tooltip="Redo" enabled="false" command="_yn8mqP-iEe-BhrNNo5vaSw"/>
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hkZqgf9rEe-BhrNNo5vaSw" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -396,9 +473,15 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hka4oP9rEe-BhrNNo5vaSw" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
+<<<<<<< HEAD
         <children xsi:type="menu:HandledToolItem" xmi:id="_hkwP0P9rEe-BhrNNo5vaSw" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_eybSJ_9rEe-BhrNNo5vaSw"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_hkbfsP9rEe-BhrNNo5vaSw" elementId="group.editor" toBeRendered="false">
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_usqWSv_kEe-Ng6vv7ZOizw" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_yn7__v-iEe-BhrNNo5vaSw"/>
+      </children>
+      <children xsi:type="menu:ToolBar" xmi:id="_yn3GtP-iEe-BhrNNo5vaSw" elementId="group.editor" toBeRendered="false">
+>>>>>>> f9cddd7ab3646e8bd530dd08f9d9de72ea7b1e50
         <tags>toolbarSeparator</tags>
         <children xsi:type="menu:ToolBarSeparator" xmi:id="_hkbfsf9rEe-BhrNNo5vaSw" elementId="group.editor" toBeRendered="false"/>
       </children>

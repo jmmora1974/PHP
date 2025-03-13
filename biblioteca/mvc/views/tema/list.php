@@ -66,8 +66,10 @@
 		       		<div class="rigth">
 		       			<?=$paginator->stats()?>
 		       		</div>
-       		
-       			<a class="button" href="/Tema/create">Nuevo tema</a>
+		       		<?php
+       		if( Login::role('ROLE_LIBRARIAN')) {// autorización(solo bibliotecarios) ?>
+       		   			<a class="button" href="/Tema/create">Nuevo tema</a>
+       		   			<?php }?>
        		<?php if($temas){ ?>
        		
        			<table class="table w100">
