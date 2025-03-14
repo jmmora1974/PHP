@@ -36,7 +36,7 @@ class JsonSocioController extends Controller{
 				//si recibimos un parametroo es una busqueda por id
 				if($param1&&!$param2)
 					$socios =[
-							Socio::findoOrFail(intval($param1),"No se encontró el socio")
+							Socio::findOrFail(intval($param1),"No se encontró el socio")
 							];
 				//preparar la respuesta y retornar el resultado pasado a JSON
 				return new JsonResponse(
@@ -107,7 +107,7 @@ class JsonSocioController extends Controller{
 				$response->setStatus("WITH ERRORS");
 				$response->addData(
 						"$socio->nombre.' '.$socio->apellidos tiene errores de validación: "
-						.arraToString($errores,false,false)
+						.arrayToString($errores,false,false)
 				);
 			} else {  // si no hay errores de validación...
 				
