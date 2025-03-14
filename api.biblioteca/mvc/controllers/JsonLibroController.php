@@ -52,7 +52,7 @@ class JsonLibroController extends Controller{
 	 *  
 	 *  @return JsonResponse
 	 */
-			public function delete(mixed $id=0):JsonResponse{
+			public function delete(int|string $id=0):JsonResponse{
 				
 				$libro = Libro::findOrFail(intval($id), "No se encontró el libro. ");
 				
