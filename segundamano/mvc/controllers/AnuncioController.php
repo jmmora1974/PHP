@@ -70,7 +70,7 @@ class AnuncioController extends Controller{
 	 */
 	public function show(int $id=0) {
 			
-			$anuncio = Anuncio::findOrFail($id, 'No se enontró el anuncio indicado'); //tb comprueba si no le ha llegado el ID
+			$anuncio = Anuncio::findOrFail($id, 'No se encontró el anuncio indicado'); //tb comprueba si no le ha llegado el ID
 			
 			
 			// carga la vista y le pasa el anuncio recuperado

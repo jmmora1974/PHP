@@ -79,7 +79,7 @@ class SocioController extends Controller{
 		// autorización(solo bibliotecarios
 		if( Login::role('ROLE_LIBRARIAN')) { 
 		
-			$socio = V_socio::findOrFail($id, 'No se enontró el socio indicado'); //tb comprueba si no le ha llegado el ID
+			$socio = V_socio::findOrFail($id, 'No se encontró el socio indicado'); //tb comprueba si no le ha llegado el ID
 			
 			//recupera los prestamos del socio
 			$prestamos= $socio->hasMany('V_prestamo','idsocio','id'); //OK

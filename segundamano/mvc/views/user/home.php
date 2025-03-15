@@ -26,8 +26,12 @@
 		<main>
 		<?php 
 			//	comprobamos que el usuario está loginado
-		//Auth::check(); // autorización(solo usuarios identificados
-		?>
+	 	Auth::check(); 
+	 	// autorización(solo usuarios propietario o administradores 
+	 	if (  (!Login::role ('ROLE_ADMIN')&& user()->id!=$user->id)) {
+		Session::warning(("Transación no autorizada!. "));
+		return redirect ('/User/edit/'.user()->id);
+	}?>
     		<section class="flex-container" id="user-data">
     			<div class="flex2">
     				<h2>"Home de <?= $user->displayname?>"</h2>
@@ -44,7 +48,18 @@
     				<img src="<?= USER_IMAGE_FOLDER.'/'.($user->picture ?? DEFAULT_USER_IMAGE)?>"
     					class="cover elnarge-image" alt="Emagen de perfil de <?=$user->displayname ?>">
     				<figcaption>Imagen de perfil de <?=$user->displayname ?></figcaption>				
-    			</figure>			    			
+    			</figure>
+    			<div class="centrado">
+			<a class="button" onclick="history.back()">Atrás</a> 
+			<?php Login::isAdmin() ??
+				'<a class="button" href="/User/list">Lista de usuarios</a>'; ?>
+				
+				<a class="button" href="/User/edit/<?=$user->id?>">Editar</a>
+				<a class="button-danger" href='/user/delete/<?=$user->id?>'>
+						Borrado <img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"> 
+					</a>
+			
+		</div>			    			
     		</section>
     		<section id="secmisanuncios">
     			<?php if($anuncios){ ?>

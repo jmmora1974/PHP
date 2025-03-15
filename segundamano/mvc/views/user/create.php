@@ -35,7 +35,7 @@
 			<label for="displayname">Displayname</label>
 			<input type="text" name="displayname" value="<?= old('displayname')?>" required>
 			<br>
-			<!--   CAmpos no incluidos
+			<!--   Campos no incluidos por el momento
 			<label for="nombre">Nombre</label>
 			<input type="text" name="nombre" value="<?= old('nombre')?>" required>
 			<br>
@@ -76,10 +76,9 @@
 			 		<option value="<?= $roleValue ?>"><?= $roleName ?></option>
 			 	<?php } ?>
 			 </select>
-			 <?php } else { //Si no es administrador , no asigna roles ?>
+			 
+			 <?php } ?>
 			
-			 	<input type="hidden" name="roles" value="ROLE_USER">
-			<?php }?>
 		</div>
 		
 		

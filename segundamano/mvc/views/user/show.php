@@ -17,12 +17,18 @@
 	</head>
 <body>
 		<?= $template->login() ?>
-		<?= $template->header('Lista de usuairos') ?>
+		<?= $template->header('Detalles del usuario') ?>
 		<?= $template->menu() ?>
 		<?= $template->breadCrumbs(['Usuarios'=>'/User','Detalles'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
+	
+		<?php 	Auth::check(); // autorización(solo usuarios propietario o administradores 
+if (  (!Login::role ('ROLE_ADMIN')&& user()->id!=$user->id)) {
+	Session::error(("Transación no autorizada!. "));
+		return redirect ('/'.user()->id);
+	}?>
 		<h1><?=APP_NAME?></h1>
 		<section id="detalles" class="flex-container gap2">
 	<div class="flex2 centered">	
@@ -87,7 +93,8 @@
 		
 		<div class="centrado">
 			<a class="button" onclick="history.back()">Atrás</a> 
-			<a class="button" href="/User/list">Lista de usuarios</a> 
+			<?php Login::isAdmin() ??
+				'<a class="button" href="/User/list">Lista de usuarios</a>'; ?>
 			<a class="button" href="/User/edit/<?=$user->id?>">Editar</a>
 			
 		</div>

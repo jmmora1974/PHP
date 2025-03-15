@@ -90,8 +90,7 @@
 								<img src="<?=ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
 								 	class="table-image enlarge-image" alt="Foto del anuncio <?= $anuncio->titulo?>">
 										 		
-								 <figcaption>Foto del anuncio <?= $anuncio->titulo?> </figcaption>
-								 
+							
 							</figure>
 						</td>
 						<td><a href='/Anuncio/show/<?=$anuncio->id?>'><?=$anuncio->titulo?></a></td>

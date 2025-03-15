@@ -23,8 +23,12 @@
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
-	<?php 	Auth::check(); // autorización(solo usuarios identificados ?>
-	
+	<?php 	Auth::check(); // autorización(solo usuarios propietario o administradores 
+if (  (!Login::role ('ROLE_ADMIN')&& user()->id!=$user->id)) {
+		Session::error(("Transación no autorizada!. "));
+		return redirect ('/User/edit/'.user()->id);
+	}?>
+		
 	<h1><?=APP_NAME?></h1>
 	<h2>Edición del usuairo: <b>"<?= $user->displayname?>"</b></h2>
 	<section id="detalles" class="flex-container gap2">
@@ -67,12 +71,9 @@
 			<input type="text" name="updated" value="<?= arrayToString($user->roles, false, false)?>" disabled>
 			
 			
-		<?php } ?>
-		
-		
-			
-				
-				
+		<?php } 
+//Esta operación solamente la puede hacer el administrador
+		if(Login::isAdmin() || user()->id==$user->id){  ?>
 			<div class="centered mt2 ">
 				<input type="submit" class="button" name="actualizar" value="Actualizar">
 				<input type="reset" class="button" value="Reset" onclick="<?php redirect('/User/edit/$user->id');?>">	
@@ -80,6 +81,7 @@
 						Borrado <img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"> 
 					</a>
 			</div>
+			<?php } ?>
 		</form>
 	</div>
 		<div class="flex2">
@@ -106,7 +108,7 @@
 		</section>
 				<div class="centrado m1">
 			<a class="button" onclick="history.back()">Atrás</a>
-			<a class="button" href="/User/list">Lista de usuarios</a>
+			<?php Login::isAdmin()?  '<a class="button" href="/User/list">Lista de usuarios</a>':'' ?>
 			<a class="button" href="/User/show/<?=$user->id?>">Detalles</a>
 		
 				

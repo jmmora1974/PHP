@@ -72,7 +72,7 @@ class TemaController extends Controller{
 		
 		
 		
-		$tema = Tema::findOrFail($id, 'No se enontró el tema indicado'); //tb comprueba si no le ha llegado el ID
+		$tema = Tema::findOrFail($id, 'No se encontró el tema indicado'); //tb comprueba si no le ha llegado el ID
 		
 		//recueramos los libros del tema
 		$libros=$tema->getLibrosTema();

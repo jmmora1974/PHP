@@ -93,7 +93,7 @@ class UserController extends Controller{
     	
     	Auth::admin(); // autorización(solo administradores)
     	
-    	$user = User::findOrFail($id, 'No se enontró el usuairo indicado'); //tb comprueba si no le ha llegado el ID
+    	$user = User::findOrFail($id, 'No se encontró el usuairo indicado'); //tb comprueba si no le ha llegado el ID
     	
     
     	// carga la vista y le pasa el socio recuperado

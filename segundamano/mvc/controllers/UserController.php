@@ -1,5 +1,7 @@
 <?php
     
+
+
 /** UserController
  *
  * Gestiona la operación de usarios
@@ -47,9 +49,19 @@ class UserController extends Controller{
      *
      */
     public function list(int $page=1){
-    	
-    //	Auth::admin(); // autorización(solo administradores)
-    	
+    	try{
+    	Auth::check(); // autorización(solo usuarios propietario o administradores
+    	if (  (!Login::role ('ROLE_ADMIN')&& user()->id!=$id)) {
+    		
+    		throw new AuthException("Transación no autorizada!.");
+    		
+    	}
+    	}catch (AuthException $e){
+    		if(DEBUG)
+    			throw new Exception($e->getMessage());
+    		//Session::error(("Transación no autorizada!. "));
+    		return redirect ('/');
+    	}
     	//analiza si hay filtros, pone uno nuevo o quit el existente
     	$filtro = Filter::apply('usuarios');
     	
@@ -91,9 +103,23 @@ class UserController extends Controller{
      */
     public function show(int $id=0) {
     	
-    //	Auth::admin(); // autorización(solo administradores)
+    	try{
+    		// autorización(solo usuarios propietario o administradores
+    		if (Login::guest() || (!Login::role ('ROLE_ADMIN')&& user()->id!=$id)) {
+    			
+    			throw new AuthException("Transación no autorizada!.
+							Intento ver los detalles del usuario $id por el usuario".(isset(user()->id)?user()->id:' invitado'));
+    			
+    		}
+    	}catch (AuthException $e){
+    		
+    		if(DEBUG)
+    			throw new Exception($e->getMessage());
+    		//Session::error(("Transación no autorizada!. "));
+    		return redirect ('/');
+    	}
     	
-    	$user = User::findOrFail($id, 'No se enontró el usuairo indicado'); //tb comprueba si no le ha llegado el ID
+    	$user = User::findOrFail($id, 'No se encontró el usuairo indicado'); //tb comprueba si no le ha llegado el ID
     	
     
     	// carga la vista y le pasa el socio recuperado
@@ -122,8 +148,7 @@ class UserController extends Controller{
      */
     public function store(){
     	
-    	//Esta operación solamente la puede hacer el administrador
-    	//Auth::admin();
+    	try{
     	
     	//Comprueba  que llega el formulario
     	if(!request()->has("guardar"))
@@ -136,12 +161,16 @@ class UserController extends Controller{
     		//en este caso no lo cogemos de la Request, poruqe el saneamiento
     		//podria provocar que el password cambiara(y el usuario no podria  hacer login)
     		//no es peligroso porque el encriptarlo no afectarán los caracteres especiales
-    		$user->password =md5($_POST['password']);
+    		$pass = $_POST['password'];
+    		if ( strlen($pass)<1)
+    			throw new ValidationException ("<br>Password obligatorio</br>");
+    			
+    		$user->password =md5($pass);
     		$repeat =md5($_POST['repeatpassword']);
     		
     		//Comprueba que los dos passwords coinciden
-    		if ($user->password != $repeat)
-    			throw new ValidationException ("Las claves no coinciden.");
+    		if ( $user->password != $repeat )
+    			throw new ValidationException ("Las claves no coinciden o no es correcta.");
     		
     		//toma el resto de los valores del formulario
     			$user->displayname = request()->post('displayname');
@@ -151,13 +180,21 @@ class UserController extends Controller{
     			$user->phone = request()->post('telefono');
     			$user->poblacion = request()->post('poblacion');
     			$user->cp = request()->post('cp');
-    			
+    		
+    			//Esta operación solamente la puede hacer el administrador
+    			Login::isAdmin() ?
     			//añade ROLE_USER y el rol que venga del formulario, no pasa nada si 
     			//se repite "ROLE_USER", el metodo addRole() elimina las repeticiones.
-    			$user->addRole('ROLE_USER', request()->post('roles'));
+    			$user->addRole('ROLE_USER', request()->post('roles')):
+    			$user->addRole('ROLE_USER');  //si no es admin solo agrega el rol user
     			
-    			try{
+    			
     				$user->saneate(); //sanea las entradas.  no necesario, si se realiza en la clase Model::create
+    				if ($errores=$user->validate()){
+    					throw new ValidationException (
+    							"<br>".arrayToString($errores,false, false,".<br>")
+    							);
+    				}
     				$user->save();  // Guarda el usuario
     				
     				$file = request()->file(  //recupera la foto
@@ -172,11 +209,15 @@ class UserController extends Controller{
     					$user->update();  //actualiza el usuario en la BDD para añadir la foto
     				}
     				Session::success("Nuevo usuario $user->displayname creado con éxito");
-    				return redirect ("/User/show/$user->id");
+    				//Auth::check(); // si se ha creado nuevo, lo redirige a login para que acceder
+    				//si estaba autenticado(caso adeministradores) le redirige  a los detalles
+    				return redirect ("/login");
     				
     				//si sproduce un error de validación
     			}catch (ValidationException $e){
-    				
+    				if(DEBUG)
+    					throw new ValidationException($e->getMessage());
+    					
     				Session::error($e->getMessage());
     				return redirect ("/User/create");
     			} catch (SQLException $e){
@@ -190,7 +231,7 @@ class UserController extends Controller{
     			//si se produce un error en la subida de ficheros
     			}catch (UploadException $e){
     				
-    				Session::warning ("El usuario $user->displayname se guardó correctamente, 
+    				Session::error ("El usuario $user->displayname se guardó correctamente, 
 										pero no se pudo subir el fichero de image.");
     				
     				if(DEBUG)
@@ -209,7 +250,20 @@ class UserController extends Controller{
      *
      */
     public function edit(int $id=0){
-    	//Auth::admin(); // Solo administradores
+    	try{
+    		Auth::check(); // autorización(solo usuarios propietario o administradores
+    		if (  (!Login::role ('ROLE_ADMIN')&& user()->id!=$id)) {
+    			
+    			throw new AuthException("Transación no autorizada!.");
+    			
+    		}
+    	}catch (AuthException $e){
+    		if(DEBUG)
+    			throw new Exception($e->getMessage());
+    		
+    		//Session::error(("Transación no autorizada!. "));
+    		return redirect ('/');
+    	}
     	// busca el usuario con ese ID
     	$user = User::findOrFail($id,'No se encontró el usuario.');
     	
@@ -226,7 +280,19 @@ class UserController extends Controller{
     		throw new FormException ('No se recibieron datos');
     		
     		$id = intval(request()->post('id')); // recuperar el id via POST
-    		
+    		try{
+    			// autorización(solo usuarios propietario o administradores
+    			if (  (!Login::role ('ROLE_ADMIN')&& user()->id!=$id)) {
+    				
+    				throw new AuthException("Transación no autorizada!.");
+    				
+    			}
+    		}catch (AuthException $e){
+    			//Session::error(("Transación no autorizada!. "));
+    			if(DEBUG)
+    				throw new Exception($e->getMessage());
+    			return redirect ('/');
+    		}
     		
     		//intenta actualizar el usuario
     		try{
@@ -261,7 +327,24 @@ class UserController extends Controller{
      * @return ViewResponse
      */
     public function delete(int $id=0){
-    	Auth::admin(); // autorización(solo administradores)
+    	Auth::check(); // debe estar loginado para eliminar el perfil
+    	
+    	//	$id = intval(request()->post('id')); // recuperar el id via POST
+    		try{
+    			
+    			// autorización(solo usuarios propietario o administradores
+    			if (!Login::role ('ROLE_ADMIN')&& user()->id!=$id) {
+    				throw new AuthException("Transación no autorizada!. 
+							Intento borrar usuario ".$id." por el usuario ".user()->id);
+    				
+    			}
+    		}catch (AuthException $e){
+    			Session::error(("Transación no autorizada!. "));
+    			if(DEBUG)
+    				throw new Exception($e->getMessage());
+    			return redirect ('/');
+    		}
+    		
     	$user = User::findOrFail($id, "No existe el usuario.");
     	
     	return view('user/delete',['user'=> $user]);
@@ -271,7 +354,7 @@ class UserController extends Controller{
      * @return RedirectResponse
      */
     public function destroy(){
-    	Auth::admin(); // autorización(solo administradores)
+    	try{
     	//comprueba que le llega el formulario de confirmación
     	if(!request()->has('borrar'))
     		throw new FormException("No se recibió la confirmación");
@@ -279,9 +362,15 @@ class UserController extends Controller{
     		$id 	=intval(request()->post('id')); //Recupera el identiicador
     		$user	=User::findOrFail($id);
     		
+    		if (  (!Login::role ('ROLE_ADMIN') &&  Login::user()->id!=$id)) {
+    			//Session::error(("Transación no autorizada!. "));
+    			throw new AuthException("Transación no autorizada!.
+							Intento borrar usuario ".$user->id." por el usuario ".user()->id);
+    			return redirect ('/');
+    		}
     	
     			//intenta borrar el usuario
-    			try{
+    			
     				$user->deleteObject();
     				//si hay imagen de la perfil, hay que borrarla
     				if($user->picture){
@@ -290,9 +379,15 @@ class UserController extends Controller{
     				}
     				
     				Session::success("Se ha borrado el usuario $user->displayname.");
-    				return redirect("/User/list");
+    				if(Login::isAdmin())
+    						return redirect("/User/list");
+    				else 
+    					return redirect('/Logout');
     				//si se produce un error en la operación con la bdd..
-    			} catch (SQLException $e){
+    			}catch (AuthException $e){
+    				Session::error($e->getMessage());
+    				return redirect ('/');
+    			}catch (SQLException $e){
     				
     				Session::error("No se pudo borrar el usuario $user->displayname.");
     				
@@ -301,12 +396,17 @@ class UserController extends Controller{
     					
     					return redirect("/User/delete/$id");
     			}catch(FileException $e){
-    				Session::warning ("Se eliminó el usuario $user->displayname pero no se pudo eliminar el fichero del disco.");
+    				Session::error ("Se eliminó el usuario $user->displayname pero no se pudo eliminar el fichero del disco.");
     				if(DEBUG)
     					throw new SQLException($e->getMessage());
     					//No podemos redirigir al usuario porque ya no existe
     					//volvemos al listado de usuarios
-    					return redirect("/User");
+    					if(Login::isAdmin())
+    						return redirect("/User");
+    						else
+    							Session::success("Se ha borrado el usuario $user->displayname.");
+    							return redirect('/Logout');
+	//si se produce un error en la operación con la bdd..
     			}
     }
     
@@ -316,14 +416,27 @@ class UserController extends Controller{
      * @return RedirectResponse
      */
     public function changeuserfoto(){
-    	Auth::check(); // autorización(solo usuarios registrados)
+    	//Auth::check(); // autorización(solo usuarios registrados)
     	//Comprueba que la petición venga del formulario
     	if((!request()->has('borrar'))
     			&& (!request()->has('cambiar')))
     		throw new FormException('No se recibió el formulario');
-    		
+    			
     		//recupera el idtema del desplegable
     		$id = intval(request()->post('id'));
+    		try{
+    			// autorización(solo usuarios propietario o administradores
+    			if (  (!Login::role ('ROLE_ADMIN')&& user()->id!=$id)) {
+    				
+    				throw new AuthException("Transación no autorizada!.
+							Intento cambiar foto del usuario $id por el usuario".user()->id);
+    				
+    			}
+    		}catch (AuthException $e){
+    			Session::error(("Transación no autorizada!. "));
+    			return redirect ('/');
+    		}
+    		
     		$user = User::findOrFail($id, "no se ha encontrado el usuario.");
     		
     		$tmp = $user->picture; //recordatemos el nombre para poder borrarlo luego
@@ -344,7 +457,7 @@ class UserController extends Controller{
     							
     				} else {
     					if(request()->has('cambiar')){
-    						Session::warning("Debes seleccionar la foto que deseas subir.");
+    						Session::error("Debes seleccionar la foto que deseas subir.");
     						return redirect("/User/edit/$user->id");
     					}
     				}
@@ -364,7 +477,7 @@ class UserController extends Controller{
     					
     					return redirect("/User/edit/$id");
     			} catch(FileException $e){
-    				Session::warning ("No se pudo eliminar el fichero del disco.");
+    				Session::error ("No se pudo eliminar el fichero del disco.");
     				if(DEBUG)
     					throw new SQLException($e->getMessage());
     					
@@ -488,13 +601,13 @@ class UserController extends Controller{
     		
     		//Comprueba que los dos passwords nuevos coinciden
     		if ($user->password != $oldpassword){
-    			Session::warning ("Las contraseña antigua no es correcta.");
+    			Session::error ("Las contraseña antigua no es correcta.");
     			return  view("/user/changePassword");
     		}
     		
     		//Comprueba que los dos passwords nuevos coinciden
     		if ($newpass != $repeatpass){
-    			Session::warning ("Las claves nuevas no coinciden.");
+    			Session::error ("Las claves nuevas no coinciden.");
     			return redirect("history.back()");
     		}
     		
