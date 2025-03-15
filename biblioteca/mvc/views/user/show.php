@@ -37,7 +37,12 @@
 			<label for="email">Email</label>
 			<input type="email" name="email" value="<?=$user->email ?>" disabled >
 			<br>
-			
+			<label for="poblacion">Poblacion</label>
+			<input type="text" name="poblacion" value="<?=$user->poblacion?>" disabled>
+			<br>
+			<label for="cp">Codigo postal</label>
+			<input type="text" name="cp" value="<?=$user->cp?>" disabled>
+			<br>
 			
 	<?php    //Los administradores podran ver las siguientes opciones
 

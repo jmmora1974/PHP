@@ -4,20 +4,29 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
-			<item value="recibi"/>
-			<item value="m"/>
-			<item value="reci"/>
-			<item value="find"/>
-			<item value="DB"/>
-			<item value="libro"/>
-			<item value="USER_IMAGE_FOLDER"/>
-			<item value="PROFI"/>
-			<item value="BOOKS"/>
-			<item value="Libro"/>
-			<item value="OPT"/>
-			<item value="ALLOW_"/>
+			<item value="PROFILE"/>
+			<item value="socio"/>
+			<item value="Anincio"/>
+			<item value="Socio"/>
+			<item value="nombre.&apos; &apos;.$anuncio-&gt;apellidos "/>
+			<item value="USER_IM"/>
+			<item value="biblio"/>
+			<item value="anuncio"/>
+			<item value="ROLE_LIBRARIAN"/>
+			<item value="menu"/>
+			<item value="USE"/>
+			<item value="BASE de "/>
+			<item value="local"/>
+			<item value="user_ima"/>
+			<item value="usr_ima"/>
 		</list>
 		<list key="replacehistory">
+			<item value="anuncio"/>
+			<item value="Anuncio"/>
+			<item value="Anincio"/>
+			<item value="titulo"/>
+			<item value="ANUNCIO"/>
+			<item value="ROLE_PUBLISHER"/>
 			<item value="socio"/>
 			<item value="Socio"/>
 		</list>

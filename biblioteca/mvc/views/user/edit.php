@@ -40,8 +40,12 @@
 			<label for="email">Email</label>
 			<input type="email" name="email" value="<?=$user->email ?>">
 			<br>
-			
-			
+			<label for="poblacion">Poblacion</label>
+			<input type="text" name="poblacion" value="<?=$user->poblacion?>">
+			<br>
+			<label for="cp">Codigo postal</label>
+			<input type="text" name="cp" value="<?=$user->cp?>">
+			<br>
 	<?php    //Los administradores podran ver las siguientes opciones
 
 		if ( Login::role ( 'ROLE_ADMIN' )) { ?>
