@@ -94,7 +94,7 @@ class JsonAnuncioController extends Controller{
 				$response->setStatus("WITH ERRORS");
 				$response->addData(
 						"$anuncio->titulo tiene errores de validación: "
-						.arraToString($errores,false,false)
+						.arrayToString($errores, false, false,".<br>")
 				);
 			} else {  // si no hay errores de validación...
 				
