@@ -50,12 +50,10 @@ class UserController extends Controller{
      */
     public function list(int $page=1){
     	try{
-    	Auth::check(); // autorización(solo usuarios propietario o administradores
-    	if (  (!Login::role ('ROLE_ADMIN')&& user()->id!=$id)) {
-    		
+    		Auth::check(); // autorización(solo usuarios propietario o administradores
+    		if   (!Login::role ('ROLE_ADMIN'))     		
     		throw new AuthException("Transación no autorizada!.");
-    		
-    	}
+    		    	
     	}catch (AuthException $e){
     		if(DEBUG)
     			throw new Exception($e->getMessage());

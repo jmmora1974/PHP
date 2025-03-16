@@ -52,10 +52,11 @@
 				<input type="reset" class="button" value="Reset">	
 		</div>
 		</form>
+	
 		<div class="flex2">
 			<figure class="flex1 centrado p2">
-					<img src="<?=ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
-					 	class="cover enlarge-image" alt="Foto deL anuncio de <?= $anuncio->titulo ?>">				 		
+					<img src="<?='/'.ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
+					 	class="cover enlarge-image" alt="Foto del anuncio de <?= $anuncio->titulo ?>">				 		
 					 <figcaption>Foto deL anuncio de <?= $anuncio->titulo ?> </figcaption>
 			
 				<br>

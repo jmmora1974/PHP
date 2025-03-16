@@ -60,8 +60,8 @@ define('AUTOLOAD_DIRECTORIES',  [
  * APLICACIÓN
  * -------------------------------------------------------------*/
 
-define('APP_NAME', 'FastLight Framework');   // Título de la aplicación.
-define('APP_TYPE', 'WEB');                   // Tipo de aplicación: WEB o API.
+define('APP_NAME', 'App segundamano by JMMORA');   // Título de la aplicación.
+define('APP_TYPE', 'API');                   // Tipo de aplicación: WEB o API.
 
 define('APP_VERSION', '1.8.7');  // versión actual del framework o aplicación desarrollada
 define('SHOW_VERSION', true);     // muestra la versión de la app en el footer (templates/Base.php)
@@ -74,7 +74,7 @@ define('DEFAULT_METHOD', 'index');
 // Email del administrador, para la operación de "contacto".
 // Esta operación no está implementada de serie en FastLight,
 // la implementamos en clase.
-define('ADMIN_EMAIL', 'robert@fastlight.org');
+define('ADMIN_EMAIL', 'jmmora1974@gmail.com');
 
 // ¿Deben las cadenas vacías ser convertidas a NULL? 
 // se aplica al recuperar los datos de la petición mediante el objeto Request,
@@ -110,7 +110,7 @@ define('RESPONSE_CHARSET', 'utf-8'); // charset para las respuestas HTTP
 define('DB_HOST','localhost');  // Host.
 define('DB_USER','root');       // Usuario.
 define('DB_PASS','');           // Password.
-define('DB_NAME','fastlight');  // Nombre de la base de datos.
+define('DB_NAME','segundamano');  // Nombre de la base de datos.
 define('DB_PORT',  3306);       // Puerto.
 define('DB_CHARSET','utf8');    // Codificación de caracteres.
 
@@ -138,7 +138,8 @@ define('USER_ROLES', [
     'Test'          => 'ROLE_TEST',
     'API'           => 'ROLE_API',
     'Estudiante'    => 'ROLE_STUDENT',
-    'Bloqueado'     => 'ROLE_BLOCKED'
+    'Bloqueado'     => 'ROLE_BLOCKED',
+	'Vendedor'     => 'ROLE_PUBLISHER'
 ]);
 
 // mensaje que se mostrará al usuario bloqueado cuando intenta hacer Login
@@ -153,6 +154,13 @@ define('USER_IMAGE_FOLDER','/images/users');
 
 // imagen por defecto para los usuarios que no tengan
 define('DEFAULT_USER_IMAGE', 'default.png');
+
+
+// carpeta para las imágenes de los usuarios
+define('ANUNCIO_IMAGE_FOLDER','images/anuncios');
+
+// imagen por defecto para los usuarios que no tengan
+define('DEFAULT_ANUNCIO_IMAGE', 'default.png');
 
 
 
@@ -221,7 +229,7 @@ define('UPLOAD_MAX_SIZE', 0);
  * MENSAJE DE "ACEPTAR COOKIES"
  * -------------------------------------------------------------*/
 
-define('ACCEPT_COOKIES', true);    // habilita el mensaje de "aceptar cookies"
+define('ACCEPT_COOKIES', false);    // habilita el mensaje de "aceptar cookies"
 
 // mensaje que aparece en el formulario de "aceptar cookies"
 // los saltos de línea en el mensaje se convertirán en cambio de párrafo
@@ -244,7 +252,7 @@ define('ACCEPT_COOKIES_EXPIRATION', time()+604800);
  * HERRAMIENTAS DE DEPURACIÓN (PARA APP_TYPE WEB)
  * -------------------------------------------------------------*/
     
-define('DEBUG', true); // Activa el modo debug.   
+define('DEBUG', false); // Activa el modo debug.   
 
 // Detalles que queremos mostrar en modo debug en la página de error
 // OPCIONES: user, trace, request, session
