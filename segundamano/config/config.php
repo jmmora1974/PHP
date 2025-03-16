@@ -157,7 +157,7 @@ define('DEFAULT_USER_IMAGE', 'default.png');
 
 
 // carpeta para las imágenes de los usuarios
-define('ANUNCIO_IMAGE_FOLDER','images/anuncios');
+define('ANUNCIO_IMAGE_FOLDER','/images/anuncios');
 
 // imagen por defecto para los usuarios que no tengan
 define('DEFAULT_ANUNCIO_IMAGE', 'default.png');

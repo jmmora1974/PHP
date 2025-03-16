@@ -65,7 +65,7 @@
 			<div class="flex2">
 			<script src="/js/BigPicture.js"></script>
 				<figure class="flex1 centrado p2">
-				<img src="<?='/'.ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
+				<img src="<?=ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
 				 	class="cover enlarge-image" alt="Foto de <?= $anuncio->titulo?>">				 		
 				 <figcaption>Foto de <?= $anuncio->titulo?> </figcaption>
 		

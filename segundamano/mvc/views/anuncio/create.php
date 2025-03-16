@@ -26,7 +26,35 @@
 	
 	<h2>Nuevo anuncio en <?=APP_NAME?> </h2>
 	<section id="detalles" class="flex-container gap2">
-	<form method="POST" enctype="multipart/form-data" action="/anuncio/store">
+	<form method="POST" enctype="multipart/form-data" action="/anuncio/store" class="flex-container gap2">
+		<div class="flex2">
+			
+					<div  id="previewcanvascontainer" >
+						<figure class="flex1 centrado p2">
+							<canvas id="previewcanvas">
+									<div style="display:none;">
+										<img id="fotodefault" src="<?=ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
+				 								class="cover enlarge-image" alt="Foto de <?= $anuncio->titulo?>">	
+									</div>
+							</canvas>		
+							<figcaption>Foto del anuncio</figcaption>
+									<script>
+									const canvas = document.getElementById("previewcanvas");
+									const ctx = canvas.getContext("2d");
+									const image = document.getElementById("fotodefault");
+									
+									image.addEventListener("load", (e) => {
+									  ctx.drawImage(image, 10, 5, 200, 150);
+									});
+									</script>
+
+						</figure>	
+						<input type="file" name="imagen" accept="image/*"  style="max-width:300px"
+			 id="file-with-preview" value="<?= old('imagen', $anuncio->imagen)?>"  onchange="return ShowImagePreview( this.files );">
+			<br>
+			
+					</div>
+			</div>
 		<div class="flex2">
 			<input type="hidden" name="iduser" value="<?= user()->id?>">
 			<input type="hidden" name="poblacion" value="<?= user()->poblacion?>">
@@ -39,38 +67,12 @@
 			<label for="precio">Precio</label>
 			<input type="number" name="precio" value="<?=old('precio')?>" required>
 			<br>
-			<label for="imagen">Foto anuncio</label>
-					<div class="flex2" id="previewcanvascontainer" >
-			<figure class="flex1 centrado p2">
-				<canvas id="previewcanvas">
-				
-<div style="display:none;">
-
-<img id="fotodefault" src="<?='/'.ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
-				 	class="cover enlarge-image" alt="Foto de <?= $anuncio->titulo?>">	
-</div>
-				</canvas>		
-				 <figcaption>Foto del anuncio</figcaption>
-<script>
-const canvas = document.getElementById("previewcanvas");
-const ctx = canvas.getContext("2d");
-const image = document.getElementById("fotodefault");
-
-image.addEventListener("load", (e) => {
-  ctx.drawImage(image, 1, 1, 280, 150);
-});
-</script>
-
-			</figure>		
 		</div>
+		
 			
-			<input type="file" name="imagen" accept="image/*"  style="max-width:300px"
-			 id="file-with-preview" value="<?= old('imagen', $anuncio->imagen)?>"  onchange="return ShowImagePreview( this.files );">
-			<br>
-		</div>
 		
 		
-		<div class="centered mt2">
+		<div class="centered mt2 w100">
 		<?php  if( Login::role('ROLE_USER' )) {// autorización(solo autenticados) ?>
 				<input type="submit" class="button" name="guardar" value="Guardar">
 		<?php }?>

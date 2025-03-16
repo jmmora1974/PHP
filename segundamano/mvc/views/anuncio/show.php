@@ -42,7 +42,7 @@
 			<script src="/js/BigPicture.js"></script>
 			
 			<figure class="flex1 centrado p2">
-				<img src="<?='/'.ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
+				<img src="<?=ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
 					 	class="cover enlarge-image" alt="Foto del anuncio <?= $anuncio->titulo?>">
 									 					 		
 				 <figcaption>Foto de perfil de <?= $anuncio->titulo?> </figcaption>
@@ -58,7 +58,7 @@
 		<!-- Solo el usuario propietario puede realizar las siguientes operaciones-->
 		<?php  if( Login::user()->id == $anuncio->iduser) {// autorización(solo propietario) ?>
 				<a class="button" href="/Anuncio/edit/<?=$anuncio->id?>">Editar</a>
-				<a class="button-danger" href="/Anuncio/delete/<?=$anuncio->id?>">Borrar</a>
+				
 			<?php }?>
 		</div>
 	</main>

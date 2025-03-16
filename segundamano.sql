@@ -1,20 +1,18 @@
-
-
--- procedimiento para restaurar la bbd de anuncios segunda mano --
+-- -------------------------------------------- --
+-- Script de creación de la bdd segunamano   -- --
+--     by Jose Miguel Mora Perez 			 -- --
+-- -------------------------------------------- --
 
 -- elimina la base de datos "biblioteca" si existe
 DROP DATABASE IF EXISTS segundamano;
 
-
 -- crea la nueva base de datos "SEGUNDAMANO"
 CREATE DATABASE segundamano 
   DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-
 -- usa la base de datos "publicidad"anuncios
-USE segundamano;
 
--- tabla users
--- podemos crear campos adicionales si es necesario
+USE segundamano;
+-- tabla users (se han agregado población y cp)
 CREATE TABLE users(
   id INT PRIMARY KEY auto_increment,
   displayname VARCHAR(32) NOT NULL,
@@ -29,11 +27,12 @@ CREATE TABLE users(
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 );
+
 -- creación de la tabla "anuncios"
 CREATE TABLE anuncios (
   id INT AUTO_INCREMENT PRIMARY KEY,
   iduser INT NOT NULL COMMENT 'Usuario que publica el anuncio(vendedor)',
-  poblacion VARCHAR(256) NULL DEFAULT NULL COMMENT 'Población del usuairo que coloca el anuncio',
+  poblacion VARCHAR(256) NULL DEFAULT NULL COMMENT 'Población del usuario que coloca el anuncio',
   titulo VARCHAR(64) NOT NULL,
   descripcion VARCHAR(128) NOT NULL COMMENT 'Descripción detallada del  anuncio',
   precio INT NOT NULL DEFAULT 0 COMMENT 'Precio del anuncio',
@@ -55,7 +54,6 @@ CREATE TABLE errors(
 	user VARCHAR(128) DEFAULT NULL,
 	ip CHAR(15) NOT NULL
 );
-
 
 
 -- algunos usuarios para las pruebas, podéis crear tantos como necesitéis
@@ -82,6 +80,9 @@ INSERT INTO anuncios(iduser,titulo, descripcion, precio, imagen) VALUES
     (6,'Bicicleta 27', 'Bicicleta de montaña 27 pulgadas', 100,  NULL),
     (6,'Televisor 32', 'Televisor LG 32 pulgadas', 50,  NULL),
     (7,'Coche baterias', 'Coche 4x4 teledirigido', 20,  NULL);
+    
+    
+-- procedimiento para restaurar la bbd de anuncios segunda mano --
 
 USE `segundamano`;
 DROP procedure IF EXISTS `restore`;
@@ -90,24 +91,8 @@ DELIMITER $$
 USE `segundamano`$$
 CREATE PROCEDURE `restore`()
 BEGIN
-drop tables anuncios, users, errors;
-
- INSERT INTO users(displayname, email, phone, poblacion, cp, password, roles) VALUES 
-	('admin', 'admin@fastlight.org', '666666666', 'Terrassa', '08227', md5('1234'), 
-		'["ROLE_USER", "ROLE_ADMIN"]'),
-	('publisher', 'publisher@fastlight.org', '666666665', 'Terrassa', '08227',  md5('1234'), 
-		'["ROLE_USER", "ROLE_PUBLISHER"]'),
-	('test', 'test@fastlight.org', '666666664',  'Terrassa', '08227',  md5('1234'), 
-		'["ROLE_USER", "ROLE_TEST"]'),
-	('API', 'api@fastlight.org', '666666663', 'Terrassa', '08227',  md5('1234'), 
-		'["ROLE_USER", "ROLE_API"]'),
-	('comprador1', 'comprador1@fastlight.org', '666666667', 'Terrassa', '08227',  md5('1234'), 
-	'["ROLE_USER"]'),
-    ('comprador3', 'comprador3@fastlight.org', '666666668', 'Terrassa', '08227',  md5('1234'), 
-	'["ROLE_USER"]'),
-    ('comprador2', 'comprador2@fastlight.org', '666666669', 'Terrassa', '08227',  md5('1234'), 
-	'["ROLE_USER"]');
-    
+truncate anuncios;
+   
     INSERT INTO anuncios(iduser,titulo, descripcion, precio, imagen) VALUES 
 	(5,'Cassete con DVD', 'Clásico reproductor de los 80', 10,  NULL),
     (5,'Cuadro paisaje', 'Cuadro de una puesta de sol en la montaña nevada', 14,  NULL),
@@ -115,5 +100,5 @@ drop tables anuncios, users, errors;
     (6,'Televisor 32', 'Televisor LG 32 pulgadas', 50,  NULL),
     (7,'Coche baterias', 'Coche 4x4 teledirigido', 20,  NULL);
 END$$
-
 DELIMITER ;
+
