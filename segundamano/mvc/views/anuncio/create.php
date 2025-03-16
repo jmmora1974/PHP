@@ -40,30 +40,44 @@
 			<input type="number" name="precio" value="<?=old('precio')?>" required>
 			<br>
 			<label for="imagen">Foto anuncio</label>
-			<input type="file" name="imagen" accept="image/*" id="file-with-preview" value="<?= old('imagen', $anuncio->imagen)?>">
+					<div class="flex2" id="previewcanvascontainer" >
+			<figure class="flex1 centrado p2">
+				<canvas id="previewcanvas">
+				
+<div style="display:none;">
+
+<img id="fotodefault" src="<?='/'.ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
+				 	class="cover enlarge-image" alt="Foto de <?= $anuncio->titulo?>">	
+</div>
+				</canvas>		
+				 <figcaption>Foto del anuncio</figcaption>
+<script>
+const canvas = document.getElementById("previewcanvas");
+const ctx = canvas.getContext("2d");
+const image = document.getElementById("fotodefault");
+
+image.addEventListener("load", (e) => {
+  ctx.drawImage(image, 1, 1, 280, 150);
+});
+</script>
+
+			</figure>		
+		</div>
+			
+			<input type="file" name="imagen" accept="image/*"  style="max-width:300px"
+			 id="file-with-preview" value="<?= old('imagen', $anuncio->imagen)?>"  onchange="return ShowImagePreview( this.files );">
 			<br>
 		</div>
 		
 		
 		<div class="centered mt2">
-		<?php  if( Login::role('ROLE_USER' )) {// autorización(solo bibliotecarios) ?>
+		<?php  if( Login::role('ROLE_USER' )) {// autorización(solo autenticados) ?>
 				<input type="submit" class="button" name="guardar" value="Guardar">
 		<?php }?>
 				<input type="reset" class="button" value="Reset">	
 		</div>
-		</form>
-	
-		<div class="flex2">
-			<figure class="flex1 centrado p2">
-					<img src="<?='/'.ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
-					 	class="cover enlarge-image" alt="Foto del anuncio de <?= $anuncio->titulo ?>">				 		
-					 <figcaption>Foto deL anuncio de <?= $anuncio->titulo ?> </figcaption>
-			
-				<br>
-			</figure>		
 		
-			
-		</div>
+		</form>
 		</section>
 		<div class="centrado my2">
 			<a class="button" onclick="history.back()">Atrás</a>
@@ -73,6 +87,7 @@
 	
 </main>		
 	
+<script src="/js/PreviewUpload.js"></script>
 	
 </body>
 </html>

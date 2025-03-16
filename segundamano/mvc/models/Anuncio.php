@@ -35,8 +35,8 @@ class Anuncio extends Model{
 				$errores['poblacion']="Error en la longitud de la poblacion."  ;
 			
 			//CodigoPostal: de 5 caracteres
-			if (empty($this->cp)||strlen($this->cp)<5 || strlen($this->cp)>5)
-				$errores['CodigoPostal']="Error en la longitud de la CodigoPostal."  ;
+			//if (empty($this->cp)||strlen($this->cp)<5 || strlen($this->cp)>5)
+				//$errores['CodigoPostal']="Error en la longitud de la CodigoPostal."  ;
 						
 			return $errores;
 	}

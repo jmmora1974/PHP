@@ -327,7 +327,7 @@ class SocioController extends Controller{
 	}
 	
 	/**
-	 * Elimina la imagen de perfil
+	 * Elimina/cambia la imagen de perfil
 	 *
 	 * @return RedirectResponse
 	 */

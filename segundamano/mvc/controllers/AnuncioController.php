@@ -318,11 +318,11 @@ class AnuncioController extends Controller{
 		
 	
 	/**
-	 * Elimina la imagen del anuncio
+	 * Cambia/Elimina la imagen del anuncio
 	 *
 	 * @return RedirectResponse
 	 */
-	public function changefotoprofile(){
+	public function changefotoanuncio(){
 		// autorización(solo bibliotecarios
 		if( Login::role('ROLE_USER')) { 
 			//Comprueba que la petición venga del formulario

@@ -71,11 +71,11 @@
 		
 			<br>
 				<!-- Botón de eliminar la portada (sin cambiar nada mas) -->
-				<form method="POST" action="/Anuncio/changefotoprofile" enctype="multipart/form-data"  class="no-border" id="formfoto" name="formfoto">
+				<form method="POST" action="/Anuncio/changefotoanuncio" enctype="multipart/form-data"  class="no-border" id="formfoto" name="formfoto">
 					<input type="hidden" name="id" value="<?= $anuncio->id?>">
 						
 			<?php  if( Login::user()->id == $anuncio->iduser) {// autorización(solo propietario) ?>
-							<input type="file" name="foto" accept="image/*" id="file-with-preview" value="<?= old('alta', $anuncio->foto)?>">
+							<input type="file" name="imagen" accept="image/*" id="file-with-preview" value="<?= old('alta', $anuncio->foto)?>">
 							
 							<input type="submit" class="button" name="cambiar" value="Cambiar foto del anuncio">
 							<?php if($anuncio->imagen)

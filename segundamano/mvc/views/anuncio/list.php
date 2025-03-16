@@ -87,7 +87,7 @@
 			
 							<figure class="flex1 centrado p2">
 						
-								<img src="<?=ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
+								<img src="<?='/'.ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
 								 	class="table-image enlarge-image" alt="Foto del anuncio <?= $anuncio->titulo?>">
 										 		
 							
