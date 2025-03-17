@@ -60,7 +60,7 @@ define('AUTOLOAD_DIRECTORIES',  [
  * APLICACIÓN
  * -------------------------------------------------------------*/
 
-define('APP_NAME', 'Auncios segunda mano MORA');   // Título de la aplicación.
+define('APP_NAME', 'App segundamano by JMMORA');   // Título de la aplicación.
 define('APP_TYPE', 'WEB');                   // Tipo de aplicación: WEB o API.
 
 define('APP_VERSION', '1.8.7');  // versión actual del framework o aplicación desarrollada
@@ -157,7 +157,7 @@ define('DEFAULT_USER_IMAGE', 'default.png');
 
 
 // carpeta para las imágenes de los usuarios
-define('ANUNCIO_IMAGE_FOLDER','images/anuncios');
+define('ANUNCIO_IMAGE_FOLDER','/images/anuncios');
 
 // imagen por defecto para los usuarios que no tengan
 define('DEFAULT_ANUNCIO_IMAGE', 'default.png');
@@ -229,7 +229,7 @@ define('UPLOAD_MAX_SIZE', 0);
  * MENSAJE DE "ACEPTAR COOKIES"
  * -------------------------------------------------------------*/
 
-define('ACCEPT_COOKIES', true);    // habilita el mensaje de "aceptar cookies"
+define('ACCEPT_COOKIES', false);    // habilita el mensaje de "aceptar cookies"
 
 // mensaje que aparece en el formulario de "aceptar cookies"
 // los saltos de línea en el mensaje se convertirán en cambio de párrafo
@@ -252,7 +252,7 @@ define('ACCEPT_COOKIES_EXPIRATION', time()+604800);
  * HERRAMIENTAS DE DEPURACIÓN (PARA APP_TYPE WEB)
  * -------------------------------------------------------------*/
     
-define('DEBUG', true); // Activa el modo debug.   
+define('DEBUG', false); // Activa el modo debug.   
 
 // Detalles que queremos mostrar en modo debug en la página de error
 // OPCIONES: user, trace, request, session

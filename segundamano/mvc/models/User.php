@@ -97,18 +97,30 @@ class User extends Model implements Authenticable{
     	//nombre: de 1 a 64 caracteres
     	if (empty($this->displayname)||strlen($this->displayname)<1 || strlen($this->displayname)>32)
     			$errores['displayname']="Error en la longitud del displayname."  ;
+    	
+    	//Email: de 4 a 128 caracteres
+    			if (empty($this->email)||strlen($this->email)<4 || strlen($this->email)>128)
+    				$errores['email']="Error en el email."  ;
+    				if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+    					$errores['email'] = "Formato invalido para el email.";
+    				}
+    	//Password: de 4 a 128 caracteres
+    	if (empty($this->password)||strlen($this->password)<4 || strlen($this->password)>128)
+    	   $errores['password']="Error en la longitud de la contraseña."  ;
+    	
+    	//Poblacion: de 1 a 128 caracteres
+    	   if (empty($this->poblacion)||strlen($this->poblacion)<1 || strlen($this->poblacion)>128)
+    	   	$errores['poblacion']="Error en la longitud de la poblacion."  ;
+    	   	
+    	   	
     			
-    	//Apellidos: de 1 a 128 caracteres
-    	if (empty($this->descripcion)||strlen($this->descripcion)<1 || strlen($this->descripcion)>128)
-    		$errores['descripcion']="Error en la longitud de la descripcion."  ;
-    				
     	//CodigoPostal: de 5 caracteres
     	if (empty($this->cp)||strlen($this->cp)<5 || strlen($this->cp)>5)
     		$errores['CodigoPostal']="Error en la longitud de la CodigoPostal."  ;
     				
     	//telefono: numero de 9 digitos y que comienzen por 6,7,8 o 9
     	if (empty($this->phone)|| strlen($this->phone)<9 || strlen($this->phone)>9
-    				||!preg_match('/^[6-9]{1}[0-9]{8}$/i',$this->telefono))
+    			||!preg_match('/^[6-9]{1}[0-9]{8}$/i',$this->phone))
     			$errores['phone']="Error en el numero de telefono  ";
     					
     				

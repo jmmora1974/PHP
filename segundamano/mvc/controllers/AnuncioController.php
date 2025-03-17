@@ -54,7 +54,7 @@ class AnuncioController extends Controller{
 			$paginator = new Paginator('/Anuncio/list', $page, $limit, $total,'es');
 			
 			
-			$anuncios= Anuncio::orderBy('titulo', 'ASC', $limit, $paginator->getOffset()); // recupera los anuncios junto la información extra (prestamos)
+			$anuncios= Anuncio::orderBy('fecha', 'DESC', $limit, $paginator->getOffset()); // recupera los anuncios junto la información extra (prestamos)
 			
 			
 		}
@@ -70,11 +70,11 @@ class AnuncioController extends Controller{
 	 */
 	public function show(int $id=0) {
 			
-			$anuncio = Anuncio::findOrFail($id, 'No se enontró el anuncio indicado'); //tb comprueba si no le ha llegado el ID
+			$anuncio = Anuncio::findOrFail($id, 'No se encontró el anuncio indicado'); //tb comprueba si no le ha llegado el ID
 			
 			
 			// carga la vista y le pasa el anuncio recuperado
-			return view ('anuncio/show',['anuncio'=>$anuncio, 'prestamos'=>$prestamos]);
+			return view ('anuncio/show',['anuncio'=>$anuncio]);
 	}
 	
 	/**
@@ -82,12 +82,13 @@ class AnuncioController extends Controller{
 	 * @return ViewResponse
 	 */
 	public function create(){
-		// autorización(solo bibliotecarios
-		if( Login::role('ROLE_USER')) { 
+		
+		//Usuarios autenticados
+		Auth::check();
 			return view('anuncio/create');
-		}//En caso de no se bibliotecariom, redirige al inicio
-		Session::warning("Para crear anuncios has de estar registrado.");
-		return redirect('/login');
+	//	En caso de no estar loginaddo, 
+	// redirige a la pantalla de login, de no tener usurios puede crearlo.
+		
 	}
 	
 	/**
@@ -96,8 +97,10 @@ class AnuncioController extends Controller{
 	 * @ redirect Viewresponse
 	 */
 	public function store(){
-		// autorización(solo bibliotecarios
-		if( Login::role('ROLE_PUBLISHER')) { 
+		 
+		//Usuarios autenticados
+		Auth::check();
+		
 			//Comprueba que la petición venga del formulario
 			if(!request()->has('guardar'))
 				throw new FormException('No se recibió el formulario');
@@ -115,42 +118,54 @@ class AnuncioController extends Controller{
 						$anunciotemp ->$campo=$valor;
 						
 						//Validaremos que los datos sean correctos
-						if($errores = $anunciotemp->validate())
+						if($errores = $anunciotemp->validate()){
+							Session:warning("Errores de validación");
 							throw new ValidationException(
 									"<br>".arrayToString($errores, false, false,".<br>")
 									);
+						}
 							
-					//guarda el anuncio en la base de datos a partir de los datosPOST
-					//$anuncio->saneate(); //sanea las entradas.
-							$anuncio = Anuncio::create((array)$anunciotemp); //mo es necesario en la  1.8.0
+					//guarda el anuncio en la base de datos a partir de los datos POST
+					
+					$anuncio = Anuncio::create((array)$anunciotemp); //mo es necesario en la  1.8.0
 					
 					//En el caso de querer cambiar la foto, adjunto fichero, guardaremos el fichero subido
-					//recupera la foto de perfil como objeto UploadedFile (o null si no llega)
+					//recupera la foto del anunciocomo objeto UploadedFile (o null si no llega)
 					if($file = request()->file(
 							'imagen', 	// nombre del input
 							8000000, 	//tamaño maximo del fichero
 							['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
 							)){
-								$anuncio->foto=$file->store('../public/'.ANUNCIO_IMAGE_FOLDER, 'anuncio_');
+								$anuncio->imagen=$file->store('../public'.ANUNCIO_IMAGE_FOLDER, 'anuncio_');
 								
 					}
 					//$anuncio->saneate(); //sanea las entradas.
 					$anuncio->update();
 					
 					//flashea un mensaje de exito en sesion
-					Session::success("Guardado del anuncio $anuncio->nombre $anuncio->apellidos correcto.");
+					Session::success("Guardado del anuncio $anuncio->titulo correcto.");
 					
 					//redirecciona a los detalles del nuevo anuncio
 					return redirect("/Anuncio/show/$anuncio->id");
 				}  catch(SQLException $e){
 					//prepara el mensaje de error
-					$mensaje = "No se pudo guardar el anuncio $anuncio->nombre $anuncio->apellidos.";
+					$mensaje = "No se pudo guardar el anuncio $anuncio->titulo.";
+					// si está activado el LOG de errores, añadimos el mensaje al fichero de LOG
 					
+					if(LOG_ERRORS)
+						Log::addMessage(ERROR_LOG_FILE, get_class($e), $e->getMessage());
+						
+						// Si está activada la opción de guardar errores en BDD, lo guardamos.
+						if(DB_ERRORS)
+							AppError::new(get_class($e), $e->getMessage());
+							
+							
 					if(str_contains($e->errorMessage(),'Duplicate entry'))
-							$mensaje.="<br>Ya existe un anuncio con ese <b>DNI</b>.";
+							$mensaje.="<br>Ya existe un anuncio con ese <b>ID</b>.";
 					
 					//flashe un mensaje de error en session
 					Session::error($mensaje);
+					
 					
 					//Si esta en modo DEBUG vuelve a lanzar la excepcion
 					//esto hara qie acabemos en la pagina de error
@@ -160,9 +175,7 @@ class AnuncioController extends Controller{
 					//regresa al formulario de creación de anuncio
 					return redirect("/Anuncio/create");
 				}
-		}
-		//En caso de no se bibliotecariom, redirige al inicio
-		return redirect('/');
+		
 	}
 	
 	/** 
@@ -174,30 +187,39 @@ class AnuncioController extends Controller{
 	 * 
 	 */
 	public function edit(int $id=0){
-		// autorización(solo bibliotecarios
-		if( Login::role('ROLE_PUBLISHER')) { 
-			// busca el anuncio con ese ID
-			$anuncio = Anuncio::findOrFail($id,'No se encontró el anuncio.');
+		
+		// busca el anuncio con ese ID
+		$anuncio = Anuncio::findOrFail($id,'No se encontró el anuncio.');
+		
+		
+	
+	  if( user()->id != $anuncio->iduser) {// autorización(solo propietario) ?
+		 		Session::warning("Si deseas realizar cambios, contacta con el vendedor.");
+		 	  	return redirect('/Anuncio');
+		 }
 			
 			
 			
 			//retorna una ViewResponse con la vista con el formulario de edición
-			return view('anuncio/edit',['anuncio'=>$anuncio,'prestamos'=>$prestamos]);
+			return view('anuncio/edit',['anuncio'=>$anuncio]);
 	
-		}
-		//En caso de no se bibliotecariom, redirige al inicio
-		return redirect('/');
+		
 	}
 	
 	/** Actualzia la bdd con los datos POST del formulario
 	*/
 	public function update(){
-		// autorización(solo bibliotecarios
-		if( Login::role('ROLE_PUBLISHER')) { 
+		
+	    	
 			if(!request()->has('actualizar')) //si no llega el formulario ...
 				throw new FormException ('No se recibieron datos');
 			
 			$id = intval(request()->post('id')); // recuperar el id via POST
+			// autorización(solo propietario)
+			if( Login::user()->id == $id) {// autorización(solo propietario)
+				Session::warning("Si deseas realizar cambios, contacta con el vendedor.");
+				return ('/Anuncio');
+			}
 		
 		
 			//intenta actualizar el anuncio
@@ -209,6 +231,7 @@ class AnuncioController extends Controller{
 				//guarda el anuncio en la base de datos a partir de los datos POST
 				foreach( request()->posts() as $campo=>$valor) //pasamos a objeto Anuncio
 					$anunciotemp ->$campo=$valor;
+					$anunciotemp->id=$id;
 					
 					//Validaremos que los datos sean correctos
 					if($errores = $anunciotemp->validate(true))
@@ -216,13 +239,11 @@ class AnuncioController extends Controller{
 								"<br>".arrayToString($errores, false, false,".<br>")
 								);
 						
-				//$anuncio->update(); No es necesario en la 1.8.0 
-				// ya el metodo create ya actualiza si manda el 2ºparametro
-				//$anuncio->saneate(); //sanea las entradas.
+			
 				$anuncio= Anuncio::create((array)$anunciotemp,$id);
 				
 				Session::success("Actualización del anuncio $anuncio->titulo correcta.");
-				return redirect("/Anuncio/edit/$id");
+				return redirect("/Anuncio");
 				
 			// Si se produce un error al guardar el anuncio..
 			}catch (SQLException $e){
@@ -230,17 +251,25 @@ class AnuncioController extends Controller{
 				$mensaje = "No se pudo actualizar el anuncio";
 				
 			if(str_contains($e->errorMessage(),'Duplicate entry'))
-					$mensaje.="<br>Ya existe un anuncio con ese <b>DNI</b>.";
+					$mensaje.="<br>Ya existe un anuncio con ese <b>ID</b>.";
 				Session::error($mensaje);
+				
+				// si está activado el LOG de errores, añadimos el mensaje al fichero de LOG
+				if(LOG_ERRORS)
+					Log::addMessage(ERROR_LOG_FILE, get_class($e), $e->getMessage());
+					
+					// Si está activada la opción de guardar errores en BDD, lo guardamos.
+					if(DB_ERRORS)
+						AppError::new(get_class($e), $e->getMessage());
+						
+						
 				
 				if(DEBUG)
 					throw new SQLException($e->getMessage());
 				
 					return redirect("/Anuncio/edit/$id");
 			}
-		}
-		//En caso de no se bibliotecariom, redirige al inicio
-		return redirect('/');
+		
 	}
 	
 	/** 
@@ -251,22 +280,25 @@ class AnuncioController extends Controller{
 	 * @return ViewResponse
 	 */	
 	public function delete(int $id=0){
-		// autorización(solo bibliotecarios
-		if( Login::role('ROLE_PUBLISHER')) { 
+		
+			//Buscamos el anuncio
 			$anuncio = Anuncio::findOrFail($id, "No existe el anuncio.");
 			
+			if( user()->id != $anuncio->iduser) {// autorización(solo propietario) ?
+				Session::warning("Si deseas realizar cambios, contacta con el vendedor.");
+				return redirect('/Anuncio');
+			}
+			
+			
 			return view('anuncio/delete',['anuncio'=> $anuncio]);
-		}
-		//En caso de no se bibliotecariom, redirige al inicio
-		return redirect('/');
+		
 	}
 	
 	/** Elimina el anuncio de la base de datos
 	 * @return RedirectResponse
 	 */
 	public function destroy(){
-		// autorización(solo bibliotecarios
-		if( Login::role('ROLE_PUBLISHER')) { 
+		
 		//comprueba que le llega el formulario de confirmación
 		if(!request()->has('borrar'))
 			throw new FormException("No se recibió la confirmación");
@@ -278,41 +310,57 @@ class AnuncioController extends Controller{
 				try{
 					$anuncio->deleteObject();
 					//si hay imagen de la perfil, hay que borrarla
-					if($anuncio->foto){
-						File::remove('../public/'.ANUNCIO_IMAGE_FOLDER.'/'.$anuncio->foto,true);
+					if($anuncio->imagen){
+						File::remove('../public/'.ANUNCIO_IMAGE_FOLDER.'/'.$anuncio->imagen,true);
 					
 					}
 						
-					Session::success("Se ha borrado el anuncio $anuncio->nombre  $anuncio->apellidos.");
+					Session::success("Se ha borrado el anuncio $anuncio->titulo.");
 					return redirect("/Anuncio/list");
 				//si se produce un error en la operación con la bdd..
 				} catch (SQLException $e){
 					
-					Session::error("No se pudo borrar el anuncio $anuncio->nombre  $anuncio->apellidos.");
-					
+					Session::error("No se pudo borrar el anuncio $anuncio->titulo.");
+				
+					// si está activado el LOG de errores, añadimos el mensaje al fichero de LOG
+					if(LOG_ERRORS)
+						Log::addMessage(ERROR_LOG_FILE, get_class($e), $e->getMessage());
+						
+						// Si está activada la opción de guardar errores en BDD, lo guardamos.
+						if(DB_ERRORS)
+							AppError::new(get_class($e), $e->getMessage());
+						
 					if(DEBUG)
 						throw new SQLException($e->getMessage());
 						
 						return redirect("/Anuncio/delete/$id");
 				}catch(FileException $e){
-					Session::warning ("Se eliminó el anuncio $anuncio->nombre  $anuncio->apellidos pero no se pudo eliminar el fichero del disco.");
+					Session::warning ("Se eliminó el anuncio $anuncio->titulo pero no se pudo eliminar el fichero del disco.");
+					
+					// si está activado el LOG de errores, añadimos el mensaje al fichero de LOG
+					if(LOG_ERRORS)
+						Log::addMessage(ERROR_LOG_FILE, get_class($e), $e->getMessage());
+						
+						// Si está activada la opción de guardar errores en BDD, lo guardamos.
+						if(DB_ERRORS)
+							AppError::new(get_class($e), $e->getMessage());
+							
+							
 					if(DEBUG)
 						throw new SQLException($e->getMessage());
 						//No podemos redirigir al anuncio porque ya no existe
 						//volvemos al listado de anuncios
 						return redirect("/Anuncio");
 				}
-		}
-		//En caso de no se bibliotecariom, redirige al inicio
-		return redirect('/');
 	}
+		
 	
 	/**
-	 * Elimina la imagen de perfil
+	 * Cambia/Elimina la imagen del anuncio
 	 *
 	 * @return RedirectResponse
 	 */
-	public function changefotoprofile(){
+	public function changefotoanuncio(){
 		// autorización(solo bibliotecarios
 		if( Login::role('ROLE_USER')) { 
 			//Comprueba que la petición venga del formulario
@@ -324,21 +372,21 @@ class AnuncioController extends Controller{
 				$id = intval(request()->post('id'));
 				$anuncio = Anuncio::findOrFail($id, "no se ha encontrado el anuncio.");
 				
-				$tmp = $anuncio->foto; //recordatemos el nombre para poder borrarlo luego
+				$tmp = $anuncio->imagen; //recordatemos el nombre para poder borrarlo luego
 				
 				//en el caso de que se haya pulsado Eliminar
 				if(request()->has('borrar'))
-					$anuncio->foto = NULL; //marca la foto perfil a NULL
+					$anuncio->imagen = NULL; //marca la foto perfil a NULL
 				
 				try{
 					//En el caso de querer cambiar la foto, adjunto fichero, guardaremos el fichero subido
-					//recupera la foto de perfil como objeto UploadedFile (o null si no llega)
+					//recupera la foto del anunciocomo objeto UploadedFile (o null si no llega)
 					if($file = request()->file(
-								'foto', 	// nombre del input
+								'imagen', 	// nombre del input
 								8000000, 	//tamaño maximo del fichero
 								['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
 							)){
-						$anuncio->foto=$file->store('../public/'.ANUNCIO_IMAGE_FOLDER, 'profile_');
+						$anuncio->imagen=$file->store('../public/'.ANUNCIO_IMAGE_FOLDER, 'profile_');
 						
 					} else {
 						if(request()->has('cambiar')){
@@ -348,7 +396,7 @@ class AnuncioController extends Controller{
 					}
 					//$anuncio->saneate(); //sanea las entradas.
 					$anuncio->update();
-					Session::success("Se ha sustituido o eliminado la foto de perfil de $anuncio->nombre $anuncio->apellidos correctamente.");
+					Session::success("Se ha sustituido o eliminado la foto del anuncio de $anuncio->titulo correctamente.");
 					
 					//si ya existia la foto, tratara de eliminarla primero
 					if($tmp)
@@ -357,7 +405,15 @@ class AnuncioController extends Controller{
 					return redirect("/Anuncio/edit/$anuncio->id");
 					
 				}  catch(SQLException $e){
-					Session::error("No se pudo eliminar la foto de perfil.");
+					Session::error("No se pudo eliminar la foto del anuncio.");
+					// si está activado el LOG de errores, añadimos el mensaje al fichero de LOG
+					if(LOG_ERRORS)
+						Log::addMessage(ERROR_LOG_FILE, get_class($e), $e->getMessage());
+						
+						// Si está activada la opción de guardar errores en BDD, lo guardamos.
+						if(DB_ERRORS)
+							AppError::new(get_class($e), $e->getMessage());
+							
 					if(DEBUG)
 						throw new SQLException($e->getMessage());
 						
@@ -369,8 +425,17 @@ class AnuncioController extends Controller{
 						
 						return redirect("/Anuncio/edit/$id");
 				}catch (UploadException $e){
-					$mensaje.="Cambios guardados, pero no se modificó la foto de perfil.";
+					$mensaje.="Cambios guardados, pero no se modificó la foto del anuncio.";
 					Session::error($mensaje);
+					
+					// si está activado el LOG de errores, añadimos el mensaje al fichero de LOG
+					if(LOG_ERRORS)
+						Log::addMessage(ERROR_LOG_FILE, get_class($e), $e->getMessage());
+						
+						// Si está activada la opción de guardar errores en BDD, lo guardamos.
+						if(DB_ERRORS)
+							AppError::new(get_class($e), $e->getMessage());
+							
 					
 					if(DEBUG)
 						throw new SQLException($e->getMessage());

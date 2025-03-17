@@ -178,6 +178,13 @@ class Base implements TemplateInterface{
         // Lo eliminaremos en producción junto con la carpeta mvc/views/examples y el ExampleController
         $html .=   "<li><a href='/Anuncio'>Anuncios</a></li>";
            
+        //Enlace solo para el administrador
+        if(Login::role('ROLE_ADMIN')){
+        	$html .=   "<li><a href='/Panel/admin'>Panel administrador</a></li>";
+        }
+        
+        $html .=   "<li><a href='/Contacto'>Contacto</a></li>";
+        
         // Enlace a los tests de ejemplo (solamente para usuarios con alguno de los TEST_ROLES)
         // Lo eliminaremos en producción, junto a la carpeta test y el TestController
         if(Login::oneRole(TEST_ROLES))
@@ -191,9 +198,7 @@ class Base implements TemplateInterface{
         if((Login::oneRole(ERROR_ROLES)) && (DB_ERRORS || LOG_ERRORS || LOG_LOGIN_ERRORS))
             $html .=   "<li><a href='/Error/list'>Errores</a></li>";
          
-        // Enlace al repositorio de FastLight en GitHub  
-        // Lo podéis eliminar, para que no aparezca en vuestras aplicaciones
-        $html .=   "<li><a href='https://github.com/robertsallent/fastlight'>GitHub</a></li>";
+
             
         $html .= "</menu>";
         $html .= "</nav>";

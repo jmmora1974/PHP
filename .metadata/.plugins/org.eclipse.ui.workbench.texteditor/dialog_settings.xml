@@ -4,6 +4,9 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+			<item value="debu"/>
+			<item value="debuf"/>
+			<item value="debug"/>
 			<item value="PROFILE"/>
 			<item value="socio"/>
 			<item value="Anincio"/>
@@ -16,9 +19,6 @@
 			<item value="menu"/>
 			<item value="USE"/>
 			<item value="BASE de "/>
-			<item value="local"/>
-			<item value="user_ima"/>
-			<item value="usr_ima"/>
 		</list>
 		<list key="replacehistory">
 			<item value="anuncio"/>

@@ -84,8 +84,9 @@
 			</div>
 		</div>
 		<figure class="flex1 centrado">
-			<img src="<?=BOOK_IMAGE_FOLDER.'/'.($libro->portada ?? DEFAULT_BOOK_IMAGE)?>"
-				 	class="cover enlarge-image" alt="Previsualización de la portada del libro <?= $libro->titulo?>">				 		
+			    <script src="/js/Preview.js"></script>
+			<img id="preview-image" src="<?=BOOK_IMAGE_FOLDER.'/'.($libro->portada ?? DEFAULT_BOOK_IMAGE)?>"
+				 	id="file-with-preview" class="cover" alt="Previsualización de la portada del libro <?= $libro->titulo?>">				 		
 				 <figcaption>Previsualización de la portada del libro <?= "$libro->titulo, de $libro->autor"?> </figcaption>
 		</figure>
 			

@@ -26,18 +26,12 @@ class Anuncio extends Model{
 			if (empty($this->descripcion)||strlen($this->descripcion)<1 || strlen($this->descripcion)>128)
 				$errores['descripcion']="Error en la longitud de la descripcion."  ;
 			
-			//precio: mayor a 0
-			if (empty($this->precio)||intval($this->precio)<0 )
-				$errores['descripcion']="Error en el precio."  ;
+				//precio: mayor a 0
+				if (empty($this->precio)||intval($this->precio)<0 )
+					$errores['descripcion']="Error en el precio."  ;
+					//Otras comprobaciones que queramos filtrar
+					
 				
-			//Poblacion: de 1 a 128 caracteres
-			if (empty($this->poblacion)||strlen($this->poblacion)<1 || strlen($this->poblacion)>128)
-				$errores['poblacion']="Error en la longitud de la poblacion."  ;
-			
-			//CodigoPostal: de 5 caracteres
-			//if (empty($this->cp)||strlen($this->cp)<5 || strlen($this->cp)>5)
-				//$errores['CodigoPostal']="Error en la longitud de la CodigoPostal."  ;
-						
 			return $errores;
 	}
 	

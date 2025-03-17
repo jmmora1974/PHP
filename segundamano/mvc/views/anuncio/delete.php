@@ -2,7 +2,7 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
-		<title>Maralioteca - Confirmación de borrado de anuncio - <?= APP_NAME ?></title>
+		<title>Confirmación de borrado de anuncio - <?= APP_NAME ?></title>
 		
 		<!-- META -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,12 +28,10 @@
 	
 	<form method="POST" enctype="multipart/form-data" class="p2 m2 centered" action="/Anuncio/destroy">
 		<p>Confirmar el borrado del anuncio:<b>"<?= $anuncio->titulo?>"</b></p>
-		<?php  if( Login::role('ROLE_PUBLISHER')&& $anuncio->iduser == user()->id) {// autorización(solo  el que lo ha publidado) ?>
+		<?php  if( $anuncio->iduser == Login::user()->id) {// autorización(solo  el que lo ha publidado) ?>
 				<input type="hidden" name="id" value="<?= $anuncio->id ?>">
-				 <?=  $anuncio->hasAny('Prestamo') ?			
-					'El anuncio dispone de prestamos. No se puede eliminar.':
-				 '<input type="submit" class="button-danger" name="borrar" value="Borrar">';
-			}?>
+				 <input type="submit" class="button-danger" name="borrar" value="Borrar">
+			<?php }?>
 		
 	</form>
 	

@@ -2,11 +2,11 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
-		<title>Listado de anuncios - <?= APP_NAME ?></title>
+		<title>Usuario - <?= APP_NAME ?></title>
 		
 		<!-- META -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Lista de anuncios - <?= APP_NAME ?>">
+		<meta name="description" content="usuarios - <?= APP_NAME ?>">
 		<meta name="author" content="Jose Miguel Mora Perez">
 		
 		<!-- FAVICON -->
@@ -17,59 +17,52 @@
 	</head>
 	<body>
 		<?= $template->login() ?>
-		<?= $template->header('Lista de anuncios') ?>
+		<?= $template->header('Home') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs(['Anuncios'=>null])?>
+		<?= $template->breadCrumbs(['Home'=>null])?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 		
 		<main>
-    		<h1></h1>
-       		<h2>Lista completa de anuncios en <b><?= APP_NAME ?></b></h2>
-       		<a class="button" href='/Anuncio/create'>Nuevo Anuncio</a>
-     		
-		      		<!--  FILTR DE BÚSQUEDA -->
-		      		<?php 
-		      		//si hay filtro guardado en sesión
-		      		if($filtro){
-		      					      			//pone el formulario de "quitar filtro
-		      			//el metrodo removeFilterForm necesita conocer el filtro
-		      			// y ka ruta a la que se envia el formulario
-		      			echo $template->removeFilterForm($filtro,'/Anuncio/list');
-		      		//en caso contrario
-		      		} else {
-		      			//pone el formulario de "nuevo filtro"
-		      			echo $template->filterForm(
-			      			[
-			      				'Titulo' => 'titulo',
-			      				'Descripción' => 'descripcion',
-								'Precio' => 'precio',
-								'Población' => 'poblacion',
-								'Fecha' => 'fecha'
-			 
-			      			],
-			      			//lista de campos para el desplegable "ordenado por "
-			      			[
-			      			'Titulo' => 'titulo',
-			      			'Descripción' => 'descripcion',
-			      			'Precio' => 'precio',
-			      			'Población' => 'poblacion',
-			      			'Fecha' => 'fecha'
-			    				
-			    			],
-			    			// valor por defecto para "buscar en"
-			    			'Titulo',
-			    			// valor por defecto para "ordenado por"
-			    			'Titulo'
-						);
-		      			
-		      		}?>
-		       		
-		       		<!--  Enlaces creados por el paginador -->
-		       		<div class="rigth">
-		       			<?=$paginator->stats()?>
-		       		</div>
-       		<?php if($anuncios){ ?>
+		<?php 
+			//	comprobamos que el usuario está loginado
+	 	Auth::check(); 
+	 	// autorización(solo usuarios propietario o administradores 
+	 	if (  (!Login::role ('ROLE_ADMIN')&& user()->id!=$user->id)) {
+		Session::warning(("Transación no autorizada!. "));
+		return redirect ('/User/edit/'.user()->id);
+	}?>
+    		<section class="flex-container" id="user-data">
+    			<div class="flex2">
+    				<h2>"Home de <?= $user->displayname?>"</h2>
+    				
+    				<p><b>Nombre:</b> 				<?= $user->displayname ?></p>
+    				<p><b>Email:</b> 				<?= $user->email ?></p>
+    				<p><b>Telefono:</b> 			<?= $user->phone ?></p>
+    				<p><b>Fecha de alta:</b> 		<?= $user->create_at ?></p>
+    				<p><b>Última modificación:</b> 	<?= $user->updated_at ?? '--'?></p>
+    				<a class="button" href="/User/cambiaContrasenya">Cambiar contraseña</a>
+    			</div>
+    			<!-- Esta parte solamente si creais la carpeta para las fotos de perfil  -->
+    			<figure class="flex1 centrado">
+    				<img src="<?= USER_IMAGE_FOLDER.'/'.($user->picture ?? DEFAULT_USER_IMAGE)?>"
+    					class="cover elnarge-image" alt="Emagen de perfil de <?=$user->displayname ?>">
+    				<figcaption>Imagen de perfil de <?=$user->displayname ?></figcaption>				
+    			</figure>
+    			<div class="centrado">
+			<a class="button" onclick="history.back()">Atrás</a> 
+			<?php Login::isAdmin() ??
+				'<a class="button" href="/User/list">Lista de usuarios</a>'; ?>
+				
+				<a class="button" href="/User/edit/<?=$user->id?>">Editar</a>
+				<a class="button-danger" href='/user/delete/<?=$user->id?>'>
+						Borrado <img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"> 
+					</a>
+			
+		</div>			    			
+    		</section>
+    		<section id="secmisanuncios">
+    			<?php if($anuncios){ ?>
       		
        			<table class="table w100">
        					<tr>
@@ -90,7 +83,8 @@
 								<img src="<?=ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
 								 	class="table-image enlarge-image" alt="Foto del anuncio <?= $anuncio->titulo?>">
 										 		
-							
+								 <figcaption>Foto del anuncio <?= $anuncio->titulo?> </figcaption>
+								 
 							</figure>
 						</td>
 						<td><a href='/Anuncio/show/<?=$anuncio->id?>'><?=$anuncio->titulo?></a></td>
@@ -115,9 +109,9 @@
 					<p>No hay anuncios que mostrar</p>
 				</div>
 				<?php } ?>
-			</main>
-			<?= $paginator->ellipsisLinks()?>
-			<?= $template->footer() ?>
-</body>
-
-</html>
+    		</section>
+    	</main>
+    </body>
+ </html>
+ 
+       		

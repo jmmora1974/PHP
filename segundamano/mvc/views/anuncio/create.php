@@ -23,45 +23,63 @@
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
-	<h1><?=APP_NAME?></h1>
-	<h2>Nuevo socio</h2>
+	
+	<h2>Nuevo anuncio en <?=APP_NAME?> </h2>
 	<section id="detalles" class="flex-container gap2">
-	<form method="POST" enctype="multipart/form-data" action="/anuncio/store">
+	<form method="POST" enctype="multipart/form-data" action="/anuncio/store" class="flex-container gap2">
+		<div class="flex2">
+			
+					<div  id="previewcanvascontainer" >
+						<figure class="flex1 centrado p2">
+							<canvas id="previewcanvas">
+									<div style="display:none;">
+										<img id="fotodefault" src="<?=ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
+				 								class="cover enlarge-image" alt="Foto de <?= $anuncio->titulo?>">	
+									</div>
+							</canvas>		
+							<figcaption>Foto del anuncio</figcaption>
+									<script>
+									const canvas = document.getElementById("previewcanvas");
+									const ctx = canvas.getContext("2d");
+									const image = document.getElementById("fotodefault");
+									
+									image.addEventListener("load", (e) => {
+									  ctx.drawImage(image, 10, 5, 200, 150);
+									});
+									</script>
+
+						</figure>	
+						<input type="file" name="imagen" accept="image/*"  style="max-width:300px"
+			 id="file-with-preview" value="<?= old('imagen', $anuncio->imagen)?>"  onchange="return ShowImagePreview( this.files );">
+			<br>
+			
+					</div>
+			</div>
 		<div class="flex2">
 			<input type="hidden" name="iduser" value="<?= user()->id?>">
+			<input type="hidden" name="poblacion" value="<?= user()->poblacion?>">
 			<label for="titulo">Titulo</label>
 			<input type="text" name="titulo" value="<?= old('titulo')?>" required>
 			<br>
 			<label for="descripcion">Descripción</label>
-			<textarea  name="descripcion"  required><?= old('descripcion')?>"</textarea>
+			<textarea  name="descripcion"  required><?= old('descripcion')?></textarea>
 			<br>
 			<label for="precio">Precio</label>
 			<input type="number" name="precio" value="<?=old('precio')?>" required>
 			<br>
-			<label for="foto">Foto anuncio</label>
-			<input type="file" name="foto" accept="image/*" id="file-with-preview" value="<?= old('imagen', $anuncio->imagen)?>">
-			<br>
 		</div>
 		
+			
 		
-		<div class="centered mt2">
-		<?php  if( Login::role('ROLE_USER' )) {// autorización(solo bibliotecarios) ?>
+		
+		<div class="centered mt2 w100">
+		<?php  if( Login::role('ROLE_USER' )) {// autorización(solo autenticados) ?>
 				<input type="submit" class="button" name="guardar" value="Guardar">
 		<?php }?>
 				<input type="reset" class="button" value="Reset">	
 		</div>
-		</form>
-		<div class="flex2">
-			<figure class="flex1 centrado p2">
-					<img src="<?=ANUNCIO_IMAGE_FOLDER.'/'.($anuncio->imagen ?? DEFAULT_ANUNCIO_IMAGE)?>"
-					 	class="cover enlarge-image" alt="Foto deL anuncio de <?= $anuncio->titulo ?>">				 		
-					 <figcaption>Foto deL anuncio de <?= $anuncio->titulo ?> </figcaption>
-			
-				<br>
-			</figure>		
 		
-			
-		</div>
+		</form>
 		</section>
 		<div class="centrado my2">
 			<a class="button" onclick="history.back()">Atrás</a>
@@ -71,6 +89,7 @@
 	
 </main>		
 	
+<script src="/js/PreviewUpload.js"></script>
 	
 </body>
 </html>
