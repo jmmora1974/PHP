@@ -1,0 +1,1043 @@
+@charset "UTF-8";
+
+/* 
+	FICHERO BASE PARA LOS ESTILOS DE FASTLIGHT
+	
+	Autor: Robert Sallent
+	Última revisión: 25/02/2025
+
+	Estructura del documento CSS:
+	- Colores
+	- Regla para todos los elementos
+	- Clases para los elementos HTML (columnas, anchos genéricos, textos, elementos ocultos...)
+	- Reglas para los elementos básicos HTML
+	- Grupos de reglas para:
+		- Formularios
+		- Botones
+		- Tablas
+		- Listas
+		- Figuras e imágenes
+	- Reglas para la estructura de la página (contenedores principales y elementos contenidos)
+	- Conjuntos de reglas para herramientas UI:
+		- Paginador
+		- Vistas de error HTTP
+		- Modales
+		- Mensajes de error y éxito
+
+	TODO list:
+	- Adaptar los templates para hacer un uso correcto de las clases CSS
+	- Añadir más clases genéricas para las figuras e imágenes
+	- Limpiar un poco el código redundante
+	- Más comentarios
+	- ?Añadir algunas animaciones (rotar...)
+	- ?Transiciones
+
+*/
+
+/* =========================  VARIABLES ======================= */
+
+:root {
+  --primary-bg-color: rgb(60, 100, 160);
+  --primary-font-color: rgb(255, 255, 255);
+  --primary-soft-color: rgb(120, 160, 220);
+  
+  --secondary-bg-color: rgb(60, 160, 100);
+  --secondary-font-color: rgb(255, 255, 255);
+  --secondary-soft-color: rgb(100, 200, 140);
+
+  --shadow-color: rgba(60, 60, 60, 0.3);
+  --font-shadow-color: rgba(0, 0, 0, 0.3);
+  
+  --bg-color: white;
+  --font-color: rgb(100, 100, 120);
+  --border-color:  rgb(200, 200, 200);
+  
+  --a-color: rgb(60, 100, 180);
+  
+  --main-bg-color: rgb(250, 250, 253);
+  
+  
+  --th-bg-color: rgb(60, 100, 160);
+  --th-font-color: rgb(255, 255, 255);
+  
+  --td-odd-bg-color: rgb(255, 255, 255);
+  --td-even-bg-color: rgb(245, 245, 250);
+    
+  --tfoot-bg-color: rgb(160, 180, 220);
+  --tfoot-font-color: rgb(255, 255, 255);
+    
+  --form-bg-color: rgb(255, 255, 255);
+  --input-bg-color: rgb(250, 250, 250);
+  
+  --footer-bg-color: rgba(255, 255, 255, 0.85);
+  --modal-bg-color: rgba(120, 120, 120, 0.85);
+    
+  --success-bg-color: rgb(180, 250, 180);
+  --success-font-color: #363;
+  --success-btn-color: rgb(60, 180, 60);
+  --success-btn-hover-color: rgb(110, 250, 110);
+  
+  --warning-bg-color: rgb(250, 250, 180);
+  --warning-font-color: rgb(150, 120, 0);
+  --warning-btn-color: rgb(220, 210, 10);
+  --warning-btn-hover-color: rgb(230, 230, 80);
+  
+  
+  --danger-bg-color: rgb(250, 180, 180);
+  --danger-font-color: #753;
+  --danger-btn-color: rgb(180, 60, 60);
+  --danger-btn-hover-color: rgb(250, 120, 120); 
+  
+  --code-color: rgb(50, 50, 200);
+  
+  --min-width: 280px; 
+}
+
+	
+
+/* =========================  PARA TODOS LOS ELEMENTOS ======================= */
+
+*{
+	box-sizing: border-box;
+	margin:  0;
+	padding: 0;
+}
+
+/* ==================================  CLASES  ============================== */
+/* Columnas con FLEX -------------------------------------------------------- */
+
+.flex-container{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.flex-container>section, .flex-container>div, .flex-container>figure{
+	min-width: var(--min-width);
+}
+
+.flex1{flex:1 }
+.flex2{flex:2 }
+.flex3{flex:3 }
+.flex4{flex:4 }
+.flex5{flex:5 }
+.flex6{flex:6 }
+.flex7{flex:7 }
+.flex8{flex:8 }
+
+.gap1{ gap: 1% }
+.gap2{ gap: 2% }
+.gap3{ gap: 3% }
+.gap4{ gap: 4% }
+.gap5{ gap: 5% }
+
+.space-between			{	justify-content: space-between }
+.space-around 			{	justify-content: space-around  }
+
+.perfect-centered		{	margin: auto auto	}
+
+/* Elementos flotantes ---------------------------------------------------- */
+
+.float-right			{float: right }
+.float-left 			{float: left  }
+.clear-both 			{clear: both  }
+
+/* Texto y párrafos ------------------------------------------------------- */
+
+.centrado, .centered    { text-align: center  }
+.justificado, .justified{ text-align: justify }
+.izquierda, .left       { text-align: left    }
+.derecha, .right        { text-align: right   }
+
+.mayusculas, .uppercase { text-transform: uppercase }
+.minusculas, .lowercase { text-transform: lowercase }
+
+.cursiva, .italic       { font-style: italic  }
+.negrita, .bold         { font-weight: bold   }
+
+.micro   				{ font-size: 0.6rem   }
+.mini   				{ font-size: 0.8rem   }
+.maxi   				{ font-size: 1.2rem   }
+
+
+.url {
+	font-style: italic;
+}
+
+.bloque-centrado, .centered-block{
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.two-columns			{ column-count: 2 }
+.three-columns			{ column-count: 3 }
+.four-columns			{ column-count: 4 }
+
+
+.inline-block			{display: inline-block 	}
+.block					{display: block 		}
+.inline 				{display: inline 		}
+
+/* Cursores ---------------------------------------------------------------*/
+.pointer				{ cursor: pointer }
+
+
+
+/* Rellenos y márgenes estándar (5 niveles) ------------------------------- */
+
+.p0						{ padding: 0   }
+.p1						{ padding: 1%  }
+.p2						{ padding: 2%  }
+.p3						{ padding: 5%  }
+.p4						{ padding: 10% }
+.p5						{ padding: 20% }
+
+.m0						{ margin: 0   }
+.m1						{ margin: 1%  }
+.m2						{ margin: 2%  }
+.m3						{ margin: 5%  }
+.m4						{ margin: 10% }
+.m5						{ margin: 20% }
+
+.mx0					{ margin-left: 0; margin-right: 0     }
+.mx1					{ margin-left: 1%; margin-right: 1%   }
+.mx2					{ margin-left: 2%; margin-right: 2%   }
+.mx3					{ margin-left: 5%; margin-right: 5%   }
+.mx4					{ margin-left: 10%; margin-right: 10% }
+.mx5					{ margin-left: 20%; margin-right: 20% }
+.mxauto					{ margin-left: auto; margin-right: auto }
+
+.mr0					{ margin-right: 0    }
+.mr1					{ margin-right: 1%   }
+.mr2					{ margin-right: 2%   }
+.mr3					{ margin-right: 5%   }
+.mr4					{ margin-right: 10%  }
+.mr5					{ margin-right: 20%  }
+
+.ml0					{ margin-left: 0    }
+.ml1					{ margin-left: 1%   }
+.ml2					{ margin-left: 2%   }
+.ml3					{ margin-left: 5%   }
+.ml4					{ margin-left: 10%  }
+.ml5					{ margin-left: 20%  }
+
+.my0					{ margin-top: 0; margin-bottom: 0     }
+.my1					{ margin-top: 1%; margin-bottom: 1%   }
+.my2					{ margin-top: 2%; margin-bottom: 2%   }
+.my3					{ margin-top: 5%; margin-bottom: 5%   }
+.my4					{ margin-top: 10%; margin-bottom: 10% }
+.my5					{ margin-top: 20%; margin-bottom: 20% }
+.myauto					{ margin-top: auto; margin-bottom: auto }
+
+.mt0					{ margin-top: 0;    }
+.mt1					{ margin-top: 1%;   }
+.mt2					{ margin-top: 2%;   }
+.mt3					{ margin-top: 5%;   }
+.mt4					{ margin-top: 10%;  }
+.mt5					{ margin-top: 20%;  }
+
+.mb0					{ margin-bottom: 0    }
+.mb1					{ margin-bottom: 1%   }
+.mb2					{ margin-bottom: 2%   }
+.mb3					{ margin-bottom: 5%   }
+.mb4					{ margin-bottom: 10%  }
+.mb5					{ margin-bottom: 20%  }
+
+/* Anchos estándar (5 niveles) ------------------------------------------ */
+.w5						{ width: 5%   }
+.w10					{ width: 10%  }
+.w25					{ width: 25%  }
+.w50					{ width: 50%  }
+.w75					{ width: 75%  }
+.w100					{ width: 100% }
+
+/* Elementos ocultos o transparentes ------------------------------------ */
+
+.oculto, .hidden						{ display: none      }
+.no-visible, .not-visible				{ visibility: hidden }
+
+.transparente, .transparent 	    	{ opacity: 0    } 
+.claro, .clear 					    	{ opacity: 0.25 }
+.casi-transparente, .almost-transparent	{ opacity: 0.5  } 
+.casi-opaco, .almost-opaque				{ opacity: 0.75 }
+.opaco, .opaque							{ opacity: 1    }
+
+.no-background   { background-color: transparent !important }
+
+/* Sombras -----------------------------------------------------------------*/
+.drop-shadow { filter: drop-shadow(0px 0px 2px var(--shadow-color)) }
+.box-shadow  { box-shadow: 0px 0px 2px var(--shadow-color) }
+.no-shadow   { box-shadow: none !important }
+
+/* Posicionamiento  --------------------------------------------------------*/
+.absolute		{ position: absolute }
+.fixed			{ position: fixed }
+.static			{ position: static }
+.relative		{ position: relative }
+.sticky			{ position: sticky }
+
+/* ========================  ELEMENTOS BÁSICOS HTML ======================= */
+
+h1, h2, h3{
+	margin-top:    1.10em;
+	margin-bottom: 0.9em;
+}
+
+h1{	font-size: 2em; }
+h2{	font-size: 1.6em; }
+h3{	font-size: 1.25em; }
+
+h1 .small{
+	font-size: 1.25rem;
+}
+
+h2, h3{
+	margin:  1.6em 0 1em;
+	padding: 0;
+}
+
+h2:first-child, h3:first-child{
+	margin:  1em 0;
+}
+
+p{
+	margin: 		1.1em 0;
+	line-height:   	1.5em;
+}
+
+a{
+	text-decoration: none;
+	cursor: pointer;
+	color: var(--a-color);
+}
+
+pre{
+	font-size: 0.8rem;
+	font-family: 'lucida console', arial;
+	line-height: 1.10rem;
+	margin: 10px;
+}
+
+hr{
+	margin: 2rem auto;
+	width: 75%;
+	color: var(--a-color);
+}
+
+code { 
+	font-size: 1.05rem;
+	color: var(--code-color); 
+}
+
+span.path{ 
+	font-style:italic;
+}
+span.path::after{
+	content: "'";
+}
+span.path::before{
+	content: "'";
+}
+
+
+/* Bordes -------------------------------------------------------- */
+.border{
+	border: solid 1px var(--border-color);
+}
+
+.dashed-border{
+	border: dashed 1px var(--border-color);
+}
+
+.dotted-border{
+	border: dotted 1px var(--border-color);
+}
+
+.no-border   { border: none !important }
+
+
+/* Botones -------------------------------------------------------- */
+.button, .button-light, .button-success, .button-warning, .button-danger{
+	display: inline-block;
+	white-space: nowrap;
+	color: var(--primary-font-color);
+	font: caption;
+	font-size: 1.05em;
+	padding: 8px 20px;
+	margin: 4px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	box-shadow: 0 0px 4px var(--shadow-color);
+}
+
+.button.current, .button.active{
+	border: solid 2px var(--primary-bg-color);
+}
+
+.button{
+	background: linear-gradient(var(--primary-soft-color), var(--primary-bg-color));
+}
+
+.button:hover{
+	background: var(--primary-soft-color);
+}
+
+.buttonLight, .button-light{
+	outline: solid 1px var(--primary-bg-color);
+	color: var(--primary-bg-color);
+	background-color: var(--primary-font-color);
+}
+
+.buttonLight:hover, .button-light:hover{
+	outline: none;
+	background-color: var(--primary-soft-color);
+	color: var(--primary-font-color);
+}
+
+.button-success{
+	background-color: var(--success-btn-color);
+}
+.button-success:hover{
+	background-color: var(--success-btn-hover-color);
+}
+
+.button-danger, .button-error{
+	background-color: var(--danger-btn-color);
+}
+.button-danger:hover, .button-error:hover{
+	background-color: var(--danger-btn-hover-color);
+}
+
+.button-warning{
+	background-color: var(--warning-btn-color);
+}
+.button-warning:hover{
+	background-color: var(--warning-btn-hover-color);
+}
+
+
+
+/* Tablas -------------------------------------------------------- */
+.table{
+	margin-bottom: 1rem;
+}
+
+.table th{
+	font-family: helvetica;
+	color: var(--th-font-color);
+	text-shadow: 2px 2px 2px var(--text-shadow);
+	background-color: var(--th-bg-color);
+	padding: 10px;
+	font-size: 1.1rem;
+	text-align: left;
+}
+
+.table td, .table th{
+	border-radius: 2px;
+}
+
+.table tr:nth-of-type(odd){
+	background-color: var(--td-odd-bg-color);
+}
+
+.table tr:nth-of-type(even){
+	background-color: var(--td-even-bg-color);
+}
+
+.table tr, table td{
+	padding: 10px;
+}
+
+.table tfoot td{
+	background-color: var(--tfoot-bg-color);
+	color: white;
+	font-style: italic;
+	padding: 10px;
+}
+
+.big-cell td{
+	padding: 20px;
+}
+
+.table-image{
+	width: 100%;
+	max-width: 80px;
+	max-height: 120px;
+}
+
+
+
+/* Listas -------------------------------------------------------- */
+ul li, ol li{
+	margin: 0 0 0.8rem 30px;	
+}
+
+li ul{
+	margin: 1rem 0;
+}
+
+dt{
+	font-weight: bold;
+	font-style: italic;
+	margin-bottom: 0.2rem;
+}
+
+dt::after{
+	content: ':';
+}
+
+dd{
+	margin: 0px 0px 0.5rem 20px;
+}
+
+
+/* Figuras e imágenes -------------------------------------------------------- */
+
+figure{
+	text-align: center;
+	padding: 2%;
+}
+
+figure img{
+	width: 96%;
+}
+
+figcaption{
+	font-size: 0.8rem;
+	font-style: italic;
+}
+
+figure.card{
+	background: white;
+	border-radius: 8px;
+	padding: 20px;
+	box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+figure.xx-small, img.xx-small		{ max-width: 40px; }
+figure.x-small,  img.x-small		{ max-width: 100px; }
+figure.small,    img.small			{ max-width: 200px; }
+figure.medium,   img.medium			{ max-width: 400px; }
+figure.large,    img.large			{ max-width: 600px; }
+figure.x-large,  img.x-large		{ max-width: 800px; }
+
+
+img.baseline	{ vertical-align: baseline }
+img.middle		{ vertical-align: middle }
+img.text-top	{ vertical-align: text-top }
+
+
+/* Carátulas (para las listas de productos o detalles) ---------------*/
+.cover{
+	width: 100%;
+	max-width: 280px;
+	max-height: 400px;
+	margin: 10px;
+}
+
+
+/* Galería -------------------------------------------------------- */
+.galeria, .gallery{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: center;
+}
+
+.galeria>figure{
+	flex: 1;
+}
+
+
+/* Filtros de imagen -------------------------------------------------------- */
+.blur  	  			{ filter: blur(10px) }
+.bright   			{ filter: brightness(120%) }
+.dark   			{ filter: brightness(80%) }
+.high-contrast 		{ filter: contrast(120%) }
+.low-contrast 		{ filter: contrast(80%) }
+.shadow 			{ filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.5)) }
+.grayscale 			{ filter: grayscale(1) }
+.invert 			{ filter: invert(100%) }
+.high-saturation 	{ filter: saturate(120%) }
+.low-saturation 	{ filter: saturate(80%) }
+.sepia 				{ filter: sepia(100%) }
+.hue90				{ filter: hue-rotate(90deg) }
+.hue180				{ filter: hue-rotate(180deg) }
+.hue270				{ filter: hue-rotate(270deg) }
+
+/* Formularios -------------------------------------------------------- */
+
+form{
+	padding: 2%;
+	margin: 5px auto;
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+	box-shadow: 1px 1px 2px var(--shadow-color);
+	background-color: var(--form-bg-color);
+	min-width: var(--min-width);
+}
+
+form.no-border{
+	border: none;
+	box-shadow: none;
+}
+
+form h2{
+	padding: 0 0 1rem 0;
+}
+
+form fieldset{
+	padding: 1%;
+	margin: 1%;
+	border-radius: 5px;
+	border: 1px solid var(--border-color);
+	min-width: var(--min-width);
+}
+
+form legend{
+	font-size: 0.8rem;
+	font-style: italic;
+}
+
+label{
+  display: inline-block;
+  width: 20%;
+  min-width: 90px; 
+  margin: 1rem 10px;
+  font-style: italic; 
+}
+
+.label{
+	display: inline-block;
+	padding: 4px 6px;
+	min-width: 140px;
+	background: linear-gradient(var(--primary-soft-color), var(--primary-bg-color));
+	color: var(--primary-font-color);
+	border-radius: 3px;
+}
+
+input[type="checkbox"], input[type="radio"]{
+	min-width: 0;
+	margin-left: 10px;
+}
+
+input[type="checkbox"]+label, input[type="radio"]+label{
+	min-width: 0;
+}
+
+
+input, select, textarea{
+	padding: 8px 12px;
+	min-width: 100px;
+	background-color: var(--input-bg-color);
+	border: solid 1px var(--border-color);
+}
+
+
+input[type='radio']+label, input[type='checkbox']+label{
+	margin-left: 0;
+	width: auto;
+}
+
+input[type="file"]{
+	background-color: transparent;
+	border: none;
+}
+
+input[type="color"]{
+	padding: 2px;
+}
+
+textarea{
+	vertical-align: text-top;
+	resize: none;
+	min-width: var(--min-width);
+	min-height: 100px;
+}
+
+
+form .short{
+	width: 30%;
+}
+
+form .medium{
+	width: 50%;
+}
+
+form .long{
+	width: 70%;
+}
+
+
+/* formularios dentro de celdas (botones para realizar operaciones vía POST) */
+td form{
+	padding: 0;
+	margin: 0;
+	border-radius: 0;
+	box-shadow: 0 0 0 transparent;
+	background-color: transparent;
+}
+
+
+/* formulario de login ----------------------------------------------------- */
+
+#login{
+	min-width: var(--min-width);
+	text-align: center;
+}
+
+
+/* Formulario para realizar búsquedas filtradas (en el Template) ------------ */
+
+#filtro{
+	padding: 8px;
+	margin: 5px auto;
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+	box-shadow: 0 0 0 transparent;
+	background-color: var(--form-bg-color);
+}
+
+#filtro select+input[type='radio']{
+	margin-left: 8px;
+}
+
+#filtro label{
+	min-width: 0px;
+	width: auto;
+}
+
+
+
+
+/* Paginador -------------------------------------------------------- */
+.paginator-links{
+	text-align: center;
+	color: var(--primary-bg-color);
+}
+
+.paginator-links .current{
+	background: var(--primary-font-color);
+	color: var(--primary-bg-color);
+}
+
+.paginator-stats{
+	text-align: right;
+}
+
+
+
+/* Mapa */
+#mapa{
+	width: 100%;
+	min-height: 360px;
+}
+
+
+
+
+
+/* ========================= ESTRUCTURA DE LA PÁGINA ========================= */
+
+html{
+	background-color: var(--bg-color);	
+}
+
+body{
+	color: var(--font-color);
+	padding: 10px 2%;
+	font-family: arial, verdana, helvetica;
+	width: 100%;	
+	margin: 0px auto 20px auto;
+}
+
+
+/* header principal (directamente dentro del body)---------------------------- */
+body>header{
+	display: flex;
+	flex-wrap: nowrap;
+	padding: 10px 2%;
+	background-image: url(../images/template/header_base.jpg);
+	background-size: cover;
+	align-items: center;
+}
+
+body>header figure{
+	min-width: 5%;
+	max-width: 140px;
+	padding: 1%;
+}
+
+body>header img{
+	width: 100%;
+	vertical-align: middle;
+}
+
+body>header hgroup{
+	margin: 10px;
+	padding: 20px;
+	min-width: 40%;
+	max-width: 80%;
+	color: var(--primary-bg-color);
+	background-color: var(--primary-font-color);
+	border-radius: 3px;	
+}
+
+body>header h1{
+	margin: 0px 10px;
+	font-size: 2.25em;
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+body>header p{
+	margin: 0px 10px;
+}
+
+
+/* Menú -------------------------------------------------------- */
+.menu{
+	padding: 8px 20px;
+	background: linear-gradient(45deg, var(--primary-bg-color), var(--primary-soft-color));
+	color: var(--primary-font-color);
+	border-radius: 3px;
+	font-size: 0;
+	min-width: var(--min-width);
+}
+
+.menu li{
+	margin: 0;
+	padding: 0 4px;
+	text-align: center;
+	display: inline-block;
+	list-style-type: none;
+	font-size: 1rem;
+}
+
+.menu li a{
+	display: block;
+	padding: 10px 20px;
+	margin: 0;
+	transition: 0.4s;
+	color: var(--primary-font-color);
+}
+
+.menu li a:hover{
+	background-color: var(--primary-font-color);
+	color: var(--primary-bg-color);
+}
+
+.menu li:not(:first-of-type){
+	border-left: dotted 2px var(--primary-font-color);
+}
+
+
+/* Migas -----------------------------------------------------------*/
+.breadcrumbs ul{
+	display: inline-block;
+}
+
+.breadcrumbs li{
+	list-style-type: none;
+	display: inline-block;
+	margin:  0;
+	padding: 10px 5px;
+}
+
+.breadcrumbs li a:hover{
+	text-decoration: underline;
+}
+
+.breadcrumbs li:not(:last-of-type):after{
+	content: " >> ";
+}
+
+.breadcrumbs li:last-of-type{
+	font-weight: bold;
+}
+
+
+
+section{
+	box-shadow: 1px 1px 3px var(--shadow-color);
+	border-radius: 3px;
+	background-color: var(--bg-color);
+	padding: 2%;
+	margin: 2% 0%;
+}
+
+section h2{
+	margin: 0 0 1rem 0;
+}
+
+
+main{
+	padding: 2%;	
+	margin: 0 0 1%;
+	background-color: var(--main-bg-color);
+}
+
+
+/* Mapa web --------------------------------------------------------*/
+.web-map{
+	padding: 10px 4%;
+	margin: 0 auto;
+	font-size: 1.3em;
+}
+
+.web-map h2{
+	font-size: 1em;
+	margin: 0 0 0.5em;
+}
+
+.web-map ul{
+	margin: 0 1%;
+}
+
+.web-map li{
+	margin: 0.35em;
+	font-size: 0.8em;
+}
+
+
+/* footer principal de la página (directamente dentro del body) ---- */
+body>footer{
+	background: linear-gradient(45deg, var(--primary-bg-color), var(--primary-soft-color));
+	color: var(--primary-font-color);
+	border-radius: 3px;
+}
+
+body>footer p{
+	margin-bottom: 0.5rem;
+}
+
+body>footer a{
+	font-size: 1em;
+	color: var(--primary-font-color);
+}
+
+body>footer figure{
+	background-color: white;
+	border-radius: 3px;
+	display: inline-block;
+	min-width: 30px !important;
+	text-align:center;
+}
+
+body>footer img{
+	max-width: 50px;
+}
+
+
+
+/* ---------------------- VISTAS DE ERROR HTTP ---------------------- */
+
+h2.http-code{
+	font-size: 10rem;
+	text-align: center;
+	margin: 10px auto;
+}
+
+p.http-message{
+	font-size: 2rem;
+	margin: 10px auto;
+}
+
+p.http-details{
+	font-size: 1.2rem;
+	margin: 25px auto;
+}
+
+
+div.http-error{
+	width: 80%;
+	margin: auto;
+	padding: 5px 10px 40px 10px;
+	text-align: center;
+	font-size: 2rem;
+}
+
+
+
+/* =============================== MODALES =============================== */
+
+/* Contenedor del modal con el fondo semistransparente */
+.modal{
+	position: fixed;
+	margin:   0;
+	padding:  2vh;
+	top: 0px;
+	left: 0px;
+	width: 100vw;
+	min-height: 100vh;
+	background-color: var(--modal-bg-color);
+	z-index: 10;
+	text-align: center;
+	display:flex;
+	cursor: pointer;
+}
+
+/* figura dentro del modal */
+.modal figure{
+	height: 96vh;
+	margin: auto;
+	max-width: fit-content;
+	box-shadow: 4px 4px 8px var(--shadow-color);
+}
+
+.modal figure img{
+	height: 80%;
+}
+
+.modal figure img.no-description{
+	height: 95%;
+}
+
+.modal figure figcaption{
+	height: 5%;	
+	font-size: 1.2rem;
+}
+
+.modal figure p{
+	height: 15%;	
+	font-size: 1rem;
+}
+
+.enlarge-image{
+	cursor: pointer;
+}
+
+/* ----------------- MENSAJES DE ERROR Y ÉXITO ----------------- */
+
+.message{
+	height: 70%;
+	width: 70%;
+	padding: 50px;
+	border-radius: 5px;
+	margin: auto;
+	font-size: 1.2em;
+}
+
+.success{
+	background-color: var(--success-bg-color);;
+	color: var(--success-font-color);
+}
+
+.warning{
+	background-color: var(--warning-bg-color);
+	color: var(--warning-font-color);
+}
+
+.error, .danger{
+	background-color: var(--danger-bg-color);
+	color: var(--danger-font-color);
+}
+
+
+/* ----------------- ACEPTAR COOKIES ----------------- */
+
+#accept-cookies{
+	background-color: var(--bg-color);
+}

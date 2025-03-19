@@ -1,0 +1,22 @@
+{
+	"type" : "project",
+	"license" : "GPL-3.0-or-later",
+	"name" : "robertsallent/fastlight",
+	"description" : "Fast and light PHP framework",
+	"require" : {
+		"php" : ">=8.1"
+	},
+	"homepage" : "https://fastlight.org",
+	"authors" : [{
+			"name" : "Robert Sallent",
+			"email" : "robertsallent@gmail.com",
+			"homepage" : "https://robertsallent.com",
+			"role" : "Engineer in Computer Science, teacher and developer"
+		}
+	],
+	"keywords" : [
+		"framework",
+		"php",
+		"webapp"
+	]
+}
