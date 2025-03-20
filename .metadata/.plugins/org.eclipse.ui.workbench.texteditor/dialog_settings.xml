@@ -4,6 +4,9 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+			<item value="prin"/>
+			<item value="mysl"/>
+			<item value="show"/>
 			<item value="debu"/>
 			<item value="debuf"/>
 			<item value="debug"/>
@@ -16,9 +19,6 @@
 			<item value="biblio"/>
 			<item value="anuncio"/>
 			<item value="ROLE_LIBRARIAN"/>
-			<item value="menu"/>
-			<item value="USE"/>
-			<item value="BASE de "/>
 		</list>
 		<list key="replacehistory">
 			<item value="anuncio"/>
