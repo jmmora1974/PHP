@@ -73,10 +73,18 @@ class LugarController extends Controller{
 	public function show(int $id=0) {
 			
 			$lugar = V_place::findOrFail($id, 'No se encontró el lugar indicado'); //tb comprueba si no le ha llegado el ID
+<<<<<<< HEAD
 			
 			
 			// carga la vista y le pasa el lugar recuperado
 			return view ('lugar/show',['lugar'=>$lugar]);
+=======
+			$lugarcomments = V_comment::getFiltered('idplace', $id );
+			$fotocomments = V_picture::getFiltered('idplace', $id );
+			
+			// carga la vista y le pasa el lugar recuperado
+			return view ('lugar/show',['lugar'=>$lugar,'lugarcomments'=>$lugarcomments, 'fotocomments'=>$fotocomments]);
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 	}
 	
 	/**
@@ -106,6 +114,19 @@ class LugarController extends Controller{
 			//Comprueba que la petición venga del formulario
 			if(!request()->has('guardar'))
 				throw new FormException('No se recibió el formulario');
+<<<<<<< HEAD
+=======
+			
+				if(!$file = request()->file(
+						'imagen', 	// nombre del input
+						8000000, 	//tamaño maximo del fichero
+						['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
+						)) {
+							
+							Session::warning("Es obligatorio establecer la foto del lugar.");
+							return redirect(request()->previousUrl);
+						}
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 
 		$lugar=new Lugar(); //crea el nuevo lugar
 			
@@ -133,14 +154,12 @@ class LugarController extends Controller{
 					
 					//En el caso de querer cambiar la foto, adjunto fichero, guardaremos el fichero subido
 					//recupera la foto del lugarcomo objeto UploadedFile (o null si no llega)
-					if($file = request()->file(
-							'imagen', 	// nombre del input
-							8000000, 	//tamaño maximo del fichero
-							['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
-							)){
+
+					if($file ){
 								$lugar->mainpicture=$file->store('../public/'.LUGAR_IMAGE_FOLDER, 'lugar_');
 								
-					}
+					} 
+
 					//$lugar->saneate(); //sanea las entradas.
 					$lugar->update();
 					

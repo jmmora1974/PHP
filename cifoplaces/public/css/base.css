@@ -1040,3 +1040,123 @@ div.http-error{
 #accept-cookies{
 	background-color: var(--bg-color);
 }
+<<<<<<< HEAD
+=======
+
+
+
+/* carusel de recomendaciones */
+
+
+/* Posicion del carrusel de fotos*/
+.carrusel {
+  position: relative;
+  width: 60vw;
+  height: 80vh;
+  max-height: 80vh;
+  margin-left: 10%;
+  text-align: center;
+}
+
+
+
+/* Oculta los slides por defecto */
+.mySlides {
+  display: none;
+  
+}
+
+/* cambia el puntero sobre la imagen */
+.cursor {
+  cursor: pointer;
+}
+
+/* Botones anterior y siguiente */
+.prev,
+.next, .pause,.resume  {
+  cursor: pointer;
+  position: relative;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;  
+  -webkit-user-select: none;
+   background-color: rgba(10, 10, 10, 0.8);
+}
+
+.next {
+ 	right: 0;
+    border-radius: 3px 0 0 3px;
+    top: 40%;
+}
+
+.prev {
+  left: 0;
+  top: 40%;
+  border-radius: 3px 0 0 3px;
+}
+
+.pause,.resume {
+  
+  top: 40%;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover,.pause:hover,.resume:hover  {
+  background-color: rgba(5,60,70, 0.8);
+}
+
+/* para los numeros de fotos por ej (1/3 etc) */
+.numbertext {
+  color: #f3f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+  z-index: 99;
+}
+
+/* texto de las imagenes*/
+.caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+  
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* tamaño de las imagenes miniatura, calculado para 6*/
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+/* opaca las miniaturas */
+.demo {
+  opacity: 0.6;
+}
+
+/* quita la opacación cuando el raton esta encima*/
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+#video1 {
+  height: 60vh;
+  width: 50vw;
+}
+
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a

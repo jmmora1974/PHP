@@ -60,6 +60,7 @@ CREATE TABLE errors(
 
 -- algunos usuarios para las pruebas, podéis crear tantos como necesitéis
 INSERT INTO users(displayname, email, phone, poblacion, cp, password, roles) VALUES 
+<<<<<<< HEAD
 	('admin', 'admin@fastlight.org', '666666666', 'Terrassa', '08227', md5('1234'), 
 		'["ROLE_USER", "ROLE_ADMIN"]'),
 	('publisher', 'publisher@fastlight.org', '666666665', 'Terrassa', '08227',  md5('1234'), 
@@ -83,3 +84,15 @@ INSERT INTO anuncios(iduser,titulo, descripcion, precio, imagen) VALUES
     (6,'Televisor 32', 'Televisor LG 32 pulgadas', 50,  NULL),
     (7,'Coche baterias', 'Coche 4x4 teledirigido', 20,  NULL);
     
+=======
+	('admin', 'admin@fastlight.com', '666666666', 'Terrassa', '08227', md5('1234'), 
+		'["ROLE_USER", "ROLE_ADMIN"]'),
+	('publisher', 'publisher@fastlight.com', '666666665', 'Terrassa', '08227',  md5('1234'), 
+		'["ROLE_USER", "ROLE_PUBLISHER"]'),
+	('test', 'test@fastlight.com', '666666664',  'Terrassa', '08227',  md5('1234'), 
+		'["ROLE_USER", "ROLE_TEST"]'),
+	('API', 'api@fastlight.com', '666666663', 'Terrassa', '08227',  md5('1234'), 
+		'["ROLE_USER", "ROLE_API"]'),
+	('comprador1', 'comprador1@fastlight.com', '666666667', 'Terrassa', '08227',  md5('1234'), 
+	'["ROLE_USER"]');
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a

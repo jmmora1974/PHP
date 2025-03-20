@@ -40,17 +40,27 @@
 			<label for="description">Descripción</label>
 			<input type="text" name="description" value="<?= old('description')?>" required>
 			<br>
+<<<<<<< HEAD
 			<label for="description">Descripción</label>
 			<input type="text" name="description" value="<?= old('description')?>" required>
 			<br>
+=======
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 			<label for="location">Localización</label>
 			<input type="text" name="location" value="<?= old('location')?>" >
 			<br>
 			<label for="latitude">Latitud</label>
+<<<<<<< HEAD
 			<input type="float" name="latitude" value="<?= old('latitude')?>">
 			<br>
 			<label for="longitude">Longitud</label>
 			<input type="float" name="longitude" value="<?= old('longitude')?>">
+=======
+			<input type="number" name="latitude" value="<?= old('latitude')?>">
+			<br>
+			<label for="longitude">Longitud</label>
+			<input type="number" name="longitude" value="<?= old('longitude')?>">
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 			<br>
 		</div>
 		<div class="flex2">

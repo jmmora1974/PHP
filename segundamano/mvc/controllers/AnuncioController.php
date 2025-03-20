@@ -136,7 +136,11 @@ class AnuncioController extends Controller{
 							8000000, 	//tamaño maximo del fichero
 							['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
 							)){
+<<<<<<< HEAD
 								$anuncio->imagen=$file->store('../public/'.ANUNCIO_IMAGE_FOLDER, 'anuncio_');
+=======
+								$anuncio->imagen=$file->store('../public'.ANUNCIO_IMAGE_FOLDER, 'anuncio_');
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 								
 					}
 					//$anuncio->saneate(); //sanea las entradas.
@@ -150,13 +154,30 @@ class AnuncioController extends Controller{
 				}  catch(SQLException $e){
 					//prepara el mensaje de error
 					$mensaje = "No se pudo guardar el anuncio $anuncio->titulo.";
+<<<<<<< HEAD
 					
+=======
+					// si está activado el LOG de errores, añadimos el mensaje al fichero de LOG
+					
+					if(LOG_ERRORS)
+						Log::addMessage(ERROR_LOG_FILE, get_class($e), $e->getMessage());
+						
+						// Si está activada la opción de guardar errores en BDD, lo guardamos.
+						if(DB_ERRORS)
+							AppError::new(get_class($e), $e->getMessage());
+							
+							
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 					if(str_contains($e->errorMessage(),'Duplicate entry'))
 							$mensaje.="<br>Ya existe un anuncio con ese <b>ID</b>.";
 					
 					//flashe un mensaje de error en session
 					Session::error($mensaje);
 					
+<<<<<<< HEAD
+=======
+					
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 					//Si esta en modo DEBUG vuelve a lanzar la excepcion
 					//esto hara qie acabemos en la pagina de error
 					if(DEBUG)
@@ -244,6 +265,19 @@ class AnuncioController extends Controller{
 					$mensaje.="<br>Ya existe un anuncio con ese <b>ID</b>.";
 				Session::error($mensaje);
 				
+<<<<<<< HEAD
+=======
+				// si está activado el LOG de errores, añadimos el mensaje al fichero de LOG
+				if(LOG_ERRORS)
+					Log::addMessage(ERROR_LOG_FILE, get_class($e), $e->getMessage());
+					
+					// Si está activada la opción de guardar errores en BDD, lo guardamos.
+					if(DB_ERRORS)
+						AppError::new(get_class($e), $e->getMessage());
+						
+						
+				
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 				if(DEBUG)
 					throw new SQLException($e->getMessage());
 				
@@ -301,13 +335,38 @@ class AnuncioController extends Controller{
 				} catch (SQLException $e){
 					
 					Session::error("No se pudo borrar el anuncio $anuncio->titulo.");
+<<<<<<< HEAD
 					
+=======
+				
+					// si está activado el LOG de errores, añadimos el mensaje al fichero de LOG
+					if(LOG_ERRORS)
+						Log::addMessage(ERROR_LOG_FILE, get_class($e), $e->getMessage());
+						
+						// Si está activada la opción de guardar errores en BDD, lo guardamos.
+						if(DB_ERRORS)
+							AppError::new(get_class($e), $e->getMessage());
+						
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 					if(DEBUG)
 						throw new SQLException($e->getMessage());
 						
 						return redirect("/Anuncio/delete/$id");
 				}catch(FileException $e){
 					Session::warning ("Se eliminó el anuncio $anuncio->titulo pero no se pudo eliminar el fichero del disco.");
+<<<<<<< HEAD
+=======
+					
+					// si está activado el LOG de errores, añadimos el mensaje al fichero de LOG
+					if(LOG_ERRORS)
+						Log::addMessage(ERROR_LOG_FILE, get_class($e), $e->getMessage());
+						
+						// Si está activada la opción de guardar errores en BDD, lo guardamos.
+						if(DB_ERRORS)
+							AppError::new(get_class($e), $e->getMessage());
+							
+							
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 					if(DEBUG)
 						throw new SQLException($e->getMessage());
 						//No podemos redirigir al anuncio porque ya no existe
@@ -368,6 +427,17 @@ class AnuncioController extends Controller{
 					
 				}  catch(SQLException $e){
 					Session::error("No se pudo eliminar la foto del anuncio.");
+<<<<<<< HEAD
+=======
+					// si está activado el LOG de errores, añadimos el mensaje al fichero de LOG
+					if(LOG_ERRORS)
+						Log::addMessage(ERROR_LOG_FILE, get_class($e), $e->getMessage());
+						
+						// Si está activada la opción de guardar errores en BDD, lo guardamos.
+						if(DB_ERRORS)
+							AppError::new(get_class($e), $e->getMessage());
+							
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 					if(DEBUG)
 						throw new SQLException($e->getMessage());
 						
@@ -382,6 +452,18 @@ class AnuncioController extends Controller{
 					$mensaje.="Cambios guardados, pero no se modificó la foto del anuncio.";
 					Session::error($mensaje);
 					
+<<<<<<< HEAD
+=======
+					// si está activado el LOG de errores, añadimos el mensaje al fichero de LOG
+					if(LOG_ERRORS)
+						Log::addMessage(ERROR_LOG_FILE, get_class($e), $e->getMessage());
+						
+						// Si está activada la opción de guardar errores en BDD, lo guardamos.
+						if(DB_ERRORS)
+							AppError::new(get_class($e), $e->getMessage());
+							
+					
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 					if(DEBUG)
 						throw new SQLException($e->getMessage());
 						

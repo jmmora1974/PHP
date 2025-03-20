@@ -32,7 +32,11 @@
 			<item key="ignoreCase" value="true"/>
 			<item key="isRegExSearch" value="false"/>
 			<item key="isWholeWord" value="false"/>
+<<<<<<< HEAD
 			<item key="textPattern" value="&apos;/&apos;.ANUNCIO_IMAGE_FOLDER"/>
+=======
+			<item key="textPattern" value="Preview.js"/>
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 			<item key="scope" value="0"/>
 			<list key="fileNamePatterns">
 				<item value="*"/>

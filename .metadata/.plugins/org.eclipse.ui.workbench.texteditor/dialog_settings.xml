@@ -4,11 +4,17 @@
 	<section name="java.lang.Class">
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+<<<<<<< HEAD
 			<item value="ANUN"/>
 			<item value="DEFAULT_a"/>
 			<item value="DEFAULT_IM"/>
 			<item value="DEFAUL_IM"/>
 			<item value="DEFAUL"/>
+=======
+			<item value="debu"/>
+			<item value="debuf"/>
+			<item value="debug"/>
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 			<item value="PROFILE"/>
 			<item value="socio"/>
 			<item value="Anincio"/>
@@ -19,6 +25,11 @@
 			<item value="anuncio"/>
 			<item value="ROLE_LIBRARIAN"/>
 			<item value="menu"/>
+<<<<<<< HEAD
+=======
+			<item value="USE"/>
+			<item value="BASE de "/>
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 		</list>
 		<list key="replacehistory">
 			<item value="anuncio"/>

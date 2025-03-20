@@ -351,10 +351,10 @@ class LibroController extends Controller{
 				$libro=Libro::findOrFail($id);
 									
 				if($file && $libro->portada) { //elimina el fichero anterior (si lo hay)
-						File::remove('../public/'.BOOK_IMAGE_FOLDER.'/'.$libro->portada);
+						File::remove('../public'.BOOK_IMAGE_FOLDER.'/'.$libro->portada);
 				
 					//coloca el nuevo fichero y actualiza la propiedad
-					$libro->portada=$file->store('../public/'.BOOK_IMAGE_FOLDER, 'book_');
+					$libro->portada=$file->store('../public	'.BOOK_IMAGE_FOLDER, 'book_');
 					
 					$libro->update(); //actualiza el libro para añadir la portada
 				}

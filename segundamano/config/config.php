@@ -252,7 +252,11 @@ define('ACCEPT_COOKIES_EXPIRATION', time()+604800);
  * HERRAMIENTAS DE DEPURACIÓN (PARA APP_TYPE WEB)
  * -------------------------------------------------------------*/
     
+<<<<<<< HEAD
 define('DEBUG', true); // Activa el modo debug.   
+=======
+define('DEBUG', false); // Activa el modo debug.   
+>>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 
 // Detalles que queremos mostrar en modo debug en la página de error
 // OPCIONES: user, trace, request, session
