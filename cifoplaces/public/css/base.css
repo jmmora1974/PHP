@@ -742,7 +742,6 @@ td form{
 html{
 	background-color: var(--bg-color);	
 }
-
 body{
 	color: var(--font-color);
 	padding: 10px 2%;
@@ -757,8 +756,8 @@ body>header{
 	display: flex;
 	flex-wrap: nowrap;
 	padding: 10px 2%;
-	background-image: url(../images/template/header_base.jpg);
-	background-size: cover;
+	/* background-image: url(../images/template/header_base.jpg); 
+	background-size: cover;*/
 	align-items: center;
 }
 

@@ -6,7 +6,7 @@
  *
  * Última revisión: 18/02/2025
  * 
- * @author Robert Sallent <robertsallent@gmail.com> && Jose Miguel Mora Perez <jmmora1974@gmail.com>
+ * @author Robert Sallent <robertsallent@gmail.com> && Jose Miguel Mora Perez 
  *
  */
 class Base implements TemplateInterface{
@@ -130,7 +130,7 @@ class Base implements TemplateInterface{
             <header>
                 <figure>
                     <a href='/'>
-                        <img alt='foto logo' src='/images/template/fastlight_base.png'>
+                        <img alt='Biblio Mora Logo' src='/images/template/fastlight_base.png'>
                     </a>
                 </figure>
                 <hgroup>
@@ -459,18 +459,10 @@ class Base implements TemplateInterface{
         <footer class='flex-container left drop-shadow'>
             
             <div class='flex4 p2'>
-                <p><a class='negrita maxi cursiva' href='https://github.com/jmmora1974/PHP'>PHP Fastlight apps by jmmora </a></p>
+                <p><a class='negrita maxi cursiva' href='https://github.com/jmmora1974/PHP'>PHP apps</a></p>
                 <p>
                     Desarrollado por:
-                    Jose Miguel Mora Perez para el curso de desarrollo de aplicaciones web (2024/2025).
-                    Gracias a Robert Sallent - robertsallent@gmail.com por el conocimiento adquirido.
-                    Desarollado con el Framework de 
-                    <a href='https://www.fastlight.org/'>Fastlight </a>
-                    <figure class='p1 centrada drop-shadow'>
-                    <a href='https://github.com/robertsallent'>
-                        <img class='w100' src='/images/template/github.png' alt='GitHub'>
-                    </a>
-                </figure>
+                    Jose Miguel Mora Perez</a> para el curso de desarrollo de aplicaciones web (2024/2025).
                 </p>
             </div>
             
