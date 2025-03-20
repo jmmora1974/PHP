@@ -73,18 +73,12 @@ class LugarController extends Controller{
 	public function show(int $id=0) {
 			
 			$lugar = V_place::findOrFail($id, 'No se encontró el lugar indicado'); //tb comprueba si no le ha llegado el ID
-<<<<<<< HEAD
-			
-			
-			// carga la vista y le pasa el lugar recuperado
-			return view ('lugar/show',['lugar'=>$lugar]);
-=======
 			$lugarcomments = V_comment::getFiltered('idplace', $id );
 			$fotocomments = V_picture::getFiltered('idplace', $id );
 			
 			// carga la vista y le pasa el lugar recuperado
 			return view ('lugar/show',['lugar'=>$lugar,'lugarcomments'=>$lugarcomments, 'fotocomments'=>$fotocomments]);
->>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
+
 	}
 	
 	/**
@@ -114,8 +108,6 @@ class LugarController extends Controller{
 			//Comprueba que la petición venga del formulario
 			if(!request()->has('guardar'))
 				throw new FormException('No se recibió el formulario');
-<<<<<<< HEAD
-=======
 			
 				if(!$file = request()->file(
 						'imagen', 	// nombre del input
@@ -126,7 +118,6 @@ class LugarController extends Controller{
 							Session::warning("Es obligatorio establecer la foto del lugar.");
 							return redirect(request()->previousUrl);
 						}
->>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a
 
 		$lugar=new Lugar(); //crea el nuevo lugar
 			
