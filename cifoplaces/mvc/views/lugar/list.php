@@ -78,8 +78,6 @@
 							<th>Tipo</th>
        						<th>Descripcion</th>
        						<th>Localizacion</th>
-							<th>Latitud</th>
-							<th>Longitud</th>
 							<th>Creador</th>
 							<th>Fecha</th>
        						<th class="centrado">Acciones</th>
@@ -101,15 +99,13 @@
 						<td><?=$lugar->type?></td>
 						<td><?=$lugar->description?></td>
 						<td><?=$lugar->location?></td>
-						<td><?=$lugar->latitude?></td>
-						<td><?=$lugar->longitude?></td>
 						<td><?=$lugar->username ?></td>
 						<td><?=$lugar->created_at?></td>
 						<td class="centrado">
 							<a class="button" href='/lugar/show/<?=$lugar->id?>'>
 								<img src="/images/icons/show.png" alt="Ver" style="width:20px;height:20px;"></a>
 							<a class="button" href='/lugar/edit/<?=$lugar->id?>'><img src="/images/icons/edit.png" alt="Editar" style="width:20px;height:20px;"></a>
-							<?php  if( Login::user()->id == $lugar->iduser) {// autorización(solo propietario) ?>
+							<?php  if( Login::user()->id == $lugar->iduser || Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR'])) {// autorización(solo propietario) ?>
 								<a class="button-danger" href='/lugar/delete/<?=$lugar->id?>'><img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"></a>
 							<?php } ?>
 						</td>

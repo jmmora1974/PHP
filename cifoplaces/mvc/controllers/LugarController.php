@@ -73,8 +73,8 @@ class LugarController extends Controller{
 	public function show(int $id=0) {
 			
 			$lugar = V_place::findOrFail($id, 'No se encontró el lugar indicado'); //tb comprueba si no le ha llegado el ID
-			$lugarcomments = V_comment::getFiltered('idplace', $id );
-			$fotocomments = V_picture::getFiltered('idplace', $id );
+			$lugarcomments = V_comment::getFiltered('idplace', $id,'created_at','DESC' );
+			$fotocomments = V_picture::getFiltered('idplace', $id,'created_at','DESC'  );
 			
 			// carga la vista y le pasa el lugar recuperado
 			return view ('lugar/show',['lugar'=>$lugar,'lugarcomments'=>$lugarcomments, 'fotocomments'=>$fotocomments]);
@@ -125,14 +125,14 @@ class LugarController extends Controller{
 				try{
 					
 					//Recuperamos el fomulario, saneamos y validamos antes de guardar en BDD
-					$lugartemp=new Lugar(); //crea el nuevo libro temporal para crear y validar
+					$phototemp=new Lugar(); //crea el nuevo libro temporal para crear y validar
 					
 					//guarda el lugar en la base de datos a partir de los datos POST
 					foreach( request()->posts() as $campo=>$valor) //pasamos a objeto Lugar
-						$lugartemp ->$campo=$valor;
+						$phototemp ->$campo=$valor;
 						
 						//Validaremos que los datos sean correctos
-						if($errores = $lugartemp->validate()){
+						if($errores = $phototemp->validate()){
 							Session::warning("Errores de validación");
 							throw new ValidationException(
 									"<br>".arrayToString($errores, false, false,".<br>")
@@ -141,7 +141,7 @@ class LugarController extends Controller{
 							
 					//guarda el lugar en la base de datos a partir de los datos POST
 					
-					$lugar = Lugar::create((array)$lugartemp); //mo es necesario en la  1.8.0
+					$lugar = Lugar::create((array)$phototemp); //mo es necesario en la  1.8.0
 					
 					//En el caso de querer cambiar la foto, adjunto fichero, guardaremos el fichero subido
 					//recupera la foto del lugarcomo objeto UploadedFile (o null si no llega)
@@ -159,7 +159,13 @@ class LugarController extends Controller{
 					
 					//redirecciona a los detalles del nuevo lugar
 					return redirect("/Lugar/show/$lugar->id");
-				}  catch(SQLException $e){
+				}  catch (ValidationException $e){
+    				if(DEBUG)
+    					throw new ValidationException($e->getMessage());
+    					
+    				Session::error($e->getMessage());
+    				return redirect (request()->previousUrl);
+    			}catch(SQLException $e){
 					//prepara el mensaje de error
 					$mensaje = "No se pudo guardar el lugar $lugar->titulo.";
 					
@@ -195,7 +201,7 @@ class LugarController extends Controller{
 		
 		
 	
-	  if( user()->id != $lugar->iduser) {// autorización(solo propietario) ?
+	  if( user()->id != $lugar->iduser && !Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR'])) {// autorización(solo propietario) ?
 		 		Session::warning("Si deseas realizar cambios, contacta con el vendedor.");
 		 	  	return redirect('/Lugar');
 		 }
@@ -218,7 +224,7 @@ class LugarController extends Controller{
 			$id = intval(request()->post('id')); // recuperar el id via POST
 			$iduser = intval(request()->post('iduser')); // recuperar el iduser via POST
 			// autorización(solo propietario)
-			if( Login::user()->id != $iduser) {// autorización(solo propietario)
+			if( Login::user()->id != $iduser && !Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR']) ) {// autorización(solo propietario)
 				Session::warning("Si deseas realizar cambios, contacta con el vendedor.");
 				return ('/Lugar');
 			}
@@ -228,21 +234,21 @@ class LugarController extends Controller{
 			try{
 				
 				//Recuperamos el fomulario, saneamos y validamos antes de guardar en BDD
-				$lugartemp=new Lugar(); //crea el nuevo libro temporal para crear y validar
+				$phototemp=new Lugar(); //crea el nuevo libro temporal para crear y validar
 				
 				//guarda el lugar en la base de datos a partir de los datos POST
 				foreach( request()->posts() as $campo=>$valor) //pasamos a objeto Lugar
-					$lugartemp ->$campo=$valor;
-					$lugartemp->id=$id;
+					$phototemp ->$campo=$valor;
+					$phototemp->id=$id;
 					
 					//Validaremos que los datos sean correctos
-					if($errores = $lugartemp->validate(true))
+					if($errores = $phototemp->validate(true))
 						throw new ValidationException(
 								"<br>".arrayToString($errores, false, false,".<br>")
 								);
 						
 			
-				$lugar= Lugar::create((array)$lugartemp,$id);
+				$lugar= Lugar::create((array)$phototemp,$id);
 				
 				Session::success("Actualización del lugar $lugar->titulo correcta.");
 				return redirect("/Lugar");
@@ -402,6 +408,108 @@ class LugarController extends Controller{
 		}
 		//En caso de no se bibliotecario, redirige al inicio
 		return redirect('/');
+	}
+	
+	/**
+	 * Muestra el formulario de nuevo lugar
+	 * @return ViewResponse
+	 */
+	public function nuevafoto(int $idplace=0){
+		//Usuarios autenticados
+		Auth::check();
+		//Buscamos el lugar
+		$lugar = Lugar::findOrFail($idplace, "No existe el lugar.");
+			
+
+			return view('lugar/createphotoplace',['lugar'=> $lugar]);
+	//	En caso de no estar loginaddo, 
+	// redirige a la pantalla de login, de no tener usurios puede crearlo.
+		
+	}
+	
+	/**
+	 * Guarda los datos que llegan del formulario en la bdd
+	 * 
+	 * @ redirect Viewresponse
+	 */
+	public function storephotoplace(){
+		 
+		//Usuarios autenticados
+		Auth::check();
+		
+			//Comprueba que la petición venga del formulario
+			if(!request()->has('guardar'))
+				throw new FormException('No se recibió el formulario');
+			
+				if(!$file = request()->file(
+						'imagen', 	// nombre del input
+						8000000, 	//tamaño maximo del fichero
+						['image/png','image/jpeg','image/gif','image/webp'] //tipos aceptados
+						)) {
+							
+							Session::warning("Es obligatorio establecer la foto del lugar.");
+							return redirect(request()->previousUrl);
+						}
+
+		$photo=new Photo(); //crea la nueva foto
+			
+		//OPCION AUTOMATICA
+				try{
+					
+					//Recuperamos el fomulario, saneamos y validamos antes de guardar en BDD
+					$phototemp=new Photo(); //crea la nueva foto temporal para crear y validar
+					
+					//guarda el lugar en la base de datos a partir de los datos POST
+					foreach( request()->posts() as $campo=>$valor) //pasamos a objeto Photo
+						$phototemp ->$campo=$valor;
+						
+						//Validaremos que los datos sean correctos
+						if($errores = $phototemp->validate()){
+							Session::warning("Errores de validación");
+							throw new ValidationException(
+									"<br>".arrayToString($errores, false, false,".<br>")
+									);
+						}
+							
+					//guarda el lugar en la base de datos a partir de los datos POST
+					
+					$photo = Photo::create((array)$phototemp); //mo es necesario en la  1.8.0
+					
+					//En el caso de querer cambiar la foto, adjunto fichero, guardaremos el fichero subido
+					//recupera la foto del lugarcomo objeto UploadedFile (o null si no llega)
+
+					if($file ){
+								$photo->file=$file->store('../public/'.LUGAR_IMAGE_FOLDER, 'lugar_');
+								
+					} 
+
+					
+					$photo->update();
+					
+					//flashea un mensaje de exito en sesion
+					Session::success("Guardado nueva foto del lugar $lugar->name correctamente.");
+					
+					//redirecciona a los detalles del nuevo lugar
+					return redirect("/Lugar/show/".$photo->idplace);
+				}  catch(SQLException $e){
+					//prepara el mensaje de error
+					$mensaje = "No se pudo guardar el lugar $lugar->name.";
+					
+					if(str_contains($e->errorMessage(),'Duplicate entry'))
+							$mensaje.="<br>Ya existe un lugar con ese <b>ID</b>.";
+					
+					//flashe un mensaje de error en session
+					Session::error($mensaje);
+					
+					//Si esta en modo DEBUG vuelve a lanzar la excepcion
+					//esto hara qie acabemos en la pagina de error
+					if(DEBUG)
+					throw new SQLException($e->getMessage());
+					
+					//regresa al formulario de creación de lugar
+					return redirect("/Lugar/create");
+				}
+		
 	}
 	
 }	

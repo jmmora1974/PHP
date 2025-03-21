@@ -465,6 +465,11 @@ span.path::before{
 	max-height: 120px;
 }
 
+.icon-image{
+	width: 100%;
+	max-width: 60px;
+	max-height: 60px;
+}
 
 
 /* Listas -------------------------------------------------------- */
@@ -866,6 +871,39 @@ section{
 	padding: 2%;
 	margin: 2% 0%;
 }
+#detalles{
+	background-color: var(--bg-color2);
+}
+#seccomentarios{
+		overflow-y: auto;
+	max-height: 600px;
+  overflow: auto;
+}
+#seccomentarios *{
+	align-items:center;
+	vertical-align: middle;
+	max-height: 400px;
+}
+#detalles * {
+	border-radius: 5px;
+	
+}
+
+.disabled{
+	background-color: gray;
+}
+
+#detalles small {
+	font-size:small;
+  }
+
+.comentario{
+	display:inline-flex;
+	vertical-align: middle;
+	background-color: gray;
+	justify-content:space-between;
+
+}
 
 section h2{
 	margin: 0 0 1rem 0;
@@ -1039,10 +1077,8 @@ div.http-error{
 
 #accept-cookies{
 	background-color: var(--bg-color);
-}
-<<<<<<< HEAD
-=======
 
+}
 
 
 /* carusel de recomendaciones */
@@ -1052,7 +1088,7 @@ div.http-error{
 .carrusel {
   position: relative;
   width: 60vw;
-  height: 80vh;
+ 
   max-height: 80vh;
   margin-left: 10%;
   text-align: center;
@@ -1159,4 +1195,3 @@ div.http-error{
   width: 50vw;
 }
 
->>>>>>> b641c60dc8de95b84b3e4e24f56fd938cd1e845a

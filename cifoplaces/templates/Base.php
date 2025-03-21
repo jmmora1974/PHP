@@ -159,6 +159,7 @@ class Base implements TemplateInterface{
         $html = "<menu class='menu'>";
         $html .=   "<li><a href='/'>Inicio</a></li>";
         $html .=   "<li><a href='/Lugar'>Lugares</a></li>";
+        $html .=   "<li><a href='/Lugar/create'>Nuevo lugar</a></li>";
        
        
         

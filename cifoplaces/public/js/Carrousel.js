@@ -5,19 +5,18 @@ let captionText = document.getElementById("caption");
 
 //Carusel de fotos
 let slideIndex = 1;
-showSlides(slideIndex);
+//showSlides(slideIndex);
 
 // Next/previous controls
 function plusSlides(n) {
-	if(n!=0){
-  		showSlides(slideIndex += n);
-		interval = setInterval(correCarrusel, 0);
-	} else {
-		clearInterval();
-				
-		clearInterval(interval);
-		
-	}
+  showSlides(slideIndex += n);
+  if (n==0)	 
+	  clearInterval(interval);
+
+  let interval;
+	//clearInterval(interval);
+	if(n==999999)
+		 interval = setInterval(correCarrusel, 5000);
 }
 
 // Thumbnail image controls
@@ -28,16 +27,15 @@ function currentSlide(n) {
 function showSlides(n) {
   let i;
 
-	
-		  if (n > slides.length) {slideIndex = 1}
-		  if (n < 1) {slideIndex = slides.length}
-		  for (i = 0; i < slides.length; i++) {
-		    slides[i].style.display = "none";
-		  }
-		  for (i = 0; i < dots.length; i++) {
-		    dots[i].className = dots[i].className.replace(" active", "");
-		  }
-		
+
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
   captionText.innerHTML = dots[slideIndex-1].alt;
@@ -53,14 +51,12 @@ function showSlides(n) {
 let index = 1;
 function correCarrusel () {
 	plusSlides(index);
-	//console.log("toi en caro",index);
- 
+	
 	if (index === slides.length ) {
 		index = 1;
-		//console.log("toi en caro ini");
 	  } else {
 		index++;
-		//console.log("toi en caro +",index);
+	
 	  }
     showSlides(index);
  
@@ -72,5 +68,5 @@ function correCarrusel () {
 
 
 //Ponemos en marcha el carrusel
-let interval = setInterval(correCarrusel, 100);
+let interval = setInterval(correCarrusel, 50000);
 window.correCarrusel();

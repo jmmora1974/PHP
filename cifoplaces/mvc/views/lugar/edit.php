@@ -28,14 +28,15 @@
 	<section id="detalles" class="flex-container gap2">
 	<div class="flex2 centered">
 	
-	<?php  if( Login::user()->id == $lugar->iduser) {// autorización(solo propietario) ?>
+	<?php  if( Login::user()->id == $lugar->iduser || Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR'])) {// autorización(solo propietario) ?>
 	
 		<form method="POST" enctype="multipart/form-data" action="/Lugar/update">
 			
 			<input type="hidden" name="id" value="<?= $lugar->id?>">
 			<input type="hidden" name="iduser" value="<?= $lugar->iduser?>">
-			<label for="name">Lugar</label>
-			<input type="text" name="name" value="<?= $lugar->name ?>" required>
+			<input type="hidden" name="name" value="<?= $lugar->name ?>"  required>
+			<h2><?= $lugar->name ?></h2>
+			
 			<br>
 			<label for="type">Tipo</label>
 			<input name="type" value="<?= $lugar->type?>" required>
@@ -53,7 +54,8 @@
 			<input type="int"  name="longitude" value="<?=$lugar->longitude?>">
 			<br>
 			<!--  Si se quiere realizar alguna modificación, podemos usar este campo -->
-			<input type="date" name="created_at" value="<?=$lugar->created_at?>" disabled>
+			<p for="created_at" class="x-small">Creado el <?=$lugar->created_at?></p>
+			
 			<br>
 	<?php } else{ ?>
 				<p>Si deseas modificar los datos, puedes contacta con el vendedor.</p>  
@@ -100,7 +102,7 @@
 			
 		<div class="centrado m1">
 			<a class="button" onclick="history.back()">Atrás</a>
-			<?php  if( Login::role('ROLE_LIBRARIAN' )) {// autorización(solo bibliotecarios) ?>
+			<?php  if( Login::role('ROLE_MODERADOR' )) {// autorización(solo bibliotecarios) ?>
 			<a class="button" href="/Lugar/list">Lista de lugares</a>
 						<a class="button" href="/Lugar/show/<?=$lugar->id?>">Detalles</a>
 			

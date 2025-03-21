@@ -2,11 +2,11 @@
 <html lang="es">
 	<head>
 		<meta charset="UTF-8">
-		<title>Nuevo lugar - <?= APP_NAME ?></title>
+		<title>Nueva foto de lugar - <?= APP_NAME ?></title>
 		
 		<!-- META -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Nuevo lugar - <?= APP_NAME ?>">
+		<meta name="description" content="Nueva foto del lugar - <?= APP_NAME ?>">
 		<meta name="author" content="Jose Miguel Mora Perez">
 		
 		<!-- FAVICON -->
@@ -17,38 +17,37 @@
 	</head>
 	<body>
 		<?= $template->login() ?>
-		<?= $template->header('Nuevo lugar') ?>
+		<?= $template->header('Nueva foto del lugar') ?>
 		<?= $template->menu() ?>
-		<?= $template->breadCrumbs(['Lugares'=>'/Lugar','Nuevo'=>null]) ?>
+		<?= $template->breadCrumbs(['Lugares'=>'/Lugar',$lugar->name=>'/Lugar/show/'.$lugar->id,'Nueva foto'=>null]) ?>
 		<?= $template->messages() ?>
 		<?= $template->acceptCookies() ?>
 	<main>
 	
-	<h2>Nuevo lugar en <?=APP_NAME?> </h2>
+	<h2>Nuevo foto en <?= $lugar->name?> </h2>
 	<section id="detalles" class="flex-container gap2">
-	<form method="POST" enctype="multipart/form-data" action="/lugar/store" class="flex-container gap2">
+	<form method="POST" enctype="multipart/form-data" action="/lugar/storephotoplace" class="flex-container gap2">
 		
 		<div class="flex2">
 			<input type="hidden" name="iduser" value="<?= user()->id?>">
+			<input type="hidden" name="idplace" value="<?= $lugar->id?>">
 			
-			<label for="name">Nombre</label>
+			<label for="name">Titulo</label>
 			<input type="text" name="name" value="<?= old('name')?>" required>
 			<br>
-			<label for="type">Tipo</label>
-			<input type="text" name="type" value="<?= old('type')?>" required>
+			<label for="alt">Titulo alternativo</label>
+			<input type="text" name="alt" value="<?= old('alt')?>" required>
 			<br>
 			<label for="description">Descripción</label>
 			<input type="text" name="description" value="<?= old('description')?>" required>
 			<br>
-			<label for="location">Localización</label>
-			<input type="text" name="location" value="<?= old('location')?>" >
+			<label for="date">Fecha</label>
+			<input type="date" name="date" value="<?= old('date')?>" >
 			<br>
-			<label for="latitude">Latitud</label>
-			<input type="number" name="latitude" value="<?= old('latitude')?>">
+			<label for="time">Hora</label>
+			<input type="time" name="time" value="<?= old('time')?>">
 			<br>
-			<label for="longitude">Longitud</label>
-			<input type="number" name="longitude" value="<?= old('longitude')?>">
-			<br>
+			
 		</div>
 		<div class="flex2">
 			
@@ -56,8 +55,8 @@
 						<figure class="flex1 centrado p2">
 							<canvas id="previewcanvas">
 									<div style="display:none;">
-										<img id="fotodefault" src="<?=LUGAR_IMAGE_FOLDER.'/'.($lugar->mainpicture ?? DEFAULT_LUGAR_IMAGE)?>"
-				 								class="cover enlarge-image" alt="Foto de <?= $lugar->nane?>">	
+										<img id="fotodefault" src="<?=LUGAR_IMAGE_FOLDER.'/'. DEFAULT_LUGAR_IMAGE?>"
+				 								class="cover enlarge-image" >	
 									</div>
 							</canvas>		
 							<figcaption>Foto del lugar</figcaption>
@@ -73,7 +72,7 @@
 
 						</figure>	
 						<input type="file" name="imagen" accept="image/*"  style="max-width:300px"
-			 id="file-with-preview" value="<?= old('imagen', $lugar->mainpicture)?>"  onchange="return ShowImagePreview( this.files );">
+			 id="file-with-preview" value="<?= old('imagen')?>"  onchange="return ShowImagePreview( this.files );">
 			<br>
 			
 					</div>
