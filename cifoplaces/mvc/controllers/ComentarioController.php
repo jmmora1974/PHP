@@ -88,9 +88,9 @@ class ComentarioController extends Controller{
 	public function store(){
 		Auth::check(); //Solo usuarios autenticados
 			//Comprueba que la petición venga del formulario
-			if(!request()->has('nuevocomentario'))
+		if(!request()->has('nuevocomentario') && !request()->has('nuevofotocomentario') )
 				throw new FormException('No se recibió el formulario');
-			
+			$retorno= request()->post('retorno')??'';
 			
 			$comentario=new Comentario(); //crea el nuevo comentario
 			
@@ -108,9 +108,9 @@ class ComentarioController extends Controller{
 					if($errores = $comentariotemp->validate()){
 						Session::warning("Errores de validación");
 						throw new ValidationException(
-								"<br>".arrayToString($errores, false, false,".<br>")
-								);
-						return redirect("/Lugar/show/$comentario->idplace#seccomentarios");
+								"<br>".arrayToString($errores, false, false,".<br>"));
+						return redirect(request()->previousUrl.$retorno);
+						//return redirect("/Lugar/show/$comentario->idplace#seccomentarios");
 					}
 						
 				//guarda el lugar en la base de datos a partir de los datos POST
@@ -119,23 +119,24 @@ class ComentarioController extends Controller{
 				
 			
 				//flashea un mensaje de exito en sesion
-				Session::success("Guardado del comentario '$comentario->text' correctamente.");
+				Session::success("Guardado del comentario  $comentario->id - '$comentario' correctamente.");
 				
 				//redirecciona a los detalles del nuevo lugar
-				return redirect("/Lugar/show/$comentario->idplace#seccomentariosfotos");
+				return redirect(request()->previousUrl.$retorno);
+				//return redirect("/Lugar/show/$comentario->idplace#seccomentariosfotos");
 			} catch (ValidationException $e){
 				if(DEBUG)
 					throw new ValidationException($e->getMessage());
 					
 				Session::error($e->getMessage());
-				return redirect("/Lugar/show/$comentario->idplace#seccomentariosfotos");
+				return redirect("/Lugar/show/".$comentario->idplace.'#'.$retorno);
 				//return redirect ("$request->previousUrl");
 			}catch (FormException $e){
 				if(DEBUG)
 					throw new FormException($e->getMessage());
 					
 				Session::error($e->getMessage());
-				return redirect("/Lugar/show/$comentario->idplace#seccomentariosfotos");
+				return redirect("/Lugar/show/".$comentario->idplace.'#'.$retorno);
 				//return redirect ("$request->previousUrl");
 			}catch(SQLException $e){
 				//prepara el mensaje de error
@@ -153,7 +154,7 @@ class ComentarioController extends Controller{
 				throw new SQLException($e->getMessage());
 				
 				//regresa al formulario de creación de lugar
-				return $request->previousUrl;
+				return redirect($request->previousUrl.$retorno);
 			}
 		
 
@@ -167,10 +168,11 @@ class ComentarioController extends Controller{
 	 * @return ViewResponse
 	 */
 	public function delete(int $id=0){
-		if(Login::user()->id == $id || Login::oneRole('ROLE_ADMIN','ROLE_MODERADOR' )) {// autorización(solo ppropietario o moderadors)
-			$comentario = Comentario::findOrFail($id, "No existe el lugar.");
+		if(Login::user()->id == $id || Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR' ])) {// autorización(solo ppropietario o moderadors)
+		
+			$comentario = Comentario::findOrFail($id, "No existe el comentario.");
 			
-			return view('comentario/delete',['lugar'=> $comentario]);
+			return view('comentario/delete',['comentario'=> $comentario]);
 		}
 		//Si no es moderador, redirige a la home
 		return redirect('/');
@@ -180,30 +182,59 @@ class ComentarioController extends Controller{
 	/** Elimina el comentario de la base de datos
 	 * @return RedirectResponse
 	 */
-	public function destroy(int $id=-1){
+	public function destroy(int $id=0, $retorno){
 	
+			Auth::check(); //verificamos que el usuario este logineado
 			
-			//Recupera el elemplar de la BDD			
-			$comentario	=Comentario::findOrFail($id, "No se encontró el comentario.");
-
+		  //	if(!request()->has('borrar')) //si no llega el formulario ...
+			//	throw new FormException ('No se recibieron datos');
+			//$id = intval(request()->post('id')); // recuperar el id via POST
+		
+				//Recupera el comentario de la BDD		
+				$comentario= Comentario::findOrFail($id,"No se encontró el comentario.");
+				$idplace = $comentario->idplace;
+				$idphoto = $comentario->idphoto;
+				
+				
+			
 			// autorización(solo propietario o moderadors)
 		
-		if(Login::user()->id == $comentario->iduser || Login::oneRole('ROLE_ADMIN','ROLE_MODERADOR' )) {
+		if(Login::user()->id == $comentario->iduser || Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR'] )) {
 			
-			$lugar=Lugar::findOrFail($comentario->idplace,"No se ha encontrado el lugar");
+			
 			
 				//intenta borrar el comentario
 			try{
 					$comentario->deleteObject();
-					Session::success("Se ha borrado el comentario $comentario->id de lugar $lugar->name.");
-					return redirect("/Lugar/show/$comentario->idplace");
+					
+					if($idplace){
+						$lugar=Lugar::findOrFail($idplace,"No se ha encontrado el lugar");
+						Session::success("Se ha borrado el comentario 
+								$comentario->id - $comentario->text  del lugar $lugar->name.");
+						return redirect("/Lugar/show/".$lugar->id.'#'.$retorno);
+					}
+					
+					if($idphoto){
+						$photo=V_picture::findOrFail($idphoto,"No se ha encontrado la foto");
+						Session::success("Se ha borrado el comentario 
+								$comentario->id - $comentario->text de la foto $photo->name.");
+						return redirect("/Lugar/show/".$photo->idplace.'#'.$retorno);
+						}
+					
+				return redirect("/"); // por si no ha podido redirigir.
 					//si se produce un error en la operació con la bdd..
 			} catch (Exception $e){
 				
 				Session::error("No se pudo borrar el comentario $comentario->id de  $lugar->name.");
 				
-				
-				return redirect("/Lugar/show/$comentario->idplace");
+				if ($comentario->idplace)
+					return redirect("/Lugar/show/".$comentario->idplace.$retorno);
+					else {
+						$photo=V_picture::findOrFail($idphoto,"No se ha encontrado la foto");
+						return redirect("/Lugar/show/".$photo->idplace.'#'.$retorno);
+					}
+					
+					
 			}
 		}
 		//Si no es moderador, redirige a la home
@@ -245,14 +276,14 @@ class ComentarioController extends Controller{
 				$id = intval(request()->post('id')); // recuperar el id via POST
 				
 				
-				$lugar= request()->post('idlugar');
+				$lugar=Lugar::findOrFail(intval(request()->post('idlugar')));
 				//intenta actualizar el lugar
 				try{
 				
 					$comentario->saneate(); //sanea las entradas.
 					$comentario= Comentario::create(request()->posts() ,$id);
 					
-					Session::success("Actualización del comentario $comentario->id del lugar $comentario->idlugar correcta.");
+					Session::success("Actualización del comentario $comentario->id del lugar $lugar->name  ha sido correcta.");
 					return redirect("/Lugar/edit/$comentario->idlugar");
 					
 					// Si se produce un error al guardar el lugar..

@@ -38,6 +38,20 @@ class Photo extends Model{
 			return $errores;
 	}
 	
+	/**
+	 * Recupera Los comentarios de una foto
+	 *
+	 * @return array lista de comentarios de una foto
+	 */
+	public function getComentarios():array{
+		$photocomments = V_comment::getFiltered('idphoto', $this->id,'created_at','DESC' );
+		
+		//Retorna una lista de comentarios
+		return $photocomments;
+	}
+	
+	
+	
 	//campos en los que se permite asignación masiva
 	protected static $fillable = [
 		'name','alt','description','date','time','iduser','idplace'

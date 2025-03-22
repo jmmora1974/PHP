@@ -1,7 +1,7 @@
 
 let slides = document.getElementsByClassName("mySlides");
 let dots = document.getElementsByClassName("demo");
-let captionText = document.getElementById("caption");
+//let captionText = document.getElementById("caption");
 
 //Carusel de fotos
 let slideIndex = 1;
@@ -36,9 +36,9 @@ function showSlides(n) {
   for (i = 0; i < dots.length; i++) {
     dots[i].className = dots[i].className.replace(" active", "");
   }
-  slides[slideIndex-1].style.display = "block";
+  slides[slideIndex-1].style.display = "flex";
   dots[slideIndex-1].className += " active";
-  captionText.innerHTML = dots[slideIndex-1].alt;
+  //captionText.innerHTML = dots[slideIndex-1].alt;
 } 
 
 
@@ -68,5 +68,5 @@ function correCarrusel () {
 
 
 //Ponemos en marcha el carrusel
-let interval = setInterval(correCarrusel, 50000);
+let interval = setInterval(correCarrusel, 10000);
 window.correCarrusel();

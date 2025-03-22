@@ -74,10 +74,11 @@ class LugarController extends Controller{
 			
 			$lugar = V_place::findOrFail($id, 'No se encontró el lugar indicado'); //tb comprueba si no le ha llegado el ID
 			$lugarcomments = V_comment::getFiltered('idplace', $id,'created_at','DESC' );
-			$fotocomments = V_picture::getFiltered('idplace', $id,'created_at','DESC'  );
+			
+			$fotoslugar = Photo::getFiltered('idplace', $id,'created_at','DESC'  );
 			
 			// carga la vista y le pasa el lugar recuperado
-			return view ('lugar/show',['lugar'=>$lugar,'lugarcomments'=>$lugarcomments, 'fotocomments'=>$fotocomments]);
+			return view ('lugar/show',['lugar'=>$lugar,'lugarcomments'=>$lugarcomments, 'fotoslugar'=>$fotoslugar]);
 
 	}
 	

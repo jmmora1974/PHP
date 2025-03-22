@@ -6,7 +6,7 @@
 class Comentario extends Model{
 	protected  static $table = "comments";
 
-	/** Metodo que retorna los errores de validación de un Socio,
+	/** Metodo que retorna los errores de validación de un comentario,
 	 *
 	 * Si no hay errores, retorna un array vacío.
 	 *

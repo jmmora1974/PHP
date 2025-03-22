@@ -299,7 +299,7 @@ class UserController extends Controller{
     			$user= User::create(request()->posts() ,$id);
     			
     			Session::success("Actualización del usuario $user->displayname correctamente.");
-    			return redirect("/User/edit/$id");
+    			return redirect(request()->previousUrl);
     			
     			// Si se produce un error al guardar el usuario..
     		}catch (SQLException $e){
@@ -632,6 +632,49 @@ class UserController extends Controller{
     					
     					return redirect("/user/home");
     		}
+    }
+    
+    /**
+     * Bloquea un usuarios 
+     * Solo puede realizarla los Administradores y moderadores
+     * @return RedirectResponse
+     */
+    public function blocked(int $id=0,$retorno=''){
+    	Auth::check(); // autorización(solo usuarios registrados)
+    	$atras= request()->previousUrl;
+    	
+    		try{
+    			// autorización(solo usuarios propietario o administradores
+    			if(!Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR'])){
+    				throw new AuthException("Transación no autorizada! Intento de bloqueo del usuario $id por el usuario Login::user()->id");
+    				
+    				if(DEBUG)
+    					throw new AuthException("Transación no autorizada! Intento de bloqueo del usuario $id por el usuario".Login::user()->id);
+    					
+    			}
+    		} catch (AuthException $e){
+    			Session::error(("Transación no autorizada!. "));
+     		}
+     		$user=User::findOrFail($id, "No se ha encontrado el usuario-");
+     		
+     		if($user->hasRole('ROLE_BLOCKED')){
+     				Session::warning("EL usuario ya esta bloqueado");
+     				return redirect(request()->previousUrl.'#'.$retorno);
+     		}
+     		if(!$user->oneRole(['ROLE_ADMIN','ROLE_MODERADOR'])){
+     			$user->addRole('ROLE_BLOCKED');
+     			if($user->update()){
+     				Session::success("Se ha bloqueado el usuarios $user->displayname");
+     				return redirect($atras.'#'.$retorno);
+     			}
+     			return redirect($atras.'#'.$retorno);
+     			
+     		}else { 
+     			Session::warning("No se puede bloquear un administrador/moderador.");
+     			throw new AuthException("No se puede bloquear un administrador/moderador.");
+     		}
+     		
+     	return redirect(request()->previousUrl.'#'.$retorno);
     }
     
     

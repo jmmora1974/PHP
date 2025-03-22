@@ -44,10 +44,10 @@
 			<input type="text" name="location" value="<?= old('location')?>" >
 			<br>
 			<label for="latitude">Latitud</label>
-			<input type="number" name="latitude" value="<?= old('latitude')?>">
+			<input type="number" name="latitude" step="0.1" value="<?= old('latitude')?>">
 			<br>
 			<label for="longitude">Longitud</label>
-			<input type="number" name="longitude" value="<?= old('longitude')?>">
+			<input type="number" name="longitude" step="0.1" value="<?= old('longitude')?>">
 			<br>
 		</div>
 		<div class="flex2">

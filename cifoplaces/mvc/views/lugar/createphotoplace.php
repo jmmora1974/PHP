@@ -41,11 +41,22 @@
 			<label for="description">Descripción</label>
 			<input type="text" name="description" value="<?= old('description')?>" required>
 			<br>
+			<label for="location">Localización</label>
+			<input type="text" name="location" value="<?= old('location')?>" required>
+			<br>
 			<label for="date">Fecha</label>
-			<input type="date" name="date" value="<?= old('date')?>" >
+			
+			<input type="date" name="date" value="<?php
+					$date = new DateTime();
+					echo $date->format('Y-m-d'); 
+			?>" >
 			<br>
 			<label for="time">Hora</label>
-			<input type="time" name="time" value="<?= old('time')?>">
+			
+			<input type="time" name="time" value="<?php
+					$date = new DateTime();
+					echo $date->format('H:i:s'); 
+			?>" >
 			<br>
 			
 		</div>

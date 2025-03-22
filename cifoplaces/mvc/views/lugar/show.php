@@ -27,16 +27,16 @@
 		<h1>Detalles del <?=$lugar->name?> lugar en <?=APP_NAME?></h1>
 		<section id="detalles" class="flex-container gap2">
 		<script src="/js/BigPicture.js"></script>
-			<div class="centered w100 flex1 ">
+			<div class="centered w100 flex4 ">
 			<figure class="w100 centrado p2" >
 				<img src="<?=LUGAR_IMAGE_FOLDER.'/'.($lugar->mainpicture ?? DEFAULT_LUGAR_IMAGE)?>"
-					 	class="cover enlarge-image" alt="Foto del lugar <?= $lugar->name?>">
+					 	class=" enlarge-image" alt="Foto del lugar <?= $lugar->name?>">
 									 					 		
 				 <figcaption>Foto de  <?= $lugar->name?> </figcaption>
 			</figure>
-			<a class="button"  href="/Lugar/nuevafoto/<?=$lugar->id?>">Nueva foto</a>
+			
 			</div>
-			<section class="flex2 centered">
+			<section class="flex2 centered" id="seccomentarios">
 				<h2><b><?=$lugar->name?></b></h2>
 				<p>
 					<b>Tipo:</b>  	<?= $lugar->type ?></p>
@@ -52,11 +52,13 @@
 					<b>Creado por </b>  	<?= $lugar->username ?> el 	<?= $lugar->created_at ?></p>
 				
 				
-			</section>
+			</section >
 			<h2 class="centered w100">Comentarios de <?=$lugar->name?></h2>
 			<form method="POST" enctype="multipart/form-data"  action="/comentario/store" class="w75" >
 					<input type="hidden" name="iduser" value="<?= user()->id ?>">
 					<input type="hidden" name="idplace" value="<?= $lugar->id ?>">
+					<input type="hidden" name="retorno" value="#seccomentarios">
+					
 					<input type="text" name="text" min-lenght="1" class="w50" placeholder="Escriba su comentario (solo usuarios registrados)"  required>
 					
 					<?php  if( Login::user()->id ){ ?>
@@ -66,30 +68,37 @@
 							<label class="small">Solo usuarios registrados.</label>
 							<?php } ?>
 				</form>
-			<section id="seccomentarios" class="flex-container w100">
+			<section  class="flex-container w100">
 			
 				
 			<?php if($lugarcomments){ ?>
       			
-       		 <div id="comentarioslugar ">
+       		 <div id="comentarioslugar" class="w100" >
 				<?php foreach($lugarcomments as $comentario){   ?>
-				<div class="comentario justificado w100 m1  ">
+				<div class="comentario centered w100 m1 flex2">
 					<figure >
 						
 						<img src="<?=USER_IMAGE_FOLDER.'/'.($comentario->userpicture ?? DEFAULT_USER_IMAGE)?>"
 							 class="icon-image enlarge-image" alt="Foto del lugar <?= $comentario->name?>">
 						
 					</figure>
-					<p>	<?=$comentario->username.' ---> '.$comentario->text.'.<br>
-						<small> Creado el '.$comentario->created_at.'</small>' ?>
+					
+					<p>	<?=$comentario->username.' ---> '.$comentario->text.'<br> <small>Creado el '.$comentario->created_at.'</small>' ?>
 					
 					<div class="derecha">
-							<a class="button" href='/lugar/edit/<?=$lugar->id?>'><img src="/images/icons/edit.png" alt="Editar" style="width:20px;height:20px;"></a>
-
 							<?php  if( Login::user()->id == $comentario->iduser || 
-							Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR']))  {// autorización(solo propietario o administradores) ?>
-								<a class="button-danger" href='/comentario/destroy/<?=$comentario->id?>'><img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"></a>
-							<?php } ?>
+										Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR']))  {
+											// autorización(solo propietario o administradores)	?>
+									<a class="button-danger" onclick="confirmar('borrar',<?=$comentario->id?>,'seccomentarios')">
+									<img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"></a>								
+								<?php } 
+								
+								if(Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR'])) { ?>
+									<a class="button" onclick="confirmar('bloquear',<?= $comentario->iduser ?>,'seccomentarios')">
+									   <img src="/images/icons/blocked.jpg" alt="Bloquear" style="width:20px;height:20px;"></a>
+								
+								<?php } ?>
+						
 					</div>	
 							</div>
 					<?php } ?>
@@ -115,39 +124,109 @@
 		</div>
 		
 		<section id="secphotos">
-		
-		
-			<h3>Fotos de <?=$lugar->name?></h3>
+				<h3 class="centered">Fotos de <?=$lugar->name?></h3>
+			<section id="seccarrousel" >
 				
-				<div class="carrusel centrado">
-
-						<?php
-						$archivosfoto = [];
-						//$archivosfoto = FileList::get ( 'images/galeria/Rutas foto', '/\.(gif|jpe?g|png|webp)$/i' );
-				 if($fotocomments){ 
+				
+				<div class="carrusel"  >
 					
-						foreach($fotocomments as $fotoco){
-							
-							$archivosfoto []= $fotoco->file;
-						}
-						
-						
+				<?php						
+					//$archivosfoto = FileList::get ( 'images/galeria/Rutas foto', '/\.(gif|jpe?g|png|webp)$/i' );
+				 if($fotoslugar){ 
 						$f = 1; // contador de foto principal
-						foreach ( $archivosfoto as $archfoto ) {
+						$listaidsfotos=[]; //Creamos una lista o para conservar los datos de la foto
+						foreach ( $fotoslugar as $archfoto ) {
+							$listaidsfotos.=intval($archfoto->id);
 							?>
-								<div class="mySlides">
-									<div class="numbertext"> <?= $f ?> / <?= count($archivosfoto) ?></div>
-									<img class="enlarge-image" src="<?= LUGAR_IMAGE_FOLDER.'/'.$archfoto ?>" style="width: 50vw"
-										alt="Foto  <?= $archfoto ?>">
+								<div class="mySlides flex-container gap2"">
+									<div class="flex2">				
+										<figure>
+										<img class="enlarge-image" 
+											src="<?= LUGAR_IMAGE_FOLDER.'/'.$archfoto->file ?>" style="width: 40vw"
+											alt="<?=$archfoto->alt?>" title="<?=$archfoto->alt?>">
+										<figcaption><h3> <?= $f ?> / <?= count($fotoslugar) ?> - <?=$archfoto->name?></h3><br>
+														<?=$archfoto->description?>						
+										</figcaption>
+									
+									</figure>
+									</div>
+									<section class="flex2 ">
+									<div >	
+									<form method="POST" enctype="multipart/form-data"  action="/comentario/store" class="w100" >
+											<input type="hidden" name="iduser" value="<?= user()->id ?>">
+											<input type="hidden" name="idplace" value="<?=NULL?>">
+											<input type="hidden" name="idphoto" value="<?= $archfoto->id ?>">
+											<input type="hidden" name="retorno" value="#seccarrousel">
+					
+											<input type="text" name="text" min-lenght="1" class="w50" placeholder="Escriba su comentario (solo usuarios registrados)"  required>
+					
+										<?php  if( Login::user()->id ){ ?>
+											<input type="submit" class="button" name="nuevofotocomentario" 
+													value="Nuevo comentario de foto"  <?= user()->id ??'disabled'?> >
+											<?php } else { ?>
+												<label class="small">Solo usuarios registrados.</label>
+												<?php } ?>
+									</form>
+									</div>
+									
+										<h2 class=" centered w100">Comentarios de la foto  <?=$archfoto->name?></h2>
+										<?php $comentariosfoto= $archfoto->getComentarios(); ?>
+									<?php if($comentariosfoto){ ?>
+						      		
+								 	 	  <?php foreach($comentariosfoto as $comentariofoto ){  
+								  	  	
+											if ($comentariofoto->idphoto==$archfoto->id){?>
+													<div class="comentario centered w100 m1 flex2">
+													
+														<figure >
+															
+															<img src="<?=USER_IMAGE_FOLDER.'/'.($comentariofoto->userpicture ?? DEFAULT_USER_IMAGE)?>"
+																 class="icon-image enlarge-image" alt="Foto del lugar <?= $comentariofoto->name?>">
+															
+														</figure>
+															<p>	<?=$comentariofoto->username.' ---> '.$comentariofoto->text.'.<br>
+																	<small> Creado el '.$comentariofoto->created_at.'</small>' ?>
+									
+														<div class="derecha">
+										
+																<?php // Boton de eliminar
+																  if( Login::user()->id == $comentariofoto->iduser || 
+																Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR']))  {// autorización(solo propietario o administradores) ?>
+																	<a class="button-danger" onclick="confirmar('borrar',<?=$comentariofoto->id?>,'seccomentariosfotos')">
+																	<img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"></a>
+																<?php } 
+																
+																// Boton de bloqueo 
+																if(Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR'])) {?>
+																	<a class="button" onclick="confirmar('bloquear',<?=$comentariofoto->id?>,'seccomentariosfotos')">
+																		<img src="/images/icons/blocked.jpg" alt="Bloquear" style="width:20px;height:20px;"></a>
+																<?php } ?>
+										
+														</div>	
+									</div>
+						
+					<?php }
+					} ?>
+		
+						
+			<?php } else { ?>
+				<div class="danger p2">
+					<p>No hay comentarios del sitio</p>
+				</div>
+				<?php } ?>
+				
+		</section>
+									
 								</div>
-						<?php $f++; }
-				} else { ?>
-					<p>No hay ninguna foto aún</p>
-				<?php }	?>
-
+						
+				<?php $f++; }?>
 				</div>
 			
-			<!-- Botones anterior y siguientes -->
+			</section>
+			
+		</section>
+			<section>
+				<!-- Botones anterior y siguientes -->
 			 <div class="centrado">
 				<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 				<a class="resume" onclick="plusSlides(999999)">&#9654;</a> 
@@ -158,53 +237,7 @@
 				<!-- Image text -->
 				<div class="caption-container">
 					
-					<h2 class="centered w100">Comentarios de <?=$fotocomments->name?></h2>
-			<form method="POST" enctype="multipart/form-data"  action="/comentario/store" class="w75" >
-					<input type="hidden" name="iduser" value="<?= user()->id ?>">
-					<input type="hidden" name="idphoto" value="<?= $lugar->id ?>">
-					<input type="text" name="text" min-lenght="1" class="w50" placeholder="Escriba su comentario (solo usuarios registrados)"  required>
 					
-					<?php  if( Login::user()->id ){ ?>
-						<input type="submit" class="button" name="nuevofotocomentario" 
-								value="Nuevo comentario de foto"  <?= user()->id ??'disabled'?> >
-						<?php } else { ?>
-							<label class="small">Solo usuarios registrados.</label>
-							<?php } ?>
-				</form>
-			<section id="seccomentariosfotos" class="flex-container w100">
-			
-				
-			<?php if($fotocomments){ ?>
-      			
-       		 <div id="comentariosFotos ">
-				<?php foreach($fotocomments as $comentario){   ?>
-				<div class="comentario justificado w100 m1  ">
-					<figure >
-						
-						<img src="<?=USER_IMAGE_FOLDER.'/'.($comentario->userpicture ?? DEFAULT_USER_IMAGE)?>"
-							 class="icon-image enlarge-image" alt="Foto del lugar <?= $comentario->name?>">
-						
-					</figure>
-					<p>	<?=$comentario->username.' ---> '.$comentario->text.'.<br>
-						<small> Creado el '.$comentario->created_at.'</small>' ?>
-					
-					<div class="derecha">
-							<a class="button" href='/lugar/edit/<?=$lugar->id?>'><img src="/images/icons/edit.png" alt="Editar" style="width:20px;height:20px;"></a>
-
-							<?php  if( Login::user()->id == $comentario->iduser || 
-							Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR']))  {// autorización(solo propietario o administradores) ?>
-								<a class="button-danger" href='/comentario/destroy/<?=$comentario->id?>'><img src="/images/icons/delete.png" alt="Borrar" style="width:20px;height:20px;"></a>
-							<?php } ?>
-					</div>	
-							</div>
-					<?php } ?>
-							</div>
-			<?php } else { ?>
-				<div class="danger p2">
-					<p>No hay comentarios del sitio</p>
-				</div>
-				<?php } ?>
-		</section>
 					
 				</div>
 
@@ -212,21 +245,47 @@
 				<div class="row">
 			<?php
 			$fm = 1; // contador de foto principal
-			foreach ( $archivosfoto as $archfoto ) {
+			
+			foreach ( $fotoslugar as $archfoto ) {
 				?>
 					<div class="column">
-						<img class="demo cursor" src="<?= LUGAR_IMAGE_FOLDER.'/'.$archfoto ?>" style="width: 100%"
+						
+						<img class="demo cursor" src="<?= LUGAR_IMAGE_FOLDER.'/'.$archfoto->file ?>" style="width: 100%"
 							onclick="currentSlide(<?= $fm ?>)" alt="<?= 'Foto '.$fm ?>">
+						
 					</div>
+					
 				
 				<?php $fm++ ?>  
 			
 					<?php }?>
 				
 			</div>
+			<?php } else { ?>
+					
+					<p>No hay ninguna foto aún. Sube la primera foto de la galeria.</p><br>
+					<a class="button"  href="/Lugar/nuevafoto/<?=$lugar->id?>">Nueva foto</a>
+				<?php }	?>
+			
 		</section>
 		
 	</main>
+	<script>
+		function confirmar(accion,id,retorno=""){
+			if(confirm('Seguro que deseas '+ accion+ '?')){
+				switch (accion){
+					case 'borrar':
+						location.href='/Comentario/destroy/'+id+'/'+retorno;	
+						break;
+					case 'bloquear':
+						location.href='/User/blocked/'+id+'/'+retorno;	
+						break;
+				  default:
+ 				   throw new Exception ("No se ha indicado la operación");
+				}
+			}		
+		}
+	</script>
 	<script src="/js/Carrousel.js"></script>
 </body>
 
