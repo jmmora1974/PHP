@@ -137,6 +137,7 @@ class Base implements TemplateInterface{
             	   <h1>".($title ?? 'Página sin título' )."<span class='small italic'> en ".APP_NAME."</span></h1>
                    ".($subtitle ? '<p>'.$subtitle.'</p>' : '')."
                 </hgroup>  
+	 
             </header>
         ";
     }
@@ -156,6 +157,7 @@ class Base implements TemplateInterface{
         
         // parte izquierda (operaciones para todos los usuarios)
     	//Enlaces para todo el mundo
+    	
         $html = "<menu class='menu'>";
         $html .=   "<li><a href='/'>Inicio</a></li>";
         $html .=   "<li><a href='/Lugar'>Lugares</a></li>";
@@ -192,9 +194,12 @@ class Base implements TemplateInterface{
         // enlace a la gestión de errores (solamente administrador o rol de test)
         if((Login::oneRole(ERROR_ROLES)) && (DB_ERRORS || LOG_ERRORS || LOG_LOGIN_ERRORS))
             $html .=   "<li><a href='/Error/list'>Errores</a></li>";
-          
+        
        
         $html .= "</menu>";
+        $html .= " <div class='right col text-center'><label id='switch' class'inline'>White<input type='checkbox' ><span class='slider round'>Dark</span></label></div>";
+       	$html .= "<script src='js/cambiatema.js'></script>";
+        
         $html .= "</nav>";
         
         return $html;

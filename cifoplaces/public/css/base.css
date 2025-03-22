@@ -44,6 +44,11 @@
   --secondary-bg-color: rgb(60, 160, 100);
   --secondary-font-color: rgb(255, 255, 255);
   --secondary-soft-color: rgb(100, 200, 140);
+  
+
+    --color-fuente: #ffffff;
+    --color-fondo: #000;
+
 
   --shadow-color: rgba(60, 60, 60, 0.3);
   --font-shadow-color: rgba(0, 0, 0, 0.3);
@@ -1203,5 +1208,83 @@ div.http-error{
 #video1 {
   height: 60vh;
   width: 50vw;
+}
+
+
+/*Botón de cambio de tema*/
+
+#switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  #switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:var(--color-fuente);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color:var(--color-fondo);
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--color-fuente);
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px var(--color-fuente);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+
+
+
+[tema="light"]{
+    --color-fuente: #000;
+    --color-fondo: #fff;
+    --secondary-bg-color: #fff;
+    --font-color:  #000;
+}
+
+[tema="dark"]{
+    --color-fuente: #231;
+    --color-fondo: #421;
+    --secondary-bg-color: #fff;
 }
 
