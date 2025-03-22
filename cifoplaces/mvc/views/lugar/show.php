@@ -73,9 +73,9 @@
 				
 			<?php if($lugarcomments){ ?>
       			
-       		 <div id="comentarioslugar" class="w100" >
+       		 <div id="comentarioslugar" class="w100 " >
 				<?php foreach($lugarcomments as $comentario){   ?>
-				<div class="comentario centered w100 m1 flex2">
+				<div class="comentario centered  m1 flex2">
 					<figure >
 						
 						<img src="<?=USER_IMAGE_FOLDER.'/'.($comentario->userpicture ?? DEFAULT_USER_IMAGE)?>"
@@ -126,9 +126,8 @@
 		<section id="secphotos">
 				<h3 class="centered">Fotos de <?=$lugar->name?></h3>
 			<section id="seccarrousel" >
-				
-				
-				<div class="carrusel"  >
+								
+				<div  >
 					
 				<?php						
 					//$archivosfoto = FileList::get ( 'images/galeria/Rutas foto', '/\.(gif|jpe?g|png|webp)$/i' );
@@ -138,8 +137,8 @@
 						foreach ( $fotoslugar as $archfoto ) {
 							$listaidsfotos.=intval($archfoto->id);
 							?>
-								<div class="mySlides flex-container gap2"">
-									<div class="flex2">				
+								<div class="mySlides  flex-container gap2">
+												
 										<figure>
 										<img class="enlarge-image" 
 											src="<?= LUGAR_IMAGE_FOLDER.'/'.$archfoto->file ?>" style="width: 40vw"
@@ -149,9 +148,9 @@
 										</figcaption>
 									
 									</figure>
-									</div>
+									
 									<section class="flex2 ">
-									<div >	
+									
 									<form method="POST" enctype="multipart/form-data"  action="/comentario/store" class="w100" >
 											<input type="hidden" name="iduser" value="<?= user()->id ?>">
 											<input type="hidden" name="idplace" value="<?=NULL?>">
@@ -167,24 +166,22 @@
 												<label class="small">Solo usuarios registrados.</label>
 												<?php } ?>
 									</form>
-									</div>
+									
 									
 										<h2 class=" centered w100">Comentarios de la foto  <?=$archfoto->name?></h2>
 										<?php $comentariosfoto= $archfoto->getComentarios(); ?>
 									<?php if($comentariosfoto){ ?>
-						      		
+						      			 <div id="comentariosfotoslugar" class="w100 m1 p1 " >
 								 	 	  <?php foreach($comentariosfoto as $comentariofoto ){  
 								  	  	
 											if ($comentariofoto->idphoto==$archfoto->id){?>
-													<div class="comentario centered w100 m1 flex2">
-													
+													<div class="comentario centered  m1 flex2">
 														<figure >
-															
 															<img src="<?=USER_IMAGE_FOLDER.'/'.($comentariofoto->userpicture ?? DEFAULT_USER_IMAGE)?>"
 																 class="icon-image enlarge-image" alt="Foto del lugar <?= $comentariofoto->name?>">
 															
 														</figure>
-															<p>	<?=$comentariofoto->username.' ---> '.$comentariofoto->text.'.<br>
+														<p>	<?=$comentariofoto->username.' ---> '.$comentariofoto->text.'.<br>
 																	<small> Creado el '.$comentariofoto->created_at.'</small>' ?>
 									
 														<div class="derecha">
@@ -203,10 +200,13 @@
 																<?php } ?>
 										
 														</div>	
+															<?php } ?>
+												</div>
+												<?php } ?>
 									</div>
 						
-					<?php }
-					} ?>
+					
+				
 		
 						
 			<?php } else { ?>

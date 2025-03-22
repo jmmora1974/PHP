@@ -874,18 +874,20 @@ section{
 #detalles{
 	background-color: var(--bg-color2);
 }
-#seccomentarios{
-		overflow-y: auto;
-	max-height: 600px;
-  overflow: auto;
+#comentarioslugar, #comentariosfotoslugar {
+			overflow-y: auto;
+	max-height: 300px;
+	border-radius: 15px;
+ 
 }
-#seccomentarios *{
+#comentarioslugar *,  #comentariosfotoslugar *{
 	align-items:center;
 	vertical-align: middle;
-	max-height: 400px;
+	max-height: 600px;
+	border-radius: 15px;
 }
 #detalles * {
-	border-radius: 5px;
+	border-radius: 15px;
 	
 }
 
@@ -1087,7 +1089,7 @@ div.http-error{
 /* Posicion del carrusel de fotos*/
 .carrusel {
   
-  max-width: 60vw;
+  max-width: 95%;
  
   max-height: 80vh;
  
