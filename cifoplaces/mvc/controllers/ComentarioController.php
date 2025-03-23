@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * ComentarioController
  *
@@ -31,34 +30,62 @@ class ComentarioController extends Controller{
 	 * @return ViewResponse
 	 *
 	 */
-	public function list(){
+	public function list(int $page=1){
+		Auth::role('ROLE_MODERADOR' );// autorización(solo MODERADOR)
 		
-		if( Login::role('ROLE_MODERADOR' )) {// autorización(solo moderadors)
+		
+		//analiza si hay filtros, pone uno nuevo o quit el existente
+		$filtro = Filter::apply('comentarios');
+		
+		$limit = RESULTS_PER_PAGE; //Numer de resultados por pagina
+		
+		//si hay filtro
+		if($filtro){
+			//recupera el total de Comentarios que cumplen los criterios del filtro
+			$total = V_comment::filteredResults($filtro);
 			
-			$comentarios= Comentario::all(); // recupera los comentarios del lugar
-			//	carga la vista que los muestra
-			return view('comentario/list',['comentarios'=>$comentarios]);
+			//crea el objeto paginador
+			$paginator = new Paginator('/Comentario/list', $page, $limit, $total,'es');
+			
+			//recupera los Comentarios que cumplen los criteros del filtro
+			$comentarios= V_comment::filter($filtro, $limit, $paginator->getOffset());
+			
+			
+			
+			// recupera los comentarios junto la información extra (fotos y comentarios)
+		} else {
+			
+			$total = V_comment::total(); //total del comentario
+			
+			//crea el objeto paginador
+			$paginator = new Paginator('/Comentario/list', $page, $limit, $total,'es');
+			
+			//$comentarios = V_comment::all();
+			$comentarios= V_comment::orderBy('created_at', 'DESC', $limit, $paginator->getOffset()); // recupera los comentarios junto la información extra (fotso y comentarios)
+			
+			
 		}
-		//Si no es moderador, redirige a la home
-		return redirect('/');
+		//	carga la vista que los muestra
+		return view('comentario/list',['comentarios'=>$comentarios,'paginator'=>$paginator,'filtro' => $filtro]);
+		
 	}
 	
 	/**
-	 * Muestra los detalles del un lugar
-	 * @param int $id identificador del lugar a mostrar
+	 * Muestra los detalles del un comentario
+	 * @param int $id identificador del comentario a mostrar
 	 * @return ViewResponse
 	 */
 	public function show(int $id=0) {
 		
 	  	if( Login::role('ROLE_MODERADOR' )) {// autorización(solo moderadors)
-			// Recupera el lugar
-			$lugar = Comentario::findOrFail($id, 'No se encontró el comentario indicado'); //tb comprueba si no le ha llegado el ID
+			// Recupera el comentario
+			$comentario = Comentario::findOrFail($id, 'No se encontró el comentario indicado'); //tb comprueba si no le ha llegado el ID
 			
-			//recupera los comentarios del lugar
-			$comentarios= $lugar->hasMany('Comentario');
+			//recupera la lista de comentradios de un usuario
+			$comentariosusuario= $comentario->hasMany('Comentario','id');
 			
-			// carga la vista y le pasa el lugar recuperado
-			return view ('comentario/show',['lugar'=>$lugar,'comentarios'=>$comentarios]);
+			// carga la vista y le pasa el comentario recuperado
+			return view ('comentario/show',['comentario'=>$comentario,'comentarios usuario'=>$comentariosusuario]);
 	  	}
 	  	//Si no es moderador, redirige a la home
 	  	return redirect('/');
@@ -91,7 +118,7 @@ class ComentarioController extends Controller{
 		if(!request()->has('nuevocomentario') && !request()->has('nuevofotocomentario') )
 				throw new FormException('No se recibió el formulario');
 			$retorno= request()->post('retorno')??'';
-			
+			$atras = request()->previousUrl;
 			$comentario=new Comentario(); //crea el nuevo comentario
 			
 		//OPCION AUTOMATICA
@@ -106,10 +133,11 @@ class ComentarioController extends Controller{
 					
 					//Validaremos que los datos sean correctos
 					if($errores = $comentariotemp->validate()){
-						Session::warning("Errores de validación");
+						//Session::warning("Errores de validación");
 						throw new ValidationException(
 								"<br>".arrayToString($errores, false, false,".<br>"));
-						return redirect(request()->previousUrl.$retorno);
+						
+						return redirect($atras.$retorno);
 						//return redirect("/Lugar/show/$comentario->idplace#seccomentarios");
 					}
 						
@@ -117,26 +145,24 @@ class ComentarioController extends Controller{
 				
 				$comentario = Comentario::create((array)$comentariotemp); //mo es necesario en la  1.8.0
 				
-			
 				//flashea un mensaje de exito en sesion
 				Session::success("Guardado del comentario  $comentario->id - '$comentario->text' correctamente.");
-				
+				 
 				//redirecciona a los detalles del nuevo lugar
-				return redirect(request()->previousUrl.$retorno);
-				//return redirect("/Lugar/show/$comentario->idplace#seccomentariosfotos");
+				return redirect('/Lugar/show/'.($comentariotemp->idplace??'').$retorno);
 			} catch (ValidationException $e){
 				if(DEBUG)
 					throw new ValidationException($e->getMessage());
 					
 				Session::error($e->getMessage());
-				return redirect("/Lugar/show/".$comentario->idplace.'#'.$retorno);
+				return redirect($atras.$retorno);
 				//return redirect ("$request->previousUrl");
 			}catch (FormException $e){
 				if(DEBUG)
 					throw new FormException($e->getMessage());
 					
 				Session::error($e->getMessage());
-				return redirect("/Lugar/show/".$comentario->idplace.'#'.$retorno);
+				return redirect($atras.$retorno);
 				//return redirect ("$request->previousUrl");
 			}catch(SQLException $e){
 				//prepara el mensaje de error
@@ -154,7 +180,7 @@ class ComentarioController extends Controller{
 				throw new SQLException($e->getMessage());
 				
 				//regresa al formulario de creación de lugar
-				return redirect($request->previousUrl.$retorno);
+				return redirect($atras.$retorno);
 			}
 		
 

@@ -17,9 +17,13 @@ class PanelController extends Controller{
 	 * @return ViewResponse
 	 */
 	public function index(){
-		// autorización(solo bibliotecarios
-		if( Login::role('ROLE_ADMIN')) { 
+		// autorización(solo Moderadores)
+		if( Login::role('ROLE_MODERADOR')) { 
 			return $this->panel();
+		}
+		// autorización(solo Administradores)
+		if( Login::role('ROLE_ADMIN')) {
+			return $this->admin();
 		}
 		//En caso de no se bibliotecario, redirige al inicio
 		return redirect('/');
@@ -28,17 +32,18 @@ class PanelController extends Controller{
 	
 	
 	/**
-	 * Panel de bibliotecario
-	 *Retorna la vista con las operaciones del bibliotecario
+	 * Panel de moderador
+	 *Retorna la vista con las operaciones del moderador
 	 *
 	 * @return ViewResponse
 	 *
 	 */
 	public function panel(){
-		// autorización(solo bibliotecarios
-		if( Login::role('ROLE_LIBRARIAN')) { 
+		return view('panel/panel',[]);
+		// autorización(solo moderadores
+		if( Login::role('ROLE_MODERADOR')) { 
 			//	carga la vista que los muestra
-			return view('panel/panel',[]);
+			return view('/panel/panel',[]);
 		}
 		//En caso de no se bibliotecario, redirige al inicio
 		return redirect('/');

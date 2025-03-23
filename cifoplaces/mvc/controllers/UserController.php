@@ -637,7 +637,7 @@ class UserController extends Controller{
     /**
      * Bloquea un usuarios 
      * Solo puede realizarla los Administradores y moderadores
-     * @return RedirectResponse
+     * 
      */
     public function blocked(int $id=0,$retorno=''){
     	Auth::check(); // autorización(solo usuarios registrados)
@@ -654,12 +654,13 @@ class UserController extends Controller{
     			}
     		} catch (AuthException $e){
     			Session::error(("Transación no autorizada!. "));
+    			return redirect('/');
      		}
      		$user=User::findOrFail($id, "No se ha encontrado el usuario-");
      		
      		if($user->hasRole('ROLE_BLOCKED')){
      				Session::warning("EL usuario ya esta bloqueado");
-     				return redirect(request()->previousUrl.'#'.$retorno);
+     				return redirect();
      		}
      		if(!$user->oneRole(['ROLE_ADMIN','ROLE_MODERADOR'])){
      			$user->addRole('ROLE_BLOCKED');

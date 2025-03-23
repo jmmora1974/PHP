@@ -21,8 +21,8 @@ class Comentario extends Model{
 		if($checkId && empty(intval($this->id)))
 			$errores['id']="No se indicó el identificador $this->id . ";
 	
-			//text: de 1 a 128 caracteres
-		if (empty($this->text)||strlen($this->text)<1 || strlen($this->text)>128)
+			//text: de 1 a 256 caracteres
+		if (empty($this->text)||strlen($this->text)<1 || strlen($this->text)>256)
 				$errores['text']="Error en la longitud del comentario"  ;
 			
 		

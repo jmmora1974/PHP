@@ -506,10 +506,13 @@ dd{
 figure{
 	text-align: center;
 	padding: 2%;
+	
 }
 
 figure img{
 	width: 96%;
+	max-width: 60%;
+	max-height: 600px;
 }
 
 figcaption{
@@ -1272,14 +1275,20 @@ div.http-error{
     border-radius: 50%;
   }
 
-#selaspecto {
-	display: inline;
-	z-index:999;
+#selaspecto  {
+	display: inherit;
+	text-align: right;
+	
+	
 }
 
-#selaspecto label {
-	display: inline-flex important!;
-	flex-wrap: no-wrap;
+#selaspecto>form {
+	display: inline-flex;
+	text-align: right ;
+
+	border: none;	
+	margin: 1%;
+	padding: 0 30% 0 10%;
 	
-	max-width: 800px importat!;
+	
 }

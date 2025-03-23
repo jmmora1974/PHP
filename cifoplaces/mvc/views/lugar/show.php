@@ -48,10 +48,15 @@
 					<b>Latitud:</b>  	<?= $lugar->latitude ?></p>
 				<p>
 					<b>Longitud:</b>  	<?= $lugar->longitude ?></p>
-				<p>
+				<p class="mini">
 					<b>Creado por </b>  	<?= $lugar->username ?> el 	<?= $lugar->created_at ?></p>
-				
-				
+				<?php  if( Login::user()->id == $lugar->iduser || 
+										Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR']))  {
+											// autorización(solo propietario o administradores)	?>
+												<a class="button-danger" href="/lugar/delete/<?= $lugar->id?>">
+													<img src="/images/icons/eliminar.jpg" alt="Eliminar" style="width:20px;height:20px;"></a>
+										<?php }?>	
+<iframe class="mapa"  src="https://maps.google.com/maps?q=<?=$lugar->location?>&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
 			</section >
 			<h2 class="centered w100">Comentarios de <?=$lugar->name?></h2>
 			<form method="POST" enctype="multipart/form-data"  action="/comentario/store" class="w75" >
@@ -73,19 +78,20 @@
 				
 			<?php if($lugarcomments){ ?>
       			
-       		 <div id="comentarioslugar" class="w100 " >
+       		 <div id="comentarioslugar" class="flex2 w100 m0 p0" >
 				<?php foreach($lugarcomments as $comentario){   ?>
-				<div class="comentario centered  m1 flex2">
-					<figure >
+				<div class="comentario centered   w100 m0 p0 flex2">
+					<figure class="p0">
 						
 						<img src="<?=USER_IMAGE_FOLDER.'/'.($comentario->userpicture ?? DEFAULT_USER_IMAGE)?>"
 							 class="icon-image enlarge-image" alt="Foto del lugar <?= $comentario->name?>">
 						
 					</figure>
 					
-					<p>	<?=$comentario->username.' ---> '.$comentario->text.'<br> <small>Creado el '.$comentario->created_at.'</small>' ?>
+					<p>	<?=$comentario->username.' ---> <b>'.$comentario->text ?></b></p>
 					
 					<div class="derecha">
+					<label class="mini p0 inline"> Creado el <?= $comentario->created_at?></label>
 							<?php  if( Login::user()->id == $comentario->iduser || 
 										Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR']))  {
 											// autorización(solo propietario o administradores)	?>
@@ -94,7 +100,7 @@
 								<?php } 
 								
 								if(Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR'])) { ?>
-									<a class="button" onclick="confirmar('bloquear',<?= $comentario->iduser ?>,'seccomentarios')">
+									<a class="button" onclick="confirmar('bloquear',<?= $comentario->iduser ?>,<?=$this->url?>)">
 									   <img src="/images/icons/blocked.jpg" alt="Bloquear" style="width:20px;height:20px;"></a>
 								
 								<?php } ?>
@@ -138,12 +144,14 @@
 							$listaidsfotos.=intval($archfoto->id);
 							?>
 								<div class="mySlides  flex-container gap2">
-								
+										<div class="flex2">
 										<figure>
 										<img class="enlarge-image" 
-											src="<?= LUGAR_IMAGE_FOLDER.'/'.$archfoto->file ?>" style="width: 40vw"
+											src="<?= LUGAR_IMAGE_FOLDER.'/'.$archfoto->file ?>" 
 											alt="<?=$archfoto->alt?>" title="<?=$archfoto->alt?>">
+											
 										<figcaption>
+										
 											<!-- Botones anterior y siguientes -->
 											 <div class="centrado m1">
 												<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
@@ -151,14 +159,20 @@
 												<a class="pause" onclick="plusSlides(0)">&#9724;</a>
 												<a class="next" onclick="plusSlides(1)">&#10095;</a>
 												<a class="button"  href="/Lugar/nuevafoto/<?=$lugar->id?>">Nueva foto</a>
+												<?php  if( Login::user()->id == $archfoto->iduser || 
+										Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR']))  {
+											// autorización(solo propietario o administradores)	?>
+												<a class="button-danger" onclick="confirmar('borrar',<?= $archfoto->id?>,'seccomentarios')">
+													<img src="/images/icons/eliminar.jpg" alt="Eliminar" style="width:20px;height:20px;"></a>
+										<?php }?>	
 											</div>	
 											<h3> <?= $f ?> / <?= count($fotoslugar) ?> - <?=$archfoto->name?></h3><br>
 														<?=$archfoto->description?>	
-																			
+																
 										</figcaption>
 									
 									</figure>
-									
+									</div>
 									<section class="flex2 ">
 									
 									<form method="POST" enctype="multipart/form-data"  action="/comentario/store" class="w100" >
@@ -178,25 +192,25 @@
 									</form>
 									
 									
-										<h2 class=" centered w100">Comentarios de la foto  <?=$archfoto->name?></h2>
+										<h2 class="centered w100">Comentarios de la foto  <?=$archfoto->name?></h2>
 										<?php $comentariosfoto= $archfoto->getComentarios(); ?>
 									<?php if($comentariosfoto){ ?>
-						      			 <div id="comentariosfotoslugar" class="w100 m1 p1 " >
+						      			 <div id="comentariosfotoslugar" class="flex2 w100 m0 p0" >
 								 	 	  <?php foreach($comentariosfoto as $comentariofoto ){  
 								  	  	
 											if ($comentariofoto->idphoto==$archfoto->id){?>
-													<div class="comentario centered  m1 flex2">
+													<div class="comentario centered   w100 m0 p0 flex2">
 														<figure >
 															<img src="<?=USER_IMAGE_FOLDER.'/'.($comentariofoto->userpicture ?? DEFAULT_USER_IMAGE)?>"
 																 class="icon-image enlarge-image" alt="Foto del lugar <?= $comentariofoto->name?>">
 															
 														</figure>
 														
-														<p>	<?=$comentariofoto->username.' ---> '.$comentariofoto->text.'.<br>
-																	<small> Creado el '.$comentariofoto->created_at.'</small>' ?>
+														<p>	<?=$comentariofoto->username.' ---> <b> '.$comentariofoto->text.'</b>' ?>
 									
-														<div class="derecha">
-										
+														<div class="right">
+																 
+																<label class="mini"> Creado el <?= $comentariofoto->created_at?></label>
 																<?php // Boton de eliminar
 																  if( Login::user()->id == $comentariofoto->iduser || 
 																Login::oneRole(['ROLE_ADMIN','ROLE_MODERADOR']))  {// autorización(solo propietario o administradores) ?>

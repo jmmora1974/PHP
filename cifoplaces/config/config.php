@@ -233,7 +233,7 @@ define('UPLOAD_MAX_SIZE', 0);
  * MENSAJE DE "ACEPTAR COOKIES"
  * -------------------------------------------------------------*/
 
-define('ACCEPT_COOKIES', true);    // habilita el mensaje de "aceptar cookies"
+define('ACCEPT_COOKIES', false);    // habilita el mensaje de "aceptar cookies"
 
 // mensaje que aparece en el formulario de "aceptar cookies"
 // los saltos de línea en el mensaje se convertirán en cambio de párrafo

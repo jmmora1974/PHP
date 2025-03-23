@@ -134,28 +134,20 @@ class Base implements TemplateInterface{
     	
     	return "
             <header>
-                <figure>
+           
+   
+			 <figure>
                     <a href='/'>
                         <img alt='foto logo' src='/images/template/fastlight_base.png'>
                     </a>
                 </figure>
+
+
                 <hgroup>
             	   <h1>".($title ?? 'Página sin título' )."<span class='small italic'> en ".APP_NAME."</span></h1>
                    ".($subtitle ? '<p>'.$subtitle.'</p>' : '')."
                 </hgroup> 
  				
-	 			<div id='selaspecto'  class='right w100 inline-flex'><form  action='/User/cambiaAspecto' method='POST' enctype='multipart/form-data'>
-					<input type='hidden' name='id' value='".(user()->id??0)."'> 					
-					<label> Selecciona el aspecto:</label>
-					<select name='aspecto'>
-      							<option value='Base'>Base</option>
-							    <option value='Dark'>Dark</option>
-								<option value='Neon'>Neon</option>
-								<option value='Retro'>Retro</option>
-					</select>
-  					
-					<input type='submit' name='cambiar' value='Cambiar Aspecto'>
-				</form></div>
             </header>
         ";
     }
@@ -277,19 +269,22 @@ class Base implements TemplateInterface{
             $html .= "</li>"; 
         }
         
-        $html .= "</ul>";
-        $html .= " <ul id='selaspecto'><div  class='right w100 inline-flex'><form  action='/User/cambiaAspecto' method='POST' enctype='multipart/form-data'>
+       
+        $html .= " <div id='selaspecto'  class='inline-flex right'>
+					<form  class='' action='/User/cambiaAspecto' method='POST' enctype='multipart/form-data'>
 					<input type='hidden' name='id' value='".(user()->id??0)."'> 					
 					<label>Aspecto </label>
 					<select name='aspecto'>
-      							<option value='Base'>Base</option>
-							    <option value='Dark'>Dark</option>
-								<option value='Neon'>Neon</option>
-								<option value='Retro'>Retro</option>
+      							<option value='Base'".( oldSelected('aspecto','Base') ? 'selected' : '').">Base</option>
+							    <option value='Dark'".( oldSelected('aspecto','Dark') ? 'selected' : '').">Dark</option>
+								<option value='Neon'".( oldSelected('aspecto','Neon') ? 'selected' : '').">Neon</option>
+								<option value='Retro'".( oldSelected('aspecto','Retro') ? 'selected' : '').">Retro</option>
 					</select>
   					
-					<input type='submit' name='cambiar' value='Cambiar Aspecto'>
-				</form></div></ul>";
+					<input type='submit' class='button-success' name='cambiar' value='Cambiar Aspecto'>
+					</form>
+				</div>";
+        $html .= "</ul>"; 
         $html .= "</nav>";
         
         
