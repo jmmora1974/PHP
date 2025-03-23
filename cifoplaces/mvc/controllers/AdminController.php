@@ -8,7 +8,7 @@
  *
  * @author Jose M Mora Perez<jmmora1974@gmail.com>
  */
-
+#[AllowDynamicProperties] 
 class AdminController extends Controller{
 	
 	/**

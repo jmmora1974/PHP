@@ -21,7 +21,7 @@
  * 
  * @since v1.4.0 se ha eliminado el Template y el css específicos de test, ya no son necesarios
  */
-    
+#[AllowDynamicProperties] 
 class TestController extends Controller{
     
     /**

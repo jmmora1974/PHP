@@ -29,6 +29,7 @@ require '../config/config.php';
 
 
 // ajusta el nombre y tiempo de sesión (se cofigura en config.php)
+
 session_name(SESSION_NAME);
 ini_set('session.gc_maxlifetime', SESSION_TIME);
 session_set_cookie_params(SESSION_COOKIE_EXPIRE);
@@ -47,8 +48,7 @@ require '../app/helpers/helpers.php';
 
 
 // inicia la gestión de sesiones
-session_start();                        
-
+session_start(); 
 
 /*
  * A partir de este punto: 
@@ -78,12 +78,13 @@ try{
                      $response->addHeader("Access-Control-Allow-Methods: ".ALLOW_METHODS);
                      $response->addHeader("Access-Control-Allow-Headers: ".ALLOW_HEADERS);
                      $response->addHeader("Access-Control-Allow-Credentials: ".ALLOW_CREDENTIALS);
+                     
                      break;
         
         // para cualquier otro tipo de aplicación...
         default: die('El proyecto solamente puede ser WEB o API.');
     }
-       
+     
     // envía la respuesta al cliente.
     $response->send();   
 

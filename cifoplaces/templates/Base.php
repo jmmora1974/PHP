@@ -1,5 +1,7 @@
 <?php
 
+// crea la cookie para saber que han aceptado las cookies
+
 /** BASE TEMPLATE
  *
  * Se usa para generar las partes comunes de todas las vistas
@@ -53,6 +55,8 @@ class Base implements TemplateInterface{
      */
     public function css(){
         $html = "\n";
+        
+       
         
         // para cada fichero CSS a cargar...
         foreach($this->css as $device => $file){
@@ -126,7 +130,9 @@ class Base implements TemplateInterface{
         ?string $title    = NULL, 
         ?string $subtitle = NULL
     ){ 
-        return "
+    	
+    	
+    	return "
             <header>
                 <figure>
                     <a href='/'>
@@ -136,8 +142,20 @@ class Base implements TemplateInterface{
                 <hgroup>
             	   <h1>".($title ?? 'Página sin título' )."<span class='small italic'> en ".APP_NAME."</span></h1>
                    ".($subtitle ? '<p>'.$subtitle.'</p>' : '')."
-                </hgroup>  
-	 
+                </hgroup> 
+ 				
+	 			<div id='selaspecto'  class='right w100 inline-flex'><form  action='/User/cambiaAspecto' method='POST' enctype='multipart/form-data'>
+					<input type='hidden' name='id' value='".(user()->id??0)."'> 					
+					<label> Selecciona el aspecto:</label>
+					<select name='aspecto'>
+      							<option value='Base'>Base</option>
+							    <option value='Dark'>Dark</option>
+								<option value='Neon'>Neon</option>
+								<option value='Retro'>Retro</option>
+					</select>
+  					
+					<input type='submit' name='cambiar' value='Cambiar Aspecto'>
+				</form></div>
             </header>
         ";
     }
@@ -195,11 +213,8 @@ class Base implements TemplateInterface{
         if((Login::oneRole(ERROR_ROLES)) && (DB_ERRORS || LOG_ERRORS || LOG_LOGIN_ERRORS))
             $html .=   "<li><a href='/Error/list'>Errores</a></li>";
         
-       
-        $html .= "</menu>";
-        $html .= " <div class='right col text-center'><label id='switch' class'inline'>White<input type='checkbox' ><span class='slider round'>Dark</span></label></div>";
-       	$html .= "<script src='js/cambiatema.js'></script>";
-        
+                 
+            $html .= "</menu>";
         $html .= "</nav>";
         
         return $html;
@@ -217,6 +232,7 @@ class Base implements TemplateInterface{
      * @return string HTML con el modal de "aceptar cookies".
      */
     public function acceptCookies(){
+    	
         return ACCEPT_COOKIES && !HttpCookie::get(ACCEPT_COOKIES_NAME) ?
             "<div class='modal'>
             	<form method='POST' class='message' id='accept-cookies' action='/Cookie/accept'>
@@ -262,7 +278,20 @@ class Base implements TemplateInterface{
         }
         
         $html .= "</ul>";
+        $html .= " <ul id='selaspecto'><div  class='right w100 inline-flex'><form  action='/User/cambiaAspecto' method='POST' enctype='multipart/form-data'>
+					<input type='hidden' name='id' value='".(user()->id??0)."'> 					
+					<label>Aspecto </label>
+					<select name='aspecto'>
+      							<option value='Base'>Base</option>
+							    <option value='Dark'>Dark</option>
+								<option value='Neon'>Neon</option>
+								<option value='Retro'>Retro</option>
+					</select>
+  					
+					<input type='submit' name='cambiar' value='Cambiar Aspecto'>
+				</form></div></ul>";
         $html .= "</nav>";
+        
         
         return $html;
     } 

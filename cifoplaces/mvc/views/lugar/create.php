@@ -54,11 +54,12 @@
 			
 					<div  id="previewcanvascontainer" >
 						<figure class="flex1 centrado p2">
-							<canvas id="previewcanvas">
-									<div style="display:none;">
+						<div style="display:none;">
 										<img id="fotodefault" src="<?=LUGAR_IMAGE_FOLDER.'/'.($lugar->mainpicture ?? DEFAULT_LUGAR_IMAGE)?>"
 				 								class="cover enlarge-image" alt="Foto de <?= $lugar->nane?>">	
 									</div>
+							<canvas id="previewcanvas">
+									
 							</canvas>		
 							<figcaption>Foto del lugar</figcaption>
 									<script>
@@ -80,7 +81,7 @@
 			</div>
 			
 		
-								</div>
+							
 		<div class="centered mt2 w100">
 		<?php  if( Login::role('ROLE_USER' )) {// autorización(solo autenticados) ?>
 				<input type="submit" class="button" name="guardar" value="Guardar">
@@ -92,7 +93,7 @@
 		</section>
 		<div class="centrado my2">
 			<a class="button" onclick="history.back()">Atrás</a>
-			<a class="button" href="/socio/list">Lista de socios</a>
+			<a class="button" href="/Lugar/list">Lista de lugares</a>
 		</div>		
 	
 	

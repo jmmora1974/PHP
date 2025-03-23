@@ -10,7 +10,7 @@
  * 
  * @since v1.8.4 se comprueba que el usuario no tenga ROLE_BLOCKED.
  */
-
+#[AllowDynamicProperties] 
 class LoginController extends Controller{
     
     

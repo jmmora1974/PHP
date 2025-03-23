@@ -8,7 +8,7 @@
  * 
  * @author Robert Sallent <robertsallent@gmail.com>
  */
-
+#[AllowDynamicProperties] 
 class JsonLoginController extends Controller{
     
     /**

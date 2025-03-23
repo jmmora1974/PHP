@@ -186,6 +186,7 @@ define('DB_LOGIN_ERRORS', false);                  // Guardar errores de login e
 
 // nombre de la sesión (y de la cookie de sesión)
 define('SESSION_NAME', 'FASTLIGHTSESSID');   
+define('ASPECTO','Retro');
 
 // tiempo (en segundos) antes de marcar los datos de sesión como basura
 define('SESSION_TIME', 1440);           
@@ -232,7 +233,7 @@ define('UPLOAD_MAX_SIZE', 0);
  * MENSAJE DE "ACEPTAR COOKIES"
  * -------------------------------------------------------------*/
 
-define('ACCEPT_COOKIES', false);    // habilita el mensaje de "aceptar cookies"
+define('ACCEPT_COOKIES', true);    // habilita el mensaje de "aceptar cookies"
 
 // mensaje que aparece en el formulario de "aceptar cookies"
 // los saltos de línea en el mensaje se convertirán en cambio de párrafo

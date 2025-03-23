@@ -10,7 +10,7 @@
  * 
  * @since v1.5.1 se pueden exportar las estadísticas
  */
-
+#[AllowDynamicProperties] 
 class StatController extends Controller{
     
     

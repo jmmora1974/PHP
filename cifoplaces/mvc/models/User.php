@@ -3,12 +3,14 @@
 /** Clase User
  *
  * Proveedor de usuarios por defecto para las aplicaciones de FastLight.
- *
- * @author Robert Sallent <robertsallent@gmail.com>
+ *@author Jose Migue Mora  <jmmora1974@gmail.com>
+ * @author1 Robert Sallent <robertsallent@gmail.com>
  * 
- * Última revisión: 05/03/2025
+ *
+ * añadidos campo y metodos para el aspecto 
+ * Última revisión: 22/03/2025
  */
-
+#[AllowDynamicProperties] 
 class User extends Model implements Authenticable{
 
     use Authorizable; // usa el trait authorizable
@@ -19,7 +21,7 @@ class User extends Model implements Authenticable{
     
     
     /** @var array $fillable lista de campos permitidos para asignaciones masivas usando el método create() */
-    protected static $fillable = ['displayname', 'email', 'phone', 'password', 'picture'];
+    protected static $fillable = ['displayname', 'email', 'phone', 'password', 'picture', 'aspecto'];
 
     
     /**
@@ -77,7 +79,49 @@ class User extends Model implements Authenticable{
             $usuario->parseJsonFields();
         
         return $usuario;
-    }   
+    }  
+    /**
+     *  Obtiene la variable tema que tiene configurada el usaurio para el aspeto
+     *
+     * @return string variable tema de la bbd
+     */
+    public function getAspecto(){
+    	//Auth::check(); // autorización(solo usuarios registrados)
+    	$consulta = "SELECT aspecto
+                     FROM users
+                     WHERE id =".$this->id;
+    	
+    	if($aspecto = (DB_CLASS)::select($consulta, self::class))
+  
+    		
+    	return $aspecto;
+    }
+    
+    /**
+     *  Configura la variable aspecto que tiene configurada el usuario para el aspeto
+     *
+     * @return string variable aspecto de la bbd
+     */
+    public function setAspecto(string $aspectonew='Dark'){
+    	Auth::check(); // autorización(solo usuarios registrados)
+    	
+    	$consulta = "UPDATE users SET aspecto='";
+    	
+    	switch($aspectonew){
+    		case "Base" : $consulta .= "Base"; break;
+    		case "Neon"   : $consulta .= "Neon"; break;
+    		case "Retro"  : $consulta .= "Retro"; break;
+    		// En el caso de no tener el aspecto (No informa del error) se establece por defecto el Dark
+    		default       : $consulta .= "Dark ";
+    	}
+    	 $consulta .= "' WHERE id =".$this->id.";";
+    	
+    	if($aspecto = (DB_CLASS)::update($consulta, self::class))
+    		
+    		
+    		return $aspecto;
+    }
+    
 }
     
     

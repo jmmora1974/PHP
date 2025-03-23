@@ -6,7 +6,7 @@
 * 
 * @autor Jose Miguel Mora Perez ® CIFO Valles 2025®
 */
-
+#[AllowDynamicProperties] 
 class PanelController extends Controller{
 	
 	/**

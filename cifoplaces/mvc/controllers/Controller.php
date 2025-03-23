@@ -9,6 +9,7 @@
  * @author Robert Sallent <robertsallent@gmail.com>
  * 
  */
+#[AllowDynamicProperties] 
 abstract class Controller{
     
     /** @var Request|null $request objeto Request con los datos de la petición. */

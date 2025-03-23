@@ -10,6 +10,7 @@
  *   @author Robert Sallent <robertsallent@gmail.com>
  *   @since v1.2.2
  */
+#[AllowDynamicProperties] 
 class HttpCookie{
     
     /**

@@ -17,7 +17,7 @@
  * 
  * @since v1.4.0
  */
-    
+#[AllowDynamicProperties] 
 class ExampleController extends Controller{
     
     /**

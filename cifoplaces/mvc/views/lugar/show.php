@@ -63,7 +63,7 @@
 					
 					<?php  if( Login::user()->id ){ ?>
 						<input type="submit" class="button" name="nuevocomentario" 
-								value="Nuevo comentario"  <?= user()->id ??'disabled'?> >
+								value="Añadir comentario"  <?= user()->id ??'disabled'?> >
 						<?php } else { ?>
 							<label class="small">Solo usuarios registrados.</label>
 							<?php } ?>
@@ -138,13 +138,23 @@
 							$listaidsfotos.=intval($archfoto->id);
 							?>
 								<div class="mySlides  flex-container gap2">
-												
+								
 										<figure>
 										<img class="enlarge-image" 
 											src="<?= LUGAR_IMAGE_FOLDER.'/'.$archfoto->file ?>" style="width: 40vw"
 											alt="<?=$archfoto->alt?>" title="<?=$archfoto->alt?>">
-										<figcaption><h3> <?= $f ?> / <?= count($fotoslugar) ?> - <?=$archfoto->name?></h3><br>
-														<?=$archfoto->description?>						
+										<figcaption>
+											<!-- Botones anterior y siguientes -->
+											 <div class="centrado m1">
+												<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+												<a class="resume" onclick="plusSlides(999999)">&#9654;</a> 
+												<a class="pause" onclick="plusSlides(0)">&#9724;</a>
+												<a class="next" onclick="plusSlides(1)">&#10095;</a>
+												<a class="button"  href="/Lugar/nuevafoto/<?=$lugar->id?>">Nueva foto</a>
+											</div>	
+											<h3> <?= $f ?> / <?= count($fotoslugar) ?> - <?=$archfoto->name?></h3><br>
+														<?=$archfoto->description?>	
+																			
 										</figcaption>
 									
 									</figure>
@@ -161,7 +171,7 @@
 					
 										<?php  if( Login::user()->id ){ ?>
 											<input type="submit" class="button" name="nuevofotocomentario" 
-													value="Nuevo comentario de foto"  <?= user()->id ??'disabled'?> >
+													value="Añadir comentario de foto"  <?= user()->id ??'disabled'?> >
 											<?php } else { ?>
 												<label class="small">Solo usuarios registrados.</label>
 												<?php } ?>
@@ -181,6 +191,7 @@
 																 class="icon-image enlarge-image" alt="Foto del lugar <?= $comentariofoto->name?>">
 															
 														</figure>
+														
 														<p>	<?=$comentariofoto->username.' ---> '.$comentariofoto->text.'.<br>
 																	<small> Creado el '.$comentariofoto->created_at.'</small>' ?>
 									
@@ -226,14 +237,7 @@
 			
 		</section>
 			<section>
-				<!-- Botones anterior y siguientes -->
-			 <div class="centrado">
-				<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-				<a class="resume" onclick="plusSlides(999999)">&#9654;</a> 
-				<a class="pause" onclick="plusSlides(0)">&#9724;</a>
-				<a class="next" onclick="plusSlides(1)">&#10095;</a>
-				<a class="button"  href="/Lugar/nuevafoto/<?=$lugar->id?>">Nueva foto</a>
-			</div>
+			
 				<!-- Image text -->
 				<div class="caption-container">
 					
@@ -268,6 +272,11 @@
 				<?php }	?>
 			
 		</section>
+		<div class="centrado my2">
+			<a class="button" onclick="history.back()">Atrás</a>
+			<a class="button" href="/Lugar/list">Lista de lugares</a>
+			<a class="button" href="<?=request()->url?>">Arriba</a>
+		</div>
 		
 	</main>
 	<script>

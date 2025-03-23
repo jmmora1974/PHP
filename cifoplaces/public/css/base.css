@@ -1272,19 +1272,14 @@ div.http-error{
     border-radius: 50%;
   }
 
-
-
-
-[tema="light"]{
-    --color-fuente: #000;
-    --color-fondo: #fff;
-    --secondary-bg-color: #fff;
-    --font-color:  #000;
+#selaspecto {
+	display: inline;
+	z-index:999;
 }
 
-[tema="dark"]{
-    --color-fuente: #231;
-    --color-fondo: #421;
-    --secondary-bg-color: #fff;
+#selaspecto label {
+	display: inline-flex important!;
+	flex-wrap: no-wrap;
+	
+	max-width: 800px importat!;
 }
-

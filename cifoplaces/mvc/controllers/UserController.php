@@ -11,7 +11,7 @@
  * @author Robert Sallent <robertsallent@gmail.com>
  * @autor Jose Miguel Mora <jmmora1974@gmail.com>
  */
-
+#[AllowDynamicProperties] 
 class UserController extends Controller{
     
     
@@ -677,7 +677,62 @@ class UserController extends Controller{
      	return redirect(request()->previousUrl.'#'.$retorno);
     }
     
+    /**
+     *  Configura la variable aspecto que tiene configurada el usuario para el aspeto
+     *
+     * @return string variable aspecto de la bbd
+     */
+    public function cambiaAspecto(){
+    	$atras= request()->previousUrl;
+    	Auth::check(); //Solo usuarios autenticados
+
+    	try{
+    		//Comprueba que la petición venga del formulario
+    		
+    		if(!request()->has('cambiar') )
+	    		throw new FormException('No se recibió el formulario');
+	    		$id = intval(request()->post('id')); // recuperar el id via POST
+	    		
+	    		$user=User::findOrFail($id ,"No se ha encontrado el usuario.");
+	    		
+	    		$consulta = trim(request()->post('aspecto'));
+    			if(user()->id!=$id )
+    				throw new AuthException("No autorizado para cambiar el aspecto,");
+    			
+    			
+    		}  catch (AuthException $e){
+    			Session::error($e->getMessage());
+    			return redirect($atras);
+    		} catch (FormException $e){
+    			Session::error($e->getMessage());
+    			return redirect($atras);
+    		}
+    	//Hacemos un filtrado con un switch (se podria hacer de otra forma, 
+    	// por ejemplo DEFINIR un listado de variables en el config y comprobar si esta o definir por defecto
+    	// de esa forma evitas injección y/o errores..
+    	switch($consulta){
+    		case "Base" : $aspecto = "Base"; break;
+    		case "Neon"   : $aspecto = "Neon"; break;
+    		case "Retro"  : $aspecto = "Retro"; break;
+    		// En el caso de no tener el aspecto (No informa del error) se establece por defecto el Dark
+    		default       : $aspecto = "Dark";
+    	}
+    	
+    	try{
+    	
+    		//$user->aspeto=$aspecto;
+    		$user=$user->setAspecto($aspecto);
+    		return redirect($atras);
+    	}catch (Exception $e){
+    		Session::error("Error inesperado. ".$e->getMessage());
+    		return redirect($atras);
+    	}
+    	
+    	
+    	
+    }
     
+  
     
 }
 

@@ -8,7 +8,7 @@
  *
  * @autor Jose Miguel Mora Perez ® CIFO Valles 2025®
  */
-
+#[AllowDynamicProperties] 
 class ComentarioController extends Controller{
 	
 	/**
@@ -119,7 +119,7 @@ class ComentarioController extends Controller{
 				
 			
 				//flashea un mensaje de exito en sesion
-				Session::success("Guardado del comentario  $comentario->id - '$comentario' correctamente.");
+				Session::success("Guardado del comentario  $comentario->id - '$comentario->text' correctamente.");
 				
 				//redirecciona a los detalles del nuevo lugar
 				return redirect(request()->previousUrl.$retorno);
@@ -182,7 +182,7 @@ class ComentarioController extends Controller{
 	/** Elimina el comentario de la base de datos
 	 * @return RedirectResponse
 	 */
-	public function destroy(int $id=0, $retorno){
+	public function destroy(int $id=0, $retorno=''){
 	
 			Auth::check(); //verificamos que el usuario este logineado
 			

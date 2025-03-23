@@ -6,7 +6,7 @@
 * 
 * @autor Jose Miguel Mora Perez ® CIFO Valles 2025®
 */
-
+#[AllowDynamicProperties] 
 class LugarController extends Controller{
 	
 	/**
@@ -156,7 +156,7 @@ class LugarController extends Controller{
 					$lugar->update();
 					
 					//flashea un mensaje de exito en sesion
-					Session::success("Guardado del lugar $lugar->titulo correcto.");
+					Session::success("Guardado del lugar $lugar->name correcto.");
 					
 					//redirecciona a los detalles del nuevo lugar
 					return redirect("/Lugar/show/$lugar->id");
@@ -488,7 +488,7 @@ class LugarController extends Controller{
 					$photo->update();
 					
 					//flashea un mensaje de exito en sesion
-					Session::success("Guardado nueva foto del lugar $lugar->name correctamente.");
+					Session::success("Guardado nueva foto $photo->name correctamente.");
 					
 					//redirecciona a los detalles del nuevo lugar
 					return redirect("/Lugar/show/".$photo->idplace);

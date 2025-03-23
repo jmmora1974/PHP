@@ -119,8 +119,15 @@ class View{
         foreach($this->parameters as $variable => $valor)
             $$variable = $valor;
         
+           if (user())
+           	$aspecto = rtrim(user()->getAspecto()->aspecto);
+          	
+           else 
+           	$aspecto = TEMPLATE;
+           
+          
         // genera una instancia del template configurado template
-        $template = new (TEMPLATE);
+           	$template = new ($aspecto);
             
         // carga la vista indicada desde el directorio de vistas
         try{

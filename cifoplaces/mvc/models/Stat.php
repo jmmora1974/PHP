@@ -12,7 +12,7 @@
  * @since v1.4.1
  */
 
-
+#[AllowDynamicProperties] 
 class Stat extends Model{
     
     /** @var string $table nombre de la tabla en la base de datos */ 

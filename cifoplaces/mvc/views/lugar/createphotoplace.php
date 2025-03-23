@@ -41,9 +41,7 @@
 			<label for="description">Descripción</label>
 			<input type="text" name="description" value="<?= old('description')?>" required>
 			<br>
-			<label for="location">Localización</label>
-			<input type="text" name="location" value="<?= old('location')?>" required>
-			<br>
+			
 			<label for="date">Fecha</label>
 			
 			<input type="date" name="date" value="<?php
@@ -90,7 +88,7 @@
 			</div>
 			
 		
-								</div>
+								
 		<div class="centered mt2 w100">
 		<?php  if( Login::role('ROLE_USER' )) {// autorización(solo autenticados) ?>
 				<input type="submit" class="button" name="guardar" value="Guardar">
@@ -102,7 +100,7 @@
 		</section>
 		<div class="centrado my2">
 			<a class="button" onclick="history.back()">Atrás</a>
-			<a class="button" href="/socio/list">Lista de socios</a>
+			<a class="button" href="/Lugar/list">Lista de lugares</a>
 		</div>		
 	
 	

@@ -10,7 +10,7 @@
  * 
  * @since v1.5.1 se pueden exportar los errores
  */
-
+#[AllowDynamicProperties] 
 class ErrorController extends Controller{
         
     /** 

@@ -120,7 +120,8 @@ class View{
             $$variable = $valor;
         
         // genera una instancia del template configurado template
-        $template = new (TEMPLATE);
+            $template = new (TEMPLATE);
+            
             
         // carga la vista indicada desde el directorio de vistas
         try{

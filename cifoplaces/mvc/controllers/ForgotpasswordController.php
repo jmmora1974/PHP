@@ -8,7 +8,7 @@
  * 
  * @author Robert Sallent <robertsallent@gmail.com>
  */   
-
+#[AllowDynamicProperties] 
 class ForgotpasswordController extends Controller{
     
     /** Muestra el formulario que solicita una nueva clave. */
