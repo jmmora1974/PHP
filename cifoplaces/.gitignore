@@ -1,7 +1,0 @@
-/.project
-/.buildpath
-/.settings/
-/vendor/
-/tmp/*
-!/tmp/readme.txt
-/logs/*.log

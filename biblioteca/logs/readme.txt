@@ -1,1 +1,0 @@
-Carpeta para ficheros de Log.
